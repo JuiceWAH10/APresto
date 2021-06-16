@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
+import CustomerIndivShopItems from './CustomerIndivShopItems';
 
 function CustomerShopItem(props) {
+    const route = useRoute();
+    const navigation = useNavigation();
     const [search, setTextS] = React.useState('');
+    
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.HeaderContainer}>
@@ -13,18 +19,18 @@ function CustomerShopItem(props) {
                 <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Shop-Icon-Red.png')}></Image>
-                    <Text style={{color: '#fff', fontSize: 26,}}>Store Name</Text>
+                    <Text style={{color: '#fff', fontSize: 26,}}>{JSON.stringify(route.params.name).replace(/['"]+/g, '')}</Text>
                     <View style={styles.ElementsTop}>
                         <TouchableOpacity onPress={()=>console.log("Address")}>
                             <Image style={styles.LogoTiny}
                                 source={require('../assets/Map.png')}></Image>
                         </TouchableOpacity>        
-                        <Text style={{color: '#fff', fontSize: 12,}}>Address</Text>
+                        <Text style={{color: '#fff', fontSize: 12,}}>{JSON.stringify(route.params.address).replace(/['"]+/g, '')}</Text>
                     </View> 
             </View>
             </ImageBackground>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -39,17 +45,35 @@ function CustomerShopItem(props) {
                     <TouchableOpacity onPress={()=>console.log("Search")}>
                         <View style={styles.SearchButton}>
                         <Text style={{color: '#fff', fontSize: 14}}>Search</Text>
-                        </View></TouchableOpacity>
-                </View> 
+                        </View>
+                    </TouchableOpacity>
+            </View> 
+
+            <ScrollView style={styles.ShopContainer}>
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+                <CustomerIndivShopItems />
+            </ScrollView>
+
             <View style={styles.buttons}>
-                <TouchableOpacity>
-                <View style={styles.AddToCart}>
-                    <Text style={{color: '#fff', fontSize: 16}}>Add to Cart</Text>
-                </View></TouchableOpacity> 
-                <TouchableOpacity>
-                <View style={styles.AddToCart}>
-                    <Text style={{color: '#fff', fontSize: 16}}>My Cart</Text>
-                </View></TouchableOpacity>   
+                <TouchableOpacity >
+                    <View style={styles.AddToCart}>
+                        <Text style={{color: '#fff', fontSize: 16}}>Add to Cart</Text>
+                    </View>
+                </TouchableOpacity> 
+                
+                <TouchableOpacity onPress={()=> navigation.navigate('CustomerCart')}>
+                    <View style={styles.AddToCart}>
+                        <Text style={{color: '#fff', fontSize: 16}}>My Cart</Text>
+                    </View>
+                </TouchableOpacity>   
             </View>    
 
         </SafeAreaView>
@@ -63,6 +87,19 @@ const styles = StyleSheet.create({
       //alignItems: 'center',
       justifyContent: 'flex-end',
     },
+    ShopContainer: {
+        width: '100%',
+        height: 440,
+        backgroundColor: '#fff',
+        //borderRadius: 30,
+        borderColor: '#fd4140',
+        borderWidth: 2,
+        //alignItems: 'center',
+        alignSelf: 'center',
+        //justifyContent: 'center',
+        position: "absolute",
+        top: 200,
+      },
     AddToCart: {
       width: '100%',
       height: 50,

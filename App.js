@@ -3,7 +3,8 @@ import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'react-native';
+
 
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
@@ -38,8 +39,56 @@ import AboutUs from './App/screens/AboutUs';
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
+const customerBottomTabs = () =>{
+  return (
+    <Tabs.Navigator 
+      backBehavior={"none"}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if(route.name === 'STORES'){
+            iconName = focused
+            ? require('./App/assets/Shop-B.png')
+            : require('./App/assets/Shop-B.png');
+          }
+          else if(route.name === 'REWARDS'){
+            iconName = focused
+            ? require('./App/assets/Rewards-B.png')
+            : require('./App/assets/Rewards-B.png');
+          }
+          else if(route.name === 'PROFILE'){
+            iconName = focused
+            ? require('./App/assets/User-B.png')
+            : require('./App/assets/User-B.png');
+          }
+          else if(route.name === 'ABOUT US'){
+            iconName = focused
+            ? require('./App/assets/About-B.png')
+            : require('./App/assets/About-B.png');
+          }
+            
+
+          return (
+            <Image source={iconName} style={{width:45, height:45}} resizeMode="contain"/>
+          );
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'blue',
+        inactiveTintColor: 'black'
+      }}
+    >
+      <Tabs.Screen name="STORES" component={CustomerShops} />        
+      <Tabs.Screen name="REWARDS" component={CustomerRewards} />    
+      <Tabs.Screen name="PROFILE" component={CustomerProfile} />    
+      <Tabs.Screen name="ABOUT US" component={AboutUs} />
+    </Tabs.Navigator>
+  )
+}
+
 export default function App() {
-  return(
+  return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="splash" component={SplashScreen} />
@@ -50,26 +99,16 @@ export default function App() {
         <Stack.Screen name="clientAddReward" component={ClientAddReward} />
         <Stack.Screen name="clientEditProduct" component={ClientEditProduct} />
         <Stack.Screen name="clientEditReward" component={ClientEditReward} />
-        <Stack.Screen name="myProduct" component={MyProducts} />
+        <Stack.Screen name="myProducts" component={MyProducts} />
         <Stack.Screen name="myRewards" component={MyRewards} />
         <Stack.Screen name="clientProfile" component={ClientProfile} />
         <Stack.Screen name="mySuki" component={MySuki} />
-
-        <Stack.Screen name="customerShops" component={CustomerShops} />
-        <Stack.Screen name="customerRewards" component={CustomerRewards} />
+        <Stack.Screen name="customerShops" children={customerBottomTabs} />  
+        <Stack.Screen name="customerShopItem" component={CustomerShopItem} />
+        <Stack.Screen name="CustomerCart" component={CustomerCart} />
+        <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
         <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
         <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
-        <Stack.Screen name="customerProfile" component={CustomerProfile} />
-        <Stack.Screen name="customerShopItem" component={CustomerShopItem} />
-        <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
-        <Stack.Screen name="CustomerCart" component={CustomerCart} />
-        <Stack.Screen name="aboutUs" component={AboutUs} />
       </Stack.Navigator>      
     </NavigationContainer>
-
-  )
-
-
-
-}
-
+  )};

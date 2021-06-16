@@ -1,12 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
+import CustomerIndivRewardItems from './CustomerIndivRewardItems';
 
 function CustomerRewardItem(props) {
     const [search, setTextS] = React.useState('');
+    const route = useRoute();
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.HeaderContainer}>
@@ -14,18 +19,18 @@ function CustomerRewardItem(props) {
                 <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Shop-Icon-Red.png')}></Image>
-                    <Text style={{color: '#fff', fontSize: 26,}}>Store Name</Text>
+                    <Text style={{color: '#fff', fontSize: 26,}}>{JSON.stringify(route.params.name).replace(/['"]+/g, '')}</Text>
                     <View style={styles.ElementsTop}>
                         <TouchableOpacity onPress={()=>console.log("Address")}>
                             <Image style={styles.LogoTiny}
                                 source={require('../assets/Map.png')}></Image>
                         </TouchableOpacity>        
-                        <Text style={{color: '#fff', fontSize: 12,}}>Address</Text>
+                        <Text style={{color: '#fff', fontSize: 12,}}>{JSON.stringify(route.params.address).replace(/['"]+/g, '')}</Text>
                     </View> 
             </View>
             </ImageBackground>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -42,8 +47,21 @@ function CustomerRewardItem(props) {
                         <Text style={{color: '#fff', fontSize: 14}}>Search</Text>
                         </View></TouchableOpacity>
                 </View> 
+
+                <ScrollView style={styles.ShopContainer}>
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                    <CustomerIndivRewardItems />
+                </ScrollView>
             
-                <TouchableOpacity onPress={()=>console.log("Redeem")}>
+                <TouchableOpacity onPress={()=> navigation.navigate('customerRewQRCode')}>
                 <View style={styles.AddToCart}>
                     <Text style={{color: '#fff', fontSize: 16}}>Redeem Rewards</Text>
                 </View></TouchableOpacity> 

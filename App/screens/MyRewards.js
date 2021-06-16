@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
+import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
 function MyRewards(props) {
     const [search, setTextS] = React.useState('');
+    const showAlert = () =>{
+        Alert.alert("Under development ^_^")
+     }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.topContainer}>
@@ -35,19 +37,19 @@ function MyRewards(props) {
 
             </View>
             <View style={styles.FooterIcons}>
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                <TouchableOpacity onPress={showAlert}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Live-B-L.png')}></Image>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                <TouchableOpacity onPress={showAlert}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Sold-B-L.png')}></Image>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                <TouchableOpacity onPress={showAlert}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Delisted-B-L.png')}></Image>

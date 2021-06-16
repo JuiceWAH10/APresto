@@ -1,16 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
-import { TextInput } from 'react-native-paper';
+import QRCode from "react-qr-code";
+import { useNavigation } from '@react-navigation/native';
 
 function CustomerRewQRCode(props) {
+    const navigation = useNavigation();
     return (
         <ImageBackground
         style={styles.BGImage}
         source={require('../assets/Store-Blur.png')}>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -18,7 +19,7 @@ function CustomerRewQRCode(props) {
             <View style={styles.QRContainer}>
                 <View style={styles.QRElements}>
                     <Text style={{color: '#29312e', fontSize: 24,}}>Store Name</Text>
-                    <Image style={styles.LogoQR} source={require('../assets/QR-B.png')}></Image>  
+                    <QRCode value="Under Development ^_^v"/>   
                     <Text style={{color: '#29312e', fontSize: 16,}}>(00) Remaining Points</Text>
                     <Text style={{color: '#fd4140', fontSize: 34,}}>(00) Points Used</Text>
                 </View>  

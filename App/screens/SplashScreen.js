@@ -1,26 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
 
 function SplashScreen(props) {
     return (
           <ImageBackground
-          style={styles.BGImage}
-          source={require('../assets/Store-Blur.png')}>
+            style={styles.BGImage}
+            source={require('../assets/Store-Blur.png')}>
+              
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
                 source={require('../assets/Logo-AP-name.png')}></Image>
                 <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>
-            <TouchableOpacity onPress={() => props.navigation.push('signup')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('signup')}>
               <View style={styles.SignUpButton}>
                 <Text style={{color: '#29312e', fontSize: 16}}>Sign Up</Text>
-              </View></TouchableOpacity>
-            <TouchableOpacity onPress={() => props.navigation.push('login')}>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate('login')}>
               <View style={styles.LogInButton}>
                 <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
-              </View></TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           </ImageBackground>
             
     );

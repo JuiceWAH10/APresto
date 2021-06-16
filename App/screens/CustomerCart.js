@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
-import { TextInput } from 'react-native-paper';
-
+import { useNavigation } from '@react-navigation/native';
 
 function CustomerCart(props) {
+    const navigation = useNavigation();
+
     return (
         <ImageBackground
         style={styles.BGImage}
         source={require('../assets/Store-Blur.png')}>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -20,7 +20,7 @@ function CustomerCart(props) {
                 <View style={styles.CartName}>
                     <Text style={{color: '#29312e', fontSize: 24,}}>My Cart (00)</Text>
                     <Text style={{color: '#29312e', fontSize: 14,}}>Store Name</Text>
-                    <TouchableOpacity onPress={()=>console.log("QR Code G")}>
+                    <TouchableOpacity onPress={()=> navigation.navigate('customerProdQRCode')}>
                         <View style={styles.GenerateQR}>
                             <View style={styles.ElementsTop}>
                                 <Image style={styles.LogoTiny} source={require('../assets/QR-W.png')}></Image>

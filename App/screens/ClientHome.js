@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
-import { TextInput } from 'react-native-paper';
+import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 function ClientHome(props) {
+
+    const showAlert = () =>{
+        Alert.alert("Under development ^_^")
+     }
+
     return (
         <ImageBackground
           style={styles.BGImage}
@@ -28,7 +31,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder1}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('myProducts')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('myProducts')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Products-B.png")}/>  
@@ -38,7 +41,7 @@ function ClientHome(props) {
                         <Text style={{color:'#fd4140',fontSize: 40,}}>&gt;</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('clientAddProduct')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('clientAddProduct')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Add-B.png")}/>  
@@ -50,7 +53,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('myRewards')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('myRewards')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Rewards-B.png")}/>  
@@ -60,7 +63,7 @@ function ClientHome(props) {
                         <Text style={{color:'#fd4140',fontSize: 40,}}>&gt;</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('ClientAddRewards')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('clientAddReward')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Add-B.png")}/>  
@@ -72,7 +75,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('mySuki')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('mySuki')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Suki-B.png")}/>  
@@ -84,7 +87,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('splash')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={showAlert}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/QR-B.png")}/>  

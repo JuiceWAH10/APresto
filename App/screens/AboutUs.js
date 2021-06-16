@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
-import { TextInput } from 'react-native-paper';
 
 function AboutUs(props) {
     return (
@@ -22,35 +19,7 @@ function AboutUs(props) {
                         source={require('../assets/Logo-Circle.png')}></Image>
                         <Text style={{color: '#29312e', fontSize: 28,}}>About Us</Text>
                 </View>
-    
-                
-                <View style={styles.FooterIcons}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Image style={styles.Nav}
-                            fadeDuration={1000}
-                            source={require('../assets/Shop-B-L.png')}></Image>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Image style={styles.Nav}
-                            fadeDuration={1000}
-                            source={require('../assets/Rewards-B-L.png')}></Image>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Image style={styles.Nav}
-                            fadeDuration={1000}
-                            source={require('../assets/User-B-L.png')}></Image>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Image style={styles.Nav}
-                            fadeDuration={1000}
-                            source={require('../assets/About-B-L.png')}></Image>
-                    </TouchableOpacity>
-                </View>
-    
-    
+       
             </SafeAreaView>
     );
 }

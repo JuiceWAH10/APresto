@@ -1,35 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
-import { TextInput } from 'react-native-paper';
-
+import { useNavigation } from '@react-navigation/native';
 
 function CustomerIndivRewards(props) {
+    const navigation = useNavigation();
     return (
-        <View style={styles.Elements}>
-            <TouchableOpacity onPress={()=>console.log("Pressed")}>
+        <TouchableOpacity 
+        style={styles.Elements}
+        onPress={() => {
+            navigation.navigate("customerRewardItem", {
+                name: props.name,
+                address: props.address
+            })
+        }} >
                 <Image style={styles.Store}
                     fadeDuration={1000}
                     source={require('../assets/Shop-Icon.png')}></Image>
-            </TouchableOpacity>
                 <View style={styles.toCenter}>
-                    <Text style={{color: '#29312e', fontSize: 18}}>Store Name</Text>
+                    <Text style={{color: '#29312e', fontSize: 18}}>{props.name}</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Image style={styles.Address} source={require('../assets/Map-B.png')}></Image>
                         <View style={styles.toCenter}>
-                            <Text style={{color: '#29312e', fontSize: 12}}>Address</Text>
+                            <Text style={{color: '#29312e', fontSize: 12}}>{props.address}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.toCenter}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Image style={styles.Cart}
-                            fadeDuration={1000}
-                            source={require('../assets/Cart-B.png')}></Image>
-                    </TouchableOpacity>
+                    <Image style={styles.Cart}
+                        fadeDuration={1000}
+                        source={require('../assets/Cart-B.png')}></Image>
                 </View> 
-        </View>
+        </TouchableOpacity>
     );
 }
 

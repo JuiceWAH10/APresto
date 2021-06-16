@@ -1,7 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
 
 function SignUp(props) {
@@ -24,7 +22,7 @@ function SignUp(props) {
             </View>
 
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
+                <TouchableOpacity onPress={() => props.navigation.goBack()}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -95,14 +93,12 @@ function SignUp(props) {
                 </View>
 
             </View>
-            <TouchableOpacity>
-              <View style={styles.SignUpButton}>
-                <Text style={{color: '#fff', fontSize: 16}}>Continue</Text>
-              </View></TouchableOpacity>
+            <TouchableOpacity style={styles.SignUpButton} onPress={() => props.navigation.navigate('login')} >
+              <Text style={{color: '#fff', fontSize: 16}}>Continue</Text>
+            </TouchableOpacity>
             <View style={styles.Footer}>
               <Text style={{color: '#29312e', fontSize: 9,}}>By continuing, you agree to A Presto's Terms of Service,</Text>
               <Text style={{color: '#29312e', fontSize: 9,}}> Privacy policy.</Text>
-
               <Text style={{color: '#29312e', fontSize: 9,}}>Already a Member? Log In.</Text>
             </View>
         </SafeAreaView>

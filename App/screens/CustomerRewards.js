@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useDimensions }  from '@react-native-community/hooks';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
+
+import CustomerIndivRewards from './CustomerIndivRewards';
 
 function CustomerRewards(props) {
     const [search, setTextS] = React.useState('');
@@ -30,10 +31,18 @@ function CustomerRewards(props) {
 
             </View>
 
-            <View style={styles.ShopContainer}>
-                
-
-            </View>
+            <ScrollView style={styles.ShopContainer}>
+                <CustomerIndivRewards name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
+                <CustomerIndivRewards name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
+                <CustomerIndivRewards name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
+                <CustomerIndivRewards name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
+                <CustomerIndivRewards name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                <CustomerIndivRewards name="Purified Water Refilling Station" address="223-C/869B, Sandoval Ave, Pasig"/>
+                <CustomerIndivRewards name="Mongis Bicycle Shop" address="8511, Unit D Sandoval Ave, Pasig, 1602 Metro Manila"/>
+                <CustomerIndivRewards name="The Cloudroom Vape Shop" address="18 Alcalde Jose, Pasig, 1600 Metro Manila"/>
+                <CustomerIndivRewards name="Kanto Freestyle Kapasigan" address="27 Alcalde Jose, Pasig, Metro Manila"/>
+                <CustomerIndivRewards name="Palatiw Hardware - Malinao" address="Prima 1 & 2 Bldg, F. Manalo, Pasig, 1600 Metro Manila"/>
+            </ScrollView>
 
             <View style={styles.NearLike}>
                 <TouchableOpacity onPress={()=>console.log("Pressed")}>
@@ -48,33 +57,6 @@ function CustomerRewards(props) {
                 </TouchableOpacity>
 
             </View>
-            <View style={styles.FooterIcons}>
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Image style={styles.Nav}
-                        fadeDuration={1000}
-                        source={require('../assets/Shop-B-L.png')}></Image>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Image style={styles.Nav}
-                        fadeDuration={1000}
-                        source={require('../assets/Rewards-B-L.png')}></Image>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Image style={styles.Nav}
-                        fadeDuration={1000}
-                        source={require('../assets/User-B-L.png')}></Image>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Image style={styles.Nav}
-                        fadeDuration={1000}
-                        source={require('../assets/About-B-L.png')}></Image>
-                </TouchableOpacity>
-            </View>
-
-
         </SafeAreaView>
     );
 }
