@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import CustomerIndivRewards from './CustomerIndivRewards';
 
@@ -35,7 +36,7 @@ function CustomerRewards(props) {
                 <CustomerIndivRewards name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
                 <CustomerIndivRewards name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
                 <CustomerIndivRewards name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                <CustomerIndivRewards name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
+                <CustomerIndivRewards name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Rizal"/>
                 <CustomerIndivRewards name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
                 <CustomerIndivRewards name="Purified Water Refilling Station" address="223-C/869B, Sandoval Ave, Pasig"/>
                 <CustomerIndivRewards name="Mongis Bicycle Shop" address="8511, Unit D Sandoval Ave, Pasig, 1602 Metro Manila"/>
@@ -96,14 +97,15 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: '100%',
+        width: wp('100%'),
+        height: hp('10%'),
         alignContent: 'center',
         position: 'absolute',
-        top: 100
+        top: hp('15%')
     },
     HeaderStyle:{
-        height: 100,
-        width: '100%'
+        width: wp('100%'),
+        height: hp('10%'),
     },
     Nav:{
         height: 50,
@@ -112,12 +114,14 @@ const styles = StyleSheet.create({
     NearLike: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        padding: 2,
-        width: '100%',       
+       //padding: 2,
+        width: wp('100%'),
+        height: hp('10%'),
+        //top: hp('90%')       
     },
     PictureStyle:{
-        height: 80,
-        width: 170
+        width: wp('50%'),
+        height: hp('10%'),
 
     },
     SearchButton: {
@@ -132,17 +136,17 @@ const styles = StyleSheet.create({
         top: 20
     },
     ShopContainer: {
-      width: '100%',
-      height: 440,
+        width: wp('100%'),
+        height: hp('60%'),
       backgroundColor: '#fff',
       //borderRadius: 30,
-      borderColor: '#fd4140',
-      borderWidth: 2,
+      //borderColor: '#fd4140',
+      //borderWidth: 2,
       //alignItems: 'center',
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: 200,
+      top: hp('25%'),
     },
     Store:{
       height: 60,
@@ -170,13 +174,14 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: '100%',
+        //width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        height: 150,
+        //height: 150,
+        width: wp('100%'),
+        height: hp('15%'),
     },
   });
-
 
 export default CustomerRewards;

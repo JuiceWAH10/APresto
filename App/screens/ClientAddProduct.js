@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 function ClientAddProduct(props) {
@@ -104,8 +105,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         justifyContent: 'space-around',      
-        width: '90%',
-        height: 550, 
+        width: wp('90%'),
+        height: hp('70%'),
         top: 110,
     },  
     BGImage: {

@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function ClientAddReward(props) {
     const [rewName, setTextRN] = React.useState('');
@@ -104,8 +105,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         justifyContent: 'space-around',      
-        width: '90%',
-        height: 550, 
+        width: wp('90%'),
+        height: hp('70%'),
         top: 110,
     },  
     BGImage: {
@@ -258,5 +259,4 @@ const styles = StyleSheet.create({
           width: '50%'
         }
   });
-
 export default ClientAddReward;

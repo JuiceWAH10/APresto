@@ -7,7 +7,6 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "description": "with nav and dummy data"
+    ]
   }
 }

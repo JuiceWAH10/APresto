@@ -4,6 +4,8 @@ import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, Touchabl
 import { TextInput } from 'react-native-paper';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 import CustomerIndivRewardItems from './CustomerIndivRewardItems';
 
@@ -15,7 +17,7 @@ function CustomerRewardItem(props) {
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.HeaderContainer}>
-                <Image source={require('../assets/Header.png')}></Image> 
+                <Image style={styles.Header} source={require('../assets/Header.png')}></Image> 
                 <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Shop-Icon-Red.png')}></Image>
@@ -61,30 +63,46 @@ function CustomerRewardItem(props) {
                     <CustomerIndivRewardItems />
                 </ScrollView>
             
+                <View style={styles.buttons}>
                 <TouchableOpacity onPress={()=> navigation.navigate('customerRewQRCode')}>
                 <View style={styles.AddToCart}>
                     <Text style={{color: '#fff', fontSize: 16}}>Redeem Rewards</Text>
                 </View></TouchableOpacity> 
+                </View>
             
 
         </SafeAreaView>
     );
 }
 
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
       //alignItems: 'center',
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
     },
+    ShopContainer: {
+        width: '100%',
+        height: 440,
+        backgroundColor: '#fff',
+        //borderRadius: 30,
+        borderColor: '#fd4140',
+        borderWidth: 2,
+        //alignItems: 'center',
+        alignSelf: 'center',
+        //justifyContent: 'center',
+        position: "absolute",
+        top: 200,
+      },
     AddToCart: {
-      width: '80%',
-      height: 50,
+      width: '100%',
+      height: hp('5%'),
       backgroundColor: '#fd4140',
       borderRadius: 30,
       bottom: 10,
-      alignSelf: 'center',
+      //alignSelf: 'center',
       alignItems: 'center',
       justifyContent: 'center',
       padding: 20
@@ -106,7 +124,12 @@ const styles = StyleSheet.create({
     buttons: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '100%'
+        width: wp('100%'),
+        height: hp('5%'),
+        top: hp('90%'),
+        //borderColor: '#fd4140',
+        //borderWidth: 2,
+        
 
     },
     ElementsTop:{
@@ -127,9 +150,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
         //alignSelf: 'center'       
     },
+    Header:{
+        width: wp('100%'),
+        height: hp('20%'),
+    },
     HeaderContainer:{   
         position: "absolute",
-        width: '100%',
+        width: wp('100%'),
+        height: hp('20%'),
         top: 0
         //alignContent: 'center',
     },
@@ -147,7 +175,9 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        top: 30,
+        width: wp('100%'),
+        height: hp('15%'),
+        top: hp('4%'),
         alignItems: "center",
         alignSelf: "center",
     },
@@ -168,27 +198,27 @@ const styles = StyleSheet.create({
     },
     SearchButton: {
         width: '100%',
-        height: 40,
+        height: hp('5%'),
         backgroundColor: '#fd4140',
         borderRadius: 30,
         //alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        top: 5
+        top: hp('0.5%')
     },
     ShopContainer: {
-      width: '100%',
-      height: 440,
+        width: wp('100%'),
+        height: hp('68%'),
       backgroundColor: '#fff',
       //borderRadius: 30,
-      borderColor: '#fd4140',
-      borderWidth: 2,
+      //borderColor: '#fd4140',
+      //borderWidth: 2,
       //alignItems: 'center',
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: 200,
+      top: hp('26%')
     },
     Store:{
       height: 60,
@@ -197,17 +227,20 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       width: '75%',
-      height: 35,
+      height: hp('5%'),
       borderColor: '#1c2b59',
-      top: 5
+      
     },
     textView: {
-        position: "absolute",
         flexDirection: 'row',
         justifyContent: 'space-around',
-        padding: 2,
-        width: '100%',
-        top: 145,
+        //padding: 2,
+        width: wp('100%'),
+        height: hp('6%'),
+        top: hp('20%'),
+        //borderColor: '#fd4140',
+        //borderWidth: 2,
+       
     },
     toCenter: {
       flexDirection: 'column',

@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function CustomerCart(props) {
     const navigation = useNavigation();
@@ -66,14 +67,14 @@ const styles = StyleSheet.create({
 
     },
     CartContainer: {
-        width: '90%',
-        height: 600,
+        width: wp('90%'),
+        height: hp('80%'),
+        top: hp('15%'),
         backgroundColor: '#fff',
         borderRadius: 30,
         //alignItems: 'center',
         alignSelf: 'center',
         //justifyContent: 'center',
-        top: 120,
     },
     CartName: {
         top: 35,
@@ -106,7 +107,9 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        top: 80,
+        width: wp('90%'),
+        height: hp('10%'),
+        top: hp('10%'),
         alignItems: "center",
         alignSelf: "center",
     },

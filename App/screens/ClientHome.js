@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function ClientHome(props) {
-
     const showAlert = () =>{
         Alert.alert("Under development ^_^")
      }
@@ -87,7 +87,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={showAlert}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('QRCodeScanner')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/QR-B.png")}/>  
@@ -168,9 +168,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         //justifyContent: 'space-around',      
-        width: '90%',
-        height: 640, 
-        top: 80,
+        width: wp('90%'),
+        height: hp('80%'),
+        top: hp('10%')
 
     },
     SignUpButton: {

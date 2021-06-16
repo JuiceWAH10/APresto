@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function CustomerProfile(props) {
     const [firstName, setTextFN] = React.useState('');
@@ -74,22 +75,21 @@ function CustomerProfile(props) {
                 </View>
 
                 <View style={styles.ButtonsCon}>
-                    <TouchableOpacity>
-                    <View style={styles.PButton}>
+                    <TouchableOpacity style={styles.PButton} onPress={() => props.navigation.popToTop()}>
                         <Text style={{color: '#fff', fontSize: 16}}>Edit Profile</Text>
-                    </View></TouchableOpacity>
+                    </TouchableOpacity>
                 
-                    <TouchableOpacity>
-                    <View style={styles.PButton}>
+                    <TouchableOpacity style={styles.PButton} onPress={() => props.navigation.popToTop()}>
                         <Text style={{color: '#fff', fontSize: 16}}>Sign Out</Text>
-                    </View></TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
-
             </View>
+
+            
             <View style={styles.ProfilePicContainer}>
                 <Image style={styles.ProfileStyle}
                     source={require('../assets/Customer-Profile.png')}></Image>
-                    <Text style={{color: '#29312e', fontSize: 28,}}>User Name</Text>
+                    <Text style={{color: '#29312e', fontSize: 26,}}>User Name</Text>
             </View>
 
 
@@ -103,20 +103,21 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       //alignItems: 'center',
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
     },
     BG: {
       flex: 0.9,
       justifyContent: 'flex-start',
     },
     ButtonsCon: {
-        top: 80,
-        height: 110,
+        width: wp('100%'),
+        height: hp('11%'),
+        top: hp('2%'),
         justifyContent: 'space-between'
     },
     PButton: {
-        width: '80%',
-        height: 50,
+        width: wp('80%'),
+        height: hp('5%'),
         backgroundColor: '#fd4140',
         borderRadius: 30,
         //top: 80,
@@ -148,14 +149,15 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: '100%',
+        width: wp('100%'),
+        height: hp('20%'),
         alignContent: 'center',
         position: 'absolute',
         top: 0
     },
     HeaderStyle:{
-        height: 100,
-        width: '100%'
+        width: wp('100%'),
+        height: hp('20%'),
     },
     Nav:{
         height: 50,
@@ -172,8 +174,9 @@ const styles = StyleSheet.create({
         width: 170
     },
     ProfileContainer: {
-        width: '100%',
-        height: 440,
+        width: wp('100%'),
+        height: hp('44%'),
+        top: hp('35%'),
         backgroundColor: '#fff',
         //borderRadius: 30,
         //borderColor: '#fd4140',
@@ -182,11 +185,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         //justifyContent: 'center',
         position: "absolute",
-        top: 210,
+        
     },
     ProfilePicContainer:{
-        position: "absolute",
-        top: 80,
+        width: wp('100%'),
+        height: hp('15%'),
+        top: hp('10%'),
         alignItems: "center",
         alignSelf: "center",
     },
@@ -212,16 +216,15 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       width: '75%',
-      height: 35,
+      height: hp('5%'),
       borderColor: '#1c2b59',
-      top: 20
+      top: hp('1%'),
     },
     textView: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        padding: 5,
+        paddingTop: hp('1%'),
         width: '100%',
-        top: 40,
     },
     toCenter: {
       flexDirection: 'column',
@@ -231,11 +234,12 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: '100%',
+        width: wp('100%'),
+        height: hp('21%'),
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        height: 160,
+        
     },
   });
 export default CustomerProfile;

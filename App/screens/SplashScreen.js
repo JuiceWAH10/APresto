@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function SplashScreen(props) {
     return (
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
     },
     LogInButton: {
-      width: '90%',
-      height: 50,
+      width: wp('90%'),
+      height: hp('6%'),
       backgroundColor: '#fd4140',
       borderRadius: 30,
       bottom: 10,
@@ -50,18 +51,20 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     Logo:{
-      height: 220,
-      width: 220,
+      width: wp('25%'),
+      height: hp('25%'),
     },
     LogoContainer:{
       position: "absolute",
-      top: 70,
+      width: wp('100%'),
+      height: hp('25%'),
+      top: hp('15%'),
       alignItems: "center",
       alignSelf: "center"
     },
     SignUpButton: {
-      width: '90%',
-      height: 50,
+      width: wp('90%'),
+      height: hp('6%'),
       backgroundColor: '#fff',
       borderRadius: 30,
       bottom: 20,

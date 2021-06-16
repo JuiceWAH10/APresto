@@ -5,21 +5,21 @@ import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, 
 function MyIndivSuki(props) {
     return (
         <View style={styles.wrapValuesAll}>
-        <View style={styles.itemDetail}>
-          <Image 
-          style={styles.Logo}
-          source={require("../assets/Customer-Profile.png")}/>
-          <View style={styles.toCenter}>
-            <Text style={{color:'#29312e',fontSize: 20,}}>Suki Name</Text>
-            <Text style={{color:'#fd4140',fontSize: 12,}}>Available Points 00 </Text>
-          </View>
-        </View>
+            <View style={styles.itemDetail}>
+                <Image 
+                style={styles.Logo}
+                source={require("../assets/Customer-Profile.png")}/>
+                <View style={styles.toCenter}>
+                    <Text style={{color:'#29312e',fontSize: 20,}}>Suki Name</Text>
+                    <Text style={{color:'#fd4140',fontSize: 12,}}>Available Points 00 </Text>
+                </View>
+            </View>
 
-        <View style={styles.wrapButtons}>
-          <Button color="#1c2b59" title="Message"/>
-          <Button color="#800000" title="Delete Account"/>
+            <View style={styles.wrapButtons}>
+                <Button color="#1c2b59" title="Message"/>
+                <Button color="#800000" title="Delete Account"/>
+            </View>
         </View>
-      </View>
     );
 }
 const styles = StyleSheet.create({

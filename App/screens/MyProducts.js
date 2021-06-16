@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import MyIndivProducts from './MyIndivProducts.js';
 
 function MyProducts(props) {
     const [search, setTextS] = React.useState('');
@@ -34,10 +37,18 @@ function MyProducts(props) {
 
             </View>
 
-            <View style={styles.ShopContainer}>
-                
-
-            </View>
+            <ScrollView style={styles.ShopContainer}>
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+                <MyIndivProducts />
+            </ScrollView>
             
             <View style={styles.FooterIcons}>
                 <TouchableOpacity onPress={showAlert}>
@@ -99,14 +110,15 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: '100%',
+        width: wp('100%'),
+        height: hp('10%'),
         alignContent: 'center',
         position: 'absolute',
-        top: 100
+        top: hp('15%')
     },
     HeaderStyle:{
-        height: 100,
-        width: '100%'
+        width: wp('100%'),
+        height: hp('10%'),
     },
     Nav:{
         height: 50,
@@ -135,8 +147,8 @@ const styles = StyleSheet.create({
         top: 20
     },
     ShopContainer: {
-      width: '100%',
-      height: 440,
+        width: wp('100%'),
+        height: hp('65%'),
       backgroundColor: '#fff',
       //borderRadius: 30,
       borderColor: '#fd4140',
@@ -145,7 +157,7 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: 200,
+      top: hp('25%'),
     },
     Store:{
       height: 60,
@@ -173,11 +185,13 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: '100%',
+        //width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        height: 150,
+        //height: 150,
+        width: wp('100%'),
+        height: hp('15%'),
     },
   });
 

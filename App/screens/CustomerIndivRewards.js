@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function CustomerIndivRewards(props) {
     const navigation = useNavigation();
@@ -14,22 +15,29 @@ function CustomerIndivRewards(props) {
                 address: props.address
             })
         }} >
+                <View style={styles.wrapstore}>
                 <Image style={styles.Store}
                     fadeDuration={1000}
-                    source={require('../assets/Shop-Icon.png')}></Image>
+                    source={require('../assets/Shop-Icon.png')}></Image></View>
+                <View style={styles.wrapwords}>
                 <View style={styles.toCenter}>
-                    <Text style={{color: '#29312e', fontSize: 18}}>{props.name}</Text>
+                <View style={styles.wrapwordsinside}>
+                    <Text style={{color: '#29312e', fontSize: 18}}>{props.name}</Text></View>
+                    <View style={styles.wrapwordsaddress}>
                     <View style={{flexDirection: 'row'}}>
                         <Image style={styles.Address} source={require('../assets/Map-B.png')}></Image>
                         <View style={styles.toCenter}>
                             <Text style={{color: '#29312e', fontSize: 12}}>{props.address}</Text>
                         </View>
                     </View>
+                    </View>
+                </View>
                 </View>
                 <View style={styles.toCenter}>
+                <View styles={styles.wrapcart}>
                     <Image style={styles.Cart}
                         fadeDuration={1000}
-                        source={require('../assets/Cart-B.png')}></Image>
+                        source={require('../assets/Cart-B.png')}></Image></View>
                 </View> 
         </TouchableOpacity>
     );
@@ -46,6 +54,8 @@ const styles = StyleSheet.create({
     },
     Elements:{
         //borderWidth: 1,
+        width: wp('100%'),
+        height: 75,
         borderBottomWidth: 1.5,
         borderColor: "#8c8c8c",
         flexDirection: 'row',
@@ -61,5 +71,26 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignSelf: 'center',
       },
+    wrapstore:{
+        width: wp('10%'),
+    },  
+    wrapcart:{
+        width: wp('10%'),
+    },  
+    wrapwords:{
+        width: wp('80%'),
+    },  
+    wrapwordsinside:{
+        width: wp('80%'),
+        left: wp('10%'),
+        flexDirection: 'column',
+        alignSelf: 'center',
+    },
+    wrapwordsaddress:{
+        width: wp('50%'),
+        left: wp('15%'),
+        //flexDirection: 'column',
+        //alignSelf: 'center',
+    }    
 })
 export default CustomerIndivRewards;

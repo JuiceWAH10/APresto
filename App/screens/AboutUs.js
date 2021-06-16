@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function AboutUs(props) {
     return (
@@ -74,14 +75,15 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: '100%',
+        width: wp('100%'),
+        height: hp('20%'),
         alignContent: 'center',
         position: 'absolute',
         top: 0
     },
     HeaderStyle:{
-        height: 100,
-        width: '100%'
+        width: wp('100%'),
+        height: hp('20%'),
     },
     Nav:{
         height: 50,
@@ -98,8 +100,9 @@ const styles = StyleSheet.create({
         width: 170
     },
     ProfileContainer: {
-        width: '100%',
-        height: 440,
+        width: wp('100%'),
+        height: hp('44%'),
+        top: hp('35%'),
         backgroundColor: '#fff',
         //borderRadius: 30,
         //borderColor: '#fd4140',
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         //justifyContent: 'center',
         position: "absolute",
-        top: 210,
+        
     },
     ProfilePicContainer:{
         position: "absolute",
@@ -157,11 +160,11 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: '100%',
+        width: wp('100%'),
+        height: hp('21%'),
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        height: 160,
     },
   });
 export default AboutUs;

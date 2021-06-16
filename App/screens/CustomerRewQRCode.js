@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import QRCode from "react-qr-code";
 import { useNavigation } from '@react-navigation/native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function CustomerRewQRCode(props) {
     const navigation = useNavigation();
@@ -21,7 +22,7 @@ function CustomerRewQRCode(props) {
                     <Text style={{color: '#29312e', fontSize: 24,}}>Store Name</Text>
                     <QRCode value="Under Development ^_^v"/>   
                     <Text style={{color: '#29312e', fontSize: 16,}}>(00) Remaining Points</Text>
-                    <Text style={{color: '#fd4140', fontSize: 34,}}>(00) Points Used</Text>
+                    <Text style={{color: '#fd4140', fontSize: 30,}}>(00) Points Used</Text>
                 </View>  
                     
             </View>
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        top: 140,
+        top: hp('15%'),
         alignItems: "center",
         alignSelf: "center",
     },
@@ -103,14 +104,14 @@ const styles = StyleSheet.create({
 
     },
     QRContainer: {
-        width: '90%',
-        height: 400,
+        width: wp('90%'),
+        height: hp('60%'),
+        top: hp('20%'),
         backgroundColor: '#fff',
         borderRadius: 30,
         //alignItems: 'center',
         alignSelf: 'center',
         //justifyContent: 'center',
-        top: 180
     },
     QRElements: {
         top: 35,

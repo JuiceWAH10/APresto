@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 function LogIn(props) {
@@ -90,34 +91,36 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   LogInButton: {
-    width: '80%',
-    height: 50,
+    width: wp('80%'),
+    height: hp('6%'),
     backgroundColor: '#fd4140',
     borderRadius: 30,
-    top: 320,
+    top:  hp('45%'),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center'
   },
   Logo:{
-    height: 150,
-    width: 150,
+    width: wp('20%'),
+    height: hp('20%'),
   },
   LogoContainer:{
     position: "absolute",
-    top: 70,
+    width: wp('100%'),
+    height: hp('25%'),
+    top: hp('15%'),
     alignItems: "center",
-    alignSelf: "center",
+    alignSelf: "center"
   },
   LogInContainer: {
-    width: '80%',
-    height: 260,
+    width: wp('80%'),
+    height: hp('40%'),
     backgroundColor: '#fff',
     borderRadius: 30,
     alignItems: 'center',
     alignSelf: 'center',
     //justifyContent: 'center',
-    top: 300,
+    top: hp('40%'),
   },
   textUserName: {
     width: '80%',

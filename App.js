@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Image } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 import SplashScreen from './App/screens/SplashScreen';
@@ -35,6 +36,7 @@ import MySuki from './App/screens/MySuki';
 import MyIndivSuki from './App/screens/MyIndivSuki';
 import ClientProfile from './App/screens/ClientProfile';
 import AboutUs from './App/screens/AboutUs';
+import QRCodeScanner from './App/screens/QRCodeScanner.js';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -68,14 +70,13 @@ const customerBottomTabs = () =>{
             : require('./App/assets/About-B.png');
           }
             
-
           return (
-            <Image source={iconName} style={{width:45, height:45}} resizeMode="contain"/>
+            <Image source={iconName} style={{width: wp('8%'), height: hp('8%')}} resizeMode="contain"/>
           );
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'blue',
+        activeTintColor: 'red',
         inactiveTintColor: 'black'
       }}
     >
@@ -109,6 +110,7 @@ export default function App() {
         <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
         <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
         <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
+        <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
       </Stack.Navigator>      
     </NavigationContainer>
   )};
