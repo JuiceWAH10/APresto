@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
 
 
 function MyIndivProducts(props) {
@@ -76,8 +78,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 10,
-        top: 10,
-        
+        top: 10
     },
     itemDetail: {
         flexDirection: 'row',
@@ -113,7 +114,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         top: 40,
         bottom: 20,
-        height: '15%',
     },
     wrapValuesSmall:{
         alignSelf: 'center',

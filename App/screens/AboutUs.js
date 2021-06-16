@@ -1,6 +1,8 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
 
 function AboutUs(props) {
     return (
@@ -20,7 +22,35 @@ function AboutUs(props) {
                         source={require('../assets/Logo-Circle.png')}></Image>
                         <Text style={{color: '#29312e', fontSize: 28,}}>About Us</Text>
                 </View>
-       
+    
+                
+                <View style={styles.FooterIcons}>
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Image style={styles.Nav}
+                            fadeDuration={1000}
+                            source={require('../assets/Shop-B-L.png')}></Image>
+                    </TouchableOpacity>
+    
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Image style={styles.Nav}
+                            fadeDuration={1000}
+                            source={require('../assets/Rewards-B-L.png')}></Image>
+                    </TouchableOpacity>
+    
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Image style={styles.Nav}
+                            fadeDuration={1000}
+                            source={require('../assets/User-B-L.png')}></Image>
+                    </TouchableOpacity>
+    
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Image style={styles.Nav}
+                            fadeDuration={1000}
+                            source={require('../assets/About-B-L.png')}></Image>
+                    </TouchableOpacity>
+                </View>
+    
+    
             </SafeAreaView>
     );
 }
@@ -75,15 +105,14 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: wp('100%'),
-        height: hp('20%'),
+        width: '100%',
         alignContent: 'center',
         position: 'absolute',
         top: 0
     },
     HeaderStyle:{
-        width: wp('100%'),
-        height: hp('20%'),
+        height: 100,
+        width: '100%'
     },
     Nav:{
         height: 50,
@@ -100,9 +129,8 @@ const styles = StyleSheet.create({
         width: 170
     },
     ProfileContainer: {
-        width: wp('100%'),
-        height: hp('44%'),
-        top: hp('35%'),
+        width: '100%',
+        height: 440,
         backgroundColor: '#fff',
         //borderRadius: 30,
         //borderColor: '#fd4140',
@@ -111,7 +139,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         //justifyContent: 'center',
         position: "absolute",
-        
+        top: 210,
     },
     ProfilePicContainer:{
         position: "absolute",
@@ -160,11 +188,11 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: wp('100%'),
-        height: hp('21%'),
+        width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
+        height: 160,
     },
   });
 export default AboutUs;

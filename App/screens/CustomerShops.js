@@ -1,17 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
- 
-
-import CustomerIndivShops from './CustomerIndivShops.js';
 
 function CustomerShops(props) {
     const [search, setTextS] = React.useState('');
     return (
         <SafeAreaView style={styles.container}>
-           
             <View style={styles.topContainer}>
                 <View style={styles.textView}>
                     <TextInput
@@ -33,18 +29,11 @@ function CustomerShops(props) {
                 source={require('../assets/Shop-Header.png')}></Image>
 
             </View>
-            <ScrollView style={styles.ShopContainer}>
-                <CustomerIndivShops name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                <CustomerIndivShops name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                <CustomerIndivShops name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                <CustomerIndivShops name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Rizal"/>
-                <CustomerIndivShops name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
-                <CustomerIndivShops name="Purified Water Refilling Station" address="223-C/869B, Sandoval Ave, Pasig"/>
-                <CustomerIndivShops name="Mongis Bicycle Shop" address="8511, Unit D Sandoval Ave, Pasig, 1602 Metro Manila"/>
-                <CustomerIndivShops name="The Cloudroom Vape Shop" address="18 Alcalde Jose, Pasig, 1600 Metro Manila"/>
-                <CustomerIndivShops name="Kanto Freestyle Kapasigan" address="27 Alcalde Jose, Pasig, Metro Manila"/>
-                <CustomerIndivShops name="Palatiw Hardware - Malinao" address="Prima 1 & 2 Bldg, F. Manalo, Pasig, 1600 Metro Manila"/>
-            </ScrollView>
+
+            <View style={styles.ShopContainer}>
+                
+
+            </View>
 
             <View style={styles.NearLike}>
                 <TouchableOpacity onPress={()=>console.log("Pressed")}>
@@ -59,8 +48,33 @@ function CustomerShops(props) {
                 </TouchableOpacity>
 
             </View>
+            <View style={styles.FooterIcons}>
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/Shop-B-L.png')}></Image>
+                </TouchableOpacity>
 
-            
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/Rewards-B-L.png')}></Image>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/User-B-L.png')}></Image>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/About-B-L.png')}></Image>
+                </TouchableOpacity>
+            </View>
+
+
         </SafeAreaView>
     );
 }
@@ -100,15 +114,14 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: wp('100%'),
-        height: hp('10%'),
+        width: '100%',
         alignContent: 'center',
         position: 'absolute',
-        top: hp('15%')
+        top: 100
     },
     HeaderStyle:{
-        width: wp('100%'),
-        height: hp('10%'),
+        height: 100,
+        width: '100%'
     },
     Nav:{
         height: 50,
@@ -117,14 +130,12 @@ const styles = StyleSheet.create({
     NearLike: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-       //padding: 2,
-        width: wp('100%'),
-        height: hp('10%'),
-        //top: hp('90%')       
+        padding: 2,
+        width: '100%',       
     },
     PictureStyle:{
-        width: wp('50%'),
-        height: hp('10%'),
+        height: 80,
+        width: 170
 
     },
     SearchButton: {
@@ -139,17 +150,17 @@ const styles = StyleSheet.create({
         top: 20
     },
     ShopContainer: {
-      width: wp('100%'),
-      height: hp('60%'),
+      width: '100%',
+      height: 440,
       backgroundColor: '#fff',
       //borderRadius: 30,
-      //borderColor: '#fd4140',
-      //borderWidth: 2,
+      borderColor: '#fd4140',
+      borderWidth: 2,
       //alignItems: 'center',
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: hp('25%'),
+      top: 200,
     },
     Store:{
       height: 60,
@@ -177,13 +188,11 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        //width: '100%',
+        width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        //height: 150,
-        width: wp('100%'),
-        height: hp('15%'),
+        height: 150,
     },
   });
 

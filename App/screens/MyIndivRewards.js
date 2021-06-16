@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
+
 
 function MyIndivRewards(props) {
     return (
@@ -104,13 +107,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         top: 20,
         bottom: 20,
-        width: '80%',
+        width: '80%'
     },
     wrapValuesAll:{
         borderColor: '#1c2b59',
         borderTopWidth: 2,
         top: 40,
-        height: '15%',
         bottom: 20,
     },
     wrapValuesSmall:{

@@ -1,7 +1,8 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 function ClientAddProduct(props) {
@@ -13,7 +14,7 @@ function ClientAddProduct(props) {
         style={styles.BGImage}
         source={require('../assets/Store-Blur.png')}>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -105,8 +106,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         justifyContent: 'space-around',      
-        width: wp('90%'),
-        height: hp('70%'),
+        width: '90%',
+        height: 550, 
         top: 110,
     },  
     BGImage: {

@@ -1,29 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useDimensions }  from '@react-native-community/hooks';
 
 function SplashScreen(props) {
     return (
           <ImageBackground
-            style={styles.BGImage}
-            source={require('../assets/Store-Blur.png')}>
-              
+          style={styles.BGImage}
+          source={require('../assets/Store-Blur.png')}>
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
                 source={require('../assets/Logo-AP-name.png')}></Image>
                 <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>
-            <TouchableOpacity onPress={() => props.navigation.navigate('signup')}>
+            <TouchableOpacity onPress={() => props.navigation.push('signup')}>
               <View style={styles.SignUpButton}>
                 <Text style={{color: '#29312e', fontSize: 16}}>Sign Up</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => props.navigation.navigate('login')}>
+              </View></TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.push('login')}>
               <View style={styles.LogInButton}>
                 <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
-              </View>
-            </TouchableOpacity>
+              </View></TouchableOpacity>
           </ImageBackground>
             
     );
@@ -41,8 +38,8 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
     },
     LogInButton: {
-      width: wp('90%'),
-      height: hp('6%'),
+      width: '90%',
+      height: 50,
       backgroundColor: '#fd4140',
       borderRadius: 30,
       bottom: 10,
@@ -51,20 +48,18 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     Logo:{
-      width: wp('25%'),
-      height: hp('25%'),
+      height: 220,
+      width: 220,
     },
     LogoContainer:{
       position: "absolute",
-      width: wp('100%'),
-      height: hp('25%'),
-      top: hp('15%'),
+      top: 70,
       alignItems: "center",
       alignSelf: "center"
     },
     SignUpButton: {
-      width: wp('90%'),
-      height: hp('6%'),
+      width: '90%',
+      height: 50,
       backgroundColor: '#fff',
       borderRadius: 30,
       bottom: 20,

@@ -1,18 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import QRCode from "react-qr-code";
-import { useNavigation } from '@react-navigation/native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
 
 function CustomerRewQRCode(props) {
-    const navigation = useNavigation();
     return (
         <ImageBackground
         style={styles.BGImage}
         source={require('../assets/Store-Blur.png')}>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -20,11 +18,9 @@ function CustomerRewQRCode(props) {
             <View style={styles.QRContainer}>
                 <View style={styles.QRElements}>
                     <Text style={{color: '#29312e', fontSize: 24,}}>Store Name</Text>
-                    <QRCode value="Under Development ^_^v"/>   
-                    {//<Text style={{color: '#29312e', fontSize: 16,}}>(00) Remaining Points</Text>
-                    }
-                    {//<Text style={{color: '#fd4140', fontSize: 30,}}>(00) Points Used</Text>
-                    }
+                    <Image style={styles.LogoQR} source={require('../assets/QR-B.png')}></Image>  
+                    <Text style={{color: '#29312e', fontSize: 16,}}>(00) Remaining Points</Text>
+                    <Text style={{color: '#fd4140', fontSize: 34,}}>(00) Points Used</Text>
                 </View>  
                     
             </View>
@@ -86,7 +82,7 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        top: hp('15%'),
+        top: 140,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -106,14 +102,14 @@ const styles = StyleSheet.create({
 
     },
     QRContainer: {
-        width: wp('90%'),
-        height: hp('60%'),
-        top: hp('20%'),
+        width: '90%',
+        height: 400,
         backgroundColor: '#fff',
         borderRadius: 30,
         //alignItems: 'center',
         alignSelf: 'center',
         //justifyContent: 'center',
+        top: 180
     },
     QRElements: {
         top: 35,

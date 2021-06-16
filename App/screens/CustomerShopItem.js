@@ -1,40 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import { useRoute } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-import CustomerIndivShopItems from './CustomerIndivShopItems';
-import { products } from './Dummy_Data.js';
-import { connect } from 'react-redux';
 
 function CustomerShopItem(props) {
-    const route = useRoute();
-    const navigation = useNavigation();
     const [search, setTextS] = React.useState('');
-
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.HeaderContainer}>
-                
-                <Image style={styles.Header} source={require('../assets/Header.png')}></Image>
+                <Image source={require('../assets/Header.png')}></Image> 
                 <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Shop-Icon-Red.png')}></Image>
-                    <Text style={{color: '#fff', fontSize: 22,}}>{JSON.stringify(route.params.name).replace(/['"]+/g, '')}</Text>
+                    <Text style={{color: '#fff', fontSize: 26,}}>Store Name</Text>
                     <View style={styles.ElementsTop}>
                         <TouchableOpacity onPress={()=>console.log("Address")}>
                             <Image style={styles.LogoTiny}
                                 source={require('../assets/Map.png')}></Image>
                         </TouchableOpacity>        
-                        <Text style={{color: '#fff', fontSize: 10,}}>{JSON.stringify(route.params.address).replace(/['"]+/g, '')}</Text>
+                        <Text style={{color: '#fff', fontSize: 12,}}>Address</Text>
                     </View> 
             </View>
             </ImageBackground>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -49,57 +39,33 @@ function CustomerShopItem(props) {
                     <TouchableOpacity onPress={()=>console.log("Search")}>
                         <View style={styles.SearchButton}>
                         <Text style={{color: '#fff', fontSize: 14}}>Search</Text>
-                        </View>
-                    </TouchableOpacity>
-            </View> 
-
-            <ScrollView style={styles.ShopContainer}>
-                <CustomerIndivShopItems products={products}  onPress={props.addItemToCart}/>
-            </ScrollView>
-
+                        </View></TouchableOpacity>
+                </View> 
             <View style={styles.buttons}>
-                <TouchableOpacity onPress={()=> navigation.navigate('CustomerCart')}>
-                    <View style={styles.AddToCart}>
-                        <Text style={{color: '#fff', fontSize: 16}}>My Cart</Text>
-                    </View>
-                </TouchableOpacity>   
+                <TouchableOpacity>
+                <View style={styles.AddToCart}>
+                    <Text style={{color: '#fff', fontSize: 16}}>Add to Cart</Text>
+                </View></TouchableOpacity> 
+                <TouchableOpacity>
+                <View style={styles.AddToCart}>
+                    <Text style={{color: '#fff', fontSize: 16}}>My Cart</Text>
+                </View></TouchableOpacity>   
             </View>    
 
         </SafeAreaView>
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addItemToCart: (product) => dispatch({ type: 'ADD_TO_CART', payload: product })
-    }
-}
-
-export default connect(null, mapDispatchToProps)(CustomerShopItem);
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
       //alignItems: 'center',
-      justifyContent: 'flex-start',
+      justifyContent: 'flex-end',
     },
-    ShopContainer: {
-        width: '100%',
-        height: 440,
-        backgroundColor: '#fff',
-        //borderRadius: 30,
-        borderColor: '#fd4140',
-        borderWidth: 2,
-        //alignItems: 'center',
-        alignSelf: 'center',
-        //justifyContent: 'center',
-        position: "absolute",
-        top: 200,
-      },
     AddToCart: {
       width: '100%',
-      height: hp('5%'),
+      height: 50,
       backgroundColor: '#fd4140',
       borderRadius: 30,
       bottom: 10,
@@ -125,12 +91,7 @@ const styles = StyleSheet.create({
     buttons: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: wp('100%'),
-        height: hp('5%'),
-        top: hp('90%'),
-        //borderColor: '#fd4140',
-        //borderWidth: 2,
-        
+        width: '100%'
 
     },
     ElementsTop:{
@@ -151,14 +112,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
         //alignSelf: 'center'       
     },
-    Header:{
-        width: wp('100%'),
-        height: hp('20%'),
-    },
     HeaderContainer:{   
         position: "absolute",
-        width: wp('100%'),
-        height: hp('20%'),
+        width: '100%',
         top: 0
         //alignContent: 'center',
     },
@@ -176,9 +132,7 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        width: wp('100%'),
-        height: hp('15%'),
-        top: hp('4%'),
+        top: 30,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -199,27 +153,27 @@ const styles = StyleSheet.create({
     },
     SearchButton: {
         width: '100%',
-        height: hp('5%'),
+        height: 40,
         backgroundColor: '#fd4140',
         borderRadius: 30,
         //alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        top: hp('0.5%')
+        top: 5
     },
     ShopContainer: {
-        width: wp('100%'),
-        height: hp('68%'),
+      width: '100%',
+      height: 440,
       backgroundColor: '#fff',
       //borderRadius: 30,
-      //borderColor: '#fd4140',
-      //borderWidth: 2,
+      borderColor: '#fd4140',
+      borderWidth: 2,
       //alignItems: 'center',
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: hp('26%')
+      top: 200,
     },
     Store:{
       height: 60,
@@ -228,20 +182,17 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       width: '75%',
-      height: hp('5%'),
+      height: 35,
       borderColor: '#1c2b59',
-      
+      top: 5
     },
     textView: {
+        position: "absolute",
         flexDirection: 'row',
         justifyContent: 'space-around',
-        //padding: 2,
-        width: wp('100%'),
-        height: hp('6%'),
-        top: hp('20%'),
-        //borderColor: '#fd4140',
-        //borderWidth: 2,
-       
+        padding: 2,
+        width: '100%',
+        top: 145,
     },
     toCenter: {
       flexDirection: 'column',
@@ -258,3 +209,5 @@ const styles = StyleSheet.create({
         height: 150,
     },
   });
+
+export default CustomerShopItem;

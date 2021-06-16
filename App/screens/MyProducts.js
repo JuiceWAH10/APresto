@@ -1,18 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-import MyIndivProducts from './MyIndivProducts.js';
-
 function MyProducts(props) {
     const [search, setTextS] = React.useState('');
-
-    const showAlert = () =>{
-        Alert.alert("Under development ^_^")
-     }
-
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.topContainer}>
@@ -37,33 +29,24 @@ function MyProducts(props) {
 
             </View>
 
-            <ScrollView style={styles.ShopContainer}>
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-                <MyIndivProducts />
-            </ScrollView>
-            
+            <View style={styles.ShopContainer}>
+                
+
+            </View>
             <View style={styles.FooterIcons}>
-                <TouchableOpacity onPress={showAlert}>
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Live-B-L.png')}></Image>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={showAlert}>
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Sold-B-L.png')}></Image>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={showAlert}>
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
                     <Image style={styles.Nav}
                         fadeDuration={1000}
                         source={require('../assets/Delisted-B-L.png')}></Image>
@@ -110,15 +93,14 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: wp('100%'),
-        height: hp('10%'),
+        width: '100%',
         alignContent: 'center',
         position: 'absolute',
-        top: hp('15%')
+        top: 100
     },
     HeaderStyle:{
-        width: wp('100%'),
-        height: hp('10%'),
+        height: 100,
+        width: '100%'
     },
     Nav:{
         height: 50,
@@ -147,8 +129,8 @@ const styles = StyleSheet.create({
         top: 20
     },
     ShopContainer: {
-        width: wp('100%'),
-        height: hp('65%'),
+      width: '100%',
+      height: 440,
       backgroundColor: '#fff',
       //borderRadius: 30,
       borderColor: '#fd4140',
@@ -157,7 +139,7 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       //justifyContent: 'center',
       position: "absolute",
-      top: hp('25%'),
+      top: 200,
     },
     Store:{
       height: 60,
@@ -185,13 +167,11 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        //width: '100%',
+        width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        //height: 150,
-        width: wp('100%'),
-        height: hp('15%'),
+        height: 150,
     },
   });
 

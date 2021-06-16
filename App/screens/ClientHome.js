@@ -1,13 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { Alert, Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import React from 'react';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
 
 function ClientHome(props) {
-    const showAlert = () =>{
-        Alert.alert("Under development ^_^")
-     }
-
     return (
         <ImageBackground
           style={styles.BGImage}
@@ -31,7 +28,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder1}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('myProducts')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('myProducts')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Products-B.png")}/>  
@@ -41,7 +38,7 @@ function ClientHome(props) {
                         <Text style={{color:'#fd4140',fontSize: 40,}}>&gt;</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('clientAddProduct')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('clientAddProduct')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Add-B.png")}/>  
@@ -53,7 +50,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('myRewards')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('myRewards')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Rewards-B.png")}/>  
@@ -63,7 +60,7 @@ function ClientHome(props) {
                         <Text style={{color:'#fd4140',fontSize: 40,}}>&gt;</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('clientAddReward')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('ClientAddRewards')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Add-B.png")}/>  
@@ -75,7 +72,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('mySuki')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('mySuki')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/Suki-B.png")}/>  
@@ -87,7 +84,7 @@ function ClientHome(props) {
 
                     <View style={styles.topBorder}></View>
 
-                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.navigate('QRCodeScanner')}>
+                    <TouchableOpacity style={styles.wrapValues} onPress={() => props.navigation.push('splash')}>
                         <Image 
                         style={styles.LogoSmall}
                         source={require("../assets/QR-B.png")}/>  
@@ -168,9 +165,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         //justifyContent: 'space-around',      
-        width: wp('90%'),
-        height: hp('80%'),
-        top: hp('10%')
+        width: '90%',
+        height: 640, 
+        top: 80,
 
     },
     SignUpButton: {

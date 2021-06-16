@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function CustomerProfile(props) {
     const [firstName, setTextFN] = React.useState('');
@@ -75,23 +75,50 @@ function CustomerProfile(props) {
                 </View>
 
                 <View style={styles.ButtonsCon}>
-                    <TouchableOpacity style={styles.PButton} onPress={() => props.navigation.popToTop()}>
+                    <TouchableOpacity>
+                    <View style={styles.PButton}>
                         <Text style={{color: '#fff', fontSize: 16}}>Edit Profile</Text>
-                    </TouchableOpacity>
+                    </View></TouchableOpacity>
                 
-                    <TouchableOpacity style={styles.PButton} onPress={() => props.navigation.popToTop()}>
+                    <TouchableOpacity>
+                    <View style={styles.PButton}>
                         <Text style={{color: '#fff', fontSize: 16}}>Sign Out</Text>
-                    </TouchableOpacity>
+                    </View></TouchableOpacity>
                 </View>
-            </View>
 
-            
+            </View>
             <View style={styles.ProfilePicContainer}>
                 <Image style={styles.ProfileStyle}
                     source={require('../assets/Customer-Profile.png')}></Image>
-                    <Text style={{color: '#29312e', fontSize: 26,}}>User Name</Text>
+                    <Text style={{color: '#29312e', fontSize: 28,}}>User Name</Text>
             </View>
 
+            
+            <View style={styles.FooterIcons}>
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/Shop-B-L.png')}></Image>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/Rewards-B-L.png')}></Image>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/User-B-L.png')}></Image>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <Image style={styles.Nav}
+                        fadeDuration={1000}
+                        source={require('../assets/About-B-L.png')}></Image>
+                </TouchableOpacity>
+            </View>
 
 
         </SafeAreaView>
@@ -103,21 +130,20 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       //alignItems: 'center',
-      justifyContent: 'flex-start',
+      justifyContent: 'flex-end',
     },
     BG: {
       flex: 0.9,
       justifyContent: 'flex-start',
     },
     ButtonsCon: {
-        width: wp('100%'),
-        height: hp('11%'),
-        top: hp('2%'),
+        top: 80,
+        height: 110,
         justifyContent: 'space-between'
     },
     PButton: {
-        width: wp('80%'),
-        height: hp('5%'),
+        width: '80%',
+        height: 50,
         backgroundColor: '#fd4140',
         borderRadius: 30,
         //top: 80,
@@ -149,15 +175,14 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     HeaderContainer:{   
-        width: wp('100%'),
-        height: hp('20%'),
+        width: '100%',
         alignContent: 'center',
         position: 'absolute',
         top: 0
     },
     HeaderStyle:{
-        width: wp('100%'),
-        height: hp('20%'),
+        height: 100,
+        width: '100%'
     },
     Nav:{
         height: 50,
@@ -174,9 +199,8 @@ const styles = StyleSheet.create({
         width: 170
     },
     ProfileContainer: {
-        width: wp('100%'),
-        height: hp('44%'),
-        top: hp('35%'),
+        width: '100%',
+        height: 440,
         backgroundColor: '#fff',
         //borderRadius: 30,
         //borderColor: '#fd4140',
@@ -185,12 +209,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         //justifyContent: 'center',
         position: "absolute",
-        
+        top: 210,
     },
     ProfilePicContainer:{
-        width: wp('100%'),
-        height: hp('15%'),
-        top: hp('10%'),
+        position: "absolute",
+        top: 80,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -216,15 +239,16 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       width: '75%',
-      height: hp('5%'),
+      height: 35,
       borderColor: '#1c2b59',
-      top: hp('1%'),
+      top: 20
     },
     textView: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingTop: hp('1%'),
+        padding: 5,
         width: '100%',
+        top: 40,
     },
     toCenter: {
       flexDirection: 'column',
@@ -234,12 +258,11 @@ const styles = StyleSheet.create({
     topContainer:{
         position: "absolute",
         top: 0,
-        width: wp('100%'),
-        height: hp('21%'),
+        width: '100%',
         alignItems: "center",
         alignSelf: "center",
         backgroundColor: '#fd4140',
-        
+        height: 160,
     },
   });
 export default CustomerProfile;

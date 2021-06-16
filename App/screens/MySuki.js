@@ -1,17 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-import MyIndivSuki from './MyIndivSuki.js';
 
 function MySuki(props) {
     const [search, setTextS] = React.useState('');
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.HeaderContainer}>
-                <Image style={styles.Header} source={require('../assets/Header.png')}></Image> 
+                <Image source={require('../assets/Header.png')}></Image> 
                 <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Client-Profile.png')}></Image>
@@ -22,7 +20,7 @@ function MySuki(props) {
             </View>
             </ImageBackground>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -39,25 +37,12 @@ function MySuki(props) {
                         <View style={styles.SearchButton}>
                         <Text style={{color: '#fff', fontSize: 14}}>Search</Text>
                         </View></TouchableOpacity>
-            </View> 
-
-            <ScrollView style={styles.ShopContainer}>
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-                <MyIndivSuki />
-            </ScrollView>
-            
-            <View style={styles.FooterContainer}>
+                </View> 
+                <View style={styles.FooterContainer}>
                 <Image 
                 style={styles.HeaderStyle}
                 source={require('../assets/Suki-Header.png')}></Image>
+
             </View>
 
         </SafeAreaView>
@@ -69,7 +54,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       //alignItems: 'center',
-      justifyContent: 'flex-start',
+      justifyContent: 'flex-end',
     },
     AddToCart: {
       width: '100%',
@@ -121,26 +106,17 @@ const styles = StyleSheet.create({
         //alignSelf: 'center'       
     },
     FooterContainer:{   
-        width: wp('100%'),
-        height: hp('10%'),
-        //alignContent: 'center',
-        //position: 'absolute',
-        top: hp('85%')
-    },
-    Header:{
-        width: wp('100%'),
-        height: hp('20%'),
+        width: '100%',
     },
     HeaderContainer:{   
         position: "absolute",
-        width: wp('100%'),
-        height: hp('20%'),
+        width: '100%',
         top: 0
         //alignContent: 'center',
     },
     HeaderStyle:{
-        width: wp('100%'),
-        height: hp('10%'),
+        height: 100,
+        width: '100%',
     },
     Logo:{
         height: 60,
@@ -152,9 +128,7 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        width: wp('100%'),
-        height: hp('15%'),
-        top: hp('4%'),
+        top: 30,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -175,28 +149,27 @@ const styles = StyleSheet.create({
     },
     SearchButton: {
         width: '100%',
-        height: hp('5%'),
+        height: 40,
         backgroundColor: '#fd4140',
         borderRadius: 30,
         //alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        top: hp('0.5%')
+        top: 5
     },
     ShopContainer: {
-        width: wp('100%'),
-        height: hp('65%'),
-        backgroundColor: '#fff',
-        //borderRadius: 30,
-        borderColor: '#fd4140',
-        borderWidth: 2,
-        //alignItems: 'center',
-        alignSelf: 'center',
-        //justifyContent: 'center',
-        position: "absolute",
-        top: hp('25%'),
-      
+      width: '100%',
+      height: 440,
+      backgroundColor: '#fff',
+      //borderRadius: 30,
+      borderColor: '#fd4140',
+      borderWidth: 2,
+      //alignItems: 'center',
+      alignSelf: 'center',
+      //justifyContent: 'center',
+      position: "absolute",
+      top: 200,
     },
     Store:{
       height: 60,
@@ -204,22 +177,19 @@ const styles = StyleSheet.create({
 
     },
     textStyle: {
-        width: '75%',
-        height: hp('5%'),
-        borderColor: '#1c2b59',
-        
-      },
-      textView: {
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          //padding: 2,
-          width: wp('100%'),
-          height: hp('6%'),
-          top: hp('20%'),
-          //borderColor: '#fd4140',
-          //borderWidth: 2,
-         
-      },
+      width: '75%',
+      height: 35,
+      borderColor: '#1c2b59',
+      top: 5
+    },
+    textView: {
+        position: "absolute",
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 2,
+        width: '100%',
+        top: 145,
+    },
     toCenter: {
       flexDirection: 'column',
       alignSelf: 'center',

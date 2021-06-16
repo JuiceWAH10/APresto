@@ -1,27 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import CheckBox from '@react-native-community/checkbox';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 function LogIn(props) {
     const [userName, setTextUN] = React.useState('');
     const [passWord, setTextPW] = React.useState('');
-    const [toggleCheckBox, setToggleCheckBox] = useState({check: false});
-
-    function handleCheck(){
-      setToggleCheckBox({check: !toggleCheckBox.check});
-    }
-    
-    function checkboxLogin(){
-      if(toggleCheckBox.check == true)
-        props.navigation.navigate('clientHome');
-      else
-        props.navigation.navigate('customerShops');
-    }
-
     return (
         <ImageBackground
           style={styles.BGImage}
@@ -32,7 +18,7 @@ function LogIn(props) {
                 <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -52,100 +38,78 @@ function LogIn(props) {
                     value={passWord}
                     onChangeText={text => setTextPW(text)}
                 />
-                <View style={styles.checkbox}>
-                  <CheckBox
-                    disabled={false}
-                    value={toggleCheckBox.check}
-                    onChange={()=>handleCheck()}
-                    checked={setToggleCheckBox}
-                  />
-                  <Text> Log in as store owner. </Text>
-                </View>
               </View>
-              
-                <TouchableOpacity onPress={checkboxLogin} style={styles.LogInButton}>
+            <TouchableOpacity onPress={() => props.navigation.push('clientHome')}>
+                <View style={styles.LogInButton}>
                     <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
-                </TouchableOpacity>
+                </View></TouchableOpacity>
         </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  Back: {
-    position: "absolute",
-    top: 30,
-    padding: 10
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    Back: {
+      position: "absolute",
+      top: 30,
+      padding: 10
   },
   BackLogo: {
       height: 30,
       width: 30,
   },
-  BGImage: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  LogInButton: {
-    width: wp('80%'),
-    height: hp('6%'),
-    backgroundColor: '#fd4140',
-    borderRadius: 30,
-    top:  hp('45%'),
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  Logo:{
-    width: wp('20%'),
-    height: hp('20%'),
-  },
-  LogoContainer:{
-    position: "absolute",
-    width: wp('100%'),
-    height: hp('25%'),
-    top: hp('15%'),
-    alignItems: "center",
-    alignSelf: "center"
-  },
-  LogInContainer: {
-    width: wp('80%'),
-    height: hp('40%'),
-    backgroundColor: '#fff',
-    borderRadius: 30,
-    alignItems: 'center',
-    alignSelf: 'center',
-    //justifyContent: 'center',
-    top: hp('40%'),
-  },
-  textUserName: {
-    width: '80%',
-    height: 50,
-    borderColor: '#1c2b59',
-    top: 60
-  },
-  textPassword: {
-    width: '80%',
-    height: 50,
-    borderColor: '#1c2b59',
-    top: 80
-  },
-
-  checkbox: {
-    flex: 1,
-    flexDirection: 'row',
-    height: 36,
-    width: '80%',
-    borderColor: '#1c2b59',
-    top: 40,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
+    BGImage: {
+      flex: 1,
+      justifyContent: 'flex-start',
+    },
+    LogInButton: {
+      width: '80%',
+      height: 50,
+      backgroundColor: '#fd4140',
+      borderRadius: 30,
+      top: 320,
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    Logo:{
+      height: 150,
+      width: 150,
+    },
+    LogoContainer:{
+      position: "absolute",
+      top: 70,
+      alignItems: "center",
+      alignSelf: "center",
+    },
+    LogInContainer: {
+      width: '80%',
+      height: 260,
+      backgroundColor: '#fff',
+      borderRadius: 30,
+      alignItems: 'center',
+      alignSelf: 'center',
+      //justifyContent: 'center',
+      top: 300,
+    },
+    textUserName: {
+      width: '80%',
+      height: 50,
+      borderColor: '#1c2b59',
+      top: 60
+    },
+    textPassword: {
+        width: '80%',
+        height: 50,
+        borderColor: '#1c2b59',
+        top: 80
+      },
+  });
 
 
 export default LogIn;

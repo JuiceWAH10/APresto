@@ -1,7 +1,8 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
 import { TextInput } from 'react-native-paper';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function SignUp(props) {
     const [firstName, setTextFN] = React.useState('');
@@ -18,12 +19,12 @@ function SignUp(props) {
             <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
                     source={require('../assets/Logo-Circle.png')}></Image>
-                    <Text style={{color: '#29312e', fontSize: 26,}}>Welcome to A Presto</Text>
-                    <Text style={{color: '#29312e', fontSize: 11,}}>Find stores with just one tap</Text>
+                    <Text style={{color: '#29312e', fontSize: 28,}}>Welcome to A Presto</Text>
+                    <Text style={{color: '#29312e', fontSize: 12,}}>Find stores with just one tap</Text>
             </View>
 
             <View style={styles.Back}>
-                <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
@@ -94,13 +95,15 @@ function SignUp(props) {
                 </View>
 
             </View>
-            <TouchableOpacity style={styles.SignUpButton} onPress={() => props.navigation.navigate('login')} >
-              <Text style={{color: '#fff', fontSize: 16}}>Continue</Text>
-            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={styles.SignUpButton}>
+                <Text style={{color: '#fff', fontSize: 16}}>Continue</Text>
+              </View></TouchableOpacity>
             <View style={styles.Footer}>
-              <Text style={{color: '#29312e', fontSize: 8,}}>By continuing, you agree to A Presto's Terms of Service,</Text>
-              <Text style={{color: '#29312e', fontSize: 8,}}> Privacy policy.</Text>
-              <Text style={{color: '#29312e', fontSize: 8,}}>Already a Member? Log In.</Text>
+              <Text style={{color: '#29312e', fontSize: 9,}}>By continuing, you agree to A Presto's Terms of Service,</Text>
+              <Text style={{color: '#29312e', fontSize: 9,}}> Privacy policy.</Text>
+
+              <Text style={{color: '#29312e', fontSize: 9,}}>Already a Member? Log In.</Text>
             </View>
         </SafeAreaView>
     );
@@ -127,9 +130,9 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
     },
     Footer: {
-        width: wp('80%'),
-        height: hp('17%'),
-        top: hp('32%'),
+        width: '80%',
+        //height: 50,
+        top: 280,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
@@ -153,32 +156,29 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        top: hp('15%'),
-        height: hp('20%'),
-        width: wp('100%'),
+        top: 110,
         alignItems: "center",
         alignSelf: "center",
     },
     HeaderContainer:{   
       position: "absolute",
-      width: wp('100%'),
-      height: hp('20%'),
+      width: '100%',
       top: 0
       //alignContent: 'center',
   },
     SignUpButton: {
         width: '80%',
-        height: hp('6%'),
+        height: 50,
         backgroundColor: '#fd4140',
         borderRadius: 30,
-        top: hp('37%'),
+        top: 270,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
     },
     SignUpContainer: {
-        width: wp('80%'),
-        height: hp('49%'),
+      width: '80%',
+      height: 400,
       backgroundColor: '#fff',
       borderRadius: 30,
       borderColor: '#fd4140',
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
       //alignItems: 'center',
       alignSelf: 'center',
       //justifyContent: 'center',
-      top: hp('35%'),
+      top: 260,
     },
     SignUpTop: {
       backgroundColor: '#fd4140',
@@ -199,12 +199,12 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       width: '80%',
-      height: hp('5%'),
+      height: 40,
       borderColor: '#1c2b59',
-      top: hp('2%')
+      top: 20
     },
     textView: {
-        paddingTop: hp('1%'),
+        padding: 6,
         width: '100%',
         alignItems: 'center'
       },

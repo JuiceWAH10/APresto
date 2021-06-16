@@ -1,56 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { connect } from 'react-redux';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDimensions }  from '@react-native-community/hooks';
+import { TextInput } from 'react-native-paper';
 
-import { products } from './Dummy_Data.js';
-import CustomerIndivCart from './CustomerIndivCart.js';
-import { ScrollView } from 'react-native-gesture-handler';
 
 function CustomerCart(props) {
-    const navigation = useNavigation();
-
     return (
         <ImageBackground
         style={styles.BGImage}
         source={require('../assets/Store-Blur.png')}>
             <View style={styles.Back}>
-                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                <TouchableOpacity onPress={()=>console.log("Pressed Back")}>
                     <Image style={styles.BackLogo} source={require('../assets/Back.png')}>      
                     </Image> 
                 </TouchableOpacity>    
             </View>
             <View style={styles.CartContainer}>
                 <View style={styles.CartName}>
-                    <Text style={{color: '#29312e', fontSize: 24,}}>My Cart</Text>
+                    <Text style={{color: '#29312e', fontSize: 24,}}>My Cart (00)</Text>
                     <Text style={{color: '#29312e', fontSize: 14,}}>Store Name</Text>
-                    <TouchableOpacity onPress={()=> navigation.navigate('customerProdQRCode')}>
+                    <TouchableOpacity onPress={()=>console.log("QR Code G")}>
                         <View style={styles.GenerateQR}>
                             <View style={styles.ElementsTop}>
                                 <Image style={styles.LogoTiny} source={require('../assets/QR-W.png')}></Image>
-                                <View style={styles.toCenter}>
-                                    <Text style={{color: '#fff', fontSize: 16}}>Generate QR Code</Text>
-                                </View>
+                            <View style={styles.toCenter}>
+                                <Text style={{color: '#fff', fontSize: 16}}>Generate QR Code</Text>
                             </View>
                         </View>
-                    </TouchableOpacity> 
-                </View>
-                <View style={{height: hp('60%'),width: wp('90%'),}} >
-                    <ScrollView style={styles.container}>
-                        {props.cartItems.length > 0 ?
-                            <CustomerIndivCart
-                                onPress={props.removeItem}
-                                products={props.cartItems} />
-                            : <View style={styles.EmptyCart}><Image style={styles.LogoTiny}
-                            source={require('../assets/About-B.png')}></Image>
-                            <Text style={{alignSelf: 'center',alignItems: 'center', justifyContent: 'center'}}>No items in your cart</Text>
-                            </View>
-                        }
-                </ScrollView>
+                    </View></TouchableOpacity> 
                 </View>
             </View>
+
 
             <View style={styles.LogoContainer}>
                 <Image style={styles.Logo}
@@ -59,20 +40,6 @@ function CustomerCart(props) {
         </ImageBackground>
     );
 }
-
-const mapStateToProps = (state) => {
-    return {
-        cartItems: state
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        removeItem: (product) => dispatch({ type: 'REMOVE_FROM_CART', payload: product })
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerCart);
 
 const styles = StyleSheet.create({
     BGImage: {
@@ -98,22 +65,15 @@ const styles = StyleSheet.create({
         width: '100%'
 
     },
-
-    container: {
-        top: 40,
-        
-        
-        
-    },
     CartContainer: {
-        width: wp('90%'),
-        height: hp('80%'),
-        top: hp('15%'),
+        width: '90%',
+        height: 600,
         backgroundColor: '#fff',
         borderRadius: 30,
         //alignItems: 'center',
         alignSelf: 'center',
         //justifyContent: 'center',
+        top: 120,
     },
     CartName: {
         top: 35,
@@ -122,13 +82,7 @@ const styles = StyleSheet.create({
     },
     ElementsTop:{
         flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    EmptyCart:{
-        //justifyContent: 'space-around',
-        flexDirection: 'row',
-        alignSelf:'center'
-
+        justifyContent: 'space-around',
     },
     GenerateQR: {
       width: '90%',
@@ -140,8 +94,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       paddingLeft: 50,
       paddingRight: 50,
-      top: 10,
-      marginBottom: 10
+      top: 10
     },
     Logo:{
         height: 80,
@@ -153,9 +106,7 @@ const styles = StyleSheet.create({
     },
     LogoContainer:{
         position: "absolute",
-        width: wp('90%'),
-        height: hp('10%'),
-        top: hp('10%'),
+        top: 80,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -175,3 +126,5 @@ const styles = StyleSheet.create({
 
     },
   });
+
+export default CustomerCart;
