@@ -46,7 +46,7 @@ function rewardItems(props) {
                     <TouchableOpacity onPress={() => "pressed"} >  
                         <Icon2 name="heart" size={25} color="#fd4140" />
                     </TouchableOpacity>    
-                    <TouchableOpacity onPress={() => "pressed"} > 
+                    <TouchableOpacity onPress={() => navigation.navigate('rewardItemsCart')} > 
                         <Icon2 name="shoppingcart" size={25} color="#fd4140" />
                     </TouchableOpacity>
                 </View>
@@ -119,13 +119,13 @@ function rewardItems(props) {
                         <AllRewardItem/>
 
                         <ImageBackground style={styles.bannerBgImage}
-                    imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/Liked_Shop.jpg')}>
-                    <View style={styles.bannerDarken}>
-                        <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                        <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
-                    </View>    
-            </ImageBackground>
+                            imageStyle={{ borderRadius: 30}}
+                            source={require('../../../assets/Liked_Shop.jpg')}>
+                            <View style={styles.bannerDarken}>
+                                <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
+                                <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                            </View>    
+                        </ImageBackground>
             </Animated.ScrollView>
             </View>
         </SafeAreaView>
