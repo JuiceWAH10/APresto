@@ -16,10 +16,10 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import PopularShopItem from './././importShopItems/popularShopItem';
-import AllShopItem from './././importShopItems/allShopItem';
+import PopularRewardItem from './././importRewardItems/popularRewardItem';
+import AllRewardItem from './././importRewardItems/allRewardItem';
 
-function shopItems(props) {
+function rewardItems(props) {
     const navigation = useNavigation();
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
@@ -70,15 +70,11 @@ function shopItems(props) {
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
                             <Text style={styles.headerLabel}>Shop Name</Text>
-                            <Text style={styles.headerLabelSmall}>Address</Text>
+                            <Text style={styles.headerLabelBig}>100 Points</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                                     <Icon name="map" size={20} color="#fff" />
                                     <Text style={styles.buttonLabel}>Navigate</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('rewardItems')} >
-                                    <Icon name="gift" size={20} color="#fff" />
-                                    <Text style={styles.buttonLabel}>Rewards</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>    
@@ -96,31 +92,31 @@ function shopItems(props) {
 
                     <View style={styles.titlePopularContainer}>
                         <Icon3 name="fire" size={40} color="#fd4140" />
-                        <Text style={styles.titlePopular}>Popular Items</Text>
+                        <Text style={styles.titlePopular}>Popular Rewards</Text>
                     </View>
 
                     <ScrollView horizontal={true} style={styles.popularItems}>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
+                        <PopularRewardItem/>
+                        <PopularRewardItem/>
+                        <PopularRewardItem/>
+                        <PopularRewardItem/>
+                        <PopularRewardItem/>
+                        <PopularRewardItem/>
                     </ScrollView>
 
-                    <Text style={styles.titleAllItems}>All Items</Text>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
+                    <Text style={styles.titleAllRewards}>All Rewards</Text>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
+                        <AllRewardItem/>
 
                         <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
@@ -150,6 +146,15 @@ const styles = StyleSheet.create({
         marginTop: 45,
         color: "#fff",
         fontSize: 24,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    headerLabelBig: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 30,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -197,16 +202,15 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         borderWidth: 1,
         alignItems: 'center',
+        alignSelf: "center",
         flexDirection: "row",
         justifyContent: 'space-evenly',
-        marginTop: 20,
+        marginTop: 15,
         width: 100,
         height: 35,
     },
     buttonContainer: {
         alignSelf: "center",
-        flexDirection: "row",
-        justifyContent:"space-between",
         width: '60%',
     },
     buttonLabel: {
@@ -246,7 +250,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         width: wp('90%'),
     },
-    titleAllItems: {
+    titleAllRewards: {
         alignSelf: "center",
         marginLeft: 3,
         marginTop: 8,
@@ -271,7 +275,6 @@ const styles = StyleSheet.create({
         width: 60,
         marginRight: 15,
         paddingTop: 5,
-    },     
+    },
 })
-
-export default shopItems;
+export default rewardItems;
