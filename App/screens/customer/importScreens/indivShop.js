@@ -6,13 +6,15 @@ import {
     TouchableOpacity, 
     View, 
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 function indivShop(props) {
+    const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={()=>console.log("Pressed")}>
+        <TouchableOpacity onPress={() => navigation.navigate('shopItems')}>
             <View style={styles.container}>
                 <Image style={styles.shopImage}
                     source={require('../../../assets/DummyShop.jpg')}>
