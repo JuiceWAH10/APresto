@@ -14,7 +14,7 @@ function SplashScreen(props) {
                 source={require('../assets/Logo-AP-name.png')}></Image>
                 <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>
-            <TouchableOpacity onPress={() => props.navigation.navigate('signup')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('signupCustomer')}>
               <View style={styles.SignUpButton}>
                 <Text style={{color: '#29312e', fontSize: 16}}>Sign Up</Text>
               </View>

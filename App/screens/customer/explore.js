@@ -10,7 +10,6 @@ import {
     View, 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -152,6 +151,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",  
         flexDirection: "row",
         marginBottom: 15,
+        marginLeft: 8,
         width: wp('90%'),
     },    
 })

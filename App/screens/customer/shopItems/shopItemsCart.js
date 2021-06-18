@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView, 
     ScrollView, 
@@ -10,7 +9,6 @@ import {
     View 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -43,9 +41,15 @@ function shopItemsCart(props) {
                     <AllShopItem/>
                     <AllShopItem/> 
                 </ScrollView>
-                <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
-                    <Text style={styles.buttonLabel}>Generate QR Code</Text>
-                </TouchableOpacity>
+                <View style={styles.footer}>
+                    <View style={styles.footerTextContainer}>
+                        <Text style={styles.footerLabelSmall}>Total Amount</Text>
+                        <Text style={styles.footerLabel}>Php 200.00</Text>
+                    </View>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('shopItemsQR')} >
+                        <Text style={styles.buttonLabel}>Generate QR Code</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
             
         </SafeAreaView>
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         justifyContent: 'center',
         marginTop: 10,
-        width: '80%',
+        width: '50%',
         height: hp('6%'),
     },
     buttonLabel: {
@@ -106,6 +110,27 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         paddingTop: Platform.OS === 'android' ? 32 : 0
+    },
+    footer:{
+        alignSelf: "center",
+        height: hp('6%'),
+        width: wp('90%'),
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    footerLabel: {
+        textAlign: "center",
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    footerLabelSmall: {
+        textAlign: "center",
+        fontSize: 12,
+        marginTop: 8,
+    },
+    footerTextContainer:{
+        alignContent: "center",
+        marginLeft: wp('5%')
     },
     title: {
         textAlign: "center",

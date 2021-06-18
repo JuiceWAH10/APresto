@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     container: {
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
     },
     darken:{
         flex: 1,
@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     topNav: {
-        backgroundColor: "#fff",
         flexDirection: "row",
         justifyContent: "space-between",
         height: 45,
