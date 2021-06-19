@@ -15,6 +15,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 
 function clientHomepage(props) {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <Text style={styles.title}>APresto Shop</Text>
@@ -68,7 +69,7 @@ function clientHomepage(props) {
                     </View>    
                 </ImageBackground>
 
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                <TouchableOpacity onPress={()=> props.navigation.navigate('QRCodeScanner')}>
                     <View style={styles.scanQRContainer}>
                             <Text style={styles.scanQRContainerLabel}>Scan QR Code</Text>
                             <Text style={styles.scanQRContainerLabelSmall}>Scan QR code provided by customers.</Text>
@@ -80,7 +81,7 @@ function clientHomepage(props) {
                     <Text style={styles.dualTitle}> APresto Products</Text>
                 </View>
                 <View style={styles.dual}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('clientProductList')}>
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
@@ -92,7 +93,7 @@ function clientHomepage(props) {
                             </ImageBackground>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('clientProductAdd')}>
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
@@ -111,7 +112,7 @@ function clientHomepage(props) {
                     <Text style={styles.dualTitle}> APresto Rewards</Text>
                 </View>
                 <View style={styles.dual}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('clientRewardList')}>
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
@@ -123,7 +124,7 @@ function clientHomepage(props) {
                             </ImageBackground>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('clientRewardAdd')}>
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}

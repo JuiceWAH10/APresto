@@ -17,7 +17,7 @@ function LogIn(props) {
     
     function checkboxLogin(){
       if(toggleCheckBox.check == true)
-        props.navigation.navigate('clientHome');
+        props.navigation.navigate('clientHomepage');
       else
         props.navigation.navigate('customerShops');
     }

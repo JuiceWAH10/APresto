@@ -14,7 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-function clientProductAdd(props) {
+function clientProductEdit(props) {
     const [prodName, setTextProdName] = React.useState('');
     const [prodDes, setTextProdDes] = React.useState('');
     const [prodPrice, setTextProdPrice] = React.useState('');
@@ -29,13 +29,13 @@ function clientProductAdd(props) {
                     <Icon name="left" size={30} color="#fd4140" />
                 </TouchableOpacity>   
             </View>      
-            <Text style={styles.title}>Add Product</Text>   
+            <Text style={styles.title}>Edit Product</Text>   
             <ScrollView style={styles.container}>
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/banner5.jpg')}>
                     <View style={styles.bannerDarken}>
-                        <Text style={styles.bannerLabel}>Publish products for your customers to love!</Text>
+                        <Text style={styles.bannerLabel}>Update products information for new changes!</Text>
                         <Text style={styles.bannerLabelSmall}>Provide all the necessary information you want to share.</Text>
                     </View>    
                 </ImageBackground>
@@ -87,7 +87,7 @@ function clientProductAdd(props) {
 
                 
                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
-                    <Text style={styles.buttonLabel}>Add Product</Text>
+                    <Text style={styles.buttonLabel}>Publish Changes</Text>
                 </TouchableOpacity>
                 
                 
@@ -219,4 +219,4 @@ const styles = StyleSheet.create({
         // paddingTop: 5,
     },
 })
-export default clientProductAdd;
+export default clientProductEdit;
