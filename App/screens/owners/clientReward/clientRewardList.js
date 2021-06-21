@@ -23,7 +23,6 @@ import ClientAllShopRewards from '././importClientReward/clientAllShopRewards';
 function clientRewardList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
-    // const navigation = useNavigation();
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
     const maxHeaderHeight = 200

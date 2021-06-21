@@ -20,13 +20,13 @@ function rewardItemsCart(props) {
         <SafeAreaView style={styles.droidSafeArea}>  
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#fd4140" />
+                    <Icon name="left" size={30} color="#37375e" />
                 </TouchableOpacity>
             </View>
             <View style={[styles.formContainer, {flex:15}]}>          
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/Liked_Shop.jpg')}>
+                    source={require('../../../assets/bannerViolet.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>Shop more! For every items has corresponding points!</Text>
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     bannerDarken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",

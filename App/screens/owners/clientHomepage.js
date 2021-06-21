@@ -85,7 +85,7 @@ function clientHomepage(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/banner1.jpg')}>
+                                source={require('../../assets/bannerPeach.jpg')}>
                                 <View style={styles.darken}> 
                                     <Text style={styles.dualLabel}>My Products</Text>
                                     <Text style={styles.dualLabelSmall}>Gems around corners</Text>
@@ -97,7 +97,7 @@ function clientHomepage(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/banner2.jpg')}>
+                                source={require('../../assets/bannerPeach.jpg')}>
                                 <View style={styles.darken}>
                                     <Text style={styles.dualLabel}>Add Product</Text>
                                     <Text style={styles.dualLabelSmall}>Stores you love</Text>
@@ -116,7 +116,7 @@ function clientHomepage(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/banner3.jpg')}>
+                                source={require('../../assets/bannerLightBlue.jpg')}>
                                 <View style={styles.darken}> 
                                     <Text style={styles.dualLabel}>My Rewards</Text>
                                     <Text style={styles.dualLabelSmall}>Gems around corners</Text>
@@ -128,7 +128,7 @@ function clientHomepage(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/banner4.jpg')}>
+                                source={require('../../assets/bannerLightBlue.jpg')}>
                                 <View style={styles.darken}>
                                     <Text style={styles.dualLabel}>Add Rewards</Text>
                                     <Text style={styles.dualLabelSmall}>Stores you love</Text>
@@ -140,7 +140,7 @@ function clientHomepage(props) {
 
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../assets/banner5.jpg')}>
+                    source={require('../../assets/bannerViolet.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
@@ -156,15 +156,14 @@ const styles = StyleSheet.create({
     bannerBgImage: {
         alignSelf: "center",
         borderRadius: 30,
-        marginTop: 5,
         marginBottom: 5,
         height: 150,
         width: wp('90%'),
     },
     bannerDarken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.15)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",  
         justifyContent: "space-between",
         flexDirection: "row",
-        marginBottom: 15,
+        marginBottom: 10,
         height: 180,
         width: wp('90%'),
     },
@@ -217,7 +216,7 @@ const styles = StyleSheet.create({
         textAlign: "left",
         marginLeft: 20,
         marginTop: 100,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold"
     },
@@ -225,7 +224,7 @@ const styles = StyleSheet.create({
         textAlign: "left",
         marginLeft: 22,
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
     },
     dualTitle: {
@@ -245,9 +244,9 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     darken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.15)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
     },
     title: {
         textAlign: "center",
@@ -360,7 +359,7 @@ const styles = StyleSheet.create({
     },
     scanQRContainer: {
         alignSelf: "center",
-        backgroundColor: "#fd4140",
+        backgroundColor: "#fe1100",
         borderRadius: 30,
         marginTop: 5,
         marginBottom: 15,

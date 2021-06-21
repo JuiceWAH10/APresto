@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: "center",
         flexDirection: "column",
-        marginBottom: 6,
+        marginBottom: 2,
+        marginTop: 2,
         height: 220,
         width: wp('90%'),
     },

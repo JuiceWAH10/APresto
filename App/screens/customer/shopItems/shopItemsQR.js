@@ -14,7 +14,7 @@ function shopItemsQR(props) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <ImageBackground style={styles.container} source={require('../../../assets/Store-Blur.png')}>
+            <ImageBackground style={styles.container} source={require('../../../assets/bannerDarkBlue.jpg')}>
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to add point(s)</Text>
                         {/* Enter QR Code here */}

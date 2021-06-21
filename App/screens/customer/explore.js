@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { 
+    AppRegistry,
+    Dimensions,
     Image,
     ImageBackground,
     SafeAreaView,
@@ -13,7 +15,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import CarouselCards from '../../carousel/CarouselCards'
+
 import IndivShop from '././importScreens/indivShop';
+
 
 function explore(props) {
     const navigation = useNavigation();
@@ -23,14 +28,10 @@ function explore(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             <Text style={styles.title}>Explore APresto</Text>
             <ScrollView style={[styles.container, {flex:1}]}>
-                <ScrollView horizontal={true} style={styles.carousel}>
-                    <Image style={styles.carouselImages}
-                        source={require('../../assets/Store.jpg')}>
-                    </Image>
-                    <Image style={styles.carouselImages}
-                        source={require('../../assets/Store2.jpg')}>
-                    </Image>
-                </ScrollView>
+                <CarouselCards />
+
+
+                {/* Dual View */}
                 <View style={styles.dual}>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
                         <View style={styles.dualContent}>
@@ -57,6 +58,9 @@ function explore(props) {
                         </View>
                     </TouchableOpacity>
                 </View>
+                {/* End of Dual View */}
+
+                {/* Most Reviewed Shop */}
                 <View style={styles.titleReviewsContainer}>
                     <Icon name="fire" size={40} color="#fd4140" />
                     <Text style={styles.titleReviews}>Most Reviewed Shops</Text>
@@ -67,6 +71,7 @@ function explore(props) {
                 <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
                 <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
                 <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                {/* End of most Reviewed */}
 
             </ScrollView>    
         </SafeAreaView>
@@ -80,12 +85,29 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         height: 150,
         width: wp('90%'),
-        marginBottom: 15,
+        marginBottom: 10,
     },
     carouselImages: {
         borderRadius: 30,
         height: 150,
         width: wp('90%')
+    },
+    carouselLabel: {
+        textAlign: "center",
+        marginTop: 35,
+        color: "#fff",
+        fontSize: 20,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    carouselLabelSmall: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 12,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
     },     
     container: {
         flexDirection: "column",
@@ -100,7 +122,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",  
         justifyContent: "space-between",
         flexDirection: "row",
-        marginBottom: 15,
+        marginBottom: 10,
         height: 180,
         width: wp('90%'),
     },
@@ -150,9 +172,11 @@ const styles = StyleSheet.create({
     titleReviewsContainer: {
         alignSelf: "center",  
         flexDirection: "row",
-        marginBottom: 15,
+        marginBottom: 5,
         marginLeft: 8,
         width: wp('90%'),
-    },    
+    },
+    
+    
 })
 export default explore;

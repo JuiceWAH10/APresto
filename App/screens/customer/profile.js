@@ -19,96 +19,53 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 
 function profile(props) {
-    const scrollPosition = useRef(new Animated.Value(0)).current;
-    const minHeaderHeight = 0
-    const maxHeaderHeight = 300
-
     
-
-    const headerHeight = scrollPosition.interpolate({
-        inputRange: [0, 500],
-        outputRange: [maxHeaderHeight, minHeaderHeight],
-        extrapolate: 'clamp',
-    });
-    const opacity = scrollPosition.interpolate({
-        inputRange: [0, 100, 300],
-        outputRange: [1, 0.5, 0],
-        extrapolate: 'clamp',
-    });
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <View>
-            <Animated.View
-                style={{
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 10,
-                    height: headerHeight,
-                    backgroundColor: '#fd4140',
-                }}>
-                <Animated.View
-                    style={{
-                    textAlign: "center",
-                    opacity: opacity,
-                    }}>
-                    <ImageBackground style={styles.headerBgImage}
-                        source={require('../../assets/DummyShop.jpg')}>
-                        <View style={styles.darken}>
-                            <Image style={styles.headerProfileImage}
-                                source={require('../../assets/Store.jpg')}>
-                            </Image>
-                            <Text style={styles.headerUsername}>Username</Text>
-                            <Text style={styles.headerFullname}>Full Name</Text>
-                            <View style={styles.headerButtonContainer}>
-                                <TouchableOpacity style={styles.headerButton} onPress={() => "pressed"} >
-                                    <Icon name="user" size={20} color="#fff" />
-                                    <Text style={styles.headerButtonLabel}>Edit Profile</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('rewardItems')} >
-                                    <Icon name="logout" size={20} color="#fff" />
-                                    <Text style={styles.headerButtonLabel}>Log Out</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>    
-                    </ImageBackground>
-                </Animated.View>
-            </Animated.View>
-
-            <Animated.ScrollView
-                onScroll={Animated.event(
-                    [{nativeEvent: {contentOffset: {y: scrollPosition}}}],
-                    {useNativeDriver: false},
-                )}
-                contentInsetAdjustmentBehavior="automatic"
-                style={[styles.container]}>
-
-                    <View style={styles.titleTransactContainer}>
-                        <Icon2 name="access-time" size={30} color="#fd4140" />
-                        <Text style={styles.titleTransact}>Last Transaction</Text>
+            {/* Header */}
+            <ImageBackground style={styles.profileBgImage}
+                    source={require('../../assets/bannerRed.jpg')}>
+                <View style={styles.profileDarken}>
+                    <Image style={styles.profileProfileImage}
+                        source={require('../../assets/Store.jpg')}>
+                    </Image>
+                    <Text style={styles.profileUsername}>Username</Text>
+                    <Text style={styles.profileFullname}>Full Name</Text>
+                    <View style={styles.profileButtonContainer}>
+                        <TouchableOpacity style={styles.profileButton} onPress={() => "pressed"} >
+                            <Icon name="user" size={20} color="#fff" />
+                            <Text style={styles.profileButtonLabel}>Edit Profile</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('rewardItems')} >
+                            <Icon name="logout" size={20} color="#fff" />
+                            <Text style={styles.profileButtonLabel}>Log Out</Text>
+                        </TouchableOpacity>
                     </View>
-                
-                    <ImageBackground style={styles.transactBannerBgImage}
-                        imageStyle={{ borderRadius: 30}}
-                        source={require('../../assets/Liked_Shop.jpg')}>
-                        <View style={styles.transactBannerDarken}>
-                            <Text style={styles.transactBannerLabel}>You visited the Shop!</Text>
+                </View>    
+            </ImageBackground>
+            {/* End of Header */}
+
+            <ScrollView style={[styles.container, {flex:1}]}>
+                <ImageBackground style={styles.transactBannerBgImage}
+                    imageStyle={{ borderRadius: 30}}
+                    source={require('../../assets/bannerPeach.jpg')}>
+                    <View style={styles.transactBannerDarken}>
+                        <Text style={styles.transactBannerLabel}>You visited the Shop!</Text>
                             <Text style={styles.transactBannerLabelSmall}>Earned 100 reward points.</Text>
-                        </View>    
-                    </ImageBackground>
+                    </View>    
+                </ImageBackground>
+                        
+                <ImageBackground style={styles.bannerBgImage}
+                    imageStyle={{ borderRadius: 30}}
+                    source={require('../../assets/bannerLightBlue.jpg')}>
+                    <View style={styles.bannerDarken}>
+                        <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
+                        <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                    </View>    
+                </ImageBackground>
+                
+            </ScrollView>
 
-
-                    
-                    <ImageBackground style={styles.bannerBgImage}
-                        imageStyle={{ borderRadius: 30}}
-                        source={require('../../assets/Liked_Shop.jpg')}>
-                        <View style={styles.bannerDarken}>
-                            <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                            <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
-                        </View>    
-                    </ImageBackground>
-            </Animated.ScrollView>
-            </View>
         </SafeAreaView>
     );
 }
@@ -123,14 +80,14 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     bannerDarken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -139,7 +96,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -166,24 +123,25 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     container: {
-        // backgroundColor: "#fff",
-    },
+        flexDirection: "column",
+        width: wp('100%'),
+        // borderWidth: 1
+    },   
     darken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
     },
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
     },
-    headerBgImage: {
+    profileBgImage: {
         alignSelf: "center",
-        borderRadius: 30,
-        marginBottom: 15,
-        height: 300,
+        marginBottom: 5,
+        height: 280,
         width: wp('100%'),
     },
-    headerButton: {
+    profileButton: {
         borderColor: "#fff",
         borderRadius: 30,
         borderWidth: 1,
@@ -194,25 +152,22 @@ const styles = StyleSheet.create({
         width: 100,
         height: 35,
     },
-    headerButtonContainer: {
+    profileButtonContainer: {
         alignSelf: "center",
         flexDirection: "row",
         justifyContent:"space-between",
-        width: '60%',
+        width: '70%',
     },
-    headerButtonLabel: {
+    profileButtonLabel: {
         color: "#fff",
         fontSize: 12
     },
-    headerProfileImage:{
-        alignSelf: "center",
-        height: 100,
-        width: 100,
-        borderRadius: 100,
-        marginTop: 50,
-        marginBottom: 20
+    profileDarken:{
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
     },
-    headerFullname: {
+    profileFullname: {
         textAlign: "center",
         marginTop: 2,
         color: "#fff",
@@ -220,11 +175,36 @@ const styles = StyleSheet.create({
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
-    headerUsername: {
+    profileUsername: {
         textAlign: "center",
         color: "#fff",
         fontSize: 24,
         fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    profileProfileImage:{
+        alignSelf: "center",
+        height: 100,
+        width: 100,
+        borderRadius: 100,
+        marginTop: 30,
+        marginBottom: 20
+    },
+    profileShopName: {
+        textAlign: "center",
+        marginTop: 35,
+        color: "#fff",
+        fontSize: 30,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    profileLabelSmall: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
@@ -251,7 +231,7 @@ const styles = StyleSheet.create({
     },
     transactBannerDarken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.15)',
         borderRadius: 30,
     },
     transactBannerLabel: {

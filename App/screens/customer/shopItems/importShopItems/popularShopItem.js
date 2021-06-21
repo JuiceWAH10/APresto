@@ -21,11 +21,11 @@ function popularShopItem(props) {
                     <Text style={styles.popularLabelSmall}>Price</Text>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                            <Icon name="add-circle" size={40} color="#fd4140" />
+                            <Icon name="add-circle" size={30} color="#fd4140" />
                         </TouchableOpacity>
                         <Text style={styles.quantity}>Qty</Text>
                         <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                            <Icon2 name="minus-circle" size={40} color="#fd4140" />
+                            <Icon2 name="minus-circle" size={30} color="#fd4140" />
                         </TouchableOpacity>    
                     </View>
                 </View>    

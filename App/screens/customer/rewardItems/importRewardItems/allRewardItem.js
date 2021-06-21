@@ -22,11 +22,11 @@ function allRewardItem(props) {
             <Text style={styles.itemInfo}>Reward Definition</Text>
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Icon name="add-circle" size={35} color="#fd4140" />
+                    <Icon name="add-circle" size={35} color="#37375e" />
                 </TouchableOpacity>
                 <Text style={styles.quantity}>Qty</Text>
                 <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Icon2 name="minus-circle" size={35} color="#fd4140" />
+                    <Icon2 name="minus-circle" size={35} color="#37375e" />
                 </TouchableOpacity>    
             </View>
         </View>

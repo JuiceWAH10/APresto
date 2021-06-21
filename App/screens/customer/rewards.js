@@ -32,40 +32,27 @@ function rewards(props) {
             <ScrollView style={[styles.container, {flex:1}]}>
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../assets/Liked_Shop.jpg')}>
+                    source={require('../../assets/bannerViolet.jpg')}>
                     <View style={styles.darken}>
                         <Text style={styles.bannerLabel}>Visit Shops now to claim awesome rewards.</Text>
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
                     </View>    
                 </ImageBackground>
-                <View style={styles.titleRewardsContainer}>
+                <View style={styles.titleContainer}>
                     <Icon name="star-four-points" size={40} color="#fd4140" />
-                    <Text style={styles.titleRewards}>Shops you have Points</Text>
+                    <Text style={styles.title}>Shops you have Points</Text>
                 </View>
                 <IndivReward name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                <IndivReward name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                <IndivReward name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                <IndivReward name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
-                <IndivReward name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
-
             </ScrollView>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "column",
-        width: wp('100%'),
-    },   
-    droidSafeArea: {
-        flex: 1,
-        paddingTop: Platform.OS === 'android' ? 32 : 0
-    },
     bannerBgImage: {
         alignSelf: "center",
         borderRadius: 30,
-        marginBottom: 15,
+        marginBottom: 10,
         height: 150,
         width: wp('90%'),
     },
@@ -87,9 +74,17 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     darken:{
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
+    },
+    container: {
+        flexDirection: "column",
+        width: wp('100%'),
+    },   
+    droidSafeArea: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 30,
+        paddingTop: Platform.OS === 'android' ? 32 : 0
     },
     searchBar: {
         alignSelf: "center",
@@ -99,18 +94,19 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         marginTop: 5,   
     },
-    titleRewards: {
+    title: {
         textAlign: "center",
         marginLeft: 5,
         marginTop: 8,
         fontSize: 20,
         fontWeight: "bold"
     },
-    titleRewardsContainer: {
+    titleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
-        marginBottom: 15,
+        marginBottom: 10,
         marginLeft: 8,
+        height: 40,
         width: wp('90%'),
     },
 })
