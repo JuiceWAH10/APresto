@@ -27,14 +27,14 @@ function clientRewardEdit(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#fd4140" />
+                    <Icon name="left" size={30} color="#aacfdd" />
                 </TouchableOpacity>   
             </View>      
             <Text style={styles.title}>Edit Reward</Text>   
             <ScrollView style={styles.container}>
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/banner5.jpg')}>
+                    source={require('../../../assets/bannerLightBlue.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>Update products information for new changes!</Text>
                         <Text style={styles.bannerLabelSmall}>Provide all the necessary information you want to share.</Text>
@@ -107,14 +107,14 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     bannerDarken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.15)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),

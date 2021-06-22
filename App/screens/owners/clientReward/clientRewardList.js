@@ -44,7 +44,7 @@ function clientRewardList(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 style={styles.backButton} name="left" size={30} color="#fd4140" />
+                    <Icon2 style={styles.backButton} name="left" size={30} color="#aacfdd" />
                 </TouchableOpacity>   
                 <Searchbar
                         style={styles.searchBar}
@@ -57,19 +57,19 @@ function clientRewardList(props) {
                 <TouchableOpacity onPress={() => "pressed"} >
                     <View style={styles.headIndivContainer}>
                         <Text style={styles.headLabelSmall}>Live</Text>
-                        <Icon style={styles.headIcons} name="box" size={35} color="#fff" />
+                        <Icon style={styles.headIcons} name="box" size={35} color="#29312e" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => "pressed"} >
                     <View style={styles.headIndivContainer}>
                         <Text style={styles.headLabelSmall}>Sold</Text>
-                        <Icon style={styles.headIcons} name="wallet" size={35} color="#fff" />
+                        <Icon style={styles.headIcons} name="wallet" size={35} color="#29312e" />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => "pressed"} >    
                     <View style={styles.headIndivContainer}>
                         <Text style={styles.headLabelSmall}>Delisted</Text>
-                        <Icon style={styles.headIcons} name="archive" size={35} color="#fff" />
+                        <Icon style={styles.headIcons} name="archive" size={35} color="#29312e" />
                     </View>
                 </TouchableOpacity>    
             </View>  
@@ -88,7 +88,7 @@ function clientRewardList(props) {
 
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/banner5.jpg')}>
+                    source={require('../../../assets/bannerLightBlue.jpg')}>
                     <View style={styles.darken}>
                         <Text style={styles.bannerLabel}>Visit Shops now to claim awesome rewards.</Text>
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -125,15 +125,15 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
     darken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.4)',
+        // borderRadius: 30,
     },
     container:{
         flex:1,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     headContainer: {
         alignSelf: "center",
         justifyContent: "center",
-        backgroundColor: "#fd4140",
+        backgroundColor: "#aacfdd",
         borderRadius: 30,
         marginBottom: 8,
         height: 74,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     headLabelSmall: {
         textAlign: "center",
         marginTop: 5,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
