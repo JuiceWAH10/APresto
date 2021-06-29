@@ -66,9 +66,10 @@ import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 import ClientAllRewardItems from './App/screens/owners/clientReward/importClientReward/clientAllShopRewards';
-
+import * as firebase from "firebase";
 
 const Stack = createStackNavigator();
+const Auth = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 
@@ -173,3 +174,13 @@ export default class App extends React.Component {
     )
   };
 }
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAeHqFIjvpdIl5Yr5nGibf_Ol8rkZrqQwo",
+  authDomain: "apresto-b47ae.firebaseapp.com",
+  projectId: "apresto-b47ae",
+  storageBucket: "apresto-b47ae.appspot.com",
+  messagingSenderId: "491750670452",
+  appId: "1:491750670452:web:3719bba8d7305392385121"
+};
+firebase.initializeApp(firebaseConfig);
