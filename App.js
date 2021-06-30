@@ -34,10 +34,8 @@ import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 
-
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
-
 
 const customerBottomTabs = () =>{
   return (
@@ -116,6 +114,7 @@ export default class App extends React.Component {
             <Stack.Screen name="clientRewardList" component={ClientRewardList} />
             {/* End Added Vincent */}
 
+            <Stack.Screen name="customerShops" children={customerBottomTabs} />  
             <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
             <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
             <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
