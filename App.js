@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { Provider } from 'react-redux'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -69,7 +69,7 @@ import ClientAllRewardItems from './App/screens/owners/clientReward/importClient
 import * as firebase from "firebase";
 
 const Stack = createStackNavigator();
-const Auth = createStackNavigator();
+const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 
@@ -120,13 +120,20 @@ const customerBottomTabs = () =>{
   )
 }
 
+const AuthScreens = () => {
+  return(
+    <AuthStack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="splash" component={SplashScreen} />
+      <Stack.Screen name="login" component={LogIn} />
+      <Stack.Screen name="signupCustomer" component={SignupCustomer} />
+    </AuthStack.Navigator>
+  );
+}
+
 const Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="splash" component={SplashScreen} />
-    <Stack.Screen name="login" component={LogIn} />
     {/* Added Vincent */}
-    <Stack.Screen name="signupCustomer" component={SignupCustomer} />
     <Stack.Screen name="explore" component={Explore} />
     <Stack.Screen name="rewards" component={Rewards} />
     <Stack.Screen name="shops" component={Shops} />
@@ -167,13 +174,21 @@ const Screens = () => {
   );
 }
 
+function Authentication(){
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  return(
+    <NavigationContainer>
+      {isAuthenticated ? <Screens/> : <AuthScreens/>}
+    </NavigationContainer>
+  );
+
+}
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <NavigationContainer>
-            <Screens />
-        </NavigationContainer>
+       <Authentication/>
       </Provider>
 
       // <ClientAllShopItems/>
