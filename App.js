@@ -69,6 +69,7 @@ import ClientAllRewardItems from './App/screens/owners/clientReward/importClient
 import * as firebase from "firebase";
 
 const Stack = createStackNavigator();
+//Auth navigation
 const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -120,6 +121,7 @@ const customerBottomTabs = () =>{
   )
 }
 
+//Will direct here if not login/ or will creat account
 const AuthScreens = () => {
   return(
     <AuthStack.Navigator screenOptions={{headerShown: false}}>
@@ -130,6 +132,7 @@ const AuthScreens = () => {
   );
 }
 
+//Will navigate here once accessed login
 const Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -174,6 +177,7 @@ const Screens = () => {
   );
 }
 
+//Authentication function component
 function Authentication(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
   return(
@@ -187,15 +191,16 @@ function Authentication(){
 export default class App extends React.Component {
   render() {
     return (
+      //call Authentication function component
       <Provider store={store}>
        <Authentication/>
       </Provider>
-
       // <ClientAllShopItems/>
     )
   };
 }
 
+//firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAeHqFIjvpdIl5Yr5nGibf_Ol8rkZrqQwo",
   authDomain: "apresto-b47ae.firebaseapp.com",

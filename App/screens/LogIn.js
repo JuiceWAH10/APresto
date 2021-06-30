@@ -7,9 +7,21 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 
 function LogIn(props) {
-    const [userName, setTextUN] = React.useState('');
-    const [passWord, setTextPW] = React.useState('');
+    //const [userName] = React.useState('');
+    //const [passWord, setTextPW] = React.useState('');
     const [toggleCheckBox, setToggleCheckBox] = useState({check: false});
+
+    //Email variables
+    const [emailField, setEmailField] = useState({
+      text: "", 
+      errorMessage: "",
+    });
+
+    //Password variables
+    const [passwordField, setPasswordField] = useState({
+      text: "", 
+      errorMessage: "",
+    });
 
     function handleCheck(){
       setToggleCheckBox({check: !toggleCheckBox.check});
@@ -40,17 +52,23 @@ function LogIn(props) {
               <View style={styles.LogInContainer}>
                 <Text style={{color: '#fd4140', fontSize: 13, top: 30}}>Log In now to see your account</Text>
                 <TextInput
-                    style={styles.textUserName}
-                    placeholder="UserName"
-                    value={userName}
-                    onChangeText={text => setTextUN(text)}
+                    //Email input
+                    style={styles.email}
+                    placeholder="Email"
+                    text={emailField.text}
+                    onChangeText={(text) => {setEmailField({text});}}
+                    errorMessage={emailField.errorMessage}
+                    autoCompleteType="email"
                 />
                 <TextInput
-                    style={styles.textPassword}
+                    //Password input
+                    style={styles.password}
                     secureTextEntry={true}
                     placeholder="Password"
-                    value={passWord}
-                    onChangeText={text => setTextPW(text)}
+                    text={passwordField.text}
+                    onChangeText={(text) => {setPasswordField({text});}}
+                    errorMessage={passwordField.errorMessage}
+                    autoCompleteType="password"
                 />
                 <View style={styles.checkbox}>
                   <CheckBox
@@ -122,13 +140,13 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     top: hp('40%'),
   },
-  textUserName: {
+  email: {
     width: '80%',
     height: 50,
     borderColor: '#1c2b59',
     top: 60
   },
-  textPassword: {
+  password: {
     width: '80%',
     height: 50,
     borderColor: '#1c2b59',

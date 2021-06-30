@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
 
 function signupCustomer(props) {
     const [firstName, setTextFN] = React.useState('');
@@ -11,9 +10,27 @@ function signupCustomer(props) {
     const [address, setTextA] = React.useState('');
     const [contactNo, setTextCN] = React.useState('');
     const [userName, setTextUN] = React.useState('');
-    const [email, setTextE] = React.useState('');
-    const [password, setTextPW] = React.useState('');
-    const [retypePassword, setTextRPW] = React.useState('');
+    //const [email, setTextE] = React.useState('');
+    //const [password, setTextPW] = React.useState('');
+    //const [retypePassword, setTextRPW] = React.useState('');
+
+    //Email variables
+    const [emailField, setEmailField] = useState({
+        text: "", 
+        errorMessage: "",
+    });
+
+    //Password variables
+    const [passwordField, setPasswordField] = useState({
+        text: "", 
+        errorMessage: "",
+    });
+
+    //Re-enter password variables
+    const [passwordReentryField, setPasswordReentryField] = useState({
+        text: "", 
+        errorMessage: "",
+    });
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>       
@@ -69,28 +86,36 @@ function signupCustomer(props) {
                     </View>
                     <View style={styles.textView}>
                         <TextInput
+                            //Email input
                             style={styles.input}
-                            placeholder="Email Address"
-                            onChangeText={text => setTextE(text)}
-                            value={email}
+                            placeholder="Email"
+                            text={emailField.text}
+                            onChangeText={(text) => {setEmailField({text});}}
+                            errorMessage={emailField.errorMessage}
+                            autoCompleteType="email"
                         />
                     </View>
                     <View style={styles.textView}>
                         <TextInput
+                            //Password input
                             style={styles.input}
+                            secureTextEntry={true}
                             placeholder="Password"
-                            onChangeText={text => setTextPW(text)}
-                            value={password}
-                            secureTextEntry={true}
+                            text={passwordField.text}
+                            onChangeText={(text) => {setPasswordField({text});}}
+                            errorMessage={passwordField.errorMessage}
+                            autoCompleteType="password"
                         />
                     </View>
                     <View style={styles.textView}>
                         <TextInput
+                            //Re-enter password input
                             style={styles.input}
-                            placeholder="Retype Password"
-                            onChangeText={text => setTextRPW(text)}
-                            value={retypePassword}
                             secureTextEntry={true}
+                            placeholder="Re-enter Password"
+                            text={passwordReentryField.text}
+                            onChangeText={(text) => {setPasswordReentryField({text});}}
+                            errorMessage={passwordReentryField.errorMessage}
                         />
                     </View>
                     
