@@ -1,7 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { 
-    Animated,
-    Image,
     ImageBackground,
     Platform,
     SafeAreaView,
@@ -13,7 +11,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
-import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -23,25 +20,12 @@ import ClientAllShopRewards from '././importClientReward/clientAllShopRewards';
 function clientRewardList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
-    const scrollPosition = useRef(new Animated.Value(0)).current;
-    const minHeaderHeight = 0
-    const maxHeaderHeight = 200
-
-    const headerHeight = scrollPosition.interpolate({
-        inputRange: [0, 500],
-        outputRange: [maxHeaderHeight, minHeaderHeight],
-        extrapolate: 'clamp',
-    });
-    const opacity = scrollPosition.interpolate({
-        inputRange: [0, 100, 300],
-        outputRange: [1, 0.5, 0],
-        extrapolate: 'clamp',
-    });
-
     const navigation = useNavigation();
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+
+            {/* Top Navigation and Search Bar */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon2 style={styles.backButton} name="left" size={30} color="#aacfdd" />
@@ -53,6 +37,9 @@ function clientRewardList(props) {
                         value={searchQuery}
                 />
             </View>
+            {/* End of Top Nav and Search Bar */}
+
+            {/* Header */}
             <View style={styles.headContainer}>
                 <TouchableOpacity onPress={() => "pressed"} >
                     <View style={styles.headIndivContainer}>
@@ -73,6 +60,8 @@ function clientRewardList(props) {
                     </View>
                 </TouchableOpacity>    
             </View>  
+            {/* End of Header */}
+
             <ScrollView style={styles.container}>
 
                 <ClientAllShopRewards/>
@@ -86,6 +75,7 @@ function clientRewardList(props) {
                 <ClientAllShopRewards/>
                 <ClientAllShopRewards/>
 
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerLightBlue.jpg')}>
@@ -94,9 +84,8 @@ function clientRewardList(props) {
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
                 
-
-
             </ScrollView>
         </SafeAreaView>
     );

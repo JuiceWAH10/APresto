@@ -1,6 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { 
-    Animated,
     Image,
     ImageBackground,
     Platform,
@@ -11,10 +10,7 @@ import {
     TouchableOpacity, 
     View, 
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
@@ -46,6 +42,7 @@ function profile(props) {
             {/* End of Header */}
 
             <ScrollView style={[styles.container, {flex:1}]}>
+                {/* For last transaction */}
                 <ImageBackground style={styles.transactBannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerPeach.jpg')}>
@@ -54,7 +51,13 @@ function profile(props) {
                             <Text style={styles.transactBannerLabelSmall}>Earned 100 reward points.</Text>
                     </View>    
                 </ImageBackground>
-                        
+                {/* End of last transaction */}
+
+                {/* Under development */}
+                {/* Insert Code here for infos of the Customers */}
+                {/* Additional ideas needed here */}
+                
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerLightBlue.jpg')}>
@@ -63,6 +66,7 @@ function profile(props) {
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
                 
             </ScrollView>
 

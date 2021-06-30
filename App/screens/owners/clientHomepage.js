@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -20,10 +19,13 @@ function clientHomepage(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             <Text style={styles.title}>APresto Shop</Text>
             <ScrollView style={styles.container}>
+                {/* Profile Header for Shops */}
                 <ImageBackground style={styles.profileBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/Liked_Shop.jpg')}>
+
                     <View style={styles.profileDarken}>
+                        {/* Profile Informations */}
                         <Text style={styles.profileShopName}>Shop Name</Text>
                         <Text style={styles.profileLabelSmall}>Spending for the products  you love give you rewards!</Text>
                         <View style={styles.profileButtonContainer}>
@@ -35,7 +37,10 @@ function clientHomepage(props) {
                                 <Icon name="logout" size={20} color="#fff" />
                                 <Text style={styles.profileButtonLabel}>Log Out</Text>
                             </TouchableOpacity>
+                        {/* End of Profile Informations */}
                         </View>
+
+                        {/* Rate, Suki, Shopped, Claimed */}
                         <ScrollView horizontal={true} style={styles.profileInfosContainer}>
                             <View style={styles.profileInfo}>
                                 <View style={styles.profileInfoLabel} >
@@ -66,16 +71,21 @@ function clientHomepage(props) {
                                 <Text style={styles.profileInfoTextLabelBig}> 67 </Text>    
                             </View>
                         </ScrollView>
+                        {/* End of Rate, Suki, Shopped, Claimed */}
                     </View>    
                 </ImageBackground>
+                {/* End of Profile Header */}
 
+                {/* QR code Scanner */}
                 <TouchableOpacity onPress={()=> props.navigation.navigate('QRCodeScanner')}>
                     <View style={styles.scanQRContainer}>
                             <Text style={styles.scanQRContainerLabel}>Scan QR Code</Text>
                             <Text style={styles.scanQRContainerLabelSmall}>Scan QR code provided by customers.</Text>
                     </View>
                 </TouchableOpacity>    
+                {/* End of QR Code Scanner */}
 
+                {/* APresto Products */}
                 <View style={styles.dualTitleContainer}>
                     <Icon name="shoppingcart" size={30} color="#fd4140" />
                     <Text style={styles.dualTitle}> APresto Products</Text>
@@ -106,7 +116,9 @@ function clientHomepage(props) {
                         </View>
                     </TouchableOpacity>
                 </View>
+                {/* End of APresto Products */}
 
+                {/* APresto Rewards */}
                 <View style={styles.dualTitleContainer}>
                     <Icon name="gift" size={30} color="#fd4140" />
                     <Text style={styles.dualTitle}> APresto Rewards</Text>
@@ -137,7 +149,9 @@ function clientHomepage(props) {
                         </View>
                     </TouchableOpacity>
                 </View>
+                {/* End of APresto Rewards */}
 
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerViolet.jpg')}>
@@ -146,6 +160,7 @@ function clientHomepage(props) {
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
 
             </ScrollView>
         </SafeAreaView>

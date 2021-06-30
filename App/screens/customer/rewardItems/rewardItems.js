@@ -38,6 +38,7 @@ function rewardItems(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon2 name="left" size={30} color="#37375e" />
@@ -51,6 +52,8 @@ function rewardItems(props) {
                     </TouchableOpacity>
                 </View>
             </View>
+            {/* End of Top Navigation */}
+            
             <View>
             <Animated.View
                 style={{
@@ -61,6 +64,8 @@ function rewardItems(props) {
                     height: headerHeight,
                     backgroundColor: '#37375e',
                 }}>
+
+                {/* Header */}
                 <Animated.View
                     style={{
                     textAlign: "center",
@@ -80,6 +85,7 @@ function rewardItems(props) {
                         </View>    
                     </ImageBackground>
                 </Animated.View>
+                {/* End of Header */}
             </Animated.View>
 
             <Animated.ScrollView
@@ -95,6 +101,7 @@ function rewardItems(props) {
                         <Text style={styles.titlePopular}>Popular Rewards</Text>
                     </View>
 
+                    {/* Horizontal Scrollview for Popular Rewards */}
                     <ScrollView horizontal={true} style={styles.popularItems}>
                         <PopularRewardItem/>
                         <PopularRewardItem/>
@@ -103,7 +110,9 @@ function rewardItems(props) {
                         <PopularRewardItem/>
                         <PopularRewardItem/>
                     </ScrollView>
+                    {/* End of Horizonal Scrollview */}
 
+                    {/* List of all rewards !note that items in Popular Rewards is also included here* */}
                     <Text style={styles.titleAllRewards}>All Rewards</Text>
                         <AllRewardItem/>
                         <AllRewardItem/>
@@ -117,15 +126,18 @@ function rewardItems(props) {
                         <AllRewardItem/>
                         <AllRewardItem/>
                         <AllRewardItem/>
+                    {/* End of List */}
 
-                        <ImageBackground style={styles.bannerBgImage}
-                            imageStyle={{ borderRadius: 30}}
-                            source={require('../../../assets/bannerViolet.jpg')}>
-                            <View style={styles.bannerDarken}>
-                                <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                                <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
-                            </View>    
-                        </ImageBackground>
+                    {/* Banner */}
+                    <ImageBackground style={styles.bannerBgImage}
+                        imageStyle={{ borderRadius: 30}}
+                        source={require('../../../assets/bannerViolet.jpg')}>
+                        <View style={styles.bannerDarken}>
+                            <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
+                            <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                        </View>    
+                    </ImageBackground>
+                    {/* End of Banner */}
             </Animated.ScrollView>
             </View>
         </SafeAreaView>

@@ -1,23 +1,19 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
     StyleSheet,
     Text, 
-    TouchableOpacity, 
     View, 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Searchbar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import IndivShop from '././importScreens/indivShop';
 
 function shops(props) {
-    const navigation = useNavigation();
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
     return (
@@ -28,7 +24,9 @@ function shops(props) {
                 onChangeText={onChangeSearch}
                 value={searchQuery}
             />
+
             <ScrollView style={[styles.container, {flex:1}]}>
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerDarkBlue.jpg')}>
@@ -37,17 +35,20 @@ function shops(props) {
                         <Text style={styles.bannerLabelSmall}>We guarantee you that shops here bring happiness.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
+
                 <View style={styles.titleContainer}>
                     <Icon name="shop" size={40} color="#fd4140" />
                     <Text style={styles.title}>APresto Shops</Text>
                 </View>
+                {/* Insert Code here for importing shops with info */}
                 <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
                 <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
                 <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
                 <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
                 <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
-
             </ScrollView>
+
         </SafeAreaView>
     );
 }
