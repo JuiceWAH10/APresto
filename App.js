@@ -120,53 +120,59 @@ const customerBottomTabs = () =>{
   )
 }
 
+const Screens = () => {
+  return(
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name="splash" component={SplashScreen} />
+    <Stack.Screen name="login" component={LogIn} />
+    {/* Added Vincent */}
+    <Stack.Screen name="signupCustomer" component={SignupCustomer} />
+    <Stack.Screen name="explore" component={Explore} />
+    <Stack.Screen name="rewards" component={Rewards} />
+    <Stack.Screen name="shops" component={Shops} />
+    <Stack.Screen name="profile" component={Profile} />
+    <Stack.Screen name="shopItems" component={ShopItems} />
+    <Stack.Screen name="shopItemsCart" component={ShopItemsCart} />  
+    <Stack.Screen name="shopItemsQR" component={ShopItemsQR} />   
+    <Stack.Screen name="rewardItems" component={RewardItems} />
+    <Stack.Screen name="rewardItemsCart" component={RewardItemsCart} />
+    <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
+
+    <Stack.Screen name="clientHomepage" component={ClientHomepage} />
+    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
+    <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
+    <Stack.Screen name="clientProductList" component={ClientProductList} />
+    <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
+    <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
+    <Stack.Screen name="clientRewardList" component={ClientRewardList} />
+    {/* End Added Vincent */}
+
+    <Stack.Screen name="clientHome" component={ClientHome} />
+    <Stack.Screen name="clientAddProduct" component={ClientAddProduct} />
+    <Stack.Screen name="clientAddReward" component={ClientAddReward} />
+    <Stack.Screen name="clientEditProduct" component={ClientEditProduct} />
+    <Stack.Screen name="clientEditReward" component={ClientEditReward} />
+    <Stack.Screen name="myProducts" component={MyProducts} />
+    <Stack.Screen name="myRewards" component={MyRewards} />
+    <Stack.Screen name="clientProfile" component={ClientProfile} />
+    <Stack.Screen name="mySuki" component={MySuki} />
+    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
+    <Stack.Screen name="customerShopItem" component={CustomerShopItem} />
+    <Stack.Screen name="CustomerCart" component={CustomerCart} />
+    <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
+    <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
+    <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
+    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
+  </Stack.Navigator>
+  );
+}
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="splash" component={SplashScreen} />
-            <Stack.Screen name="login" component={LogIn} />
-            {/* Added Vincent */}
-            <Stack.Screen name="signupCustomer" component={SignupCustomer} />
-            <Stack.Screen name="explore" component={Explore} />
-            <Stack.Screen name="rewards" component={Rewards} />
-            <Stack.Screen name="shops" component={Shops} />
-            <Stack.Screen name="profile" component={Profile} />
-            <Stack.Screen name="shopItems" component={ShopItems} />
-            <Stack.Screen name="shopItemsCart" component={ShopItemsCart} />  
-            <Stack.Screen name="shopItemsQR" component={ShopItemsQR} />   
-            <Stack.Screen name="rewardItems" component={RewardItems} />
-            <Stack.Screen name="rewardItemsCart" component={RewardItemsCart} />
-            <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
-
-            <Stack.Screen name="clientHomepage" component={ClientHomepage} />
-            <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
-            <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
-            <Stack.Screen name="clientProductList" component={ClientProductList} />
-            <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
-            <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
-            <Stack.Screen name="clientRewardList" component={ClientRewardList} />
-            {/* End Added Vincent */}
-
-            <Stack.Screen name="clientHome" component={ClientHome} />
-            <Stack.Screen name="clientAddProduct" component={ClientAddProduct} />
-            <Stack.Screen name="clientAddReward" component={ClientAddReward} />
-            <Stack.Screen name="clientEditProduct" component={ClientEditProduct} />
-            <Stack.Screen name="clientEditReward" component={ClientEditReward} />
-            <Stack.Screen name="myProducts" component={MyProducts} />
-            <Stack.Screen name="myRewards" component={MyRewards} />
-            <Stack.Screen name="clientProfile" component={ClientProfile} />
-            <Stack.Screen name="mySuki" component={MySuki} />
-            <Stack.Screen name="customerShops" children={customerBottomTabs} />  
-            <Stack.Screen name="customerShopItem" component={CustomerShopItem} />
-            <Stack.Screen name="CustomerCart" component={CustomerCart} />
-            <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
-            <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
-            <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
-            <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
-          </Stack.Navigator>      
+            <Screens />
         </NavigationContainer>
       </Provider>
 
