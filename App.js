@@ -7,8 +7,6 @@ import { Image } from 'react-native';
 
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
-import CustomerProdQRCode from './App/screens/CustomerProdQRCode';
-import CustomerRewQRCode from './App/screens/CustomerRewQRCode';
 import QRCodeScanner from './App/screens/QRCodeScanner.js';
 import store from './App/screens/store.js';
 
@@ -115,8 +113,6 @@ export default class App extends React.Component {
             {/* End Added Vincent */}
 
             <Stack.Screen name="customerShops" children={customerBottomTabs} />  
-            <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
-            <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
             <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
           </Stack.Navigator>      
         </NavigationContainer>
