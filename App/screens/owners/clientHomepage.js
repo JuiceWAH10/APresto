@@ -151,16 +151,24 @@ function clientHomepage(props) {
                 </View>
                 {/* End of APresto Rewards */}
 
-                {/* Banner */}
-                <ImageBackground style={styles.bannerBgImage}
+                {/* My Suki */}
+                <View style={styles.dualTitleContainer}>
+                    <Icon name="smileo" size={30} color="#fd4140" />
+                    <Text style={styles.dualTitle}> My Suki</Text>
+                </View>
+                <ImageBackground style={styles.sukiBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerViolet.jpg')}>
-                    <View style={styles.bannerDarken}>
-                        <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                        <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                    <View style={styles.sukiDarken}>
+                        <Text style={styles.sukiLabel}>Sukis are essential for your business growth</Text>
+                        <Text style={styles.sukiLabelSmall}>You can know who among your suki loves you most.</Text>
+                        <TouchableOpacity style={styles.sukiButton} onPress={() => navigation.navigate('clientSukiList')} >
+                            {/* <Icon name="logout" size={20} color="#fff" /> */}
+                            <Text style={styles.sukiButtonLabel}>View Suki</Text>
+                        </TouchableOpacity>
                     </View>    
                 </ImageBackground>
-                {/* End of Banner */}
+                {/* End of My Suki */}
 
             </ScrollView>
         </SafeAreaView>
@@ -206,7 +214,7 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        backgroundColor: "#fff"
     },
     dual: {
         alignSelf: "center",  
@@ -274,6 +282,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderRadius: 30,
         marginBottom: 5,
+        marginTop: 10,
         height: 300,
         width: wp('90%'),
     },
@@ -359,6 +368,28 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
         borderRadius: 30,
     },
+    title: {
+        textAlign: "center",
+        // marginBottom: 10,
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#fd4140",
+        paddingTop: 10,
+
+        backgroundColor: 'white',
+        // borderRadius: 20,
+        height: 55,
+        // paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        // marginBottom: 15
+    },
     titleTransact: {
         textAlign: "center",
         marginLeft: 3,
@@ -397,6 +428,51 @@ const styles = StyleSheet.create({
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
+    },
+    sukiBgImage: {
+        alignSelf: "center",
+        borderRadius: 30,
+        marginBottom: 5,
+        height: 180,
+        width: wp('90%'),
+    },
+    sukiDarken:{
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.15)',
+        // borderRadius: 30,
+    },
+    sukiLabel: {
+        textAlign: "center",
+        marginTop: 35,
+        color: "#fff",
+        fontSize: 20,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    sukiLabelSmall: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 12,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    sukiButton: {
+        alignSelf: "center",
+        borderColor: "#fff",
+        borderRadius: 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'space-evenly',
+        marginTop: 15,
+        width: 110,
+        height: 35,
+    },
+    sukiButtonLabel: {
+        color: "#fff",
+        fontSize: 12
     },
 })
 export default clientHomepage;

@@ -239,6 +239,7 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
+        backgroundColor: "#fff"
     },
     popularItems: {
         alignSelf: "center",
@@ -277,6 +278,20 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 5,
+
+        backgroundColor: 'white',
+        // borderRadius: 20,
+        // height: 55,
+        // paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        // marginBottom: 15
     },
     topNavRight: {
         flexDirection: "row",

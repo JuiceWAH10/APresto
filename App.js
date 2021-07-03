@@ -31,6 +31,7 @@ import ClientProductList from './App/screens/owners/clientProduct/clientProductL
 import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
+import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -110,6 +111,7 @@ export default class App extends React.Component {
             <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
             <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
             <Stack.Screen name="clientRewardList" component={ClientRewardList} />
+            <Stack.Screen name="clientSukiList" component={ClientSukiList} />
             {/* End Added Vincent */}
 
             <Stack.Screen name="customerShops" children={customerBottomTabs} />  
@@ -118,7 +120,7 @@ export default class App extends React.Component {
         </NavigationContainer>
       </Provider>
 
-      // <ClientAllShopItems/>
+      // <ClientAllSuki/>
     )
   };
 }

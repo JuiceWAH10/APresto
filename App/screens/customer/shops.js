@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         borderColor: "#fd4140",
         marginBottom: 8,
         marginTop: 5,   
+        
     },
     title: {
         textAlign: "center",

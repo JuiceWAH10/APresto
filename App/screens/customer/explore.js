@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         width: wp('100%'),
+        backgroundColor: 'white',
         // borderWidth: 1
     },   
     droidSafeArea: {
@@ -154,9 +155,25 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: "center",
-        marginBottom: 10,
+        // marginBottom: 10,
         fontSize: 24,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#fd4140",
+        paddingTop: 10,
+
+        backgroundColor: 'white',
+        // borderRadius: 20,
+        height: 55,
+        // paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        // marginBottom: 15
     },
     titleReviews: {
         textAlign: "center",
