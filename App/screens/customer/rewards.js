@@ -1,23 +1,19 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
     StyleSheet,
     Text, 
-    TouchableOpacity, 
     View, 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Searchbar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import IndivReward from '././importScreens/indivReward';
 
 function rewards(props) {
-    const navigation = useNavigation();
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
 
@@ -29,7 +25,9 @@ function rewards(props) {
                 onChangeText={onChangeSearch}
                 value={searchQuery}
             />
+
             <ScrollView style={[styles.container, {flex:1}]}>
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerViolet.jpg')}>
@@ -38,10 +36,13 @@ function rewards(props) {
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
+
                 <View style={styles.titleContainer}>
                     <Icon name="star-four-points" size={40} color="#fd4140" />
                     <Text style={styles.title}>Shops you have Points</Text>
                 </View>
+                {/* Insert Code here for importing shops with rewards together with info */}
                 <IndivReward name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
             </ScrollView>
         </SafeAreaView>

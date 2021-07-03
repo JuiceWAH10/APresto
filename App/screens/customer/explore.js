@@ -1,8 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { 
-    AppRegistry,
-    Dimensions,
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -16,21 +13,19 @@ import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import CarouselCards from '../../carousel/CarouselCards'
-
 import IndivShop from '././importScreens/indivShop';
 
 
 function explore(props) {
     const navigation = useNavigation();
-    const [search, setTextS] = React.useState('');
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <Text style={styles.title}>Explore APresto</Text>
             <ScrollView style={[styles.container, {flex:1}]}>
-                <CarouselCards />
 
-
+                <CarouselCards /> 
+                
                 {/* Dual View */}
                 <View style={styles.dual}>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
@@ -65,7 +60,7 @@ function explore(props) {
                     <Icon name="fire" size={40} color="#fd4140" />
                     <Text style={styles.titleReviews}>Most Reviewed Shops</Text>
                 </View>
-
+                {/* Insert Code here for importing Most Reviewed shops with info */}
                 <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
                 <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
                 <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
@@ -112,6 +107,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         width: wp('100%'),
+        backgroundColor: 'white',
         // borderWidth: 1
     },   
     droidSafeArea: {
@@ -159,9 +155,25 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: "center",
-        marginBottom: 10,
+        // marginBottom: 10,
         fontSize: 24,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#fd4140",
+        paddingTop: 10,
+
+        backgroundColor: 'white',
+        // borderRadius: 20,
+        height: 55,
+        // paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        // marginBottom: 15
     },
     titleReviews: {
         textAlign: "center",

@@ -1,5 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
+import { 
+    View, 
+    Text, 
+    StyleSheet,  
+    Image
+} from "react-native"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export const SLIDER_WIDTH = wp('100%')
@@ -32,7 +37,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
-    marginBottom: 15
+    marginBottom: 15,
+    marginTop: 10
   },
   image: {
     width: ITEM_WIDTH,

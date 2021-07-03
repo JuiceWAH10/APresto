@@ -1,15 +1,11 @@
 import React from 'react';
 import { 
     Image,
-    ImageBackground,
-    SafeAreaView,
-    ScrollView,
     StyleSheet,
     Text, 
     TouchableOpacity, 
     View, 
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
