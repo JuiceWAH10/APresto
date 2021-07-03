@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { Searchbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useSelector } from 'react-redux';
 
 import IndivShop from '././importScreens/indivShop';
 

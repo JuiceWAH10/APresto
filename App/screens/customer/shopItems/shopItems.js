@@ -16,6 +16,8 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { connect } from 'react-redux';
+
 import PopularShopItem from './././importShopItems/popularShopItem';
 import AllShopItem from './././importShopItems/allShopItem';
 
@@ -24,6 +26,8 @@ function shopItems(props) {
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
+
+    const products = useSelector(state => state.products.allProducts);
 
     const headerHeight = scrollPosition.interpolate({
         inputRange: [0, 500],
@@ -109,18 +113,9 @@ function shopItems(props) {
                     </ScrollView>
 
                     <Text style={styles.titleAllItems}>All Items</Text>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
-                        <AllShopItem/>
+                        <AllShopItem products={products} /> 
+                        {/*onPress={props.addItemToCart}*/}
+
 
                     <ImageBackground style={styles.bannerBgImage}
                         imageStyle={{ borderRadius: 30}}

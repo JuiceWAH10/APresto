@@ -13,28 +13,41 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-function allShopItem(props) {
-    return (
-        <View style={styles.container}>
-            <Image style={styles.itemImage}
-                    source={require('../../../../assets/DummyShop.jpg')}>
-            </Image>
-            <View style={styles.itemContainer}>
-                <Text style={styles.itemName}>Product Name</Text>
-                <Text style={styles.itemPrice}>Php 100.00</Text>
-                <Text style={styles.itemInfo}>Product Definition</Text>
-                <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon name="add-circle" size={35} color="#356288" />
-                    </TouchableOpacity>
-                    <Text style={styles.quantity}>Qty</Text>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon2 name="minus-circle" size={35} color="#356288" />
-                    </TouchableOpacity>    
+class allShopItem extends Component {
+    
+    renderProducts = (products) => {
+        return products.map((item, index) => {
+            return (
+                <View key={index} style={styles.container}>
+                    <Image style={styles.itemImage}
+                            source={require('../../../../assets/DummyShop.jpg')}>
+                    </Image>
+                    <View style={styles.itemContainer}>
+                        <Text style={styles.itemName}>{item.product_name}</Text>
+                        <Text style={styles.itemPrice}>{item.price}</Text>
+                        <Text style={styles.itemInfo}>Product Definition</Text>
+                        <View style={styles.buttonsContainer}>
+                            <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                                <Icon name="add-circle" size={35} color="#356288" />
+                            </TouchableOpacity>
+                            <Text style={styles.quantity}>Qty</Text>
+                            <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                                <Icon2 name="minus-circle" size={35} color="#356288" />
+                            </TouchableOpacity>    
+                        </View>
+                    </View>
                 </View>
+            );
+        })
+    }
+
+    render() {
+        return (
+            <View>
+                {this.renderProducts(this.props.products)}
             </View>
-        </View>
-    );
+        );
+    }
 }
 
 const styles = StyleSheet.create({
