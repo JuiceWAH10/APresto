@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Provider } from 'react-redux'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -66,7 +66,7 @@ import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 import ClientAllRewardItems from './App/screens/owners/clientReward/importClientReward/clientAllShopRewards';
-import * as firebase from "firebase";
+import firebase from "firebase";
 
 const Stack = createStackNavigator();
 //Auth navigation
@@ -177,9 +177,25 @@ const Screens = () => {
   );
 }
 
+//ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
+//THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
 //Authentication function component
-function Authentication(){
+/*function Authentication(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+      if (firebase.auth().currentUser){
+        setIsAuthenticated(true);
+      }
+      firebase.auth().onAuthStateChanged(user => {
+        console.log("Checking auth state...");
+        if (user) {
+          setIsAuthenticated(true);
+        }else{
+          setIsAuthenticated(false);
+        }
+      });
+    }, []);
+
   return(
     <NavigationContainer>
       {isAuthenticated ? <Screens/> : <AuthScreens/>}
@@ -198,9 +214,35 @@ export default class App extends React.Component {
       // <ClientAllShopItems/>
     )
   };
+}*/
+//ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
+//THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
+
+//authentication mount no errors
+export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+      if (firebase.auth().currentUser) {
+          setIsAuthenticated(true);
+      }
+      firebase.auth().onAuthStateChanged((user) => {
+          console.log("Checking auth state...");
+          if (user) {
+              setIsAuthenticated(true);
+          } else {
+              setIsAuthenticated(false);
+          }
+      });
+  }, []);
+
+  return (
+      <NavigationContainer>
+          {isAuthenticated ? <Screens /> : <AuthScreens />}
+      </NavigationContainer>
+  );
 }
 
-//firebase configuration
+//firebase configuration to connect to firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAeHqFIjvpdIl5Yr5nGibf_Ol8rkZrqQwo",
   authDomain: "apresto-b47ae.firebaseapp.com",
