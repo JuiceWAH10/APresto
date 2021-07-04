@@ -17,13 +17,17 @@ import AllShopItem from './././importShopItems/allShopItem';
 function shopItemsCart(props) {
     const navigation = useNavigation();
     return (
-        <SafeAreaView style={styles.droidSafeArea}>  
+        <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#356288" />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.formContainer, {flex:15}]}>          
+            {/* End of Top Navigation */}
+            
+            <View style={[styles.formContainer, {flex:15}]}>
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerDarkBlue.jpg')}>
@@ -32,6 +36,8 @@ function shopItemsCart(props) {
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
+
                 <ScrollView style ={styles.cartContainer}>
                     <AllShopItem/>
                     <AllShopItem/>
@@ -41,6 +47,8 @@ function shopItemsCart(props) {
                     <AllShopItem/>
                     <AllShopItem/> 
                 </ScrollView>
+
+                {/* Footer */}
                 <View style={styles.footer}>
                     <View style={styles.footerTextContainer}>
                         <Text style={styles.footerLabelSmall}>Total Amount</Text>
@@ -50,6 +58,7 @@ function shopItemsCart(props) {
                         <Text style={styles.buttonLabel}>Generate QR Code</Text>
                     </TouchableOpacity>
                 </View>
+                {/* End of Footer */}
             </View>
             
         </SafeAreaView>

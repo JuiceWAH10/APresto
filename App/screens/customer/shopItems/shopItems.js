@@ -42,6 +42,7 @@ function shopItems(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon2 name="left" size={30} color="#356288" />
@@ -55,6 +56,8 @@ function shopItems(props) {
                     </TouchableOpacity>
                 </View>
             </View>
+            {/* End of Top Navigation */}
+            
             <View>
             <Animated.View
                 style={{
@@ -65,6 +68,8 @@ function shopItems(props) {
                     height: headerHeight,
                     backgroundColor: '#356288',
                 }}>
+
+                {/* Header */}
                 <Animated.View
                     style={{
                     textAlign: "center",
@@ -88,6 +93,7 @@ function shopItems(props) {
                         </View>    
                     </ImageBackground>
                 </Animated.View>
+                {/* End of Header */}
             </Animated.View>
 
             <Animated.ScrollView
@@ -102,7 +108,8 @@ function shopItems(props) {
                         <Icon3 name="fire" size={40} color="#fd4140" />
                         <Text style={styles.titlePopular}>Popular Items</Text>
                     </View>
-
+                    
+                    {/* Horizontal Scrollview for Popular Items */}
                     <ScrollView horizontal={true} style={styles.popularItems}>
                         <PopularShopItem/>
                         <PopularShopItem/>
@@ -111,7 +118,9 @@ function shopItems(props) {
                         <PopularShopItem/>
                         <PopularShopItem/>
                     </ScrollView>
-
+                    {/* End of Horizonal Scrollview */}
+                    
+                    {/* List of all items !note that items in Popular Items is also included here* */}
                     <Text style={styles.titleAllItems}>All Items</Text>
                         <AllShopItem products={products} /> 
                         {/*onPress={props.addItemToCart}*/}
@@ -125,6 +134,8 @@ function shopItems(props) {
                             <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
                         </View>    
                     </ImageBackground>
+                    {/* End of Banner */}
+
             </Animated.ScrollView>
             </View>
         </SafeAreaView>
@@ -218,6 +229,7 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
+        backgroundColor: "#fff"
     },
     popularItems: {
         alignSelf: "center",
@@ -256,6 +268,20 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 5,
+
+        backgroundColor: 'white',
+        // borderRadius: 20,
+        // height: 55,
+        // paddingBottom: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+        // marginBottom: 15
     },
     topNavRight: {
         flexDirection: "row",

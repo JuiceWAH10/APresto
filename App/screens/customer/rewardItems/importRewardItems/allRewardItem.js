@@ -13,25 +13,25 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 function allRewardItem(props) {
     return (
         <View style={styles.container}>
-        <Image style={styles.itemImage}
+            <Image style={styles.itemImage}
                 source={require('../../../../assets/DummyShop.jpg')}>
-        </Image>
-        <View style={styles.itemContainer}>
-            <Text style={styles.itemName}>Reward Name</Text>
-            <Text style={styles.itemPrice}>100 Points</Text>
-            <Text style={styles.itemInfo}>Reward Definition</Text>
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Icon name="add-circle" size={35} color="#37375e" />
-                </TouchableOpacity>
-                <Text style={styles.quantity}>Qty</Text>
-                <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                    <Icon2 name="minus-circle" size={35} color="#37375e" />
-                </TouchableOpacity>    
+            </Image>
+            <View style={styles.itemContainer}>
+                <Text style={styles.itemName}>Reward Name</Text>
+                <Text style={styles.itemPrice}>100 Points</Text>
+                <Text style={styles.itemInfo}>Reward Definition</Text>
+                <View style={styles.buttonsContainer}>
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Icon name="add-circle" size={35} color="#37375e" />
+                    </TouchableOpacity>
+                    <Text style={styles.quantity}>Qty</Text>
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Icon2 name="minus-circle" size={35} color="#37375e" />
+                    </TouchableOpacity>    
+                </View>
             </View>
         </View>
-    </View>
-);
+    );
 }
 
 const styles = StyleSheet.create({
