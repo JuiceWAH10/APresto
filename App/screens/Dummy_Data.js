@@ -44,6 +44,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '3',
 		'1',
@@ -52,6 +53,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '4',
 		'1',
@@ -60,6 +62,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '5',
 		'1',
@@ -68,6 +71,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
     (
         '6',
 		'1',
@@ -76,6 +80,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
     (
         '7',
 		'1',
@@ -84,6 +89,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
     (
         '8',
 		'1',
@@ -92,6 +98,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
     (
         '9',
 		'1',
@@ -100,6 +107,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
     (
         '10',
 		'1',
@@ -108,6 +116,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '1',
 		'2',
@@ -116,6 +125,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '2',
 		'2',
@@ -124,6 +134,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '3',
 		'2',
@@ -132,6 +143,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '4',
 		'2',
@@ -140,6 +152,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '5',
 		'2',
@@ -148,6 +161,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '1',
 		'3',
@@ -156,6 +170,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '2',
 		'3',
@@ -164,6 +179,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '3',
 		'3',
@@ -172,6 +188,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '4',
 		'3',
@@ -180,6 +197,7 @@ export const products = [
 		'200',
         'available'
     ),
+    new Product
 	(
         '5',
 		'3',
@@ -191,6 +209,7 @@ export const products = [
 ]
 
 export const rewards = [
+    new Reward
     (
         '1',
         '1',
@@ -199,6 +218,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '2',
         '1',
@@ -207,6 +227,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '3',
         '1',
@@ -215,6 +236,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '4',
         '1',
@@ -223,6 +245,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '5',
         '1',
@@ -231,6 +254,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '6',
         '1',
@@ -239,6 +263,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '7',
         '1',
@@ -247,6 +272,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '8',
         '1',
@@ -255,6 +281,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '9',
         '1',
@@ -263,6 +290,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '10',
         '1',
@@ -271,6 +299,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '1',
         '2',
@@ -279,6 +308,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '2',
         '2',
@@ -287,6 +317,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '1',
         '3',
@@ -295,6 +326,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '2',
         '3',
@@ -303,6 +335,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '3',
         '3',
@@ -311,6 +344,7 @@ export const rewards = [
         '150',
         'available'
     ),
+    new Reward
     (
         '4',
         '3',
@@ -318,5 +352,5 @@ export const rewards = [
         '10',
         '150',
         'available'
-    ),
+    )
 ]

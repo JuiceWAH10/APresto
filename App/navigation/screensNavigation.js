@@ -3,41 +3,41 @@ import { customerBottomTabs } from './bottomTabs';
 
 // Customer Screens
 
-import Explore from './App/screens/customer/explore';
-import Shops from './App/screens/customer/shops';
-import Profile from './App/screens/customer/profile';
-import Rewards from './App/screens/customer/rewards';
-import ShopItems from './App/screens/customer/shopItems/shopItems';
-import RewardItems from './App/screens/customer/rewardItems/rewardItems';
-import ShopItemsCart from './App/screens/customer/shopItems/shopItemsCart';
-import RewardItemsCart from './App/screens/customer/rewardItems/rewardItemsCart';
-import ShopItemsQR from './App/screens/customer/shopItems/shopItemsQR';
-import RewardItemsQR from './App/screens/customer/rewardItems/rewardItemsQR';
+import Explore from '../screens/customer/explore';
+import Shops from '../screens/customer/shops';
+import Profile from '../screens/customer/profile';
+import Rewards from '../screens/customer/rewards';
+import ShopItems from '../screens/customer/shopItems/shopItems';
+import RewardItems from '../screens/customer/rewardItems/rewardItems';
+import ShopItemsCart from '../screens/customer/shopItems/shopItemsCart';
+import RewardItemsCart from '../screens/customer/rewardItems/rewardItemsCart';
+import ShopItemsQR from '../screens/customer/shopItems/shopItemsQR';
+import RewardItemsQR from '../screens/customer/rewardItems/rewardItemsQR';
 
 // Client Screens
-import ClientHomepage from './App/screens/owners/clientHomepage';
-import ClientProductAdd from './App/screens/owners/clientProduct/clientProductAdd';
-import ClientProductEdit from './App/screens/owners/clientProduct/clientProductEdit';
-import ClientProductList from './App/screens/owners/clientProduct/clientProductList';
-import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
-import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
-import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
+import ClientHomepage from '../screens/owners/clientHomepage';
+import ClientProductAdd from '../screens/owners/clientProduct/clientProductAdd';
+import ClientProductEdit from '../screens/owners/clientProduct/clientProductEdit';
+import ClientProductList from '../screens/owners/clientProduct/clientProductList';
+import ClientRewardAdd from '../screens/owners/clientReward/clientRewardAdd';
+import ClientRewardEdit from '../screens/owners/clientReward/clientRewardEdit';
+import ClientRewardList from '../screens/owners/clientReward/clientRewardList';
 
-import CustomerShopItem from './App/screens/CustomerShopItem';
-import CustomerRewardItem from './App/screens/CustomerRewardItem';
-import CustomerCart from './App/screens/CustomerCart';
-import CustomerProdQRCode from './App/screens/CustomerProdQRCode';
-import CustomerRewQRCode from './App/screens/CustomerRewQRCode';
-import ClientHome from './App/screens/ClientHome';
-import MyProducts from './App/screens/MyProducts';
-import MyRewards from './App/screens/MyRewards';
-import ClientAddProduct from './App/screens/ClientAddProduct';
-import ClientEditProduct from './App/screens/ClientEditProduct';
-import ClientAddReward from './App/screens/ClientAddReward';
-import ClientEditReward from './App/screens/ClientEditReward';
-import MySuki from './App/screens/MySuki';
-import ClientProfile from './App/screens/ClientProfile';
-import QRCodeScanner from './App/screens/QRCodeScanner.js';
+import CustomerShopItem from '../screens/CustomerShopItem';
+import CustomerRewardItem from '../screens/CustomerRewardItem';
+import CustomerCart from '../screens/CustomerCart';
+import CustomerProdQRCode from '../screens/CustomerProdQRCode';
+import CustomerRewQRCode from '../screens/CustomerRewQRCode';
+import ClientHome from '../screens/ClientHome';
+import MyProducts from '../screens/MyProducts';
+import MyRewards from '../screens/MyRewards';
+import ClientAddProduct from '../screens/ClientAddProduct';
+import ClientEditProduct from '../screens/ClientEditProduct';
+import ClientAddReward from '../screens/ClientAddReward';
+import ClientEditReward from '../screens/ClientEditReward';
+import MySuki from '../screens/MySuki';
+import ClientProfile from '../screens/ClientProfile';
+import QRCodeScanner from '../screens/QRCodeScanner.js';
 
 const Stack = createStackNavigator();
 

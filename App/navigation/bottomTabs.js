@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Explore from './App/screens/customer/explore';
-import Shops from './App/screens/customer/shops';
-import Profile from './App/screens/customer/profile';
-import Rewards from './App/screens/customer/rewards';
+import Explore from '../screens/customer/explore';
+import Shops from '../screens/customer/shops';
+import Profile from '../screens/customer/profile';
+import Rewards from '../screens/customer/rewards';
 
 const Tabs = createBottomTabNavigator();
 
@@ -17,23 +17,23 @@ export const customerBottomTabs = () =>{
   
             if(route.name === 'EXPLORE'){
               iconName = focused
-              ? require('./App/assets/searches-active.png')
-              : require('./App/assets/searches.png');
+              ? require('../assets/searches-active.png')
+              : require('../assets/searches.png');
             }
             else if(route.name === 'SHOPS'){
               iconName = focused
-              ? require('./App/assets/shop-active.png')
-              : require('./App/assets/shop.png');
+              ? require('../assets/shop-active.png')
+              : require('../assets/shop.png');
             }
             else if(route.name === 'REWARDS'){
               iconName = focused
-              ? require('./App/assets/gift-active.png')
-              : require('./App/assets/gift.png');
+              ? require('../assets/gift-active.png')
+              : require('../assets/gift.png');
             }
             else if(route.name === 'PROFILE'){
               iconName = focused
-              ? require('./App/assets/user-active.png')
-              : require('./App/assets/user.png');
+              ? require('../assets/user-active.png')
+              : require('../assets/user.png');
             }
               
             return (
