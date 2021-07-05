@@ -10,10 +10,16 @@ import { auth } from "firebase";
 const validateFields = (email, password) => {
     const isValid = {
         email: validator.isEmail(email),
-        password: validator.isStrongPassword(password, {minLength: 8, minNumbers: 1})
-    }
+        password: validator.isStrongPassword(password, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+        }),
+    };
     return isValid;
-}
+};
 
 //sign up function to create user/ CREATE ACCOUNT FUNCTION
 const createAccount = (email, password) => {
@@ -121,7 +127,7 @@ function signupCustomer(props) {
                         <TextInput
                             //Password input
                             style={styles.input}
-                            secureTextEntry={true}
+                            //secureTextEntry={true}
                             placeholder="Password"
                             text={passwordField.text}
                             onChangeText={(text) => {setPasswordField({text});}}
@@ -133,7 +139,7 @@ function signupCustomer(props) {
                         <TextInput
                             //Re-enter password input
                             style={styles.input}
-                            secureTextEntry={true}
+                            //secureTextEntry={true}
                             placeholder="Re-enter Password"
                             text={passwordReentryField.text}
                             onChangeText={(text) => {setPasswordReentryField({text});}}
@@ -150,19 +156,22 @@ function signupCustomer(props) {
 
                     let isAllValid = true;
                     if(!isValid.email){
-                        emailField.errorMessage = "Please enter a valid email";
+                        console.log("Please enter a valid email...")
+                        //emailField.errorMessage = "Please enter a valid email";
                         setEmailField({...emailField});
                         isAllValid = false;
                     }
-
+                    
                     if(!isValid.password){
-                        passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                        console.log("Password must be at least 8 long characters with numbers")
+                        //passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
                         setPasswordField({...passwordField});
                         isAllValid = false;
                     }
 
                     if(passwordReentryField.text != passwordField.text){
-                        passwordReentryField.errorMessage="Passwords do not match"
+                        console.log("Passwords do not match")
+                        //passwordReentryField.errorMessage="Passwords do not match"
                         setPasswordReentryField({...passwordReentryField});
                         isAllValid = false;
                     }
