@@ -16,10 +16,13 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 import PopularShopItem from './././importShopItems/popularShopItem';
 import AllShopItem from './././importShopItems/allShopItem';
+import * as cartAction from '../../../functions/cartFunction';
+
+
 
 function shopItems(props) {
     const navigation = useNavigation();
@@ -27,6 +30,7 @@ function shopItems(props) {
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
 
+    const dispatch = useDispatch();
     const products = useSelector(state => state.products.allProducts);
 
     const headerHeight = scrollPosition.interpolate({
@@ -122,7 +126,10 @@ function shopItems(props) {
                     
                     {/* List of all items !note that items in Popular Items is also included here* */}
                     <Text style={styles.titleAllItems}>All Items</Text>
-                        <AllShopItem products={products} /> 
+                        <AllShopItem 
+                            products={products} 
+                            addToCart= {() => {dispatch(cartAction.addToCart(products.products))}} //lagay dapat siguro sa allShopItem.js
+                        /> 
                         {/*onPress={props.addItemToCart}*/}
 
 
