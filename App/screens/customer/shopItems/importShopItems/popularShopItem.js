@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 60,
         color: "#fff",
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: "bold"
     },
     popularLabelSmall: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 5,
         color: "#fff",
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold",
         marginLeft: 4,
         marginRight: 4      

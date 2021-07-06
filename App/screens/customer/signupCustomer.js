@@ -3,8 +3,36 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } fr
 import Icon from 'react-native-vector-icons/AntDesign';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import validator from "validator";
+import { auth } from "firebase";
+
+//validation function of email
+const validateFields = (email, password) => {
+    const isValid = {
+        email: validator.isEmail(email),
+        password: validator.isStrongPassword(password, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+        }),
+    };
+    return isValid;
+};
+
+//sign up function to create user/ CREATE ACCOUNT FUNCTION
+const createAccount = (email, password) => {
+    auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(({ user }) => {
+            console.log("Creating user...");
+        });
+};
+
 
 function signupCustomer(props) {
+    //below statements are not used
     const [firstName, setTextFN] = React.useState('');
     const [lastName, setTextLN] = React.useState('');
     const [address, setTextA] = React.useState('');
@@ -99,7 +127,7 @@ function signupCustomer(props) {
                         <TextInput
                             //Password input
                             style={styles.input}
-                            secureTextEntry={true}
+                            //secureTextEntry={true}
                             placeholder="Password"
                             text={passwordField.text}
                             onChangeText={(text) => {setPasswordField({text});}}
@@ -111,7 +139,7 @@ function signupCustomer(props) {
                         <TextInput
                             //Re-enter password input
                             style={styles.input}
-                            secureTextEntry={true}
+                            //secureTextEntry={true}
                             placeholder="Re-enter Password"
                             text={passwordReentryField.text}
                             onChangeText={(text) => {setPasswordReentryField({text});}}
@@ -121,7 +149,39 @@ function signupCustomer(props) {
                     
                 </ScrollView>
                 {/* Navigation isn't final */}
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('login')} >
+                
+                {/*CONTINUE BUTTON AND ERROR MESSAGES*/}
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    const isValid = validateFields(emailField.text, passwordField.text);
+
+                    let isAllValid = true;
+                    if(!isValid.email){
+                        console.log("Please enter a valid email...")
+                        //emailField.errorMessage = "Please enter a valid email";
+                        setEmailField({...emailField});
+                        isAllValid = false;
+                    }
+                    
+                    if(!isValid.password){
+                        console.log("Password must be at least 8 long characters with numbers")
+                        //passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                        setPasswordField({...passwordField});
+                        isAllValid = false;
+                    }
+
+                    if(passwordReentryField.text != passwordField.text){
+                        console.log("Passwords do not match")
+                        //passwordReentryField.errorMessage="Passwords do not match"
+                        setPasswordReentryField({...passwordReentryField});
+                        isAllValid = false;
+                    }
+
+                    //IF ALL INPUTS ARE VALID THIS IS WILL CREATE ACCOUNT FUNCTION 
+                    if(isAllValid){
+                        createAccount(emailField.text, passwordField.text);                        
+                    }
+
+                }}>
                     <Text style={styles.buttonLabel}>Continue</Text>
                 </TouchableOpacity>
             </View>
@@ -130,6 +190,8 @@ function signupCustomer(props) {
 
     );
 }
+
+{/*props.navigation.navigate('login')  --- NOT USED*/}
 
 const styles = StyleSheet.create({
     button: {

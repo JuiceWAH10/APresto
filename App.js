@@ -1,5 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import firebase from "firebase";
+import { Provider } from 'react-redux';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import * as firebase from "firebase";
@@ -39,6 +40,20 @@ const AuthScreens = () => {
 //Authentication function component
 function Authentication(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+      if (firebase.auth().currentUser){
+        setIsAuthenticated(true);
+      }
+      firebase.auth().onAuthStateChanged(user => {
+        console.log("Checking auth state...");
+        if (user) {
+          setIsAuthenticated(true);
+        }else{
+          setIsAuthenticated(false);
+        }
+      });
+    }, []);
+
   return(
     <NavigationContainer>
       {isAuthenticated ? <Screens/> : <AuthScreens/>}
@@ -61,7 +76,7 @@ export default class App extends React.Component {
   };
 }
 
-//firebase configuration
+//firebase configuration to connect to firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAeHqFIjvpdIl5Yr5nGibf_Ol8rkZrqQwo",
   authDomain: "apresto-b47ae.firebaseapp.com",

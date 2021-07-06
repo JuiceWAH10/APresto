@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginBottom: 2,
         marginTop: 6,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold"
     },
     itemPrice: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 5,
         color: "#000",
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold",
         marginLeft: 4,
         marginRight: 4      

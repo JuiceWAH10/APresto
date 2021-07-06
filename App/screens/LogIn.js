@@ -6,6 +6,17 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
+import validator from "validator";
+
+const validateFields = (email, password) => {
+  const isValid = {
+      email: validator.isEmail(email),
+      password: validator.isStrongPassword(password, {minLength: 8, minNumbers: 1})
+  }
+  return isValid;
+}
+
+const login = (email, password) => {};
 
 function LogIn(props) {
     //const [userName] = React.useState('');
@@ -34,7 +45,7 @@ function LogIn(props) {
         props.navigation.navigate('clientHomepage');
       else
         props.navigation.navigate('customerShops');
-    }
+    } 
 
     return (
       <ImageBackground
@@ -64,7 +75,7 @@ function LogIn(props) {
                 <Text style={{color: '#fd4140', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
                 <TextInput
                     //Email input
-                    style={styles.email}
+                    style={styles.textEmail}
                     placeholder="Email"
                     text={emailField.text}
                     onChangeText={(text) => {setEmailField({text});}}
@@ -73,7 +84,7 @@ function LogIn(props) {
                 />
                 <TextInput
                     //Password input
-                    style={styles.password}
+                    style={styles.textPassword}
                     secureTextEntry={true}
                     placeholder="Password"
                     text={passwordField.text}
@@ -92,7 +103,27 @@ function LogIn(props) {
                 </View>
               </View>
               
-                <TouchableOpacity onPress={checkboxLogin} style={styles.LogInButton}>
+                <TouchableOpacity style={styles.LogInButton} onPress={() => {
+                  const isValid = validateFields(emailField.text, passwordField.text);
+
+                  let isAllValid = true;
+                  if(!isValid.email){
+                    emailField.errorMessage = "Please enter a valid email";
+                    setEmailField({...emailField})
+                    isAllValid = false;
+                  }
+
+                  if(!isValid.password){
+                    passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                    setPasswordField({...passwordField})
+                    isAllValid = false;
+                  }
+
+                  if(isAllValid){
+                    login(emailField.text, passwordField.text);
+                  }
+
+                }}>
                     <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
                 </TouchableOpacity>
         </SafeAreaView> 
@@ -172,14 +203,14 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     // top: hp('40%'),
   },
-  email: {
+  textEmail: {
     width: '80%',
     height: 50,
     borderColor: '#1c2b59',
     marginVertical: 10
     // top: 60
   },
-  password: {
+  textPassword: {
     width: '80%',
     height: 50,
     borderColor: '#1c2b59',

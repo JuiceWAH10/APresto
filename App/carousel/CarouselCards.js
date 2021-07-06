@@ -30,8 +30,8 @@ const CarouselCards = () => {
           height: 10,
           borderRadius: 5,
           marginTop: -9.9,
-          marginHorizontal: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.92)'
+          // marginHorizontal: 0,
+          backgroundColor: '#000'
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}

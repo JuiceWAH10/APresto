@@ -107,38 +107,49 @@ function shopItems(props) {
                 )}
                 contentInsetAdjustmentBehavior="automatic"
                 style={[styles.container]}>
-
-                    <View style={styles.titlePopularContainer}>
-                        <Icon3 name="fire" size={40} color="#fd4140" />
-                        <Text style={styles.titlePopular}>Popular Items</Text>
+                    
+                    {/* Popular Items */}
+                    <View style={styles.popularItemsContainer}>
+                        <View style={styles.popularItemsTitleContainer}>
+                            {/* <Icon3 name="fire" size={40} color="#fd4140" /> */}
+                            <Text style={styles.popularItemsTitle}>Popular Items</Text>
+                        </View>
+                        {/* Horizontal Scrollview for Popular Items */}
+                        <ScrollView horizontal={true} style={styles.popularItems}>
+                            <PopularShopItem/>
+                            <PopularShopItem/>
+                            <PopularShopItem/>
+                            <PopularShopItem/>
+                            <PopularShopItem/>
+                            <PopularShopItem/>
+                        </ScrollView>
+                        {/* End of Horizonal Scrollview */}
                     </View>
-                    
-                    {/* Horizontal Scrollview for Popular Items */}
-                    <ScrollView horizontal={true} style={styles.popularItems}>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                        <PopularShopItem/>
-                    </ScrollView>
-                    {/* End of Horizonal Scrollview */}
-                    
-                    {/* List of all items !note that items in Popular Items is also included here* */}
-                    <Text style={styles.titleAllItems}>All Items</Text>
+                    {/* End of Popular Items */}
+
+                    <Text style={styles.textInfo}>Do you like the products and rewards offered by this shop?
+                     Follow them for them to know how you feel!</Text>
+
+                    {/* All Items */}
+                    <View style={styles.allItemsContainer}>
+                        {/* List of all items !note that items in Popular Items is also included here* */}
+                        <Text style={styles.titleAllItems}>All Items</Text>
                         <AllShopItem 
                             products={products} 
                             addToCart= {() => {dispatch(cartAction.addToCart(products.products))}} //lagay dapat siguro sa allShopItem.js
                         /> 
                         {/*onPress={props.addItemToCart}*/}
-
-
+                        {/* End of List */}
+                    </View>
+                    {/* End of All Items */}
+                    
                     <ImageBackground style={styles.bannerBgImage}
                         imageStyle={{ borderRadius: 30}}
-                        source={require('../../../assets/bannerDarkBlue.jpg')}>
+                        source={require('../../../assets/bannerDarkBlue.jpg')}
+                    >
                         <View style={styles.bannerDarken}>
-                            <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                            <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                            <Text style={styles.bannerLabel}> The more you spend the more you enjoy! </Text>
+                            <Text style={styles.bannerLabelSmall}> Everytime you spent on products you love gives you rewards point. </Text>
                         </View>    
                     </ImageBackground>
                     {/* End of Banner */}
@@ -151,29 +162,32 @@ function shopItems(props) {
 }
 
 const styles = StyleSheet.create({
-    headerBgImage: {
-        alignSelf: "center",
-        borderRadius: 30,
-        marginBottom: 10,
-        height: 200,
+    allItemsContainer:{
+        alignSelf: "center",  
+        marginTop: 5,
+        marginBottom: 5,
         width: wp('100%'),
-    },
-    headerLabel: {
-        textAlign: "center",
-        marginTop: 45,
-        color: "#fff",
-        fontSize: 24,
-        fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
     },
-    headerLabelSmall: {
-        textAlign: "center",
-        marginTop: 2,
-        color: "#fff",
-        fontSize: 12,
-        paddingLeft: wp('5%'),
-        paddingRight: wp('5%'),
+    allItemsTitle: {
+        alignSelf: "center",
+        // marginLeft: 3,
+        marginBottom: 10,
+        fontSize: 18,
+        fontWeight: "bold"
     },
     bannerBgImage: {
         alignSelf: "center",
@@ -236,36 +250,84 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+    },
+    headerBgImage: {
+        alignSelf: "center",
+        borderRadius: 30,
+        marginBottom: 10,
+        height: 200,
+        width: wp('100%'),
+    },
+    headerLabel: {
+        textAlign: "center",
+        marginTop: 45,
+        color: "#fff",
+        fontSize: 24,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    headerLabelSmall: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 12,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
     },
     popularItems: {
         alignSelf: "center",
         borderRadius: 30,
         flexDirection: "row",
-        height: 180,
         width: wp('90%'),
-        marginBottom: 10,
     }, 
-    titlePopular: {
+    popularItemsContainer: {
+        alignSelf: "center",
+        width: wp('100%'),
+        marginBottom: 5,
+        marginTop: 10,
+        paddingBottom: 10,
+        paddingTop: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
+    }, 
+    popularItemsTitle: {
         textAlign: "center",
-        marginLeft: 3,
-        marginTop: 8,
-        fontSize: 20,
+        // marginLeft: 3,
+        fontSize: 18,
         fontWeight: "bold"
     },
-    titlePopularContainer: {
+    popularItemsTitleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
         width: wp('90%'),
         marginBottom: 5,
         marginTop: 5,
     },
-    titleAllItems: {
-        alignSelf: "center",
-        marginLeft: 3,
-        marginBottom: 10,
-        fontSize: 18,
-        fontWeight: "bold"
+    textInfoBottom: {
+        marginTop: 5,
+        marginBottom: 50,
+        fontSize: 12,
+        opacity: .5,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    textInfo: {
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 12,
+        opacity: .5,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
     },
     topNav: {
         flexDirection: "row",
@@ -277,9 +339,6 @@ const styles = StyleSheet.create({
         paddingTop: 5,
 
         backgroundColor: 'white',
-        // borderRadius: 20,
-        // height: 55,
-        // paddingBottom: 40,
         shadowColor: "#000",
         shadowOffset: {
         width: 0,
@@ -288,7 +347,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
         elevation: 7,
-        // marginBottom: 15
     },
     topNavRight: {
         flexDirection: "row",
