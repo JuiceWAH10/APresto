@@ -137,6 +137,8 @@ const AuthScreens = () => {
 const Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
+    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
     {/* Added Vincent */}
     <Stack.Screen name="explore" component={Explore} />
     <Stack.Screen name="rewards" component={Rewards} />
@@ -158,9 +160,6 @@ const Screens = () => {
     <Stack.Screen name="clientRewardList" component={ClientRewardList} />
     <Stack.Screen name="clientSukiList" component={ClientSukiList} />
     {/* End Added Vincent */}
-
-    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
-    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
   </Stack.Navigator>
   );
 }
