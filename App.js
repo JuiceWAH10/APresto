@@ -34,44 +34,8 @@ import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
 
-/*
-import { StatusBar } from 'expo-status-bar';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import SignUp from './App/screens/SignUp';
-import CustomerShops from './App/screens/CustomerShops';
-import CustomerIndivShops from './App/screens/CustomerIndivShops';
-import CustomerRewards from './App/screens/CustomerRewards';
-import CustomerIndivRewards from './App/screens/CustomerIndivRewards';
-import CustomerShopItem from './App/screens/CustomerShopItem';
-import CustomerRewardItem from './App/screens/CustomerRewardItem';
-import CustomerIndivShopItems from './App/screens/CustomerIndivShopItems';
-import CustomerIndivRewardItems from './App/screens/CustomerIndivRewardItems';
-import CustomerCart from './App/screens/CustomerCart';
-import CustomerIndivCart from './App/screens/CustomerIndivCart';
-import CustomerProdQRCode from './App/screens/CustomerProdQRCode';
-import CustomerRewQRCode from './App/screens/CustomerRewQRCode';
-import CustomerProfile from './App/screens/CustomerProfile';
-import ClientHome from './App/screens/ClientHome';
-import MyProducts from './App/screens/MyProducts';
-import MyRewards from './App/screens/MyRewards';
-import MyIndivProducts from './App/screens/MyIndivProducts';
-import MyIndivRewards from './App/screens/MyIndivRewards';
-import ClientAddProduct from './App/screens/ClientAddProduct';
-import ClientEditProduct from './App/screens/ClientEditProduct';
-import ClientAddReward from './App/screens/ClientAddReward';
-import ClientEditReward from './App/screens/ClientEditReward';
-import MySuki from './App/screens/MySuki';
-import MyIndivSuki from './App/screens/MyIndivSuki';
-import ClientProfile from './App/screens/ClientProfile';
-import AboutUs from './App/screens/AboutUs';
-import IndivShop from './App/screens/customer/importScreens/indivShop';
-import IndivReward from './App/screens/customer/importScreens/indivReward';
-import ClientAllShopItems from './App/screens/owners/clientProduct/importClientProduct/clientAllShopItems';
-import ClientAllRewardItems from './App/screens/owners/clientReward/importClientReward/clientAllShopRewards';
-*/
-
 const Stack = createStackNavigator();
-//Auth navigation
+//Auth Screens
 const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -122,7 +86,7 @@ const customerBottomTabs = () =>{
   )
 }
 
-//Will direct here if not login/ or will creat account
+//Will direct here if not login/ or will create account
 const AuthScreens = () => {
   return(
     <AuthStack.Navigator screenOptions={{headerShown: false}}>
@@ -164,8 +128,7 @@ const Screens = () => {
   );
 }
 
-//ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
-//THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
+//THIS SECTION IS A MOUNT CODE
 //Authentication function component
 function Authentication(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -204,32 +167,6 @@ export default class App extends React.Component {
     )
   };
 }
-//ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
-//THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
-
-//authentication mount no errors
-/*export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-      if (firebase.auth().currentUser) {
-          setIsAuthenticated(true);
-      }
-      firebase.auth().onAuthStateChanged((user) => {
-          console.log("Checking auth state...");
-          if (user) {
-              setIsAuthenticated(true);
-          } else {
-              setIsAuthenticated(false);
-          }
-      });
-  }, []);
-
-  return (
-      <NavigationContainer>
-          {isAuthenticated ? <Screens /> : <AuthScreens />}
-      </NavigationContainer>
-  );
-}*/
 
 //firebase configuration to connect to firebase
 const firebaseConfig = {
