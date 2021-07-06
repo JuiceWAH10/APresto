@@ -1,16 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
+import firebase from "firebase";
 import { Provider } from 'react-redux'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Image } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-
 
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
+import QRCodeScanner from './App/screens/QRCodeScanner.js';
+import store from './App/screens/store.js';
+
+// Customer Screens
+import SignupCustomer from './App/screens/customer/signupCustomer';
+import Explore from './App/screens/customer/explore';
+import Shops from './App/screens/customer/shops';
+import Profile from './App/screens/customer/profile';
+import Rewards from './App/screens/customer/rewards';
+import ShopItems from './App/screens/customer/shopItems/shopItems';
+import RewardItems from './App/screens/customer/rewardItems/rewardItems';
+import ShopItemsCart from './App/screens/customer/shopItems/shopItemsCart';
+import RewardItemsCart from './App/screens/customer/rewardItems/rewardItemsCart';
+import ShopItemsQR from './App/screens/customer/shopItems/shopItemsQR';
+import RewardItemsQR from './App/screens/customer/rewardItems/rewardItemsQR';
+
+// Client Screens
+import ClientHomepage from './App/screens/owners/clientHomepage';
+import ClientProductAdd from './App/screens/owners/clientProduct/clientProductAdd';
+import ClientProductEdit from './App/screens/owners/clientProduct/clientProductEdit';
+import ClientProductList from './App/screens/owners/clientProduct/clientProductList';
+import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
+import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
+import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
+
+/*
+import { StatusBar } from 'expo-status-bar';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import SignUp from './App/screens/SignUp';
 import CustomerShops from './App/screens/CustomerShops';
 import CustomerIndivShops from './App/screens/CustomerIndivShops';
@@ -38,41 +63,16 @@ import MySuki from './App/screens/MySuki';
 import MyIndivSuki from './App/screens/MyIndivSuki';
 import ClientProfile from './App/screens/ClientProfile';
 import AboutUs from './App/screens/AboutUs';
-import QRCodeScanner from './App/screens/QRCodeScanner.js';
-import store from './App/screens/store.js';
-
-// Customer Screens
-import SignupCustomer from './App/screens/customer/signupCustomer';
-import Explore from './App/screens/customer/explore';
-import Shops from './App/screens/customer/shops';
-import Profile from './App/screens/customer/profile';
 import IndivShop from './App/screens/customer/importScreens/indivShop';
-import Rewards from './App/screens/customer/rewards';
 import IndivReward from './App/screens/customer/importScreens/indivReward';
-import ShopItems from './App/screens/customer/shopItems/shopItems';
-import RewardItems from './App/screens/customer/rewardItems/rewardItems';
-import ShopItemsCart from './App/screens/customer/shopItems/shopItemsCart';
-import RewardItemsCart from './App/screens/customer/rewardItems/rewardItemsCart';
-import ShopItemsQR from './App/screens/customer/shopItems/shopItemsQR';
-import RewardItemsQR from './App/screens/customer/rewardItems/rewardItemsQR';
-
-// Client Screens
-import ClientHomepage from './App/screens/owners/clientHomepage';
-import ClientProductAdd from './App/screens/owners/clientProduct/clientProductAdd';
-import ClientProductEdit from './App/screens/owners/clientProduct/clientProductEdit';
-import ClientProductList from './App/screens/owners/clientProduct/clientProductList';
 import ClientAllShopItems from './App/screens/owners/clientProduct/importClientProduct/clientAllShopItems';
-import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
-import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
-import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 import ClientAllRewardItems from './App/screens/owners/clientReward/importClientReward/clientAllShopRewards';
-import firebase from "firebase";
+*/
 
 const Stack = createStackNavigator();
 //Auth navigation
 const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
-
 
 const customerBottomTabs = () =>{
   return (
@@ -157,22 +157,6 @@ const Screens = () => {
     <Stack.Screen name="clientRewardList" component={ClientRewardList} />
     {/* End Added Vincent */}
 
-    <Stack.Screen name="clientHome" component={ClientHome} />
-    <Stack.Screen name="clientAddProduct" component={ClientAddProduct} />
-    <Stack.Screen name="clientAddReward" component={ClientAddReward} />
-    <Stack.Screen name="clientEditProduct" component={ClientEditProduct} />
-    <Stack.Screen name="clientEditReward" component={ClientEditReward} />
-    <Stack.Screen name="myProducts" component={MyProducts} />
-    <Stack.Screen name="myRewards" component={MyRewards} />
-    <Stack.Screen name="clientProfile" component={ClientProfile} />
-    <Stack.Screen name="mySuki" component={MySuki} />
-    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
-    <Stack.Screen name="customerShopItem" component={CustomerShopItem} />
-    <Stack.Screen name="CustomerCart" component={CustomerCart} />
-    <Stack.Screen name="customerRewardItem" component={CustomerRewardItem} />
-    <Stack.Screen name="customerProdQRCode" component={CustomerProdQRCode} />
-    <Stack.Screen name="customerRewQRCode" component={CustomerRewQRCode} />
-    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
   </Stack.Navigator>
   );
 }
@@ -180,7 +164,7 @@ const Screens = () => {
 //ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
 //THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
 //Authentication function component
-/*function Authentication(){
+function Authentication(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     useEffect(() => {
       if (firebase.auth().currentUser){
@@ -214,12 +198,12 @@ export default class App extends React.Component {
       // <ClientAllShopItems/>
     )
   };
-}*/
+}
 //ALL COMMENTED CODES IN THIS SECTION IS DESAME AS THE AUTHENTICATION MOUNT CODE
 //THEY ONLY DIFFER BECAUSE THE EXPORT DEFAULT CLASS HAS A AUTHENTICATION FUNCTION COMPONENT
 
 //authentication mount no errors
-export default function App() {
+/*export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
       if (firebase.auth().currentUser) {
@@ -240,7 +224,7 @@ export default function App() {
           {isAuthenticated ? <Screens /> : <AuthScreens />}
       </NavigationContainer>
   );
-}
+}*/
 
 //firebase configuration to connect to firebase
 const firebaseConfig = {
