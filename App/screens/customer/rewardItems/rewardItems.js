@@ -38,6 +38,7 @@ function rewardItems(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon2 name="left" size={30} color="#37375e" />
@@ -51,6 +52,8 @@ function rewardItems(props) {
                     </TouchableOpacity>
                 </View>
             </View>
+            {/* End of Top Navigation */}
+            
             <View>
             <Animated.View
                 style={{
@@ -61,6 +64,8 @@ function rewardItems(props) {
                     height: headerHeight,
                     backgroundColor: '#37375e',
                 }}>
+
+                {/* Header */}
                 <Animated.View
                     style={{
                     textAlign: "center",
@@ -80,6 +85,7 @@ function rewardItems(props) {
                         </View>    
                     </ImageBackground>
                 </Animated.View>
+                {/* End of Header */}
             </Animated.View>
 
             <Animated.ScrollView
@@ -90,42 +96,60 @@ function rewardItems(props) {
                 contentInsetAdjustmentBehavior="automatic"
                 style={[styles.container]}>
 
-                    <View style={styles.titlePopularContainer}>
-                        <Icon3 name="fire" size={40} color="#fd4140" />
-                        <Text style={styles.titlePopular}>Popular Rewards</Text>
+                    {/* Popular Rewards */}
+                    <View style={styles.popularItemsContainer}>
+                        <View style={styles.popularItemsTitleContainer}>
+                            {/* <Icon3 name="fire" size={40} color="#fd4140" /> */}
+                            <Text style={styles.popularItemsTitle}>Popular Rewards</Text>
+                        </View>
+                        {/* Horizontal Scrollview for Popular Rewards */}
+                        <ScrollView horizontal={true} style={styles.popularItems}>
+                            <PopularRewardItem/>
+                            <PopularRewardItem/>
+                            <PopularRewardItem/>
+                            <PopularRewardItem/>
+                            <PopularRewardItem/>
+                            <PopularRewardItem/>
+                        </ScrollView>
+                        {/* End of Horizonal Scrollview */}
                     </View>
+                    {/* End of Popular Rewards */}
 
-                    <ScrollView horizontal={true} style={styles.popularItems}>
-                        <PopularRewardItem/>
-                        <PopularRewardItem/>
-                        <PopularRewardItem/>
-                        <PopularRewardItem/>
-                        <PopularRewardItem/>
-                        <PopularRewardItem/>
-                    </ScrollView>
+                    <Text style={styles.textInfo}>Do you like the products and rewards offered by this shop?
+                     Follow them for them to know how you feel!</Text>
 
-                    <Text style={styles.titleAllRewards}>All Rewards</Text>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
-                        <AllRewardItem/>
+                    {/* All Rewards */}
+                    <View style={styles.allItemsContainer}>
+                        {/* List of all rewards !note that items in Popular Rewards is also included here* */}
+                        <Text style={styles.allItemsTitle}>All Rewards</Text>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                            <AllRewardItem/>
+                        {/* End of List */}
+                    </View>
+                    {/* End of All Items */}
 
-                        <ImageBackground style={styles.bannerBgImage}
-                            imageStyle={{ borderRadius: 30}}
-                            source={require('../../../assets/bannerViolet.jpg')}>
-                            <View style={styles.bannerDarken}>
-                                <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
-                                <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
-                            </View>    
-                        </ImageBackground>
+                    <Text style={styles.textInfoBottom}>Everytime you spent on products you love gives you rewards point.</Text>
+
+                    {/* Banner */}
+                    {/* <ImageBackground style={styles.bannerBgImage}
+                        imageStyle={{ borderRadius: 30}}
+                        source={require('../../../assets/bannerViolet.jpg')}>
+                        <View style={styles.bannerDarken}>
+                            <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
+                            <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
+                        </View>    
+                    </ImageBackground> */}
+                    {/* End of Banner */}
             </Animated.ScrollView>
             </View>
         </SafeAreaView>
@@ -134,38 +158,32 @@ function rewardItems(props) {
 }
 
 const styles = StyleSheet.create({
-    headerBgImage: {
-        alignSelf: "center",
-        borderRadius: 30,
-        marginBottom: 10,
-        height: 200,
+    allItemsContainer:{
+        alignSelf: "center",  
+        marginTop: 5,
+        marginBottom: 5,
         width: wp('100%'),
-    },
-    headerLabel: {
-        textAlign: "center",
-        marginTop: 45,
-        color: "#fff",
-        fontSize: 24,
-        fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
     },
-    headerLabelBig: {
-        textAlign: "center",
-        marginTop: 2,
-        color: "#fff",
-        fontSize: 30,
-        fontWeight: "bold",
-        paddingLeft: wp('5%'),
-        paddingRight: wp('5%'),
-    },
-    headerLabelSmall: {
-        textAlign: "center",
-        marginTop: 2,
-        color: "#fff",
-        fontSize: 12,
-        paddingLeft: wp('5%'),
-        paddingRight: wp('5%'),
+    allItemsTitle: {
+        alignSelf: "center",
+        // marginLeft: 3,
+        marginBottom: 10,
+        fontSize: 18,
+        fontWeight: "bold"
     },
     bannerBgImage: {
         alignSelf: "center",
@@ -227,35 +245,93 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
+        backgroundColor: "#fff",
+    },
+    headerBgImage: {
+        alignSelf: "center",
+        borderRadius: 30,
+        marginBottom: 10,
+        height: 200,
+        width: wp('100%'),
+    },
+    headerLabel: {
+        textAlign: "center",
+        marginTop: 45,
+        color: "#fff",
+        fontSize: 24,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    headerLabelBig: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 28,
+        fontWeight: "bold",
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    headerLabelSmall: {
+        textAlign: "center",
+        marginTop: 2,
+        color: "#fff",
+        fontSize: 12,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
     },
     popularItems: {
         alignSelf: "center",
         borderRadius: 30,
         flexDirection: "row",
-        height: 180,
         width: wp('90%'),
-        marginBottom: 10,
     }, 
-    titlePopular: {
-        textAlign: "center",
-        marginLeft: 3,
-        marginTop: 8,
-        fontSize: 20,
-        fontWeight: "bold"
-    },
-    titlePopularContainer: {
-        alignSelf: "center",  
-        flexDirection: "row",
-        marginBottom: 5,
-        marginTop: 5,
-        width: wp('90%'),
-    },
-    titleAllRewards: {
+    popularItemsContainer: {
         alignSelf: "center",
-        marginLeft: 3,
-        marginBottom: 10,
+        width: wp('100%'),
+        marginBottom: 5,
+        marginTop: 10,
+        paddingBottom: 10,
+        paddingTop: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
+    }, 
+    popularItemsTitle: {
+        textAlign: "center",
+        // marginLeft: 3,
         fontSize: 18,
         fontWeight: "bold"
+    },
+    popularItemsTitleContainer: {
+        alignSelf: "center",  
+        flexDirection: "row",
+        width: wp('90%'),
+        marginBottom: 5,
+        marginTop: 5,
+    },
+    textInfoBottom: {
+        marginTop: 5,
+        marginBottom: 50,
+        fontSize: 12,
+        opacity: .5,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+    },
+    textInfo: {
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 12,
+        opacity: .5,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
     },
     topNav: {
         flexDirection: "row",
@@ -265,6 +341,16 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     topNavRight: {
         flexDirection: "row",

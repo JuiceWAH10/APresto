@@ -1,7 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { 
-    Animated,
-    Image,
     ImageBackground,
     Platform,
     SafeAreaView,
@@ -13,7 +11,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
-import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -23,12 +20,12 @@ import ClientAllShopItems from '././importClientProduct/clientAllShopItems';
 function clientProductList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
-    // const navigation = useNavigation();
-
     const navigation = useNavigation();
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+
+            {/* Top Navigation and Search Bar */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon2 style={styles.backButton} name="left" size={30} color="#fe875d" />
@@ -40,6 +37,9 @@ function clientProductList(props) {
                         value={searchQuery}
                 />
             </View>
+            {/* End of Top Nav and Search Bar */}
+
+            {/* Header */}
             <View style={styles.headContainer}>
                 <TouchableOpacity onPress={() => "pressed"} >
                     <View style={styles.headIndivContainer}>
@@ -59,7 +59,9 @@ function clientProductList(props) {
                         <Icon style={styles.headIcons} name="archive" size={35} color="#29312e" />
                     </View>
                 </TouchableOpacity>    
-            </View>  
+            </View>
+            {/* End of Header */}
+
             <ScrollView style={styles.container}>
 
                 <ClientAllShopItems/>
@@ -73,6 +75,7 @@ function clientProductList(props) {
                 <ClientAllShopItems/>
                 <ClientAllShopItems/>
 
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerPeach.jpg')}>
@@ -81,9 +84,8 @@ function clientProductList(props) {
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
                 
-
-
             </ScrollView>
         </SafeAreaView>
     );
@@ -96,7 +98,8 @@ const styles = StyleSheet.create({
     bannerBgImage: {
         alignSelf: "center",
         borderRadius: 30,
-        marginBottom: 15,
+        marginTop: 10,
+        marginBottom: 10,
         height: 150,
         width: wp('90%'),
     },

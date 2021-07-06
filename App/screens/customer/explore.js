@@ -1,8 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { 
-    AppRegistry,
-    Dimensions,
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -16,20 +13,22 @@ import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import CarouselCards from '../../carousel/CarouselCards'
-
 import IndivShop from '././importScreens/indivShop';
 
 
 function explore(props) {
     const navigation = useNavigation();
-    const [search, setTextS] = React.useState('');
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <Text style={styles.title}>Explore APresto</Text>
             <ScrollView style={[styles.container, {flex:1}]}>
-                <CarouselCards />
 
+                <CarouselCards /> 
+
+                <Text style={styles.textInfo}>Want to try something new that is accessible to you? Or do you want
+                 to visit one of the shops you love? <Text style={styles.textBold}> Near Me </Text>
+                  and <Text style={styles.textBold}>Liked Shops</Text> will help you.</Text>
 
                 {/* Dual View */}
                 <View style={styles.dual}>
@@ -61,16 +60,18 @@ function explore(props) {
                 {/* End of Dual View */}
 
                 {/* Most Reviewed Shop */}
-                <View style={styles.titleReviewsContainer}>
-                    <Icon name="fire" size={40} color="#fd4140" />
-                    <Text style={styles.titleReviews}>Most Reviewed Shops</Text>
-                </View>
-
-                <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
-                <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                {/* <View style={styles.mostReviewsContainer}> */}
+                    <View style={styles.mostReviewsTitleContainer}>
+                        {/* <Icon name="fire" size={40} color="#fd4140" /> */}
+                        <Text style={styles.mostReviewsTitle}>Most Reviewed Shops</Text>
+                    </View>
+                    {/* Insert Code here for importing Most Reviewed shops with info */}
+                    <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
+                    <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
+                    <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
+                    <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
+                    <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                {/* </View> */}
                 {/* End of most Reviewed */}
 
             </ScrollView>    
@@ -112,6 +113,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         width: wp('100%'),
+        backgroundColor: 'white',
         // borderWidth: 1
     },   
     droidSafeArea: {
@@ -122,9 +124,23 @@ const styles = StyleSheet.create({
         alignSelf: "center",  
         justifyContent: "space-between",
         flexDirection: "row",
-        marginBottom: 10,
-        height: 180,
-        width: wp('90%'),
+        marginTop: 5,
+        marginBottom: 5,
+        height: 200,
+        width: wp('100%'),
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+        paddingTop: 10,
+
+        // backgroundColor: 'white',
+        // shadowColor: "#000",
+        // shadowOffset: {
+        // width: 0,
+        // height: 3,
+        // },
+        // shadowOpacity: 0.29,
+        // shadowRadius: 4.65,
+        // elevation: 3,
     },
     dualContent: {
         borderRadius: 30,
@@ -142,7 +158,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginTop: 100,
         color: "#fff",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold"
     },
     dualLabelSmall: {
@@ -157,24 +173,68 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
         borderRadius: 30,
     },
-    title: {
-        textAlign: "center",
-        marginBottom: 10,
-        fontSize: 24,
-        fontWeight: "bold"
+    mostReviewsContainer: {
+        alignSelf: "center",  
+        marginTop: 5,
+        marginBottom: 5,
+        width: wp('100%'),
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
     },
-    titleReviews: {
+    mostReviewsTitle: {
         textAlign: "center",
         marginTop: 8,
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold"
     },
-    titleReviewsContainer: {
+    mostReviewsTitleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
         marginBottom: 5,
         marginLeft: 8,
         width: wp('90%'),
+    },
+    textBold: {
+        fontWeight: "bold"
+    },
+    textInfo: {
+        marginTop: -15,
+        // marginBottom: 5,
+        fontSize: 12,
+        opacity: .5,
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+        textAlign: "center",
+    },
+    title: {
+        textAlign: "center",
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#fd4140",
+        paddingTop: 12,
+
+        backgroundColor: 'white',
+        height: 60,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     
     

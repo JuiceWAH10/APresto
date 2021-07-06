@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -24,13 +23,17 @@ function clientProductEdit(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#fe875d" />
                 </TouchableOpacity>   
-            </View>      
+            </View>
+            {/* End of Top Navigation */}
+
             <Text style={styles.title}>Edit Product</Text>   
             <ScrollView style={styles.container}>
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerPeach.jpg')}>
@@ -39,7 +42,9 @@ function clientProductEdit(props) {
                         <Text style={styles.bannerLabelSmall}>Provide all the necessary information you want to share.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
 
+                {/* Form */}
                 <Text style={styles.formTitles}>Enter Product Name</Text>
                 <View style={styles.textView}>
                     <TextInput
@@ -71,7 +76,6 @@ function clientProductEdit(props) {
                                 value={prodPrice}
                             />
                     </View>
-
                     <View>
                         <Text style={styles.formTitlesDual}>Enter Quantity</Text>
                         <TextInput
@@ -84,13 +88,13 @@ function clientProductEdit(props) {
                 </View>
 
                 <Text style={styles.formTitles}>Upload Image</Text>
-
+                    {/* Add Code for Uploading Image here */}
                 
+                {/* End of Form */}
+
                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                     <Text style={styles.buttonLabel}>Publish Changes</Text>
                 </TouchableOpacity>
-                
-                
             </ScrollView>
         </SafeAreaView>
     );
@@ -210,13 +214,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     topNav: {
-        // flexDirection: "row",
-        // justifyContent: "space-between",
-        // height: 40,
-        // // width: wp('100%'),
         paddingLeft: 10,
-        // paddingRight: wp('5%'),
-        // paddingTop: 5,
     },
 })
 export default clientProductEdit;

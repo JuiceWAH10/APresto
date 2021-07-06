@@ -1,15 +1,11 @@
 import React from 'react';
 import { 
     Image,
-    ImageBackground,
-    SafeAreaView,
-    ScrollView,
     StyleSheet,
     Text, 
     TouchableOpacity, 
     View, 
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
@@ -20,6 +16,7 @@ function clientAllShopRewards(props) {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
+            {/* Reward Image and Infos */}
             <View style={styles.containerInfos}>
                 <Image style={styles.itemImage}
                         source={require('../../../../assets/DummyShop.jpg')}>
@@ -27,11 +24,35 @@ function clientAllShopRewards(props) {
                 <View style={styles.itemContainer} >
                     <Text style={styles.itemName}>Reward Name</Text>
                     <Text style={styles.itemPrice}>20 Pts</Text>
-                    <Text style={styles.itemPrice}>100 Remaining</Text>
-                    <Text style={styles.itemInfo}>Category</Text>
                     <Text style={styles.itemInfo}>Reward Definition</Text>
                 </View> 
             </View>
+            {/* End of Reward Image and Infos */}
+
+            {/* Reward Details */}
+            <View style={styles.itemDetailsWrapValues}>
+                <View style={styles.itemDetailsWrapValuesSmall}>
+                    <Icon3 style={styles.itemDetailsIcon} name="layers" size={18} />
+                    <Text style={styles.itemDetailsText}>Stock: 100</Text>
+                </View>
+                <View style={styles.itemDetailsWrapValuesSmall}>
+                    <Icon3 style={styles.itemDetailsIcon} name="wallet" size={18} />
+                    <Text style={styles.itemDetailsText}>Sold: 23</Text>
+                </View>
+            </View>
+            <View style={styles.itemDetailsWrapValues}>
+                <View style={styles.itemDetailsWrapValuesSmall}>
+                    <Icon2 style={styles.itemDetailsIcon} name="heart" size={18} />
+                    <Text style={styles.itemDetailsText}>Likes: 34</Text>
+                </View>
+                <View style={styles.itemDetailsWrapValuesSmall}>
+                    <Icon3 style={styles.itemDetailsIcon} name="eye" size={18}/>
+                    <Text style={styles.itemDetailsText}>Views: 244</Text>
+                </View>
+            </View>
+            {/* End of Reward Details */}
+
+            {/* Buttons */}
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('clientRewardEdit')} >
                     <Icon2 name="pencil" size={20} color="#fff" />
@@ -46,6 +67,7 @@ function clientAllShopRewards(props) {
                     <Text style={styles.buttonLabel}>Delete</Text>
                 </TouchableOpacity>
             </View>
+            {/* End of Buttons */}
         </View>
     );
 }
@@ -78,16 +100,28 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 3,
         marginBottom: 3,
-        height: 200,
-        width: wp('90%'),
-        // borderWidth: 1
+        height: 225,
+        width: wp('100%'),
+        // borderWidth: 1,
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
     },
     containerInfos: {
         alignSelf: "center",
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 6,
-        height: 140,
+        height: 100,
         width: wp('90%'),
     },
     itemContainer:{
@@ -95,11 +129,33 @@ const styles = StyleSheet.create({
         width: wp('50%'),
         elevation: 5
     },
+    itemDetailsIcon: {
+        opacity: 0.5
+    },
+    itemDetailsText: {
+        color:'#1c2b59',
+        fontSize: 12,
+        opacity: 0.5
+    },
+    itemDetailsWrapValues:{
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 5,
+        marginBottom: 5,
+        width: wp('80%')
+    },
+    itemDetailsWrapValuesSmall:{
+        alignSelf: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '35%'
+    },
     itemImage: {
         alignSelf: "center",
         borderRadius: 15,
-        flexDirection: "column",
-        height: 140,
+        // flexDirection: "column",
+        height: 100,
         width: wp('30%'),
         borderWidth: 1,
     },

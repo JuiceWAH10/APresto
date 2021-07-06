@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -14,7 +13,6 @@ import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-
 function clientRewardAdd(props) {
     const [prodName, setTextProdName] = React.useState('');
     const [prodDes, setTextProdDes] = React.useState('');
@@ -25,13 +23,18 @@ function clientRewardAdd(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#aacfdd" />
                 </TouchableOpacity>   
-            </View>      
+            </View>
+            {/* End of Top Navigation */}
+
             <Text style={styles.title}>Add Reward</Text>   
             <ScrollView style={styles.container}>
+
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerLightBlue.jpg')}>
@@ -40,7 +43,9 @@ function clientRewardAdd(props) {
                         <Text style={styles.bannerLabelSmall}>Provide all the necessary information you want to share.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
 
+                {/* Form */}
                 <Text style={styles.formTitles}>Enter Reward Name</Text>
                 <View style={styles.textView}>
                     <TextInput
@@ -72,7 +77,6 @@ function clientRewardAdd(props) {
                                 value={prodPrice}
                             />
                     </View>
-
                     <View>
                         <Text style={styles.formTitlesDual}>Enter Quantity</Text>
                         <TextInput
@@ -85,13 +89,13 @@ function clientRewardAdd(props) {
                 </View>
 
                 <Text style={styles.formTitles}>Upload Image</Text>
+                    {/* Add Code for Uploading Image here */}
 
-                
+                {/* End of Form */}
+
                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                     <Text style={styles.buttonLabel}>Add Reward</Text>
-                </TouchableOpacity>
-                
-                
+                </TouchableOpacity>             
             </ScrollView>
         </SafeAreaView>
     );
@@ -211,13 +215,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     topNav: {
-        // flexDirection: "row",
-        // justifyContent: "space-between",
-        // height: 40,
-        // // width: wp('100%'),
         paddingLeft: 10,
-        // paddingRight: wp('5%'),
-        // paddingTop: 5,
     },
 })
 

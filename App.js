@@ -32,6 +32,7 @@ import ClientProductList from './App/screens/owners/clientProduct/clientProductL
 import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
+import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
 
 /*
 import { StatusBar } from 'expo-status-bar';
@@ -155,8 +156,11 @@ const Screens = () => {
     <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
     <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
     <Stack.Screen name="clientRewardList" component={ClientRewardList} />
+    <Stack.Screen name="clientSukiList" component={ClientSukiList} />
     {/* End Added Vincent */}
 
+    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
+    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
   </Stack.Navigator>
   );
 }
@@ -195,7 +199,9 @@ export default class App extends React.Component {
       <Provider store={store}>
        <Authentication/>
       </Provider>
+
       // <ClientAllShopItems/>
+      // <ClientAllSuki/>
     )
   };
 }

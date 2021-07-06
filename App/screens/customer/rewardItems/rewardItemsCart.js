@@ -18,12 +18,16 @@ function rewardItemsCart(props) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>  
+            {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#37375e" />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.formContainer, {flex:15}]}>          
+            {/* End of Navigation */}
+
+            <View style={[styles.formContainer, {flex:15}]}>
+                {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerViolet.jpg')}>
@@ -32,6 +36,8 @@ function rewardItemsCart(props) {
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
                     </View>    
                 </ImageBackground>
+                {/* End of Banner */}
+
                 <ScrollView style ={styles.cartContainer}>
                     <AllRewardItem/>
                     <AllRewardItem/>
@@ -41,6 +47,8 @@ function rewardItemsCart(props) {
                     <AllRewardItem/>
                     <AllRewardItem/> 
                 </ScrollView>
+
+                {/* Footer */}
                 <View style={styles.footer}>
                     <View style={styles.footerTextContainer}>
                         <Text style={styles.footerLabelSmall}>Total Points</Text>
@@ -50,6 +58,7 @@ function rewardItemsCart(props) {
                         <Text style={styles.buttonLabel}>Generate QR Code</Text>
                     </TouchableOpacity>
                 </View>
+                {/* End of Footer */}
             </View>
             
         </SafeAreaView>
