@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     width: ITEM_WIDTH,
-    height: 335,
-    paddingBottom: 40,
+    height: 320,
+    // paddingBottom: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    elevation: 7,
-    marginBottom: 15,
+    elevation: 5,
+    marginBottom: 5,
     marginTop: 10
   },
   image: {
@@ -48,15 +48,14 @@ const styles = StyleSheet.create({
   },
   header: {
     color: "#222",
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
     paddingLeft: 20,
     paddingTop: 20
   },
   body: {
     color: "#222",
-    fontSize: 16,
-    paddingLeft: 20,
+    fontSize: 14,
     paddingLeft: 20,
     paddingRight: 20
   }

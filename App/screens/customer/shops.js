@@ -18,35 +18,41 @@ function shops(props) {
     const onChangeSearch = query => setSearchQuery(query);
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <Searchbar
-                style={styles.searchBar}
-                placeholder="Search"
-                onChangeText={onChangeSearch}
-                value={searchQuery}
-            />
+            <View style={styles.searchBarContainer}>
+                <Searchbar
+                    style={styles.searchBar}
+                    placeholder="Search"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                />
+            </View>
 
             <ScrollView style={[styles.container, {flex:1}]}>
                 {/* Banner */}
-                <ImageBackground style={styles.bannerBgImage}
+                {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/bannerDarkBlue.jpg')}>
                     <View style={styles.darken}>
                         <Text style={styles.bannerLabel}>All shops here are certified APrestoed!</Text>
                         <Text style={styles.bannerLabelSmall}>We guarantee you that shops here bring happiness.</Text>
                     </View>    
-                </ImageBackground>
+                </ImageBackground> */}
                 {/* End of Banner */}
 
-                <View style={styles.titleContainer}>
-                    <Icon name="shop" size={40} color="#fd4140" />
-                    <Text style={styles.title}>APresto Shops</Text>
-                </View>
-                {/* Insert Code here for importing shops with info */}
-                <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
-                <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                {/* Shop List */}
+                {/* <View style={styles.shopListContainer}> */}
+                    <View style={styles.shopListTitleContainer}>
+                        {/* <Icon name="shop" size={40} color="#fd4140" /> */}
+                        <Text style={styles.shopListTitle}>APresto Shops</Text>
+                    </View>
+                    {/* Insert Code here for importing shops with info */}
+                    <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
+                    <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
+                    <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
+                    <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
+                    <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                {/* </View> */}
+                {/* End of Shop List */}
             </ScrollView>
 
         </SafeAreaView>
@@ -57,7 +63,8 @@ const styles = StyleSheet.create({
     bannerBgImage: {
         alignSelf: "center",
         borderRadius: 30,
-        marginBottom: 10,
+        marginBottom: 5,
+        marginTop: 10,
         height: 150,
         width: wp('90%'),
     },
@@ -86,6 +93,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         width: wp('100%'),
+        backgroundColor: "#fff"
     },   
     droidSafeArea: {
         flex: 1,
@@ -96,18 +104,52 @@ const styles = StyleSheet.create({
         color: "#fd4140",
         width: wp('90%'),
         borderColor: "#fd4140",
-        marginBottom: 8,
-        marginTop: 5,   
         
     },
-    title: {
+    searchBarContainer: {
+        paddingTop: 6,
+
+        backgroundColor: 'white',
+        height: 70,
+        borderBottomWidth: 4,
+        borderColor: "#fd4140",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+    },
+    shopListContainer:{
+        alignSelf: "center",  
+        marginTop: 5,
+        marginBottom: 5,
+        width: wp('100%'),
+        paddingLeft: wp('5%'),
+        paddingRight: wp('5%'),
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 3,
+    },
+    shopListTitle: {
         textAlign: "center",
         marginLeft: 5,
-        marginTop: 8,
+        marginTop: 10,
         fontSize: 20,
         fontWeight: "bold"
     },
-    titleContainer: {
+    shopListTitleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
         marginBottom: 10,
