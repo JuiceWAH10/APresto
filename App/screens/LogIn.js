@@ -6,12 +6,35 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
+import validator from "validator";
+
+const validateFields = (email, password) => {
+  const isValid = {
+      email: validator.isEmail(email),
+      password: validator.isStrongPassword(password, {minLength: 8, minNumbers: 1})
+  }
+  return isValid;
+}
+
+const login = (email, password) => {};
 
 function LogIn(props) {
-    const [userName, setTextUN] = React.useState('');
-    const [passWord, setTextPW] = React.useState('');
+    //const [userName] = React.useState('');
+    //const [passWord, setTextPW] = React.useState('');
     const [toggleCheckBox, setToggleCheckBox] = useState({check: false});
     const navigation = useNavigation();
+
+    //Email variables
+    const [emailField, setEmailField] = useState({
+      text: "", 
+      errorMessage: "",
+    });
+
+    //Password variables
+    const [passwordField, setPasswordField] = useState({
+      text: "", 
+      errorMessage: "",
+    });
 
     function handleCheck(){
       setToggleCheckBox({check: !toggleCheckBox.check});
@@ -22,7 +45,7 @@ function LogIn(props) {
         props.navigation.navigate('clientHomepage');
       else
         props.navigation.navigate('customerShops');
-    }
+    } 
 
     return (
       <ImageBackground
@@ -51,17 +74,23 @@ function LogIn(props) {
               <View style={styles.LogInContainer}>
                 <Text style={{color: '#fd4140', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
                 <TextInput
-                    style={styles.textUserName}
-                    placeholder="UserName"
-                    value={userName}
-                    onChangeText={text => setTextUN(text)}
+                    //Email input
+                    style={styles.textEmail}
+                    placeholder="Email"
+                    text={emailField.text}
+                    onChangeText={(text) => {setEmailField({text});}}
+                    errorMessage={emailField.errorMessage}
+                    autoCompleteType="email"
                 />
                 <TextInput
+                    //Password input
                     style={styles.textPassword}
                     secureTextEntry={true}
                     placeholder="Password"
-                    value={passWord}
-                    onChangeText={text => setTextPW(text)}
+                    text={passwordField.text}
+                    onChangeText={(text) => {setPasswordField({text});}}
+                    errorMessage={passwordField.errorMessage}
+                    autoCompleteType="password"
                 />
                 <View style={styles.checkbox}>
                   <CheckBox
@@ -74,7 +103,27 @@ function LogIn(props) {
                 </View>
               </View>
               
-                <TouchableOpacity onPress={checkboxLogin} style={styles.LogInButton}>
+                <TouchableOpacity style={styles.LogInButton} onPress={() => {
+                  const isValid = validateFields(emailField.text, passwordField.text);
+
+                  let isAllValid = true;
+                  if(!isValid.email){
+                    emailField.errorMessage = "Please enter a valid email";
+                    setEmailField({...emailField})
+                    isAllValid = false;
+                  }
+
+                  if(!isValid.password){
+                    passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                    setPasswordField({...passwordField})
+                    isAllValid = false;
+                  }
+
+                  if(isAllValid){
+                    login(emailField.text, passwordField.text);
+                  }
+
+                }}>
                     <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
                 </TouchableOpacity>
         </SafeAreaView> 
@@ -154,7 +203,7 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     // top: hp('40%'),
   },
-  textUserName: {
+  textEmail: {
     width: '80%',
     height: 50,
     borderColor: '#1c2b59',

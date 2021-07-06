@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     bannerBgImage: {
         alignSelf: "center",
         borderRadius: 30,
-        marginBottom: 15,
+        marginTop: 10,
+        marginBottom: 10,
         height: 150,
         width: wp('90%'),
     },

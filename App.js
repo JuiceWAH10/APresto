@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import firebase from "firebase";
 import { Provider } from 'react-redux'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -34,6 +35,8 @@ import ClientRewardList from './App/screens/owners/clientReward/clientRewardList
 import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
 
 const Stack = createStackNavigator();
+//Auth Screens
+const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 const customerBottomTabs = () =>{
@@ -83,44 +86,95 @@ const customerBottomTabs = () =>{
   )
 }
 
+//Will direct here if not login/ or will create account
+const AuthScreens = () => {
+  return(
+    <AuthStack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="splash" component={SplashScreen} />
+      <Stack.Screen name="login" component={LogIn} />
+      <Stack.Screen name="signupCustomer" component={SignupCustomer} />
+    </AuthStack.Navigator>
+  );
+}
+
+//Will navigate here once accessed login
+const Screens = () => {
+  return(
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name="customerShops" children={customerBottomTabs} />  
+    <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
+    {/* Added Vincent */}
+    <Stack.Screen name="explore" component={Explore} />
+    <Stack.Screen name="rewards" component={Rewards} />
+    <Stack.Screen name="shops" component={Shops} />
+    <Stack.Screen name="profile" component={Profile} />
+    <Stack.Screen name="shopItems" component={ShopItems} />
+    <Stack.Screen name="shopItemsCart" component={ShopItemsCart} />  
+    <Stack.Screen name="shopItemsQR" component={ShopItemsQR} />   
+    <Stack.Screen name="rewardItems" component={RewardItems} />
+    <Stack.Screen name="rewardItemsCart" component={RewardItemsCart} />
+    <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
+
+    <Stack.Screen name="clientHomepage" component={ClientHomepage} />
+    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
+    <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
+    <Stack.Screen name="clientProductList" component={ClientProductList} />
+    <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
+    <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
+    <Stack.Screen name="clientRewardList" component={ClientRewardList} />
+    <Stack.Screen name="clientSukiList" component={ClientSukiList} />
+    {/* End Added Vincent */}
+  </Stack.Navigator>
+  );
+}
+
+//THIS SECTION IS A MOUNT CODE
+//Authentication function component
+function Authentication(){
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+      if (firebase.auth().currentUser){
+        setIsAuthenticated(true);
+      }
+      firebase.auth().onAuthStateChanged(user => {
+        console.log("Checking auth state...");
+        if (user) {
+          setIsAuthenticated(true);
+        }else{
+          setIsAuthenticated(false);
+        }
+      });
+    }, []);
+
+  return(
+    <NavigationContainer>
+      {isAuthenticated ? <Screens/> : <AuthScreens/>}
+    </NavigationContainer>
+  );
+
+}
+
 export default class App extends React.Component {
   render() {
     return (
+      //call Authentication function component
       <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="splash" component={SplashScreen} />
-            <Stack.Screen name="login" component={LogIn} />
-            {/* Added Vincent */}
-            <Stack.Screen name="signupCustomer" component={SignupCustomer} />
-            <Stack.Screen name="explore" component={Explore} />
-            <Stack.Screen name="rewards" component={Rewards} />
-            <Stack.Screen name="shops" component={Shops} />
-            <Stack.Screen name="profile" component={Profile} />
-            <Stack.Screen name="shopItems" component={ShopItems} />
-            <Stack.Screen name="shopItemsCart" component={ShopItemsCart} />  
-            <Stack.Screen name="shopItemsQR" component={ShopItemsQR} />   
-            <Stack.Screen name="rewardItems" component={RewardItems} />
-            <Stack.Screen name="rewardItemsCart" component={RewardItemsCart} />
-            <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
-
-            <Stack.Screen name="clientHomepage" component={ClientHomepage} />
-            <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
-            <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
-            <Stack.Screen name="clientProductList" component={ClientProductList} />
-            <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
-            <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
-            <Stack.Screen name="clientRewardList" component={ClientRewardList} />
-            <Stack.Screen name="clientSukiList" component={ClientSukiList} />
-            {/* End Added Vincent */}
-
-            <Stack.Screen name="customerShops" children={customerBottomTabs} />  
-            <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
-          </Stack.Navigator>      
-        </NavigationContainer>
+       <Authentication/>
       </Provider>
 
+      // <ClientAllShopItems/>
       // <ClientAllSuki/>
     )
   };
 }
+
+//firebase configuration to connect to firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAeHqFIjvpdIl5Yr5nGibf_Ol8rkZrqQwo",
+  authDomain: "apresto-b47ae.firebaseapp.com",
+  projectId: "apresto-b47ae",
+  storageBucket: "apresto-b47ae.appspot.com",
+  messagingSenderId: "491750670452",
+  appId: "1:491750670452:web:3719bba8d7305392385121"
+};
+firebase.initializeApp(firebaseConfig);

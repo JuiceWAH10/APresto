@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         marginBottom: 2,
         marginTop: 2,
-        height: 220,
+        height: 210,
         width: wp('90%'),
     },
     shopAddress: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         marginLeft: 20,
         marginTop: 5,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold"
     },
     shopReview: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     shopReviewScore: {
         flexDirection: "row",
-        fontSize: 16,
+        fontSize: 12,
         marginBottom: 2,
         marginLeft: 5,
         marginTop: 1
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     shopSpecialty: {
         marginBottom: 2,
         marginLeft: 20,
-        fontSize: 14,
+        fontSize: 12,
     },
 })
 
