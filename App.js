@@ -161,7 +161,6 @@ export default class App extends React.Component {
       <Provider store={store}>
        <Authentication/>
       </Provider>
-
       // <ClientAllShopItems/>
       // <ClientAllSuki/>
     )
