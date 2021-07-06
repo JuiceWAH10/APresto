@@ -13,14 +13,18 @@ import Screens from './App/navigation/screensNavigation'
 //for reducers
 import productsReducer from './App/functions/productsReducer';
 import shopReducer from './App/functions/shopReducer';
+import cartReducer from './App/functions/cartReducer';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux'
 
+// combine all reducers into one object
 const rootReducer = combineReducers({
   shops: shopReducer,
-  products: productsReducer
+  products: productsReducer,
+  cart: cartReducer
 });
 
+// create a store for managing states using the reducers which will be used for data transfer through the app.
 const store = createStore(rootReducer);
 
 //Auth navigation

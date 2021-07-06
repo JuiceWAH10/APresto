@@ -12,10 +12,29 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useSelector } from 'react-redux';
+
 import AllShopItem from './././importShopItems/allShopItem';
 
 function shopItemsCart(props) {
     const navigation = useNavigation();
+    
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const totalAmount = useSelector(state => state.cart.totalAmount);
+    const cartItems = useSelector(state => {
+        //(juswa) cart items are placed in array to be more manageable
+        const cartItemsArray = [];
+        for (const key in state.cart.items){
+            cartItemsArray.push({
+                productID: key,
+                productTitle: state.cart.items[key].productTitle,
+                productPrice: state.cart.items[key].productPrice,
+                quantity: state.cart.items[key].quantity,
+                total: state.cart.items[key].total
+            });
+        }
+        return cartItemsArray;
+    });
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Top Navigation */}
@@ -52,9 +71,10 @@ function shopItemsCart(props) {
                 <View style={styles.footer}>
                     <View style={styles.footerTextContainer}>
                         <Text style={styles.footerLabelSmall}>Total Amount</Text>
-                        <Text style={styles.footerLabel}>Php 200.00</Text>
+                        <Text style={styles.footerLabel}>Php {totalAmount.toFixed(2)}</Text>
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('shopItemsQR')} >
+                    {/* (juswa) disabled property: disables this button if condition is true or in this case if there are no items in the cart this button is disabled */}
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('shopItemsQR')} disabled={cartItems.length === 0} >
                         <Text style={styles.buttonLabel}>Generate QR Code</Text>
                     </TouchableOpacity>
                 </View>

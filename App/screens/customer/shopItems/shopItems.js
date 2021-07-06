@@ -20,9 +20,6 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 
 import PopularShopItem from './././importShopItems/popularShopItem';
 import AllShopItem from './././importShopItems/allShopItem';
-import * as cartAction from '../../../functions/cartFunction';
-
-
 
 function shopItems(props) {
     const navigation = useNavigation();
@@ -30,7 +27,7 @@ function shopItems(props) {
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
 
-    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
     const products = useSelector(state => state.products.allProducts);
 
     const headerHeight = scrollPosition.interpolate({
@@ -134,11 +131,14 @@ function shopItems(props) {
                     <View style={styles.allItemsContainer}>
                         {/* List of all items !note that items in Popular Items is also included here* */}
                         <Text style={styles.titleAllItems}>All Items</Text>
+                        
+                        {/* (juswa) passed the fetched data from redux store into this component, inside this component is where each data object is rendered as product item */}
                         <AllShopItem 
                             products={products} 
-                            addToCart= {() => {dispatch(cartAction.addToCart(products.products))}} //lagay dapat siguro sa allShopItem.js
+                             //lagay dapat siguro sa allShopItem.js
                         /> 
                         {/*onPress={props.addItemToCart}*/}
+
                         {/* End of List */}
                     </View>
                     {/* End of All Items */}

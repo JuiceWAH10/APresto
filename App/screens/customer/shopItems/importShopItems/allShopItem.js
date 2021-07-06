@@ -10,8 +10,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useDispatch } from 'react-redux';
 
+import * as cartAction from '../../../functions/cartFunction';
 
+//(juswa) for fetching data from redux store in App.js
+const dispatch = useDispatch();
+
+//(juswa) changed into class component ni apply ko yung pano sa lumang UI
 class allShopItem extends Component {
     
     renderProducts = (products) => {
@@ -25,11 +31,12 @@ class allShopItem extends Component {
                         <Text style={styles.itemName}>{item.product_name}</Text>
                         <Text style={styles.itemPrice}>{item.price}</Text>
                         <Text style={styles.itemInfo}>Product Definition</Text>
-                        <View style={styles.buttonsContainer}>
-                            <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <View style={styles.buttonsContainer}>\
+                            {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details */}
+                            <TouchableOpacity onPress={() => {dispatch(cartAction.addToCart(products.products))}}>
                                 <Icon name="add-circle" size={35} color="#356288" />
                             </TouchableOpacity>
-                            <Text style={styles.quantity}>Qty</Text>
+                            <Text style={styles.quantity}>add to cart haha</Text>
                             <TouchableOpacity onPress={()=>console.log("Pressed")}>
                                 <Icon2 name="minus-circle" size={35} color="#356288" />
                             </TouchableOpacity>    
