@@ -26,7 +26,7 @@ const createAccount = (email, password) => {
     auth()
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
-            console.log("Creating user...");
+            console.log("Creating user...");   
             //firestore().collection("users").doc(user.uid).set({});
         });
 };
@@ -179,7 +179,8 @@ function signupCustomer(props) {
 
                     //IF ALL INPUTS ARE VALID THIS IS WILL CREATE ACCOUNT FUNCTION 
                     if(isAllValid){
-                        createAccount(emailField.text, passwordField.text);                        
+                        createAccount(emailField.text, passwordField.text);
+                        props.navigation.navigate('login');                   
                     }
 
                 }}>
