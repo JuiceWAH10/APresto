@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
 import validator from "validator";
 import { auth } from "firebase";
 
@@ -27,6 +27,7 @@ const createAccount = (email, password) => {
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
             console.log("Creating user...");
+            //firestore().collection("users").doc(user.uid).set({});
         });
 };
 

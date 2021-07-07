@@ -5,18 +5,32 @@ import CheckBox from '@react-native-community/checkbox';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-
 import validator from "validator";
+import { auth } from "firebase";
 
+//validation function of email
 const validateFields = (email, password) => {
   const isValid = {
       email: validator.isEmail(email),
-      password: validator.isStrongPassword(password, {minLength: 8, minNumbers: 1})
-  }
+      password: validator.isStrongPassword(password, {
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+      }),
+  };
   return isValid;
-}
+};
 
-const login = (email, password) => {};
+//log in function to have access
+const login = (email, password) => {
+  auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+          console.log("Logged in");
+      });
+};
 
 function LogIn(props) {
     //const [userName] = React.useState('');
@@ -85,7 +99,7 @@ function LogIn(props) {
                 <TextInput
                     //Password input
                     style={styles.textPassword}
-                    secureTextEntry={true}
+                    //secureTextEntry={true}
                     placeholder="Password"
                     text={passwordField.text}
                     onChangeText={(text) => {setPasswordField({text});}}
@@ -108,13 +122,15 @@ function LogIn(props) {
 
                   let isAllValid = true;
                   if(!isValid.email){
-                    emailField.errorMessage = "Please enter a valid email";
+                    console.log("Please enter a valid email...")
+                    //emailField.errorMessage = "Please enter a valid email";
                     setEmailField({...emailField})
                     isAllValid = false;
                   }
 
                   if(!isValid.password){
-                    passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                    console.log("Password must be at least 8 long characters with numbers")
+                    //passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
                     setPasswordField({...passwordField})
                     isAllValid = false;
                   }
