@@ -9,6 +9,7 @@ import {
     Text, 
     TouchableOpacity, 
     View, 
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -133,6 +134,14 @@ function shopItems(props) {
                         <Text style={styles.titleAllItems}>All Items</Text>
                         
                         {/* (juswa) passed the fetched data from redux store into this component, inside this component is where each data object is rendered as product item */}
+
+                        <FlatList
+                            data={products}
+                            keyExtractor={item => item.product_ID}
+                            renderItem={itemData => <Text/>}
+                        />
+
+                        {/* (juswa) gonna change my approach on how to display each item..
                         <AllShopItem 
                             products={products} 
                              //lagay dapat siguro sa allShopItem.js

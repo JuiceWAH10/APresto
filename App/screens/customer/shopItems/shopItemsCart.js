@@ -12,9 +12,10 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import AllShopItem from './././importShopItems/allShopItem';
+import * as cartFunction from '../../../functions/cartFunction';
 
 function shopItemsCart(props) {
     const navigation = useNavigation();
@@ -35,6 +36,8 @@ function shopItemsCart(props) {
         }
         return cartItemsArray;
     });
+
+    const dispatch = useDispatch();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Top Navigation */}

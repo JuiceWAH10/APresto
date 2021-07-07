@@ -17,7 +17,9 @@ import * as cartAction from '../../../functions/cartFunction';
 //(juswa) for fetching data from redux store in App.js
 const dispatch = useDispatch();
 
-//(juswa) changed into class component ni apply ko yung pano sa lumang UI
+//(juswa) changed into class component ni apply ko yung pano sa lumang UI;
+//changing my approach on how to display each item
+{/*
 class allShopItem extends Component {
     
     renderProducts = (products) => {
@@ -32,7 +34,7 @@ class allShopItem extends Component {
                         <Text style={styles.itemPrice}>{item.price}</Text>
                         <Text style={styles.itemInfo}>Product Definition</Text>
                         <View style={styles.buttonsContainer}>\
-                            {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details */}
+                            {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details 
                             <TouchableOpacity onPress={() => {dispatch(cartAction.addToCart(products.products))}}>
                                 <Icon name="add-circle" size={35} color="#356288" />
                             </TouchableOpacity>
@@ -55,6 +57,7 @@ class allShopItem extends Component {
         );
     }
 }
+*/}
 
 const styles = StyleSheet.create({
     buttonsContainer:{
