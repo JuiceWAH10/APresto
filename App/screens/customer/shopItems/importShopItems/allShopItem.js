@@ -17,6 +17,31 @@ import * as cartAction from '../../../functions/cartFunction';
 //(juswa) for fetching data from redux store in App.js
 const dispatch = useDispatch();
 
+function allShopItem(props) {
+    return (
+        <View style={styles.container}>
+            <Image style={styles.itemImage}
+                    source={require('../../../../assets/DummyShop.jpg')}>
+            </Image>
+            <View style={styles.itemContainer}>
+                <Text style={styles.itemName}>{props.product_Name}</Text>
+                <Text style={styles.itemPrice}>Php{props.price}</Text>
+                <Text style={styles.itemInfo}>Product Definition</Text>
+                <View style={styles.buttonsContainer}>
+                    {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details */}
+                    <TouchableOpacity onPress={props.addToCart}>
+                        <Icon name="add-circle" size={35} color="#356288" />
+                    </TouchableOpacity>
+                    <Text style={styles.quantity}>add to cart haha</Text>
+                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                        <Icon2 name="minus-circle" size={35} color="#356288" />
+                    </TouchableOpacity>    
+                </View>
+            </View>
+        </View>
+    );
+}
+
 //(juswa) changed into class component ni apply ko yung pano sa lumang UI;
 //changing my approach on how to display each item
 {/*

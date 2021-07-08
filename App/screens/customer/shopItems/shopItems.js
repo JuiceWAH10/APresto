@@ -17,17 +17,20 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PopularShopItem from './././importShopItems/popularShopItem';
 import AllShopItem from './././importShopItems/allShopItem';
 
 function shopItems(props) {
     const navigation = useNavigation();
+    const {shop_ID, owner_ID, shopName, address} = route.params;
+
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
 
+    const dispatch = useDispatch();
     //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
     const products = useSelector(state => state.products.allProducts);
 
@@ -80,8 +83,8 @@ function shopItems(props) {
                     <ImageBackground style={styles.headerBgImage}
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
-                            <Text style={styles.headerLabel}>Shop Name</Text>
-                            <Text style={styles.headerLabelSmall}>Address</Text>
+                            <Text style={styles.headerLabel}>{JSON.stringify(shopName)}</Text>
+                            <Text style={styles.headerLabelSmall}>{JSON.stringify(address)}</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                                     <Icon name="map" size={20} color="#fff" />
@@ -138,7 +141,13 @@ function shopItems(props) {
                         <FlatList
                             data={products}
                             keyExtractor={item => item.product_ID}
-                            renderItem={itemData => <Text/>}
+                            renderItem={itemData => 
+                                <AllShopItem 
+                                    product_Name = {itemData.item.product_Name}
+                                    price = {itemData.item.price}
+                                    addToCart = {() => {dispatch(cartAction.addToCart(products.products))}}
+                                    viewDetails = {() => {}}
+                                />}
                         />
 
                         {/* (juswa) gonna change my approach on how to display each item..
