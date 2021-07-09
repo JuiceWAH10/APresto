@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         flexDirection: "row",
         justifyContent:"space-between",
-        width: '70%',
+        width: '60%',
     },
     profileButtonLabel: {
         color: "#fff",

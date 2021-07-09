@@ -62,7 +62,7 @@ function explore(props) {
                 {/* Most Reviewed Shop */}
                 {/* <View style={styles.mostReviewsContainer}> */}
                     <View style={styles.mostReviewsTitleContainer}>
-                        {/* <Icon name="fire" size={40} color="#fd4140" /> */}
+                        <Icon name="fire" size={25} color="#fd4140" />
                         <Text style={styles.mostReviewsTitle}>Most Reviewed Shops</Text>
                     </View>
                     {/* Insert Code here for importing Most Reviewed shops with info */}
@@ -195,14 +195,16 @@ const styles = StyleSheet.create({
     },
     mostReviewsTitle: {
         textAlign: "center",
-        marginTop: 8,
+        // marginTop: 8,
+        marginLeft: 10,
         fontSize: 18,
         fontWeight: "bold"
     },
     mostReviewsTitleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
-        marginBottom: 5,
+        marginTop: 5,
+        marginBottom: 10,
         marginLeft: 8,
         width: wp('90%'),
     },

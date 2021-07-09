@@ -43,7 +43,7 @@ function rewards(props) {
                 {/* Shop List */}
                 {/* <View style={styles.shopListContainer}> */}
                     <View style={styles.shopListTitleContainer}>
-                        {/* <Icon name="star-four-points" size={40} color="#fd4140" /> */}
+                        <Icon style={styles.shopListTitleIcon} name="star-four-points" size={25} color="#fd4140" />
                         <Text style={styles.shopListTitle}>Shops you have Points</Text>
                     </View>
                     {/* Insert Code here for importing shops with rewards together with info */}
@@ -138,10 +138,13 @@ const styles = StyleSheet.create({
     },
     shopListTitle: {
         textAlign: "center",
-        marginLeft: 5,
-        marginTop: 8,
+        marginLeft: 10,
+        marginTop: 10,
         fontSize: 20,
         fontWeight: "bold"
+    },
+    shopListTitleIcon: {
+        marginTop: 10,
     },
     shopListTitleContainer: {
         alignSelf: "center",  

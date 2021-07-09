@@ -21,13 +21,12 @@ function clientHomepage(props) {
             <ScrollView style={styles.container}>
                 {/* Profile Header for Shops */}
                 <ImageBackground style={styles.profileBgImage}
-                    imageStyle={{ borderRadius: 30}}
                     source={require('../../assets/Liked_Shop.jpg')}>
 
                     <View style={styles.profileDarken}>
                         {/* Profile Informations */}
                         <Text style={styles.profileShopName}>Shop Name</Text>
-                        <Text style={styles.profileLabelSmall}>Spending for the products  you love give you rewards!</Text>
+                        <Text style={styles.profileLabelSmall}>Followers 478</Text>
                         <View style={styles.profileButtonContainer}>
                             <TouchableOpacity style={styles.profileButton} onPress={() => "pressed"} >
                                 <Icon name="user" size={20} color="#fff" />
@@ -40,134 +39,158 @@ function clientHomepage(props) {
                         {/* End of Profile Informations */}
                         </View>
 
-                        {/* Rate, Suki, Shopped, Claimed */}
-                        <ScrollView horizontal={true} style={styles.profileInfosContainer}>
-                            <View style={styles.profileInfo}>
-                                <View style={styles.profileInfoLabel} >
-                                    <Icon name="star" size={20} color="#fff" />
-                                    <Text style={styles.profileInfoTextLabel}>Rate</Text>
-                                </View>
-                                <Text style={styles.profileInfoTextLabelBig}> 4.5 </Text>    
-                            </View>
-                            <View style={styles.profileInfo}>
-                                <View style={styles.profileInfoLabel} >
-                                    <Icon name="smileo" size={20} color="#fff" />
-                                    <Text style={styles.profileInfoTextLabel}>My Suki</Text>
-                                </View>
-                                <Text style={styles.profileInfoTextLabelBig}> 200 </Text>    
-                            </View>
-                            <View style={styles.profileInfo}>
-                                <View style={styles.profileInfoLabel} >
-                                    <Icon name="shoppingcart" size={20} color="#fff" />
-                                    <Text style={styles.profileInfoTextLabel}>Shopped</Text>
-                                </View>
-                                <Text style={styles.profileInfoTextLabelBig}> 389 </Text>    
-                            </View>
-                            <View style={styles.profileInfo}>
-                                <View style={styles.profileInfoLabel} >
-                                    <Icon name="gift" size={20} color="#fff" />
-                                    <Text style={styles.profileInfoTextLabel}>Claimed</Text>
-                                </View>
-                                <Text style={styles.profileInfoTextLabelBig}> 67 </Text>    
-                            </View>
-                        </ScrollView>
-                        {/* End of Rate, Suki, Shopped, Claimed */}
+                       
                     </View>    
                 </ImageBackground>
                 {/* End of Profile Header */}
 
+                 {/* Rate, Suki, Shopped, Claimed */}
+                 <View style={styles.profileDetails}>
+                    <View style={styles.dualTitleWrap}>
+                        <View style={styles.dualTitleContainer}>
+                            <Icon name="gift" size={25} color="#1a9d43" />
+                            <Text style={styles.dualTitle}> Shop Summary</Text>
+                        </View>
+                        <View style={styles.dualTitleContainer}>
+                            <Text style={styles.dualTitleSmall}> View Full Report</Text>
+                            <Icon style={styles.dualTitleSmallIcon} name="right" size={20} />
+                        </View>
+                    </View>    
+                    <ScrollView horizontal={true} style={styles.profileInfosContainer}>
+                                <View style={styles.profileInfo1}>
+                                    <Text style={styles.profileInfoTextLabelBig}> 4.5 </Text> 
+                                    <View style={styles.profileInfoLabel} >
+                                        {/* <Icon name="star" size={15} color="#fff" /> */}
+                                        <Text style={styles.profileInfoTextLabel}>Rate</Text>
+                                    </View>   
+                                </View>
+                                <View style={styles.profileInfo2}>
+                                    <Text style={styles.profileInfoTextLabelBig}> 200 </Text>
+                                    <View style={styles.profileInfoLabel} >
+                                        {/* <Icon name="smileo" size={15} color="#fff" /> */}
+                                        <Text style={styles.profileInfoTextLabel}>My Suki</Text>
+                                    </View>    
+                                </View>
+                                <View style={styles.profileInfo3}>
+                                <Text style={styles.profileInfoTextLabelBig}> 389 </Text>
+                                    <View style={styles.profileInfoLabel} >
+                                        {/* <Icon name="shoppingcart" size={15} color="#fff" /> */}
+                                        <Text style={styles.profileInfoTextLabel}>Shopped</Text>
+                                    </View>    
+                                </View>
+                                <View style={styles.profileInfo4}>
+                                    <Text style={styles.profileInfoTextLabelBig}> 67 </Text>
+                                    <View style={styles.profileInfoLabel} >
+                                        {/* <Icon name="gift" size={15} color="#fff" /> */}
+                                        <Text style={styles.profileInfoTextLabel}>Claimed</Text>
+                                    </View>    
+                                </View>
+                            </ScrollView>
+                        </View>    
+                        {/* End of Rate, Suki, Shopped, Claimed */}
+
                 {/* QR code Scanner */}
                 <TouchableOpacity onPress={()=> props.navigation.navigate('QRCodeScanner')}>
                     <View style={styles.scanQRContainer}>
-                            <Text style={styles.scanQRContainerLabel}>Scan QR Code</Text>
-                            <Text style={styles.scanQRContainerLabelSmall}>Scan QR code provided by customers.</Text>
+                        <View style={styles.scanQRWrap}>
+                            <Icon name="qrcode" size={45} color="#fff" style={styles.scanQRIcon} />
+                            <View>
+                                <Text style={styles.scanQRContainerLabel}>Scan QR Code</Text>
+                                <Text style={styles.scanQRContainerLabelSmall}>Scan QR code provided by customers.</Text>
+                            </View>
+                        </View>        
                     </View>
                 </TouchableOpacity>    
                 {/* End of QR Code Scanner */}
 
                 {/* APresto Products */}
-                <View style={styles.dualTitleContainer}>
-                    <Icon name="shoppingcart" size={30} color="#fd4140" />
-                    <Text style={styles.dualTitle}> APresto Products</Text>
-                </View>
-                <View style={styles.dual}>
-                    <TouchableOpacity onPress={()=>navigation.navigate('clientProductList')}>
-                        <View style={styles.dualContent}>
-                            <ImageBackground style={styles.dualBgImage}
-                                imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/bannerPeach.jpg')}>
-                                <View style={styles.darken}> 
-                                    <Text style={styles.dualLabel}>My Products</Text>
-                                    <Text style={styles.dualLabelSmall}>Gems around corners</Text>
-                                </View>
-                            </ImageBackground>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>navigation.navigate('clientProductAdd')}>
-                        <View style={styles.dualContent}>
-                            <ImageBackground style={styles.dualBgImage}
-                                imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/bannerPeach.jpg')}>
-                                <View style={styles.darken}>
-                                    <Text style={styles.dualLabel}>Add Product</Text>
-                                    <Text style={styles.dualLabelSmall}>Stores you love</Text>
-                                </View>    
-                            </ImageBackground>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <View style={styles.dualShadow}>
+                    <View style={styles.dualTitleContainer}>
+                        <Icon name="shoppingcart" size={25} color="#d74f0d" />
+                        <Text style={styles.dualTitle}> APresto Products</Text>
+                    </View>
+                    <View style={styles.dual}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('clientProductList')}>
+                            <View style={styles.dualContent}>
+                                <ImageBackground style={styles.dualBgImage}
+                                    imageStyle={{ borderRadius: 30}}
+                                    source={require('../../assets/bannerPeach.jpg')}>
+                                    <View style={styles.darken}> 
+                                        <Text style={styles.dualLabel}>My Products</Text>
+                                        <Text style={styles.dualLabelSmall}>Gems around corners</Text>
+                                    </View>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('clientProductAdd')}>
+                            <View style={styles.dualContent}>
+                                <ImageBackground style={styles.dualBgImage}
+                                    imageStyle={{ borderRadius: 30}}
+                                    source={require('../../assets/bannerPeach.jpg')}>
+                                    <View style={styles.darken}>
+                                        <Text style={styles.dualLabel}>Add Product</Text>
+                                        <Text style={styles.dualLabelSmall}>Stores you love</Text>
+                                    </View>    
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>    
                 {/* End of APresto Products */}
 
                 {/* APresto Rewards */}
-                <View style={styles.dualTitleContainer}>
-                    <Icon name="gift" size={30} color="#fd4140" />
-                    <Text style={styles.dualTitle}> APresto Rewards</Text>
-                </View>
-                <View style={styles.dual}>
-                    <TouchableOpacity onPress={()=>navigation.navigate('clientRewardList')}>
-                        <View style={styles.dualContent}>
-                            <ImageBackground style={styles.dualBgImage}
-                                imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/bannerLightBlue.jpg')}>
-                                <View style={styles.darken}> 
-                                    <Text style={styles.dualLabel}>My Rewards</Text>
-                                    <Text style={styles.dualLabelSmall}>Gems around corners</Text>
-                                </View>
-                            </ImageBackground>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>navigation.navigate('clientRewardAdd')}>
-                        <View style={styles.dualContent}>
-                            <ImageBackground style={styles.dualBgImage}
-                                imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/bannerLightBlue.jpg')}>
-                                <View style={styles.darken}>
-                                    <Text style={styles.dualLabel}>Add Rewards</Text>
-                                    <Text style={styles.dualLabelSmall}>Stores you love</Text>
-                                </View>    
-                            </ImageBackground>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <View style={styles.dualShadow}>
+                    <View style={styles.dualTitleContainer}>
+                        <Icon name="gift" size={25} color="#25adab" />
+                        <Text style={styles.dualTitle}> APresto Rewards</Text>
+                    </View>
+                    <View style={styles.dual}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('clientRewardList')}>
+                            <View style={styles.dualContent}>
+                                <ImageBackground style={styles.dualBgImage}
+                                    imageStyle={{ borderRadius: 30}}
+                                    source={require('../../assets/bannerLightBlue.jpg')}>
+                                    <View style={styles.darken}> 
+                                        <Text style={styles.dualLabel}>My Rewards</Text>
+                                        <Text style={styles.dualLabelSmall}>Gems around corners</Text>
+                                    </View>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('clientRewardAdd')}>
+                            <View style={styles.dualContent}>
+                                <ImageBackground style={styles.dualBgImage}
+                                    imageStyle={{ borderRadius: 30}}
+                                    source={require('../../assets/bannerLightBlue.jpg')}>
+                                    <View style={styles.darken}>
+                                        <Text style={styles.dualLabel}>Add Rewards</Text>
+                                        <Text style={styles.dualLabelSmall}>Stores you love</Text>
+                                    </View>    
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>    
                 {/* End of APresto Rewards */}
 
                 {/* My Suki */}
-                <View style={styles.dualTitleContainer}>
-                    <Icon name="smileo" size={30} color="#fd4140" />
-                    <Text style={styles.dualTitle}> My Suki</Text>
-                </View>
-                <ImageBackground style={styles.sukiBgImage}
-                    imageStyle={{ borderRadius: 30}}
-                    source={require('../../assets/bannerViolet.jpg')}>
-                    <View style={styles.sukiDarken}>
-                        <Text style={styles.sukiLabel}>Sukis are essential for your business growth</Text>
-                        <Text style={styles.sukiLabelSmall}>You can know who among your suki loves you most.</Text>
-                        <TouchableOpacity style={styles.sukiButton} onPress={() => navigation.navigate('clientSukiList')} >
-                            {/* <Icon name="logout" size={20} color="#fff" /> */}
-                            <Text style={styles.sukiButtonLabel}>View Suki</Text>
-                        </TouchableOpacity>
-                    </View>    
-                </ImageBackground>
+                <View style={styles.dualShadow}>
+                    <View style={styles.dualTitleContainer}>
+                        <Icon name="smileo" size={25} color="#37375e" />
+                        <Text style={styles.dualTitle}> My Suki</Text>
+                    </View>
+                    <ImageBackground style={styles.sukiBgImage}
+                        imageStyle={{ borderRadius: 30}}
+                        source={require('../../assets/bannerViolet.jpg')}>
+                        <View style={styles.sukiDarken}>
+                            <Text style={styles.sukiLabel}>Sukis are essential for your business growth</Text>
+                            <Text style={styles.sukiLabelSmall}>You can know who among your suki loves you most.</Text>
+                            <TouchableOpacity style={styles.sukiButton} onPress={() => navigation.navigate('clientSukiList')} >
+                                <Text style={styles.sukiButtonLabel}>View Suki</Text>
+                            </TouchableOpacity>
+                        </View>    
+                    </ImageBackground>
+                </View>    
                 {/* End of My Suki */}
 
             </ScrollView>
@@ -207,9 +230,7 @@ const styles = StyleSheet.create({
     },
     container:{
         alignSelf: "center",
-        // borderWidth: 1,
-        // borderColor: "red",
-        width: wp('90%')
+        width: wp('100%')
     },
     droidSafeArea: {
         flex: 1,
@@ -220,7 +241,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",  
         justifyContent: "space-between",
         flexDirection: "row",
-        marginBottom: 10,
         height: 180,
         width: wp('90%'),
     },
@@ -237,10 +257,10 @@ const styles = StyleSheet.create({
     },
     dualLabel: {
         textAlign: "left",
-        marginLeft: 20,
+        marginLeft: 18,
         marginTop: 100,
         color: "#29312e",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold"
     },
     dualLabelSmall: {
@@ -252,8 +272,7 @@ const styles = StyleSheet.create({
     },
     dualTitle: {
         textAlign: "left",
-        marginLeft: 3,
-        marginTop: 3,
+        marginLeft: 10,
         marginBottom: 5,
         fontSize: 18,
         fontWeight: "bold"
@@ -261,10 +280,42 @@ const styles = StyleSheet.create({
     dualTitleContainer: {
         flexDirection: "row",
         marginBottom: 5,
-        marginLeft: 5
+        marginLeft: wp('5%'),
+    },
+    dualTitleSmall: {
+        fontSize: 12,
+        opacity: .5,
+        marginTop: 5,
+        marginRight: 2
+    },
+    dualTitleSmallIcon: {
+        opacity: .5,
+        marginTop: 3
+    },
+    dualTitleWrap: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: wp('100%'),
+        paddingRight: wp('5%')
     },
     dualContainer: {
         flexDirection: "row"
+    },
+    dualShadow: {
+        marginTop: 5,
+        marginBottom: 5,
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     darken:{
         // flex: 1,
@@ -274,17 +325,14 @@ const styles = StyleSheet.create({
     title: {
         textAlign: "center",
         marginBottom: 10,
-        // color: "#fd4140",
         fontSize: 24,
         fontWeight: "bold"
     },
     profileBgImage: {
         alignSelf: "center",
-        borderRadius: 30,
         marginBottom: 5,
-        marginTop: 10,
-        height: 300,
-        width: wp('90%'),
+        height: 200,
+        width: wp('100%'),
     },
     profileButton: {
         borderColor: "#fff",
@@ -293,7 +341,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: "row",
         justifyContent: 'space-evenly',
-        marginTop: 20,
+        marginTop: 30,
         width: 100,
         height: 35,
     },
@@ -301,56 +349,98 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         flexDirection: "row",
         justifyContent:"space-between",
-        width: '70%',
+        width: '60%',
     },
     profileButtonLabel: {
         color: "#fff",
         fontSize: 12
     },
-    profileInfo:{
-        height: 100,
-        width: 100,
-        // backgroundColor: "#fd4140",
-        borderRadius: 30,
+    profileDarken:{
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+    },
+    profileDetails: {
+        marginTop: 5,
+        marginBottom: 5,
+        height: 120,
+        paddingTop: 10,
+        paddingBottom: 10,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
+    },
+    profileInfo1:{
+        width: 75,
+        borderRadius: 35,
         borderWidth:1,
         borderColor: "#fff",
-        backgroundColor: "#29312e",
-        marginRight:5,
-        marginLeft: 5
+        backgroundColor: "#37375e",
+        marginRight:2,
+        marginLeft: 2
+    },
+    profileInfo2:{
+        width: 75,
+        borderRadius: 35,
+        borderWidth:1,
+        borderColor: "#fff",
+        backgroundColor: "#375e43",
+        marginRight:2,
+        marginLeft: 2
+    },
+    profileInfo3:{
+        width: 75,
+        borderRadius: 35,
+        borderWidth:1,
+        borderColor: "#fff",
+        backgroundColor: "#d74f0d",
+        marginRight:2,
+        marginLeft: 2
+    },
+    profileInfo4:{
+        width: 75,
+        borderRadius: 35,
+        borderWidth:1,
+        borderColor: "#fff",
+        backgroundColor: "#25adab",
+        marginRight:2,
+        marginLeft: 2
     },
     profileInfosContainer: {
         alignSelf: "center",
-        borderRadius: 30,
         flexDirection: "row",
-        height: 100,
-        width: wp('80%'),
-        marginTop: 20,
+        width: wp('90%'),
     },
     profileInfoLabel:{
         alignSelf: 'center',
         flexDirection: "row",
         justifyContent: 'space-evenly',
-        marginTop: 20,
         height: 35,
     },
     profileInfoTextLabelBig:{
         alignSelf: 'center',
         color: "#fff",
-        fontSize: 40,
+        fontSize: 18,
         fontWeight: "bold",
-        marginTop: -20
+        marginTop: 10
         
     },
     profileInfoTextLabel:{
         color: "#fff",
-        fontSize: 14,
+        fontSize: 12,
         marginLeft: 3
     },
     profileShopName: {
         textAlign: "center",
         marginTop: 35,
         color: "#fff",
-        fontSize: 30,
+        fontSize: 24,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -363,23 +453,15 @@ const styles = StyleSheet.create({
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
-    profileDarken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 30,
-    },
     title: {
         textAlign: "center",
-        // marginBottom: 10,
         fontSize: 24,
         fontWeight: "bold",
         color: "#fd4140",
         paddingTop: 10,
 
         backgroundColor: 'white',
-        // borderRadius: 20,
         height: 55,
-        // paddingBottom: 40,
         shadowColor: "#000",
         shadowOffset: {
         width: 0,
@@ -388,7 +470,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
         elevation: 7,
-        // marginBottom: 15
     },
     titleTransact: {
         textAlign: "center",
@@ -405,29 +486,44 @@ const styles = StyleSheet.create({
     },
     scanQRContainer: {
         alignSelf: "center",
-        backgroundColor: "#fe1100",
+        backgroundColor: "#fd4140",
         borderRadius: 30,
         marginTop: 5,
         marginBottom: 15,
-        height: 70,
+        height: 65,
         width: wp('90%'),
+
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     scanQRContainerLabel: {
-        textAlign: "center",
         marginTop: 10,
         color: "#fff",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
     scanQRContainerLabelSmall: {
-        textAlign: "center",
         marginTop: 2,
         color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
+    },
+    scanQRIcon: {
+        marginTop: 10,
+    },
+    scanQRWrap: {
+        alignSelf: "center",
+        flexDirection: "row", 
+        height: 65,  
     },
     sukiBgImage: {
         alignSelf: "center",
@@ -445,7 +541,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 35,
         color: "#fff",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
