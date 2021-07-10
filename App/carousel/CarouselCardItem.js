@@ -14,6 +14,9 @@ const CarouselCardItem = ({ item, index }) => {
   return (
     <View style={styles.container} key={index}>
       <Image
+        // resizeMode={'contain'}
+        borderTopLeftRadius= {20}
+        borderTopRightRadius= {20}
         source={item.img}
         style={styles.image}
       />
@@ -25,7 +28,7 @@ const CarouselCardItem = ({ item, index }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 10,
     width: ITEM_WIDTH,
     height: 320,
     // paddingBottom: 10,
@@ -43,8 +46,9 @@ const styles = StyleSheet.create({
   image: {
     width: ITEM_WIDTH,
     height: 200,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    marginTop: 10
   },
   header: {
     color: "#222",

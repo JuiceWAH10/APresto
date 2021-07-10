@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import validator from "validator";
 import { auth } from "firebase";
 import { Input } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 //validation function of email
 const validateFields = (email, password, firstName) => {
@@ -35,6 +36,8 @@ const createAccount = (email, password) => {
 
 
 function signupCustomer(props) {
+    const navigation = useNavigation();
+
     //below statements are not used
     const [firstName, setTextFN] = React.useState('');
     const [lastName, setTextLN] = React.useState('');
@@ -66,7 +69,9 @@ function signupCustomer(props) {
     return (
         <SafeAreaView style={styles.droidSafeArea}>       
             <View style={[styles.topContainer, {flex:1}]}>
-                <Icon name="left" size={30} color="#fd4140" />
+                <TouchableOpacity onPress={() => navigation.goBack()} >
+                    <Icon name="left" size={30} color="#fd4140" />
+                </TouchableOpacity>    
             </View>
             <View style={[styles.formContainer, {flex:15}]}>          
                 <Text style={styles.title}>Sign Up</Text>

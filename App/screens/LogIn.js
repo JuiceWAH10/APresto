@@ -68,7 +68,7 @@ function LogIn(props) {
           style={styles.BGImage}
           source={require('../assets/Store-Blur.png')}>
         <SafeAreaView style={styles.droidSafeArea}>
-        
+        <Image style={styles.Image} source={require('../assets/images/splashScreen.gif')}/>
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
@@ -79,8 +79,8 @@ function LogIn(props) {
 
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
-                source={require('../assets/Logo-AP-name.png')}></Image>
-                <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
+                source={require('../assets/Logo-AP.png')}></Image>
+                <Text style={{color: '#fff', fontSize: 12, marginTop: 10}}>Loyalty and Rewards on your Hands</Text>
             </View>
             {/* <View style={styles.title}>
               <Text style={{color: '#fe1100', fontSize: 45}}>APresto</Text>
@@ -157,6 +157,12 @@ function LogIn(props) {
 }
 
 const styles = StyleSheet.create({
+  Image: {
+    flex: 1,
+    position: "absolute",
+    // width: wp('100%'),
+    // height: hp('100%'),
+  },
   droidSafeArea: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 32 : 0
@@ -205,8 +211,12 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   Logo:{
-    width: wp('20%'),
-    height: hp('20%'),
+    // width: wp('20%'),
+    // height: hp('20%'),
+    width: 120,
+    height: 120,
+    borderRadius: 120,
+    borderWidth: 1
   },
   LogoContainer:{
     // position: "absolute",

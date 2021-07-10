@@ -7,6 +7,7 @@ function SplashScreen(props) {
         <ImageBackground
             style={styles.BGImage}
             source={require('../assets/Store-Blur.png')}>
+          <Image style={styles.Image} source={require('../assets/images/splashScreen.gif')}/>
           <SafeAreaView style={styles.droidSafeArea}>
             <TouchableOpacity onPress={() => props.navigation.navigate('signupCustomer')}>
               <View style={styles.SignUpButton}>
@@ -20,8 +21,8 @@ function SplashScreen(props) {
             </TouchableOpacity>
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
-                source={require('../assets/Logo-AP-name.png')}></Image>
-                <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
+                source={require('../assets/Logo-AP.png')}></Image>
+                <Text style={{color: '#fff', fontSize: 14, marginTop: 10}}>Loyalty and Rewards on your Hands</Text>
             </View>
           </SafeAreaView>
         </ImageBackground>
@@ -34,14 +35,21 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'flex-end',   
     },
+    Image: {
+      flex: 1,
+      position: "absolute",
+      // width: wp('100%'),
+      // height: hp('100%'),
+    },
     droidSafeArea: {
       flex: 1,
       paddingTop: Platform.OS === 'android' ? 32 : 0,
       flexDirection: "column-reverse"
     },
     Logo:{
-      width: wp('25%'),
-      height: hp('25%'),
+      width: 150,
+      height: 150,
+      borderRadius: 150,
       borderWidth: 1
     },
     LogoContainer:{

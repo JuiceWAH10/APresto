@@ -3,10 +3,11 @@ import { Image, ImageBackground, Platform, SafeAreaView, ScrollView, StyleSheet,
 import Icon from 'react-native-vector-icons/AntDesign';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { auth } from "firebase";
+import { useNavigation } from '@react-navigation/native';
 
 
 function profile(props) {
-    
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Header */}
@@ -19,7 +20,7 @@ function profile(props) {
                     <Text style={styles.profileUsername}>Username</Text>
                     <Text style={styles.profileFullname}>Full Name</Text>
                     <View style={styles.profileButtonContainer}>
-                        <TouchableOpacity style={styles.profileButton} onPress={() => "pressed"} >
+                        <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('customerEditProfile')} >
                             <Icon name="user" size={20} color="#fff" />
                             <Text style={styles.profileButtonLabel}>Edit Profile</Text>
                         </TouchableOpacity>
