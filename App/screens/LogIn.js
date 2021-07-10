@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -7,6 +7,8 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import validator from "validator";
 import { auth } from "firebase";
+import { Input } from 'react-native-elements';
+
 
 //validation function of email
 const validateFields = (email, password) => {
@@ -87,25 +89,31 @@ function LogIn(props) {
             </View>   */}
               <View style={styles.LogInContainer}>
                 <Text style={{color: '#fd4140', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
-                <TextInput
-                    //Email input
-                    style={styles.textEmail}
-                    placeholder="Email"
-                    text={emailField.text}
-                    onChangeText={(text) => {setEmailField({text});}}
-                    errorMessage={emailField.errorMessage}
-                    autoCompleteType="email"
-                />
-                <TextInput
-                    //Password input
-                    style={styles.textPassword}
-                    //secureTextEntry={true}
-                    placeholder="Password"
-                    text={passwordField.text}
-                    onChangeText={(text) => {setPasswordField({text});}}
-                    errorMessage={passwordField.errorMessage}
-                    autoCompleteType="password"
-                />
+                <View style={styles.textView}>
+                  <Input
+                      //Email input
+                      style={styles.textEmail}
+                      leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+                      placeholder="Email"
+                      text={emailField.text}
+                      onChangeText={(text) => {setEmailField({text});}}
+                      errorMessage={emailField.errorMessage}
+                      autoCompleteType="email"
+                  />
+                </View>
+                <View style={styles.textView}>  
+                  <Input
+                      //Password input
+                      style={styles.textPassword}
+                      leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                      //secureTextEntry={true}
+                      placeholder="Password"
+                      text={passwordField.text}
+                      onChangeText={(text) => {setPasswordField({text});}}
+                      errorMessage={passwordField.errorMessage}
+                      autoCompleteType="password"
+                  />
+                </View>  
                 <View style={styles.checkbox}>
                   <CheckBox
                     disabled={false}
@@ -123,14 +131,14 @@ function LogIn(props) {
                   let isAllValid = true;
                   if(!isValid.email){
                     console.log("Please enter a valid email...")
-                    //emailField.errorMessage = "Please enter a valid email";
+                    emailField.errorMessage = "Please enter a valid email";
                     setEmailField({...emailField})
                     isAllValid = false;
                   }
 
                   if(!isValid.password){
                     console.log("Password must be at least 8 long characters with numbers")
-                    //passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                    passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
                     setPasswordField({...passwordField})
                     isAllValid = false;
                   }
@@ -220,20 +228,27 @@ const styles = StyleSheet.create({
     // top: hp('40%'),
   },
   textEmail: {
-    width: '80%',
+    width: wp('80%'),
     height: 50,
-    borderColor: '#1c2b59',
-    marginVertical: 10
-    // top: 60
-  },
-  textPassword: {
-    width: '80%',
-    height: 50,
-    borderColor: '#1c2b59',
-    marginVertical: 10
+    fontSize: 16,
+    marginLeft: 10,
+    // borderColor: '#1c2b59',
+    marginVertical: 2
     // top: 80
   },
-
+  textPassword: {
+    width: wp('80%'),
+    height: 50,
+    fontSize: 16,
+    marginLeft: 10,
+    // borderColor: '#1c2b59',
+    marginVertical: 2
+    // top: 80
+  },
+  textView: {
+    width: '90%',
+    alignItems: 'center'
+  },
   checkbox: {
     flex: 1,
     flexDirection: 'row',
