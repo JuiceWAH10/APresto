@@ -36,7 +36,7 @@ function explore(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/Map.jpg')}>
+                                source={require('../../assets/dualImages/near_Me.jpg')}>
                                 <View style={styles.darken}> 
                                     <Text style={styles.dualLabel}>Near Me</Text>
                                     <Text style={styles.dualLabelSmall}>Gems around corners</Text>
@@ -48,7 +48,8 @@ function explore(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/Liked_Shop.jpg')}>
+                                // resizeMode={'contain'}
+                                source={require('../../assets/dualImages/liked_Shops.jpg')}>
                                 <View style={styles.darken}>
                                     <Text style={styles.dualLabel}>Liked Shops</Text>
                                     <Text style={styles.dualLabelSmall}>Stores you love</Text>
@@ -156,22 +157,22 @@ const styles = StyleSheet.create({
     dualLabel: {
         textAlign: "left",
         marginLeft: 20,
-        marginTop: 100,
+        marginTop: 120,
         color: "#fff",
         fontSize: 18,
         fontWeight: "bold"
     },
     dualLabelSmall: {
         textAlign: "left",
-        marginLeft: 22,
+        marginLeft: 20,
         marginTop: 2,
         color: "#fff",
         fontSize: 12,
     },
     darken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.4)',
+        // borderRadius: 30,
     },
     mostReviewsContainer: {
         alignSelf: "center",  
@@ -224,7 +225,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 24,
         fontWeight: "bold",
-        color: "#fd4140",
+        color: "#ee4b43",
         paddingTop: 12,
 
         backgroundColor: 'white',

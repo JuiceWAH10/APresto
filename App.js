@@ -76,7 +76,7 @@ const customerBottomTabs = () =>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#fd4140",
+        activeTintColor: "#ee4b43",
         inactiveTintColor: 'black'
       }}
     >

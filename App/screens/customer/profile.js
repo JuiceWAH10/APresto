@@ -12,7 +12,7 @@ function profile(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Header */}
             <ImageBackground style={styles.profileBgImage}
-                    source={require('../../assets/bannerRed.jpg')}>
+                    source={require('../../assets/images/orange_Header.jpg')}>
                 <View style={styles.profileDarken}>
                     <Image style={styles.profileProfileImage}
                         source={require('../../assets/Store.jpg')}>
@@ -37,7 +37,7 @@ function profile(props) {
                 {/* For last transaction */}
                 <ImageBackground style={styles.transactBannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../assets/bannerPeach.jpg')}>
+                    source={require('../../assets/bannerImages/cart_Banner.jpg')}>
                     <View style={styles.transactBannerDarken}>
                         <Text style={styles.transactBannerLabel}>You visited the Shop!</Text>
                             <Text style={styles.transactBannerLabelSmall}>Earned 100 reward points.</Text>
@@ -52,7 +52,7 @@ function profile(props) {
                 {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../assets/bannerLightBlue.jpg')}>
+                    source={require('../../assets/bannerImages/cart_Banner2.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>The more you spend the more you enjoy!</Text>
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
     },
     bannerDarken:{
         // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // backgroundColor: 'rgba(0,0,0,0.2)',
         // borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     profileDarken:{
-        // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.15)',
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.2)',
         // borderRadius: 30,
     },
     profileFullname: {
@@ -185,7 +185,9 @@ const styles = StyleSheet.create({
         width: 100,
         borderRadius: 100,
         marginTop: 30,
-        marginBottom: 20
+        marginBottom: 20,
+        borderWidth: 2,
+        borderColor: "#ee4b43",
     },
     profileShopName: {
         textAlign: "center",

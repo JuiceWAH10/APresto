@@ -114,10 +114,10 @@ function clientHomepage(props) {
                             <View style={styles.dualContent}>
                                 <ImageBackground style={styles.dualBgImage}
                                     imageStyle={{ borderRadius: 30}}
-                                    source={require('../../assets/bannerPeach.jpg')}>
+                                    source={require('../../assets/dualImages/my_Products.jpg')}>
                                     <View style={styles.darken}> 
                                         <Text style={styles.dualLabel}>My Products</Text>
-                                        <Text style={styles.dualLabelSmall}>Gems around corners</Text>
+                                        <Text style={styles.dualLabelSmall}>View all products</Text>
                                     </View>
                                 </ImageBackground>
                             </View>
@@ -126,10 +126,10 @@ function clientHomepage(props) {
                             <View style={styles.dualContent}>
                                 <ImageBackground style={styles.dualBgImage}
                                     imageStyle={{ borderRadius: 30}}
-                                    source={require('../../assets/bannerPeach.jpg')}>
+                                    source={require('../../assets/dualImages/add_Products.jpg')}>
                                     <View style={styles.darken}>
                                         <Text style={styles.dualLabel}>Add Product</Text>
-                                        <Text style={styles.dualLabelSmall}>Stores you love</Text>
+                                        <Text style={styles.dualLabelSmall}>New product? Add it</Text>
                                     </View>    
                                 </ImageBackground>
                             </View>
@@ -149,10 +149,10 @@ function clientHomepage(props) {
                             <View style={styles.dualContent}>
                                 <ImageBackground style={styles.dualBgImage}
                                     imageStyle={{ borderRadius: 30}}
-                                    source={require('../../assets/bannerLightBlue.jpg')}>
+                                    source={require('../../assets/dualImages/my_Rewards.jpg')}>
                                     <View style={styles.darken}> 
                                         <Text style={styles.dualLabel}>My Rewards</Text>
-                                        <Text style={styles.dualLabelSmall}>Gems around corners</Text>
+                                        <Text style={styles.dualLabelSmall}>View all rewards</Text>
                                     </View>
                                 </ImageBackground>
                             </View>
@@ -161,10 +161,10 @@ function clientHomepage(props) {
                             <View style={styles.dualContent}>
                                 <ImageBackground style={styles.dualBgImage}
                                     imageStyle={{ borderRadius: 30}}
-                                    source={require('../../assets/bannerLightBlue.jpg')}>
+                                    source={require('../../assets/dualImages/add_Rewards.jpg')}>
                                     <View style={styles.darken}>
                                         <Text style={styles.dualLabel}>Add Rewards</Text>
-                                        <Text style={styles.dualLabelSmall}>Stores you love</Text>
+                                        <Text style={styles.dualLabelSmall}>New reward? Add it</Text>
                                     </View>    
                                 </ImageBackground>
                             </View>
@@ -181,7 +181,7 @@ function clientHomepage(props) {
                     </View>
                     <ImageBackground style={styles.sukiBgImage}
                         imageStyle={{ borderRadius: 30}}
-                        source={require('../../assets/bannerViolet.jpg')}>
+                        source={require('../../assets/bannerImages/banner_Suki.jpg')}>
                         <View style={styles.sukiDarken}>
                             <Text style={styles.sukiLabel}>Sukis are essential for your business growth</Text>
                             <Text style={styles.sukiLabelSmall}>You can know who among your suki loves you most.</Text>
@@ -258,16 +258,16 @@ const styles = StyleSheet.create({
     dualLabel: {
         textAlign: "left",
         marginLeft: 18,
-        marginTop: 100,
-        color: "#29312e",
+        marginTop: 120,
+        color: "#fff",
         fontSize: 18,
         fontWeight: "bold"
     },
     dualLabelSmall: {
         textAlign: "left",
-        marginLeft: 22,
+        marginLeft: 20,
         marginTop: 2,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
     },
     dualTitle: {
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
     },
     profileDarken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
+        backgroundColor: 'rgba(0,0,0,0.2)',
     },
     profileDetails: {
         marginTop: 5,
@@ -399,7 +399,7 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         borderWidth:1,
         borderColor: "#fff",
-        backgroundColor: "#d74f0d",
+        backgroundColor: "#fd6d48",
         marginRight:2,
         marginLeft: 2
     },
@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         borderWidth:1,
         borderColor: "#fff",
-        backgroundColor: "#25adab",
+        backgroundColor: "#0d606b",
         marginRight:2,
         marginLeft: 2
     },
@@ -457,7 +457,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 24,
         fontWeight: "bold",
-        color: "#fd4140",
+        color: "#ee4b43",
         paddingTop: 10,
 
         backgroundColor: 'white',
@@ -486,7 +486,7 @@ const styles = StyleSheet.create({
     },
     scanQRContainer: {
         alignSelf: "center",
-        backgroundColor: "#fd4140",
+        backgroundColor: "#ee4b43",
         borderRadius: 30,
         marginTop: 5,
         marginBottom: 15,
@@ -533,9 +533,9 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     sukiDarken:{
-        // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.15)',
-        // borderRadius: 30,
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.15)',
+        borderRadius: 30,
     },
     sukiLabel: {
         textAlign: "center",

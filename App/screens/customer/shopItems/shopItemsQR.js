@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     container:{
         alignContent: "center",
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         flex: 1
     },
     qrContainer:{

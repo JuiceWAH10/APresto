@@ -66,9 +66,9 @@ function LogIn(props) {
     return (
       <ImageBackground
           style={styles.BGImage}
-          source={require('../assets/Store-Blur.png')}>
+          source={require('../assets/images/orange_Bg_Darken.jpg')}>
+        {/* <Image style={styles.Image} source={require('../assets/images/orange_Bg.jpg')}/> */}
         <SafeAreaView style={styles.droidSafeArea}>
-        <Image style={styles.Image} source={require('../assets/images/splashScreen.gif')}/>
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
@@ -88,7 +88,7 @@ function LogIn(props) {
               <Text style={{color: '#fe1100', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>   */}
               <View style={styles.LogInContainer}>
-                <Text style={{color: '#fd4140', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
+                <Text style={{color: '#ee4b43', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
                 <View style={styles.textView}>
                   <Input
                       //Email input
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "absolute",
     // width: wp('100%'),
-    // height: hp('100%'),
+    height: hp('100%'),
   },
   droidSafeArea: {
     flex: 1,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   LogInButton: {
     width: wp('80%'),
     height: hp('6%'),
-    backgroundColor: '#fd4140',
+    backgroundColor: '#ee4b43',
     borderRadius: 30,
     // top:  hp('45%'),
     alignSelf: 'center',
@@ -213,9 +213,9 @@ const styles = StyleSheet.create({
   Logo:{
     // width: wp('20%'),
     // height: hp('20%'),
-    width: 120,
-    height: 120,
-    borderRadius: 120,
+    width: 100,
+    height: 100,
+    borderRadius: 100,
     borderWidth: 1
   },
   LogoContainer:{

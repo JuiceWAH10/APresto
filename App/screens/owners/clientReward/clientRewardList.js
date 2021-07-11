@@ -28,7 +28,7 @@ function clientRewardList(props) {
             {/* Top Navigation and Search Bar */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 style={styles.backButton} name="left" size={30} color="#aacfdd" />
+                    <Icon2 style={styles.backButton} name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>   
                 <Searchbar
                         style={styles.searchBar}
@@ -76,14 +76,14 @@ function clientRewardList(props) {
                 <ClientAllShopRewards/>
 
                 {/* Banner */}
-                <ImageBackground style={styles.bannerBgImage}
+                {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
                     source={require('../../../assets/bannerLightBlue.jpg')}>
                     <View style={styles.darken}>
                         <Text style={styles.bannerLabel}>Visit Shops now to claim awesome rewards.</Text>
                         <Text style={styles.bannerLabelSmall}>Spending for the products  you love give you rewards!</Text>
                     </View>    
-                </ImageBackground>
+                </ImageBackground> */}
                 {/* End of Banner */}
                 
             </ScrollView>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     headContainer: {
         alignSelf: "center",
         justifyContent: "center",
-        backgroundColor: "#aacfdd",
+        backgroundColor: "#ee4b43",
         borderRadius: 30,
         marginBottom: 8,
         height: 74,

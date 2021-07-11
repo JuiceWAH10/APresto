@@ -21,7 +21,7 @@ function rewardItemsCart(props) {
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#37375e" />
+                    <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
             </View>
             {/* End of Navigation */}
@@ -30,7 +30,7 @@ function rewardItemsCart(props) {
                 {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/bannerViolet.jpg')}>
+                    source={require('../../../assets/bannerImages/cart_Banner2.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>Shop more! For every items has corresponding points!</Text>
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
@@ -76,9 +76,9 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     bannerDarken:{
-        // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.5)',
-        // borderRadius: 30,
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     button: {
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         borderRadius: 30,
         alignItems: 'center',
         alignSelf: "center",
