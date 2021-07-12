@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     button: {
-        backgroundColor: '#ee4b43',
+        backgroundColor: '#071964',
         borderRadius: 30,
         alignItems: 'center',
         alignSelf: "center",

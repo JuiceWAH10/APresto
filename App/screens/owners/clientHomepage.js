@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -17,7 +18,11 @@ function clientHomepage(props) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <Text style={styles.title}>APresto Shop</Text>
+            {/* <Text style={styles.title}>APresto Shop</Text> */}
+            <View style={styles.title}>
+                <Image style={styles.logoHeader} 
+                source={require('../../assets/images/clientHeader.png')}/>
+            </View>
             <ScrollView style={styles.container}>
                 {/* Profile Header for Shops */}
                 <ImageBackground style={styles.profileBgImage}
@@ -322,6 +327,11 @@ const styles = StyleSheet.create({
         // backgroundColor: 'rgba(0,0,0,0.15)',
         // borderRadius: 30,
     },
+    logoHeader: {
+        height: 60,
+        width: wp('100%'),
+        resizeMode: 'contain'
+    },
     title: {
         textAlign: "center",
         marginBottom: 10,
@@ -458,10 +468,10 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         color: "#ee4b43",
-        paddingTop: 10,
+        paddingTop: 4,
 
         backgroundColor: 'white',
-        height: 55,
+        height: 60,
         shadowColor: "#000",
         shadowOffset: {
         width: 0,

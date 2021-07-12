@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -21,7 +22,11 @@ function explore(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <Text style={styles.title}>Explore APresto</Text>
+            {/* <Text style={styles.title}>Explore APresto</Text> */}
+            <View style={styles.title}>
+                <Image style={styles.logoHeader} 
+                source={require('../../assets/images/explore.png')}/>
+            </View>
             <ScrollView style={[styles.container, {flex:1}]}>
 
                 <CarouselCards /> 
@@ -174,6 +179,11 @@ const styles = StyleSheet.create({
         // backgroundColor: 'rgba(0,0,0,0.4)',
         // borderRadius: 30,
     },
+    logoHeader: {
+        height: 60,
+        width: wp('100%'),
+        resizeMode: 'contain'
+    },
     mostReviewsContainer: {
         alignSelf: "center",  
         marginTop: 5,
@@ -226,7 +236,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         color: "#ee4b43",
-        paddingTop: 12,
+        paddingTop: 4,
 
         backgroundColor: 'white',
         height: 60,

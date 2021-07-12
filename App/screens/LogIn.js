@@ -66,7 +66,7 @@ function LogIn(props) {
     return (
       <ImageBackground
           style={styles.BGImage}
-          source={require('../assets/images/orange_Bg_Darken.jpg')}>
+          source={require('../assets/images/splashScreenDark.jpg')}>
         {/* <Image style={styles.Image} source={require('../assets/images/orange_Bg.jpg')}/> */}
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Top Navigation */}
@@ -79,7 +79,7 @@ function LogIn(props) {
 
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
-                source={require('../assets/Logo-AP.png')}></Image>
+                source={require('../assets/images/logo.png')}></Image>
                 <Text style={{color: '#fff', fontSize: 12, marginTop: 10}}>Loyalty and Rewards on your Hands</Text>
             </View>
             {/* <View style={styles.title}>
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   LogInButton: {
     width: wp('80%'),
     height: hp('6%'),
-    backgroundColor: '#ee4b43',
+    backgroundColor: '#071964',
     borderRadius: 30,
     // top:  hp('45%'),
     alignSelf: 'center',
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   Logo:{
     // width: wp('20%'),
     // height: hp('20%'),
-    width: 100,
+    width: wp('100%'),
     height: 100,
     borderRadius: 100,
     borderWidth: 1

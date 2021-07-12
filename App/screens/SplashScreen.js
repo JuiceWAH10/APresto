@@ -5,25 +5,26 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 function SplashScreen(props) {
     return (
         <ImageBackground
+            // resizeMode={'contain'}
             style={styles.BGImage}
-            source={require('../assets/Store-Blur.png')}>
-          <Image style={styles.Image} source={require('../assets/images/splashScreen.gif')}/>
+            source={require('../assets/images/splashScreen2.jpg')}>
+          {/* <Image style={styles.Image} source={require('../assets/images/splashScreen.jpg')}/> */}
           <SafeAreaView style={styles.droidSafeArea}>
             <TouchableOpacity onPress={() => props.navigation.navigate('signupCustomer')}>
               <View style={styles.SignUpButton}>
-                <Text style={{color: '#29312e', fontSize: 16}}>Sign Up</Text>
+                <Text style={{color: '#fff', fontSize: 16}}>Sign Up</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => props.navigation.navigate('login')}>
               <View style={styles.LogInButton}>
-                <Text style={{color: '#fff', fontSize: 16}}>Log In</Text>
+                <Text style={{color: '#ee4b43', fontSize: 16}}>Log In</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.LogoContainer}>
+            {/* <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
                 source={require('../assets/Logo-AP.png')}></Image>
                 <Text style={{color: '#fff', fontSize: 14, marginTop: 10}}>Loyalty and Rewards on your Hands</Text>
-            </View>
+            </View> */}
           </SafeAreaView>
         </ImageBackground>
             
@@ -33,6 +34,7 @@ function SplashScreen(props) {
 const styles = StyleSheet.create({
     BGImage: {
       flex: 1,
+      width: wp('100%'),
       justifyContent: 'flex-end',   
     },
     Image: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     LogInButton: {
       width: wp('90%'),
       height: hp('6%'),
-      backgroundColor: '#fd4140',
+      backgroundColor: '#fff',
       borderRadius: 30,
       alignSelf: 'center',
       alignItems: 'center',
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     SignUpButton: {
       width: wp('90%'),
       height: hp('6%'),
-      backgroundColor: '#fff',
+      backgroundColor: '#071964',
       borderRadius: 30,
       alignSelf: 'center',
       alignItems: 'center',

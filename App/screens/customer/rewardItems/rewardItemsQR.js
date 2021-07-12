@@ -14,7 +14,7 @@ function rewardItemsQR(props) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <ImageBackground style={styles.container} source={require('../../../assets/bannerViolet.jpg')}>
+            <ImageBackground style={styles.container} source={require('../../../assets/images/splashScreenDark.jpg')}>
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to to claim reward(s)</Text>
                         {/* Enter QR Code here */}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         alignSelf: "center",
-        backgroundColor: '#ee4b43',
+        backgroundColor: '#071964',
         borderRadius: 30,
         justifyContent: 'center',
         marginTop: 10,
