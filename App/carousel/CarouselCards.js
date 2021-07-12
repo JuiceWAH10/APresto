@@ -31,7 +31,7 @@ const CarouselCards = () => {
           borderRadius: 5,
           marginTop: -9.9,
           // marginHorizontal: 0,
-          backgroundColor: '#000'
+          backgroundColor: '#ee4b43'
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}

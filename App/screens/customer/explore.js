@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    Image,
     ImageBackground,
     SafeAreaView,
     ScrollView,
@@ -21,7 +22,11 @@ function explore(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <Text style={styles.title}>Explore APresto</Text>
+            {/* <Text style={styles.title}>Explore APresto</Text> */}
+            <View style={styles.title}>
+                <Image style={styles.logoHeader} 
+                source={require('../../assets/images/explore.png')}/>
+            </View>
             <ScrollView style={[styles.container, {flex:1}]}>
 
                 <CarouselCards /> 
@@ -36,7 +41,7 @@ function explore(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/Map.jpg')}>
+                                source={require('../../assets/dualImages/near_Me.jpg')}>
                                 <View style={styles.darken}> 
                                     <Text style={styles.dualLabel}>Near Me</Text>
                                     <Text style={styles.dualLabelSmall}>Gems around corners</Text>
@@ -48,7 +53,8 @@ function explore(props) {
                         <View style={styles.dualContent}>
                             <ImageBackground style={styles.dualBgImage}
                                 imageStyle={{ borderRadius: 30}}
-                                source={require('../../assets/Liked_Shop.jpg')}>
+                                // resizeMode={'contain'}
+                                source={require('../../assets/dualImages/liked_Shops.jpg')}>
                                 <View style={styles.darken}>
                                     <Text style={styles.dualLabel}>Liked Shops</Text>
                                     <Text style={styles.dualLabelSmall}>Stores you love</Text>
@@ -62,7 +68,7 @@ function explore(props) {
                 {/* Most Reviewed Shop */}
                 {/* <View style={styles.mostReviewsContainer}> */}
                     <View style={styles.mostReviewsTitleContainer}>
-                        {/* <Icon name="fire" size={40} color="#fd4140" /> */}
+                        <Icon name="fire" size={25} color="#fd4140" />
                         <Text style={styles.mostReviewsTitle}>Most Reviewed Shops</Text>
                     </View>
                     {/* Insert Code here for importing Most Reviewed shops with info */}
@@ -156,22 +162,27 @@ const styles = StyleSheet.create({
     dualLabel: {
         textAlign: "left",
         marginLeft: 20,
-        marginTop: 100,
+        marginTop: 120,
         color: "#fff",
         fontSize: 18,
         fontWeight: "bold"
     },
     dualLabelSmall: {
         textAlign: "left",
-        marginLeft: 22,
+        marginLeft: 20,
         marginTop: 2,
         color: "#fff",
         fontSize: 12,
     },
     darken:{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 30,
+        // flex: 1,
+        // backgroundColor: 'rgba(0,0,0,0.4)',
+        // borderRadius: 30,
+    },
+    logoHeader: {
+        height: 60,
+        width: wp('100%'),
+        resizeMode: 'contain'
     },
     mostReviewsContainer: {
         alignSelf: "center",  
@@ -195,14 +206,16 @@ const styles = StyleSheet.create({
     },
     mostReviewsTitle: {
         textAlign: "center",
-        marginTop: 8,
+        // marginTop: 8,
+        marginLeft: 10,
         fontSize: 18,
         fontWeight: "bold"
     },
     mostReviewsTitleContainer: {
         alignSelf: "center",  
         flexDirection: "row",
-        marginBottom: 5,
+        marginTop: 5,
+        marginBottom: 10,
         marginLeft: 8,
         width: wp('90%'),
     },
@@ -222,8 +235,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 24,
         fontWeight: "bold",
-        color: "#fd4140",
-        paddingTop: 12,
+        color: "#ee4b43",
+        paddingTop: 4,
 
         backgroundColor: 'white',
         height: 60,

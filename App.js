@@ -23,6 +23,7 @@ import ShopItemsCart from './App/screens/customer/shopItems/shopItemsCart';
 import RewardItemsCart from './App/screens/customer/rewardItems/rewardItemsCart';
 import ShopItemsQR from './App/screens/customer/shopItems/shopItemsQR';
 import RewardItemsQR from './App/screens/customer/rewardItems/rewardItemsQR';
+import CustomerEditProfile from './App/screens/customer/profile/customerEditProfile';
 
 // Client Screens
 import ClientHomepage from './App/screens/owners/clientHomepage';
@@ -33,6 +34,7 @@ import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
 import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
 import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
 import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
+import ClientEditProfile from './App/screens/owners/clientProfile/clientEditProfile';
 
 const Stack = createStackNavigator();
 //Auth Screens
@@ -74,7 +76,7 @@ const customerBottomTabs = () =>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#fd4140",
+        activeTintColor: "#ee4b43",
         inactiveTintColor: 'black'
       }}
     >
@@ -100,7 +102,7 @@ const AuthScreens = () => {
 //Will navigate here once accessed login
 const Screens = () => {
   return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{headerShown: false}}>   
     <Stack.Screen name="customerShops" children={customerBottomTabs} />  
     <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
     {/* Added Vincent */}
@@ -114,6 +116,7 @@ const Screens = () => {
     <Stack.Screen name="rewardItems" component={RewardItems} />
     <Stack.Screen name="rewardItemsCart" component={RewardItemsCart} />
     <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
+    <Stack.Screen name="customerEditProfile" component={CustomerEditProfile} />
 
     <Stack.Screen name="clientHomepage" component={ClientHomepage} />
     <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
@@ -123,6 +126,7 @@ const Screens = () => {
     <Stack.Screen name="clientRewardEdit" component={ClientRewardEdit} />
     <Stack.Screen name="clientRewardList" component={ClientRewardList} />
     <Stack.Screen name="clientSukiList" component={ClientSukiList} />
+    <Stack.Screen name="clientEditProfile" component={ClientEditProfile} />
     {/* End Added Vincent */}
   </Stack.Navigator>
   );
@@ -138,7 +142,7 @@ function Authentication(){
       }
       firebase.auth().onAuthStateChanged(user => {
         console.log("Checking auth state...");
-        if (user) {
+        if(user) {
           setIsAuthenticated(true);
         }else{
           setIsAuthenticated(false);

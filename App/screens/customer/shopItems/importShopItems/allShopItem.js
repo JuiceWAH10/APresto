@@ -22,11 +22,11 @@ function allShopItem(props) {
                 <Text style={styles.itemInfo}>Product Definition</Text>
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon name="add-circle" size={35} color="#356288" />
+                        <Icon2 name="minus-circle" size={35} color="#ee4b43" />
                     </TouchableOpacity>
                     <Text style={styles.quantity}>Qty</Text>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon2 name="minus-circle" size={35} color="#356288" />
+                        <Icon name="add-circle" size={35} color="#ee4b43" />
                     </TouchableOpacity>    
                 </View>
             </View>

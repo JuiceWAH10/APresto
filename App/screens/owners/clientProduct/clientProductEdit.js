@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { Input } from 'react-native-elements';
 
 function clientProductEdit(props) {
     const [prodName, setTextProdName] = React.useState('');
@@ -26,7 +27,7 @@ function clientProductEdit(props) {
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#fe875d" />
+                    <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>   
             </View>
             {/* End of Top Navigation */}
@@ -36,7 +37,7 @@ function clientProductEdit(props) {
                 {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/bannerPeach.jpg')}>
+                    source={require('../../../assets/bannerImages/banner_Product.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>Update products information for new changes!</Text>
                         <Text style={styles.bannerLabelSmall}>Provide all the necessary information you want to share.</Text>
@@ -47,8 +48,9 @@ function clientProductEdit(props) {
                 {/* Form */}
                 <Text style={styles.formTitles}>Enter Product Name</Text>
                 <View style={styles.textView}>
-                    <TextInput
+                    <Input
                         style={styles.input}
+                        leftIcon={{ type: 'font-awesome', name: 'archive' }}
                         placeholder="Product Name"
                         onChangeText={text => setTextProdName(text)}
                         value={prodName}
@@ -56,8 +58,9 @@ function clientProductEdit(props) {
                 </View>
                 <Text style={styles.formTitles}>Enter Product Description</Text>
                 <View style={styles.textView}>
-                    <TextInput
+                    <Input
                         style={styles.inputArea}
+                        leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                         multiline={true}
                         placeholder="Product Description"
                         onChangeText={text => setTextProdDes(text)}
@@ -69,8 +72,9 @@ function clientProductEdit(props) {
                 <View style={styles.textViewDual}>
                     <View>
                         <Text style={styles.formTitlesDual}>Enter Price</Text>
-                            <TextInput
+                            <Input
                                 style={styles.inputDual}
+                                leftIcon={{ type: 'font-awesome-5', name: 'coins' }}
                                 placeholder="Product Price"
                                 onChangeText={text => setTextProdPrice(text)}
                                 value={prodPrice}
@@ -78,8 +82,9 @@ function clientProductEdit(props) {
                     </View>
                     <View>
                         <Text style={styles.formTitlesDual}>Enter Quantity</Text>
-                        <TextInput
+                        <Input
                             style={styles.inputDual}
+                            leftIcon={{ type: 'font-awesome-5', name: 'box' }}
                             placeholder="Product Quantity"
                             onChangeText={text => setTextProdQty(text)}
                             value={prodQty}
@@ -110,14 +115,14 @@ const styles = StyleSheet.create({
         width: wp('90%'),
     },
     bannerDarken:{
-        // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.15)',
-        // borderRadius: 30,
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.15)',
+        borderRadius: 30,
     },
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -126,13 +131,13 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
     },
     button: {
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         borderRadius: 30,
         alignItems: 'center',
         alignSelf: "center",
@@ -166,29 +171,32 @@ const styles = StyleSheet.create({
     formTitlesDual: {
         marginLeft: 5,
         marginBottom: 5,
+        width: wp('40%'),
         fontSize: 16,
         fontWeight: "bold"
     },
     input: {
         height: 50,
         width: wp('80%'),
-        borderWidth: 1,
-        backgroundColor: "#fff",
+        marginLeft: 10,
+        fontSize: 16
+
     },
     inputArea: {
-        height: 60,
+        height: 50,
         width: wp('80%'),
-        borderWidth: 1,
-        backgroundColor: "#fff",
+        marginLeft: 10,
+        fontSize: 16
     },
     inputDual: {
         alignSelf: "center",
         height: 50,
-        width: wp('35%'),
-        borderWidth: 1,
-        backgroundColor: "#fff",
-        marginLeft: 5,
-        marginRight: 5
+        width: wp('100%'),
+        // borderWidth: 1,
+        // backgroundColor: "#fff",
+        marginLeft: 10,
+        // marginRight: 10,
+        fontSize: 16
     },
     subtitle: {
         textAlign: "center",
@@ -200,7 +208,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textViewDual: {
-        padding: 6,
+        // padding: 6,
         alignSelf: "center",
         width: wp('85%'),
         flexDirection: "row",

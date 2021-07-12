@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
-import { Image, ImageBackground, Input, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-
 import validator from "validator";
+import { auth } from "firebase";
+import { Input } from 'react-native-elements';
 
+
+//validation function of email
 const validateFields = (email, password) => {
   const isValid = {
       email: validator.isEmail(email),
-      password: validator.isStrongPassword(password, {minLength: 8, minNumbers: 1})
-  }
+      password: validator.isStrongPassword(password, {
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+      }),
+  };
   return isValid;
-}
+};
 
-const login = (email, password) => {};
+//log in function to have access
+const login = (email, password) => {
+  auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+          console.log("Logged in");
+      });
+};
 
 function LogIn(props) {
     //const [userName] = React.useState('');
@@ -50,9 +66,9 @@ function LogIn(props) {
     return (
       <ImageBackground
           style={styles.BGImage}
-          source={require('../assets/Store-Blur.png')}>
+          source={require('../assets/images/splashScreenDark.jpg')}>
+        {/* <Image style={styles.Image} source={require('../assets/images/orange_Bg.jpg')}/> */}
         <SafeAreaView style={styles.droidSafeArea}>
-        
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
@@ -63,8 +79,8 @@ function LogIn(props) {
 
             <View style={styles.LogoContainer}>
               <Image style={styles.Logo}
-                source={require('../assets/Logo-AP-name.png')}></Image>
-                <Text style={{color: '#fff', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
+                source={require('../assets/images/logo.png')}></Image>
+                <Text style={{color: '#fff', fontSize: 12, marginTop: 10}}>Loyalty and Rewards on your Hands</Text>
             </View>
             {/* <View style={styles.title}>
               <Text style={{color: '#fe1100', fontSize: 45}}>APresto</Text>
@@ -72,26 +88,32 @@ function LogIn(props) {
               <Text style={{color: '#fe1100', fontSize: 12}}>Loyalty and Rewards on your Hands</Text>
             </View>   */}
               <View style={styles.LogInContainer}>
-                <Text style={{color: '#fd4140', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
-                <TextInput
-                    //Email input
-                    style={styles.textEmail}
-                    placeholder="Email"
-                    text={emailField.text}
-                    onChangeText={(text) => {setEmailField({text});}}
-                    errorMessage={emailField.errorMessage}
-                    autoCompleteType="email"
-                />
-                <TextInput
-                    //Password input
-                    style={styles.textPassword}
-                    secureTextEntry={true}
-                    placeholder="Password"
-                    text={passwordField.text}
-                    onChangeText={(text) => {setPasswordField({text});}}
-                    errorMessage={passwordField.errorMessage}
-                    autoCompleteType="password"
-                />
+                <Text style={{color: '#ee4b43', fontSize: 13, marginVertical: 15}}>Log In now to see your account</Text>
+                <View style={styles.textView}>
+                  <Input
+                      //Email input
+                      style={styles.textEmail}
+                      leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+                      placeholder="Email"
+                      text={emailField.text}
+                      onChangeText={(text) => {setEmailField({text});}}
+                      errorMessage={emailField.errorMessage}
+                      autoCompleteType="email"
+                  />
+                </View>
+                <View style={styles.textView}>  
+                  <Input
+                      //Password input
+                      style={styles.textPassword}
+                      leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                      //secureTextEntry={true}
+                      placeholder="Password"
+                      text={passwordField.text}
+                      onChangeText={(text) => {setPasswordField({text});}}
+                      errorMessage={passwordField.errorMessage}
+                      autoCompleteType="password"
+                  />
+                </View>  
                 <View style={styles.checkbox}>
                   <CheckBox
                     disabled={false}
@@ -108,12 +130,14 @@ function LogIn(props) {
 
                   let isAllValid = true;
                   if(!isValid.email){
+                    console.log("Please enter a valid email...")
                     emailField.errorMessage = "Please enter a valid email";
                     setEmailField({...emailField})
                     isAllValid = false;
                   }
 
                   if(!isValid.password){
+                    console.log("Password must be at least 8 long characters with numbers")
                     passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
                     setPasswordField({...passwordField})
                     isAllValid = false;
@@ -133,6 +157,12 @@ function LogIn(props) {
 }
 
 const styles = StyleSheet.create({
+  Image: {
+    flex: 1,
+    position: "absolute",
+    // width: wp('100%'),
+    height: hp('100%'),
+  },
   droidSafeArea: {
     flex: 1,
     paddingTop: Platform.OS === 'android' ? 32 : 0
@@ -172,7 +202,7 @@ const styles = StyleSheet.create({
   LogInButton: {
     width: wp('80%'),
     height: hp('6%'),
-    backgroundColor: '#fd4140',
+    backgroundColor: '#071964',
     borderRadius: 30,
     // top:  hp('45%'),
     alignSelf: 'center',
@@ -181,8 +211,12 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   Logo:{
-    width: wp('20%'),
-    height: hp('20%'),
+    // width: wp('20%'),
+    // height: hp('20%'),
+    width: wp('100%'),
+    height: 100,
+    borderRadius: 100,
+    borderWidth: 1
   },
   LogoContainer:{
     // position: "absolute",
@@ -204,20 +238,27 @@ const styles = StyleSheet.create({
     // top: hp('40%'),
   },
   textEmail: {
-    width: '80%',
+    width: wp('80%'),
     height: 50,
-    borderColor: '#1c2b59',
-    marginVertical: 10
-    // top: 60
-  },
-  textPassword: {
-    width: '80%',
-    height: 50,
-    borderColor: '#1c2b59',
-    marginVertical: 10
+    fontSize: 16,
+    marginLeft: 10,
+    // borderColor: '#1c2b59',
+    marginVertical: 2
     // top: 80
   },
-
+  textPassword: {
+    width: wp('80%'),
+    height: 50,
+    fontSize: 16,
+    marginLeft: 10,
+    // borderColor: '#1c2b59',
+    marginVertical: 2
+    // top: 80
+  },
+  textView: {
+    width: '90%',
+    alignItems: 'center'
+  },
   checkbox: {
     flex: 1,
     flexDirection: 'row',
