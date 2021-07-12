@@ -50,14 +50,14 @@ function shopItems(props) {
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 name="left" size={30} color="#356288" />
+                    <Icon2 name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
                 <View style={styles.topNavRight}>
                     <TouchableOpacity onPress={() => "pressed"} >  
-                        <Icon2 name="heart" size={25} color="#356288" />
+                        <Icon2 name="heart" size={25} color="#ee4b43" />
                     </TouchableOpacity>    
                     <TouchableOpacity onPress={() => navigation.navigate('shopItemsCart')} > 
-                        <Icon2 name="shoppingcart" size={25} color="#356288" />
+                        <Icon2 name="shoppingcart" size={25} color="#ee4b43" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -71,7 +71,7 @@ function shopItems(props) {
                     right: 0,
                     zIndex: 10,
                     height: headerHeight,
-                    backgroundColor: '#356288',
+                    backgroundColor: '#ee4b43',
                 }}>
 
                 {/* Header */}
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     },
     bannerDarken:{
         // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // backgroundColor: 'rgba(0,0,0,0.2)',
         // borderRadius: 30,
     },
     bannerLabel: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     },
     darken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.2)',
     },
     droidSafeArea: {
         flex: 1,

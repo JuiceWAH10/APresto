@@ -51,7 +51,7 @@ function shops(props) {
                 {/* Shop List */}
                 {/* <View style={styles.shopListContainer}> */}
                     <View style={styles.shopListTitleContainer}>
-                        {/* <Icon name="shop" size={40} color="#fd4140" /> */}
+                        <Icon style={styles.shopListTitleIcon} name="shop" size={25} color="#fd4140" />
                         <Text style={styles.shopListTitle}>APresto Shops</Text>
                     </View>
                     {/* Insert Code here for importing shops with info */}
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: 70,
         borderBottomWidth: 4,
-        borderColor: "#fd4140",
+        borderColor: "#ee4b43",
         shadowColor: "#000",
         shadowOffset: {
         width: 0,
@@ -168,10 +168,13 @@ const styles = StyleSheet.create({
     },
     shopListTitle: {
         textAlign: "center",
-        marginLeft: 5,
+        marginLeft: 10,
         marginTop: 10,
         fontSize: 20,
         fontWeight: "bold"
+    },
+    shopListTitleIcon: {
+        marginTop: 10,
     },
     shopListTitleContainer: {
         alignSelf: "center",  

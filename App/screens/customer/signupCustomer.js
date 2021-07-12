@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
 import validator from "validator";
 import { auth } from "firebase";
+import { Input } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 //validation function of email
-const validateFields = (email, password) => {
+const validateFields = (email, password, firstName) => {
     const isValid = {
         email: validator.isEmail(email),
         password: validator.isStrongPassword(password, {
@@ -17,6 +19,7 @@ const validateFields = (email, password) => {
         minNumbers: 1,
         minSymbols: 1,
         }),
+        
     };
     return isValid;
 };
@@ -26,12 +29,15 @@ const createAccount = (email, password) => {
     auth()
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
-            console.log("Creating user...");
+            console.log("Creating user...");   
+            //firestore().collection("users").doc(user.uid).set({});
         });
 };
 
 
 function signupCustomer(props) {
+    const navigation = useNavigation();
+
     //below statements are not used
     const [firstName, setTextFN] = React.useState('');
     const [lastName, setTextLN] = React.useState('');
@@ -63,40 +69,46 @@ function signupCustomer(props) {
     return (
         <SafeAreaView style={styles.droidSafeArea}>       
             <View style={[styles.topContainer, {flex:1}]}>
-                <Icon name="left" size={30} color="#fd4140" />
+                <TouchableOpacity onPress={() => navigation.goBack()} >
+                    <Icon name="left" size={30} color="#fd4140" />
+                </TouchableOpacity>    
             </View>
             <View style={[styles.formContainer, {flex:15}]}>          
                 <Text style={styles.title}>Sign Up</Text>
                 <Text style={styles.subtitle}>Provide the needed information to continue.</Text>
-                <ScrollView>
+                <ScrollView style={styles.form}>
                     <Text style={styles.formTitles}>Basic Information</Text>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             placeholder="First Name"
                             onChangeText={text => setTextFN(text)}
                             value={firstName}
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             placeholder="Last Name"
                             onChangeText={text => setTextLN(text)}
                             value={lastName}
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'home' }}
                             placeholder="Address"
                             onChangeText={text => setTextA(text)}
                             value={address}
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             placeholder="Contact Number"
                             onChangeText={text => setTextCN(text)}
                             value={contactNo}
@@ -105,17 +117,19 @@ function signupCustomer(props) {
                     </View>
                     <Text style={styles.formTitles}>Account Information</Text>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             style={styles.input}
-                            placeholder="UserName"
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            placeholder="User Name"
                             onChangeText={text => setTextUN(text)}
                             value={userName}
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             //Email input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'envelope' }}
                             placeholder="Email"
                             text={emailField.text}
                             onChangeText={(text) => {setEmailField({text});}}
@@ -124,9 +138,10 @@ function signupCustomer(props) {
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             //Password input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'lock' }}
                             //secureTextEntry={true}
                             placeholder="Password"
                             text={passwordField.text}
@@ -136,9 +151,10 @@ function signupCustomer(props) {
                         />
                     </View>
                     <View style={styles.textView}>
-                        <TextInput
+                        <Input
                             //Re-enter password input
                             style={styles.input}
+                            leftIcon={{ type: 'font-awesome', name: 'lock' }}
                             //secureTextEntry={true}
                             placeholder="Re-enter Password"
                             text={passwordReentryField.text}
@@ -155,30 +171,37 @@ function signupCustomer(props) {
                     const isValid = validateFields(emailField.text, passwordField.text);
 
                     let isAllValid = true;
+
+                    // if (!textInputName.trim()) {
+                    //     alert('Please Enter Name');
+                        
+                    // }
+
                     if(!isValid.email){
                         console.log("Please enter a valid email...")
-                        //emailField.errorMessage = "Please enter a valid email";
+                        emailField.errorMessage = "Please enter a valid email";
                         setEmailField({...emailField});
                         isAllValid = false;
                     }
                     
                     if(!isValid.password){
                         console.log("Password must be at least 8 long characters with numbers")
-                        //passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                        passwordField.errorMessage = "Password must be at least 8 characters long with atleast one (1) Uppercase, Lowercase, number and symbol";
                         setPasswordField({...passwordField});
                         isAllValid = false;
                     }
 
                     if(passwordReentryField.text != passwordField.text){
                         console.log("Passwords do not match")
-                        //passwordReentryField.errorMessage="Passwords do not match"
+                        passwordReentryField.errorMessage="Passwords do not match"
                         setPasswordReentryField({...passwordReentryField});
                         isAllValid = false;
                     }
 
                     //IF ALL INPUTS ARE VALID THIS IS WILL CREATE ACCOUNT FUNCTION 
                     if(isAllValid){
-                        createAccount(emailField.text, passwordField.text);                        
+                        createAccount(emailField.text, passwordField.text);
+                        props.navigation.navigate('login');                   
                     }
 
                 }}>
@@ -212,6 +235,9 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: Platform.OS === 'android' ? 32 : 0
     },
+    form: {
+        width: wp('90%'),
+    },
     formContainer: {
         alignItems: "center",
         borderRadius: 4,
@@ -228,8 +254,11 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         width: wp('80%'),
-        borderWidth: 1,
-        backgroundColor: "#fff",
+        paddingLeft: 10,
+        fontSize: 16,
+        justifyContent: "space-between"
+        // borderWidth: 1,
+        // backgroundColor: "#fff",
     },
     subtitle: {
         textAlign: "center",
@@ -237,7 +266,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     textView: {
-        padding: 6,
+        width: wp('90%'),
         alignItems: 'center'
     },
     title: {

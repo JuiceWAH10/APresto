@@ -27,7 +27,7 @@ function clientSukiList(props) {
             {/* Top Navigation and Search Bar */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 style={styles.backButton} name="left" size={30} color="#fe875d" />
+                    <Icon2 style={styles.backButton} name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>   
                 <Searchbar
                         style={styles.searchBar}
@@ -52,14 +52,14 @@ function clientSukiList(props) {
                 <ClientAllSuki/>
                 
                 {/* Banner */}
-                <ImageBackground style={styles.bannerBgImage}
+                {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/bannerPeach.jpg')}>
+                    source={require('../../assets/bannerImages/banner_Suki.jpg')}>
                     <View style={styles.darken}>
                         <Text style={styles.bannerLabel}>Sukis are essential for your business growth</Text>
                         <Text style={styles.bannerLabelSmall}>You can know who among your suki loves you most.</Text>
                     </View>    
-                </ImageBackground>
+                </ImageBackground> */}
                 {/* End of Banner */}
                 
             </ScrollView>
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     darken:{
-        // flex: 1,
-        // backgroundColor: 'rgba(0,0,0,0.4)',
-        // borderRadius: 30,
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        borderRadius: 30,
     },
     container:{
         flex:1,

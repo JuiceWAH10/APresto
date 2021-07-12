@@ -34,7 +34,7 @@ function allShopItem(props) {
                     </TouchableOpacity>
                     <Text style={styles.quantity}>add to cart haha</Text>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon2 name="minus-circle" size={35} color="#356288" />
+                        <Icon name="add-circle" size={35} color="#ee4b43" />
                     </TouchableOpacity>    
                 </View>
             </View>

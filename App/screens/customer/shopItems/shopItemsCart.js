@@ -43,7 +43,7 @@ function shopItemsCart(props) {
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#356288" />
+                    <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
             </View>
             {/* End of Top Navigation */}
@@ -52,7 +52,7 @@ function shopItemsCart(props) {
                 {/* Banner */}
                 <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
-                    source={require('../../../assets/bannerDarkBlue.jpg')}>
+                    source={require('../../../assets/bannerImages/cart_Banner.jpg')}>
                     <View style={styles.bannerDarken}>
                         <Text style={styles.bannerLabel}>Reward Points will be added once transaction's done!</Text>
                         <Text style={styles.bannerLabelSmall}>Everytime you spent on products you love gives you rewards point.</Text>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     button: {
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         borderRadius: 30,
         alignItems: 'center',
         alignSelf: "center",

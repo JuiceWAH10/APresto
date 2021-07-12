@@ -14,7 +14,7 @@ function shopItemsQR(props) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-            <ImageBackground style={styles.container} source={require('../../../assets/bannerDarkBlue.jpg')}>
+            <ImageBackground style={styles.container} source={require('../../../assets/images/splashScreenDark.jpg')}>
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to add point(s)</Text>
                         {/* Enter QR Code here */}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         alignSelf: "center",
-        backgroundColor: '#fd4140',
+        backgroundColor: '#071964',
         borderRadius: 30,
         justifyContent: 'center',
         marginTop: 10,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     container:{
         alignContent: "center",
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         flex: 1
     },
     qrContainer:{

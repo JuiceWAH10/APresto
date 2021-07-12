@@ -50,7 +50,7 @@ function Authentication(){
       }
       firebase.auth().onAuthStateChanged(user => {
         console.log("Checking auth state...");
-        if (user) {
+        if(user) {
           setIsAuthenticated(true);
         }else{
           setIsAuthenticated(false);
