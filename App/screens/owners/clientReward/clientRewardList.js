@@ -2,7 +2,7 @@ import React from 'react';
 import { 
     ImageBackground,
     Platform,
-    SafeAreaViexpo upgradeew,
+    SafeAreaView,
     ScrollView,
     StyleSheet,
     Text,

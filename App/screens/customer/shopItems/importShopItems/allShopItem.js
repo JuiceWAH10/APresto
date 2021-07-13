@@ -12,6 +12,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import { useDispatch } from 'react-redux';
 
+import * as cartAction from '../../../functions/cartFunction';
+
 //(juswa) for fetching data from redux store in App.js
 const dispatch = useDispatch();
 
