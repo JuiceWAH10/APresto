@@ -163,7 +163,7 @@ function shopItems(props) {
                     
                     <ImageBackground style={styles.bannerBgImage}
                         imageStyle={{ borderRadius: 30}}
-                        source={require('../../../assets/bannerDarkBlue.jpg')}
+                        source={require('../../../assets/bannerImages/banner_Product.jpg') /* (juswa) hoy binsent mga assets mo nagulo agik */} 
                     >
                         <View style={styles.bannerDarken}>
                             <Text style={styles.bannerLabel}> The more you spend the more you enjoy! </Text>
