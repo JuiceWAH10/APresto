@@ -14,7 +14,14 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 function indivReward(props) {
     const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={()=>navigation.navigate('rewardItems')}>
+        <TouchableOpacity onPress={()=>
+            navigation.navigate('rewardItems', {
+                shop_ID: props.shop_ID,
+                owner_ID: props.owner_ID,
+                shopName: props.shopName,
+                address: props.address
+            }
+        )}>
             <View style={styles.container}>
                 <Image style={styles.shopImage}
                     source={require('../../../assets/DummyShop.jpg')}>

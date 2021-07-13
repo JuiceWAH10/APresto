@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
             const addedProduct = action.product;
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
-            const cartItem;
+            let cartItem;
             
             //check if cart has the item to be added
             if(state.items[addedProduct.product_ID]){

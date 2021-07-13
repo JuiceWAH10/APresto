@@ -6,7 +6,7 @@ import {
     StyleSheet,
     Text, 
     View, 
-    FlatList
+    FlatList                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Searchbar } from 'react-native-paper';

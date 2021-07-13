@@ -15,6 +15,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { useSelector, useDispatch } from 'react-redux';
 
 import AllShopItem from './././importShopItems/allShopItem';
+import AllCartItem from './././importShopItems/allCartItem';
 import * as cartFunction from '../../../functions/cartFunction';
 
 function shopItemsCart(props) {
@@ -27,14 +28,14 @@ function shopItemsCart(props) {
         const cartItemsArray = [];
         for (const key in state.cart.items){
             cartItemsArray.push({
-                productID: key,
+                product_ID: key,
                 productTitle: state.cart.items[key].productTitle,
                 productPrice: state.cart.items[key].productPrice,
                 quantity: state.cart.items[key].quantity,
                 total: state.cart.items[key].total
             });
         }
-        return cartItemsArray;
+        return cartItemsArray.sort((a,b) => a.product_ID > b.product_ID ? 1 : -1);
     });
 
     const dispatch = useDispatch();
@@ -61,13 +62,22 @@ function shopItemsCart(props) {
                 {/* End of Banner */}
 
                 <ScrollView style ={styles.cartContainer}>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/> 
+                    
+                    <FlatList
+                        data={cartItems}
+                        keyExtractor={item => item.product_ID}
+                        renderItem={itemData => 
+                            <AllCartItem
+                                quantity = {itemData.item.quantity} 
+                                product_Name = {itemData.item.productTitle}
+                                price = {itemData.item.total}
+                                removeFromCart = {() => {
+                                    dispatch(cartAction.removeFromCart(itemData.item.product_ID))
+                                }}
+                                viewDetails = {() => {}}
+                            />}
+                    />
+
                 </ScrollView>
 
                 {/* Footer */}
