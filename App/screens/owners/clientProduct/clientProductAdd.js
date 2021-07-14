@@ -1,6 +1,9 @@
 import React from 'react';
 import { 
+    Alert,
+    Image,
     ImageBackground,
+    LogBox,
     SafeAreaView,
     ScrollView,
     StyleSheet,
@@ -10,9 +13,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Input } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import * as firebase from "firebase";
+import uuid from 'react-native-uuid';
+
+LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
 function clientProductAdd(props) {
     const [prodName, setTextProdName] = React.useState('');
@@ -20,7 +27,44 @@ function clientProductAdd(props) {
     const [prodPrice, setTextProdPrice] = React.useState('');
     const [prodQty, setTextProdQty] = React.useState('');
 
+    const [image, setImage] = React.useState(null);
+    
+    var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
+
     const navigation = useNavigation();
+        
+        // Code for Image Picker and Uploading to Firebase storage
+        pickImage = async () => {
+            //For choosing photo in the library and crop the photo
+            let result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.All,
+              allowsEditing: true,
+              aspect: [3, 4],
+              quality: 1,
+            });
+        
+            console.log(result); // To Display the information of image on the console
+        
+            if (!result.cancelled) {
+                this.uploadImage(result.uri, imageUUID)
+                  .then(() => {
+                    Alert.alert("Image Uploaded");
+                    setImage(result.uri);
+                  })
+                  .catch((error) => {
+                    Alert.alert(error);
+                  });
+              }
+        };
+
+        //Function to upload to Firebase storage
+        uploadImage = async (uri, imageName) => {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+        
+            var ref = firebase.storage().ref().child("images/" + imageName);
+            return ref.put(blob);
+        }
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -94,13 +138,22 @@ function clientProductAdd(props) {
                 </View>
 
                 <Text style={styles.formTitles}>Upload Image</Text>
-                    {/* Add Code for Uploading Image here */}
+
+                    {/* Button for Image Picker */}
+                    <TouchableOpacity style={styles.imageButton} onPress={this.pickImage} >
+                        <Text style={styles.imageButtonLabel}>Upload Image</Text>
+                    </TouchableOpacity>
+
+                    {/* Display the selected Image*/}
+                    {image && <Image source={{ uri: image }} style={styles.imageUpload} />}  
+
 
                 {/* End of Form */}
                 
                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                     <Text style={styles.buttonLabel}>Add Product</Text>
                 </TouchableOpacity>  
+
             </ScrollView>
         </SafeAreaView>
     );
@@ -138,12 +191,12 @@ const styles = StyleSheet.create({
         paddingRight: wp('5%'),
     },
     button: {
-        backgroundColor: '#ee4b43',
+        backgroundColor: '#071964',
         borderRadius: 30,
         alignItems: 'center',
         alignSelf: "center",
         justifyContent: 'center',
-        marginTop: 10,
+        marginTop: 20,
         width: '80%',
         height: hp('6%'),
     },
@@ -175,6 +228,28 @@ const styles = StyleSheet.create({
         width: wp('40%'),
         fontSize: 16,
         fontWeight: "bold"
+    },
+    imageButton:{
+        backgroundColor: '#ee4b43',
+        borderRadius: 30,
+        alignItems: 'center',
+        alignSelf: "center",
+        justifyContent: 'center',
+        marginTop: 20,
+        width: 150,
+        height: hp('6%'),
+    },
+    imageButtonLabel: {
+        color: "#fff",
+        fontSize: 14
+    },
+    imageUpload: {
+        alignSelf: "center",
+        width: 150,
+        height: 200,
+        marginVertical: 10,
+        borderWidth: 2,
+        borderColor: "#ee4b43"
     },
     input: {
         height: 50,
