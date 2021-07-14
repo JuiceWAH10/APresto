@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Image } from 'react-native';
+import FlashMessage from "react-native-flash-message";
 
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
@@ -103,7 +104,7 @@ const AuthScreens = () => {
 const Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>   
-    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
+    <Stack.Screen name="clientHomepage" component={ClientHomepage} />
     <Stack.Screen name="customerShops" children={customerBottomTabs} />  
     <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
     {/* Added Vincent */}
@@ -119,8 +120,9 @@ const Screens = () => {
     <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
     <Stack.Screen name="customerEditProfile" component={CustomerEditProfile} />
 
-    <Stack.Screen name="clientHomepage" component={ClientHomepage} />
+    
     {/* Product Add here */}
+    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
     <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
     <Stack.Screen name="clientProductList" component={ClientProductList} />
     <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
@@ -165,6 +167,7 @@ export default class App extends React.Component {
       //call Authentication function component
       <Provider store={store}>
        <Authentication/>
+       <FlashMessage position="top" animated={true} />
       </Provider>
       // <ClientAllShopItems/>
       // <ClientAllSuki/>
