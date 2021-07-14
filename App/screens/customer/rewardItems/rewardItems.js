@@ -25,6 +25,12 @@ function rewardItems(props) {
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
 
+    const {shop_ID, owner_ID, shopName, address} = route.params;
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const rewards = useSelector(state => state.products.allRewards);
+
     const headerHeight = scrollPosition.interpolate({
         inputRange: [0, 500],
         outputRange: [maxHeaderHeight, minHeaderHeight],
@@ -74,7 +80,7 @@ function rewardItems(props) {
                     <ImageBackground style={styles.headerBgImage}
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
-                            <Text style={styles.headerLabel}>Shop Name</Text>
+                            <Text style={styles.headerLabel}>{JSON.stringify(shopName)}</Text>
                             <Text style={styles.headerLabelBig}>100 Points</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
@@ -122,18 +128,21 @@ function rewardItems(props) {
                     <View style={styles.allItemsContainer}>
                         {/* List of all rewards !note that items in Popular Rewards is also included here* */}
                         <Text style={styles.allItemsTitle}>All Rewards</Text>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
+                            
+                            <FlatList
+                                data={rewards}
+                                keyExtractor={item => item.rewards_ID}
+                                renderItem={itemData => 
+                                    <AllRewardItem 
+                                        reward_Name = {itemData.item.reward_Name}
+                                        pointsReq = {itemData.item.pointsReq}
+                                        addToCart = {() => console.log("Pressed") } 
+                                        viewDetails = {() => {}}
+                                    />}
+                            />
+                            
+                            {/*dispatch(cartAction.addToCart(products.products))*/}
+
                         {/* End of List */}
                     </View>
                     {/* End of All Items */}

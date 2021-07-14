@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import firebase from "firebase";
-import { Provider } from 'react-redux';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import * as firebase from "firebase";
@@ -12,6 +10,7 @@ import Screens from './App/navigation/screensNavigation'
 
 //for reducers
 import productsReducer from './App/functions/productsReducer';
+import rewardsReducer from './App/functions/rewardsReducer';
 import shopReducer from './App/functions/shopReducer';
 import cartReducer from './App/functions/cartReducer';
 import { createStore, combineReducers } from 'redux';
@@ -21,6 +20,7 @@ import { Provider } from 'react-redux'
 const rootReducer = combineReducers({
   shops: shopReducer,
   products: productsReducer,
+  rewards: rewardsReducer,
   cart: cartReducer
 });
 

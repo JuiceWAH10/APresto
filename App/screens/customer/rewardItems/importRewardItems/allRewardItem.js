@@ -17,11 +17,11 @@ function allRewardItem(props) {
                 source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
             <View style={styles.itemContainer}>
-                <Text style={styles.itemName}>Reward Name</Text>
-                <Text style={styles.itemPrice}>100 Points</Text>
+                <Text style={styles.itemName}>{props.reward_Name}</Text>
+                <Text style={styles.itemPrice}>{props.pointsReq}</Text>
                 <Text style={styles.itemInfo}>Reward Definition</Text>
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                    <TouchableOpacity onPress={props.addToCart}>
                         <Icon2 name="minus-circle" size={35} color="#ee4b43" />
                     </TouchableOpacity>
                     <Text style={styles.quantity}>Qty</Text>

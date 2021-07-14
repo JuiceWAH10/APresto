@@ -16,7 +16,6 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import CarouselCards from '../../carousel/CarouselCards'
 import IndivShop from '././importScreens/indivShop';
 
-
 function explore(props) {
     const navigation = useNavigation();
 
@@ -71,12 +70,13 @@ function explore(props) {
                         <Icon name="fire" size={25} color="#fd4140" />
                         <Text style={styles.mostReviewsTitle}>Most Reviewed Shops</Text>
                     </View>
-                    {/* Insert Code here for importing Most Reviewed shops with info */}
+                    {/* Insert Code here for importing Most Reviewed shops with info 
                     <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
                     <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
                     <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
                     <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
                     <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                    */}
                 {/* </View> */}
                 {/* End of most Reviewed */}
 

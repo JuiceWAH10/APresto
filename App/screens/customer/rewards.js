@@ -5,17 +5,23 @@ import {
     ScrollView,
     StyleSheet,
     Text, 
-    View, 
+    View,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useDispatch, useSelector } from 'react-redux';
 
 import IndivReward from '././importScreens/indivReward';
 
 function rewards(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const allShops = useSelector(state => state.shops.allShops);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -42,12 +48,27 @@ function rewards(props) {
 
                 {/* Shop List */}
                 {/* <View style={styles.shopListContainer}> */}
+                {/* (juswa) mukhang sobrang hirap i apply yung gantong logic maybe kada visit ng shops nalang makita ang ma redeem nyang rewards... */}
                     <View style={styles.shopListTitleContainer}>
                         <Icon style={styles.shopListTitleIcon} name="star-four-points" size={25} color="#fd4140" />
                         <Text style={styles.shopListTitle}>Shops you have Points</Text>
                     </View>
                     {/* Insert Code here for importing shops with rewards together with info */}
-                    <IndivReward name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
+                    <FlatList
+                        data={allShops}
+                        keyExtractor={item => item.shop_ID}
+                        renderItem={itemData => 
+                            <IndivReward 
+                                shop_ID = {itemData.item.shop_ID}
+                                owner_ID = {itemData.item.owner_ID}
+                                shopName = {itemData.item.shopName}
+                                address = {itemData.item.address}
+                                viewShop = {() => {dispatch(cartAction.addToCart(products.products))}}
+                                viewDetails = {() => {}}
+                            />
+                        }
+                    />
+
                 {/* </View> */}
             </ScrollView>
         </SafeAreaView>

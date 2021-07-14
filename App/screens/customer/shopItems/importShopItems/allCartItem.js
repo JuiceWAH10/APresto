@@ -9,28 +9,26 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-import { useDispatch } from 'react-redux';
-
-//(juswa) for fetching data from redux store in App.js
-const dispatch = useDispatch();
-
-function allShopItem(props) {
+//di nagbago
+function allCartItem(props) {
     return (
         <View style={styles.container}>
             <Image style={styles.itemImage}
                     source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
+
+            {/* (juswa) pa edit ng may remove/delete from cart button. kaw na bahala saan ma display quantity */}
             <View style={styles.itemContainer}>
+                <Text style={styles.itemInfo}>{props.quantity}</Text>
                 <Text style={styles.itemName}>{props.product_Name}</Text>
-                <Text style={styles.itemPrice}>Php{props.price}</Text>
-                <Text style={styles.itemInfo}>Product Definition</Text>
+                <Text style={styles.itemPrice}>Php{props.price.toFixed(2)}</Text>
+                
                 <View style={styles.buttonsContainer}>
                     {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details */}
-                    <TouchableOpacity onPress={props.addToCart}>
+                    <TouchableOpacity onPress={props.removeFromCart}>
                         <Icon name="add-circle" size={35} color="#356288" />
                     </TouchableOpacity>
-                    <Text style={styles.quantity}>add to cart haha</Text>
+                    <Text style={styles.quantity}>remove from cart haha</Text>
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
                         <Icon name="add-circle" size={35} color="#ee4b43" />
                     </TouchableOpacity>    
@@ -83,6 +81,8 @@ class allShopItem extends Component {
 */}
 
 const styles = StyleSheet.create({
+    
+
     buttonsContainer:{
         alignSelf: "center",
         flexDirection: "row",
@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
         marginRight: 4      
     },
 })
-export default allShopItem;
+export default allCartItem;

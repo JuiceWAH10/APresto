@@ -6,15 +6,14 @@ import {
     StyleSheet,
     Text, 
     View, 
-    FlatList
+    FlatList 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { useSelector } from 'react-redux';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+//di nagbago
 import IndivShop from '././importScreens/indivShop';
 
 function shops(props) {

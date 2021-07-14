@@ -1,5 +1,5 @@
 //tentative
-class User{
+class Client{
     constructor(user_ID, firstName, lastName, email, address, contactNo, birthday, gender, userName){
         this.user_ID = user_ID;
         this.firstName = firstName;

@@ -10,11 +10,17 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-
 function indivReward(props) {
     const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={()=>navigation.navigate('rewardItems')}>
+        <TouchableOpacity onPress={()=>
+            navigation.navigate('rewardItems', {
+                shop_ID: props.shop_ID,
+                owner_ID: props.owner_ID,
+                shopName: props.shopName,
+                address: props.address
+            }
+        )}>
             <View style={styles.container}>
                 <Image style={styles.shopImage}
                     source={require('../../../assets/DummyShop.jpg')}>
