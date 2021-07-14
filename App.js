@@ -103,6 +103,7 @@ const AuthScreens = () => {
 const Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>   
+    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
     <Stack.Screen name="customerShops" children={customerBottomTabs} />  
     <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />
     {/* Added Vincent */}
@@ -119,7 +120,7 @@ const Screens = () => {
     <Stack.Screen name="customerEditProfile" component={CustomerEditProfile} />
 
     <Stack.Screen name="clientHomepage" component={ClientHomepage} />
-    <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
+    {/* Product Add here */}
     <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
     <Stack.Screen name="clientProductList" component={ClientProductList} />
     <Stack.Screen name="clientRewardAdd" component={ClientRewardAdd} />
