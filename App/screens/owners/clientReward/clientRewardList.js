@@ -24,43 +24,44 @@ function clientRewardList(props) {
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
+            <View style={styles.top}>
+                {/* Top Navigation and Search Bar */}
+                <View style={styles.topNav}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} >
+                        <Icon2 style={styles.backButton} name="left" size={30} color="#ee4b43" />
+                    </TouchableOpacity>   
+                    <Searchbar
+                            style={styles.searchBar}
+                            placeholder="Search"
+                            onChangeText={onChangeSearch}
+                            value={searchQuery}
+                    />
+                </View>
+                {/* End of Top Nav and Search Bar */}
 
-            {/* Top Navigation and Search Bar */}
-            <View style={styles.topNav}>
-                <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 style={styles.backButton} name="left" size={30} color="#ee4b43" />
-                </TouchableOpacity>   
-                <Searchbar
-                        style={styles.searchBar}
-                        placeholder="Search"
-                        onChangeText={onChangeSearch}
-                        value={searchQuery}
-                />
+                {/* Header */}
+                <View style={styles.headContainer}>
+                    <TouchableOpacity onPress={() => "pressed"} >
+                        <View style={styles.headIndivContainer}>
+                            <Text style={styles.headLabelSmall}>Live</Text>
+                            <Icon style={styles.headIcons} name="box" size={35} color="#29312e" />
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => "pressed"} >
+                        <View style={styles.headIndivContainer}>
+                            <Text style={styles.headLabelSmall}>Sold</Text>
+                            <Icon style={styles.headIcons} name="wallet" size={35} color="#29312e" />
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => "pressed"} >    
+                        <View style={styles.headIndivContainer}>
+                            <Text style={styles.headLabelSmall}>Delisted</Text>
+                            <Icon style={styles.headIcons} name="archive" size={35} color="#29312e" />
+                        </View>
+                    </TouchableOpacity>    
+                </View>  
+                {/* End of Header */}
             </View>
-            {/* End of Top Nav and Search Bar */}
-
-            {/* Header */}
-            <View style={styles.headContainer}>
-                <TouchableOpacity onPress={() => "pressed"} >
-                    <View style={styles.headIndivContainer}>
-                        <Text style={styles.headLabelSmall}>Live</Text>
-                        <Icon style={styles.headIcons} name="box" size={35} color="#29312e" />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => "pressed"} >
-                    <View style={styles.headIndivContainer}>
-                        <Text style={styles.headLabelSmall}>Sold</Text>
-                        <Icon style={styles.headIcons} name="wallet" size={35} color="#29312e" />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => "pressed"} >    
-                    <View style={styles.headIndivContainer}>
-                        <Text style={styles.headLabelSmall}>Delisted</Text>
-                        <Icon style={styles.headIcons} name="archive" size={35} color="#29312e" />
-                    </View>
-                </TouchableOpacity>    
-            </View>  
-            {/* End of Header */}
 
             <ScrollView style={styles.container}>
 
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -135,7 +136,8 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: "#fff"
     },
     headContainer: {
         alignSelf: "center",
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
     headLabelSmall: {
         textAlign: "center",
         marginTop: 5,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -172,6 +174,20 @@ const styles = StyleSheet.create({
         borderColor: "#fd4140",
         marginBottom: 10,
         marginTop: 5,   
+    },
+    top: {
+        paddingTop: 8,
+        marginBottom: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     topNav: {
         flexDirection: "row",
