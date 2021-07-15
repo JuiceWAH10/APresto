@@ -22,7 +22,7 @@ function clientEditProfile(props) {
         <SafeAreaView style={styles.droidSafeArea}>       
             <View style={[styles.topContainer, {flex:1}]}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#fd4140" />
+                    <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>    
             </View>
             <View style={[styles.formContainer, {flex:15}]}>          
@@ -120,7 +120,7 @@ function clientEditProfile(props) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',

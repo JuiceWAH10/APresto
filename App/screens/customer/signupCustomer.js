@@ -84,7 +84,7 @@ function signupCustomer(props) {
         <SafeAreaView style={styles.droidSafeArea}>       
             <View style={[styles.topContainer, {flex:1}]}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon name="left" size={30} color="#fd4140" />
+                    <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>    
             </View>
             <View style={[styles.formContainer, {flex:15}]}>          
@@ -215,6 +215,17 @@ function signupCustomer(props) {
                     //IF ALL INPUTS ARE VALID THIS IS WILL CREATE ACCOUNT FUNCTION 
                     if(isAllValid){
                         createAccount(emailField.text, passwordField.text);
+                        showMessage({
+                            message: "Account Created",
+                            description: "Welcome to APresto where every money you spend gives you rewards!",
+                            icon: { icon: "info", position: "left" },
+                            position: "top",
+                            floating: "true",
+                            type: "success",
+                            color: "#fff",
+                            autoHide:"true", 
+                            duration: 6000,
+                          });
                         //props.navigation.navigate('login');                   
                     }
 
@@ -232,7 +243,7 @@ function signupCustomer(props) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#fd4140',
+        backgroundColor: '#ee4b43',
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',

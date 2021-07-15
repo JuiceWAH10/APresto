@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    Image,
     ImageBackground,
     SafeAreaView, 
     StyleSheet, 
@@ -16,8 +17,10 @@ function shopItemsQR(props) {
         <SafeAreaView style={styles.droidSafeArea}>
             <ImageBackground style={styles.container} source={require('../../../assets/images/splashScreenDark.jpg')}>
                 <View style={styles.qrContainer}>
-                    <Text style={styles.qrLabel}>Scan the QR code to add point(s)</Text>
+                    <Text style={styles.qrLabel}>Show this QR code to the shop to add point(s)</Text>
                         {/* Enter QR Code here */}
+                        <Image style={styles.qrImage}
+                        source={require('../../../assets/productQR.png')}/>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()} >
                         <Text style={styles.buttonLabel}>Return</Text>
                     </TouchableOpacity>
@@ -61,6 +64,13 @@ const styles = StyleSheet.create({
         paddingTop: hp('2%'),
         paddingBottom: hp('2%'),
         top: hp('20%')
+    },
+    qrImage:{
+        alignSelf: "center",
+        width: 200,
+        height: 200,
+        marginTop: 10,
+        marginBottom: 10
     },
     qrLabel:{
         textAlign: "center",

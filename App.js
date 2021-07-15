@@ -121,7 +121,7 @@ const Screens = () => {
     <Stack.Screen name="customerEditProfile" component={CustomerEditProfile} />
 
     
-    {/* Product Add here */}
+    {/* Product Add here */}   
     <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
     <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
     <Stack.Screen name="clientProductList" component={ClientProductList} />
