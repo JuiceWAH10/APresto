@@ -1,275 +1,356 @@
-export const stores = [
-    {
-        shop_id: 1,
-        shop_name: 'Keitandkat Perfume',
-        address: 'Jacob St., Taytay, Rizal'
-    },
-    {
-        shop_id: 2,
-        shop_name: 'Scrapyard Café & Restaurant',
-        address: '45 Manila E. Rd., Angono, 1930 Rizal'
-    },
-    {
-        shop_id: 3,
-        shop_name: 'Blugre Coffee Manila East',
-        address: 'Don Hilario Cruz, Taytay, Rizal'
-    }
+import Shop from '../models/shop';
+import Product from '../models/products';
+import Reward from '../models/rewards';
+
+export const shops = [
+    new Shop(
+        '1',
+        '1',
+        'Keitandkat Perfume',
+        'Jacob St., Taytay, Rizal'
+        )
+    ,
+    new Shop(
+        '2',
+        '2',
+        'Scrapyard Café & Restaurant',
+        '45 Manila E. Rd., Angono, 1930 Rizal'
+    ),
+    new Shop
+    (
+        '3',
+        '3',
+        'Blugre Coffee Manila East',
+        'Don Hilario Cruz, Taytay, Rizal'
+    )
 ]
 
 export const products = [
-    {
-        product_id: 1,
-		shop_id: 1,
-        product_name: 'Bulgari Extreme Perfume',
-        price: 150,
-		inventory: 200
-    },
-	{
-        product_id: 2,
-		shop_id: 1,
-        product_name: 'VS Vanilla Lace Perfume',
-        price: 150,
-		inventory: 200
-    },
-	{
-        product_id: 3,
-		shop_id: 1,
-        product_name: 'Perry Ellis Perfume',
-        price: 155,
-		inventory: 200
-    },
-	{
-        product_id: 4,
-		shop_id: 1,
-        product_name: 'Lacoste Black Perfume',
-        price: 175,
-		inventory: 200
-    },
-	{
-        product_id: 5,
-		shop_id: 1,
-        product_name: 'CK One Type Perfume',
-        price: 210,
-		inventory: 200
-    },
-    {
-        product_id: 6,
-		shop_id: 1,
-        product_name: 'VS Pure Seduction Perfume',
-        price: 210,
-		inventory: 200
-    },
-    {
-        product_id: 7,
-		shop_id: 1,
-        product_name: 'Lacoste Black Perfume',
-        price: 210,
-		inventory: 200
-    },
-    {
-        product_id: 8,
-		shop_id: 1,
-        product_name: 'Hanging Diffuser',
-        price: 210,
-		inventory: 200
-    },
-    {
-        product_id: 9,
-		shop_id: 1,
-        product_name: 'Black Suede',
-        price: 210,
-		inventory: 200
-    },
-    {
-        product_id: 10,
-		shop_id: 1,
-        product_name: 'JV Vien Scent',
-        price: 210,
-		inventory: 200
-    },
-	{
-        product_id: 1,
-		shop_id: 2,
-        product_name: 'Kalderetang Itik (Minalot)',
-        price: 200,
-		inventory: 200
-    },
-	{
-        product_id: 2,
-		shop_id: 2,
-        product_name: 'Daing na Bangus (Minalot)',
-        price: 150,
-		inventory: 200
-    },
-	{
-        product_id: 3,
-		shop_id: 2,
-        product_name: 'Pork Sisig (Minalot)',
-        price: 70,
-		inventory: 200
-    },
-	{
-        product_id: 4,
-		shop_id: 2,
-        product_name: 'Tapsilog',
-        price: 55,
-		inventory: 200
-    },
-	{
-        product_id: 5,
-		shop_id: 2,
-        product_name: 'Pork Steak (Minalot)',
-        price: 65,
-		inventory: 200
-    },
-	{
-        product_id: 1,
-		shop_id: 3,
-        product_name: 'Durian and Cream Frappé',
-        price: 70,
-		inventory: 200
-    },
-	{
-        product_id: 2,
-		shop_id: 3,
-        product_name: 'Hot/ Iced Choco',
-        price: 60,
-		inventory: 200
-    },
-	{
-        product_id: 3,
-		shop_id: 3,
-        product_name: 'Americano',
-        price: 60,
-		inventory: 200
-    },
-	{
-        product_id: 4,
-		shop_id: 3,
-        product_name: 'Cappuccino',
-        price: 60,
-		inventory: 200
-    },
-	{
-        product_id: 5,
-		shop_id: 3,
-        product_name: 'Iced Lemon Tea',
-        price: 50,
-		inventory: 200
-    }
+    new Product
+    (
+        '1',
+		'1',
+        'Bulgari Extreme Perfume',
+        ' 150',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '2',
+		'1',
+        'VS Vanilla Lace Perfume',
+        '150',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '3',
+		'1',
+        'Perry Ellis Perfume',
+        '155',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '4',
+		'1',
+        'Lacoste Black Perfume',
+        '175',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '5',
+		'1',
+        'CK One Type Perfume',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+    (
+        '6',
+		'1',
+        'VS Pure Seduction Perfume',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+    (
+        '7',
+		'1',
+        'Lacoste Black Perfume',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+    (
+        '8',
+		'1',
+        'Hanging Diffuser',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+    (
+        '9',
+		'1',
+        'Black Suede',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+    (
+        '10',
+		'1',
+        'JV Vien Scent',
+        '210',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '1',
+		'2',
+        'Kalderetang Itik (Minalot)',
+        '200',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '2',
+		'2',
+        'Daing na Bangus (Minalot)',
+        '150',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '3',
+		'2',
+        'Pork Sisig (Minalot)',
+        '70',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '4',
+		'2',
+        'Tapsilog',
+        '55',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '5',
+		'2',
+        'Pork Steak (Minalot)',
+        '65',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '1',
+		'3',
+        'Durian and Cream Frappé',
+        '70',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '2',
+		'3',
+        'Hot/ Iced Choco',
+        '60',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '3',
+		'3',
+        'Americano',
+        '60',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '4',
+		'3',
+        'Cappuccino',
+        '60',
+		'200',
+        'available'
+    ),
+    new Product
+	(
+        '5',
+		'3',
+        'Iced Lemon Tea',
+        '50',
+		'200',
+        'available'
+    )
 ]
 
 export const rewards = [
-    {
-        reward_id: 1,
-        shop_id: 1,
-        reward_name: 'Keitandkat Diffuser Oil (Bottled)',
-        redeem_points: 10,
-        inventory: 150
-    },
-    {
-        reward_id: 2,
-        shop_id: 1,
-        reward_name: 'Perfume Collection',
-        redeem_points: 25,
-        inventory: 150
-    },
-    {
-        reward_id: 3,
-        shop_id: 1,
-        reward_name: 'Perfume Pouch',
-        redeem_points: 25,
-        inventory: 150
-    },
-    {
-        reward_id: 4,
-        shop_id: 1,
-        reward_name: 'Perfume Organizer',
-        redeem_points: 25,
-        inventory: 150
-    },
-    {
-        reward_id: 5,
-        shop_id: 1,
-        reward_name: 'PHP100 Voucher',
-        redeem_points: 50,
-        inventory: 150
-    },
-    {
-        reward_id: 6,
-        shop_id: 1,
-        reward_name: 'PHP200 Voucher',
-        redeem_points: 75,
-        inventory: 150
-    },
-    {
-        reward_id: 7,
-        shop_id: 1,
-        reward_name: 'PHP300 Voucher',
-        redeem_points: 100,
-        inventory: 150
-    },
-    {
-        reward_id: 8,
-        shop_id: 1,
-        reward_name: 'PHP500 Voucher',
-        redeem_points: 250,
-        inventory: 150
-    },
-    {
-        reward_id: 9,
-        shop_id: 1,
-        reward_name: 'PHP1000 Voucher',
-        redeem_points: 500,
-        inventory: 150
-    },
-    {
-        reward_id: 10,
-        shop_id: 1,
-        reward_name: '50% off Voucher',
-        redeem_points: 150,
-        inventory: 150
-    },
-    {
-        reward_id: 1,
-        shop_id: 2,
-        reward_name: 'Dinuguan',
-        redeem_points: 15,
-        inventory: 150
-    },
-    {
-        reward_id: 2,
-        shop_id: 2,
-        reward_name: 'Fresh Buko Juice',
-        redeem_points: 10,
-        inventory: 150
-    },
-    {
-        reward_id: 1,
-        shop_id: 3,
-        reward_name: 'Adobo Cheesemelt',
-        redeem_points: 10,
-        inventory: 150
-    },
-    {
-        reward_id: 2,
-        shop_id: 3,
-        reward_name: 'Chicken Pesto',
-        redeem_points: 10,
-        inventory: 150
-    },
-    {
-        reward_id: 3,
-        shop_id: 3,
-        reward_name: 'Tuna Cheesemelt',
-        redeem_points: 10,
-        inventory: 150
-    },
-    {
-        reward_id: 4,
-        shop_id: 3,
-        reward_name: 'Ham and Cheese',
-        redeem_points: 10,
-        inventory: 150
-    },
+    new Reward
+    (
+        '1',
+        '1',
+        'Keitandkat Diffuser Oil (Bottled)',
+        '10',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '2',
+        '1',
+        'Perfume Collection',
+        '25',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '3',
+        '1',
+        'Perfume Pouch',
+        '25',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '4',
+        '1',
+        'Perfume Organizer',
+        '25',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '5',
+        '1',
+        'PHP100 Voucher',
+        '50',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '6',
+        '1',
+        'PHP200 Voucher',
+        '75',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '7',
+        '1',
+        'PHP300 Voucher',
+        '100',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '8',
+        '1',
+        'PHP500 Voucher',
+        '250',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '9',
+        '1',
+        'PHP1000 Voucher',
+        '500',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '10',
+        '1',
+        '50% off Voucher',
+        '150',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '1',
+        '2',
+        'Dinuguan',
+        '15',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '2',
+        '2',
+        'Fresh Buko Juice',
+        '10',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '1',
+        '3',
+        'Adobo Cheesemelt',
+        '10',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '2',
+        '3',
+        'Chicken Pesto',
+        '10',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '3',
+        '3',
+        'Tuna Cheesemelt',
+        '10',
+        '150',
+        'available'
+    ),
+    new Reward
+    (
+        '4',
+        '3',
+        'Ham and Cheese',
+        '10',
+        '150',
+        'available'
+    )
 ]

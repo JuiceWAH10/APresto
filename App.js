@@ -9,16 +9,12 @@ import SignupCustomer from './App/screens/customer/signupCustomer';
 import Screens from './App/navigation/screensNavigation'
 import { Provider } from 'react-redux'
 
-import store from './App/screens/store.js';
-
-/*
 //for reducers
 import productsReducer from './App/functions/productsReducer';
 import rewardsReducer from './App/functions/rewardsReducer';
 import shopReducer from './App/functions/shopReducer';
 import cartReducer from './App/functions/cartReducer';
 import { createStore, combineReducers } from 'redux';
-
 
 // combine all reducers into one object
 const rootReducer = combineReducers({
@@ -30,7 +26,6 @@ const rootReducer = combineReducers({
 
 // create a store for managing states using the reducers which will be used for data transfer through the app.
 const store = createStore(rootReducer);
-*/
 
 //Auth Screens
 const AuthStack = createStackNavigator();
