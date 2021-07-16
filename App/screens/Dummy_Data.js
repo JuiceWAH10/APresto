@@ -7,203 +7,226 @@ export const shops = [
         '1',
         '1',
         'Keitandkat Perfume',
-        'Jacob St., Taytay, Rizal'
+        'Jacob St., Taytay, Rizal',
+        'Perfumes'
         )
     ,
     new Shop(
         '2',
         '2',
         'Scrapyard Café & Restaurant',
-        '45 Manila E. Rd., Angono, 1930 Rizal'
+        '45 Manila E. Rd., Angono, 1930 Rizal',
+        'Pinoy Restaurant'
     ),
     new Shop
     (
         '3',
         '3',
         'Blugre Coffee Manila East',
-        'Don Hilario Cruz, Taytay, Rizal'
+        'Don Hilario Cruz, Taytay, Rizal',
+        'Cafe'
     )
 ]
 
 export const products = [
     new Product
     (
-        '1',
+        'a1',
 		'1',
         'Bulgari Extreme Perfume',
-        ' 150',
-		'200',
+        150,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
 	(
-        '2',
+        'a2',
 		'1',
         'VS Vanilla Lace Perfume',
-        '150',
-		'200',
+        150,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
 	(
-        '3',
+        'a3',
 		'1',
         'Perry Ellis Perfume',
-        '155',
-		'200',
+        155,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
 	(
-        '4',
+        'a4',
 		'1',
         'Lacoste Black Perfume',
-        '175',
-		'200',
+        175,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
 	(
-        '5',
+        'a5',
 		'1',
         'CK One Type Perfume',
-        '210',
-		'200',
+        210,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
     (
-        '6',
+        'a6',
 		'1',
         'VS Pure Seduction Perfume',
-        '210',
-		'200',
+        210,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
     (
-        '7',
+        'a7',
 		'1',
         'Lacoste Black Perfume',
-        '210',
-		'200',
+        210,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
     (
-        '8',
+        'a8',
 		'1',
         'Hanging Diffuser',
-        '210',
-		'200',
+        210,
+	    200,
+        'Perfume',
         'available'
     ),
     new Product
     (
-        '9',
+        'a9',
 		'1',
         'Black Suede',
-        '210',
-		'200',
+        210,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
     (
-        '10',
+        'a10',
 		'1',
         'JV Vien Scent',
-        '210',
-		'200',
+        210,
+		200,
+        'Perfume',
         'available'
     ),
     new Product
 	(
-        '1',
+        'b1',
 		'2',
         'Kalderetang Itik (Minalot)',
-        '200',
-		'200',
+        200,
+		200,
+        'Ulam',
         'available'
     ),
     new Product
 	(
-        '2',
+        'b2',
 		'2',
         'Daing na Bangus (Minalot)',
-        '150',
-		'200',
+        150,
+		200,
+        'Ulam',
         'available'
     ),
     new Product
 	(
-        '3',
+        'b3',
 		'2',
         'Pork Sisig (Minalot)',
-        '70',
-		'200',
+        70,
+		200,
+        'Ulam',
         'available'
     ),
     new Product
 	(
-        '4',
+        'b4',
 		'2',
         'Tapsilog',
-        '55',
-		'200',
+        55,
+		200,
+        'Ulam',
         'available'
     ),
     new Product
 	(
-        '5',
+        'b5',
 		'2',
         'Pork Steak (Minalot)',
-        '65',
-		'200',
+        65,
+	    200,
+        'Ulam',
         'available'
     ),
     new Product
 	(
-        '1',
+        'c1',
 		'3',
         'Durian and Cream Frappé',
-        '70',
-		'200',
+        70,
+		200,
+        'Drinks',
         'available'
     ),
     new Product
 	(
-        '2',
+        'c2',
 		'3',
         'Hot/ Iced Choco',
-        '60',
-		'200',
+        60,
+		200,
+        'Drinks',
         'available'
     ),
     new Product
 	(
-        '3',
+        'c3',
 		'3',
         'Americano',
-        '60',
-		'200',
+        60,
+		200,
+        'Drinks',
         'available'
     ),
     new Product
 	(
-        '4',
+        'c4',
 		'3',
         'Cappuccino',
-        '60',
-		'200',
+        60,
+		200,
+        'Drinks',
         'available'
     ),
     new Product
 	(
-        '5',
+        'c5',
 		'3',
         'Iced Lemon Tea',
-        '50',
-		'200',
+        50,
+		200,
+        'Drinks',
         'available'
     )
 ]
@@ -211,146 +234,162 @@ export const products = [
 export const rewards = [
     new Reward
     (
-        '1',
+        'a1',
         '1',
         'Keitandkat Diffuser Oil (Bottled)',
-        '10',
-        '150',
+        10,
+        150,
+        'Lovely smell for lovely suki',
         'available'
     ),
     new Reward
     (
-        '2',
+        'a2',
         '1',
         'Perfume Collection',
-        '25',
-        '150',
+        25,
+        150,
+        'Lovely smell for lovely suki',
         'available'
     ),
     new Reward
     (
-        '3',
+        'a3',
         '1',
         'Perfume Pouch',
-        '25',
-        '150',
+        25,
+        150,
+        'Lovely smell for lovely suki',
         'available'
     ),
     new Reward
     (
-        '4',
+        'a4',
         '1',
         'Perfume Organizer',
-        '25',
-        '150',
+        25,
+        150,
+        'For your convenience',
         'available'
     ),
     new Reward
     (
-        '5',
+        'a5',
         '1',
         'PHP100 Voucher',
-        '50',
-        '150',
+        50,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '6',
+        'a6',
         '1',
         'PHP200 Voucher',
-        '75',
-        '150',
+        75,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '7',
+        'a7',
         '1',
         'PHP300 Voucher',
-        '100',
-        '150',
+        100,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '8',
+        'a8',
         '1',
         'PHP500 Voucher',
-        '250',
-        '150',
+        250,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '9',
+        'a9',
         '1',
         'PHP1000 Voucher',
-        '500',
-        '150',
+        500,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '10',
+        'a10',
         '1',
         '50% off Voucher',
-        '150',
-        '150',
+        150,
+        150,
+        'Kaching!',
         'available'
     ),
     new Reward
     (
-        '1',
+        'b1',
         '2',
         'Dinuguan',
-        '15',
-        '150',
+        15,
+        150,
+        'INC',
         'available'
     ),
     new Reward
     (
-        '2',
+        'b2',
         '2',
         'Fresh Buko Juice',
-        '10',
-        '150',
+        10,
+        150,
+        '*toktok* kokonat',
         'available'
     ),
     new Reward
     (
-        '1',
+        'c1',
         '3',
         'Adobo Cheesemelt',
-        '10',
-        '150',
+        10,
+        150,
+        'Ulam',
         'available'
     ),
     new Reward
     (
-        '2',
+        'c2',
         '3',
         'Chicken Pesto',
-        '10',
-        '150',
+        10,
+        150,
+        'Mmmm',
         'available'
     ),
     new Reward
     (
-        '3',
+        'c3',
         '3',
         'Tuna Cheesemelt',
-        '10',
-        '150',
+        10,
+        150,
+        'Mmmmm',
         'available'
     ),
     new Reward
     (
-        '4',
+        'c4',
         '3',
         'Ham and Cheese',
-        '10',
-        '150',
+        10,
+        150,
+        'DepEd',
         'available'
     )
 ]

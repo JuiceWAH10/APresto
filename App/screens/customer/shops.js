@@ -5,17 +5,25 @@ import {
     ScrollView,
     StyleSheet,
     Text, 
-    View, 
+    View,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import IndivShop from '././importScreens/indivShop';
 
 function shops(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const allShops = useSelector(state => state.shops.allShops);
+
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <View style={styles.searchBarContainer}>
@@ -27,7 +35,6 @@ function shops(props) {
                 />
             </View>
 
-            <ScrollView style={[styles.container, {flex:1}]}>
                 {/* Banner */}
                 {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
@@ -41,19 +48,33 @@ function shops(props) {
 
                 {/* Shop List */}
                 {/* <View style={styles.shopListContainer}> */}
+
+            {/* (juswa) used this instead scrollview arte ng expo may warning */}
+
+            <FlatList
+                style={[styles.container, {flex:1}]}
+                ListHeaderComponent={
                     <View style={styles.shopListTitleContainer}>
                         <Icon style={styles.shopListTitleIcon} name="shop" size={25} color="#fd4140" />
                         <Text style={styles.shopListTitle}>APresto Shops</Text>
                     </View>
-                    {/* Insert Code here for importing shops with info */}
-                    <IndivShop name="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                    <IndivShop name="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                    <IndivShop name="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                    <IndivShop name="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
-                    <IndivShop name="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
-                {/* </View> */}
-                {/* End of Shop List */}
-            </ScrollView>
+                }
+                data={allShops}
+                keyExtractor={item => item.shop_ID}
+                renderItem={itemData => 
+                    <IndivShop 
+                        shop_ID = {itemData.item.shop_ID}
+                        owner_ID = {itemData.item.owner_ID}
+                        shopName = {itemData.item.shopName}
+                        address = {itemData.item.address}
+                        specialty = {itemData.item.specialty}
+                        viewShop = {() => {dispatch(cartAction.addToCart(products.products))}}
+                        viewDetails = {() => {}}
+                    />}
+            />
+            
+            {/* </View> */}
+            {/* End of Shop List */}
 
         </SafeAreaView>
     );

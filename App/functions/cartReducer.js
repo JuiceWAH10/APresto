@@ -1,11 +1,12 @@
 //for handling cart items
+import {React} from 'react';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../functions/cartFunction';
 import CartItem from '../models/cartItem';
 //import cartItems
 
 const initialState = {
     items: {},
-    total: 0
+    totalAmount: 0
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +14,7 @@ export default (state = initialState, action) => {
         case ADD_TO_CART:
             const addedProduct = action.product;
             const prodPrice = addedProduct.price;
-            const prodTitle = addedProduct.title;
+            const prodTitle = addedProduct.product_Name;
             let cartItem;
             
             //check if cart has the item to be added
@@ -31,7 +32,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 items: { ...state.items, [addedProduct.product_ID]: cartItem },
-                totalAmount: state.total + prodPrice
+                totalAmount: state.totalAmount + prodPrice
             };
 
         case REMOVE_FROM_CART:

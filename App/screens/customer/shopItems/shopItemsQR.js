@@ -7,17 +7,27 @@ import {
     TouchableOpacity, 
     View 
 } from 'react-native';
+import QRCode from "react-qr-code";
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function shopItemsQR(props) {
     const navigation = useNavigation();
+    const {cartItems, totalAmount} = props.route.params;
+    let orderDetails = {
+        'items':{
+            'totalAmount':totalAmount,
+            'orderedItems':cartItems
+        }
+    };
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <ImageBackground style={styles.container} source={require('../../../assets/images/splashScreenDark.jpg')}>
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to add point(s)</Text>
-                        {/* Enter QR Code here */}
+                        <QRCode 
+                            value = "wow"
+                        />
                     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()} >
                         <Text style={styles.buttonLabel}>Return</Text>
                     </TouchableOpacity>
