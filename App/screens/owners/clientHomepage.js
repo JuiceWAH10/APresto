@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
     },
     profileDarken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
     },
     profileDetails: {
         marginTop: 5,

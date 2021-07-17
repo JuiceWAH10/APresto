@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Dimensions, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { 
+    Text, 
+    View, 
+    StyleSheet, 
+    Button, 
+    Dimensions, 
+    Image, 
+    ImageBackground,
+    SafeAreaView, 
+    TouchableOpacity 
+} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import BarcodeMask from 'react-native-barcode-mask';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -28,7 +38,8 @@ export default function QRCodeScanner(props){
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.droidSafeArea}>
+            <ImageBackground style={styles.container} source={require('../assets/images/splashScreenDark.jpg')}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
@@ -43,6 +54,7 @@ export default function QRCodeScanner(props){
                     </TouchableOpacity>
                 </BarCodeScanner>
                 {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+            </ImageBackground>       
         </SafeAreaView>
         
     );
@@ -52,6 +64,10 @@ const { width } = Dimensions.get('window')
 const qrSize = width * 0.7
 
 const styles = StyleSheet.create({
+    droidSafeArea: {
+        flex: 1,
+        // paddingTop: Platform.OS === 'android' ? 32 : 0
+    },
     container: {
         flex: 1,
         flexDirection: 'column',

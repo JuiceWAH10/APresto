@@ -114,7 +114,7 @@ function LogIn(props) {
                       autoCompleteType="password"
                   />
                 </View>  
-                <View style={styles.checkbox}>
+                {/* <View style={styles.checkbox}>
                   <CheckBox
                     disabled={false}
                     value={toggleCheckBox.check}
@@ -122,7 +122,7 @@ function LogIn(props) {
                     checked={setToggleCheckBox}
                   />
                   <Text> Log in as store owner. </Text>
-                </View>
+                </View> */}
               </View>
               
                 <TouchableOpacity style={styles.LogInButton} onPress={() => {
@@ -131,14 +131,14 @@ function LogIn(props) {
                   let isAllValid = true;
                   if(!isValid.email){
                     console.log("Please enter a valid email...")
-                    emailField.errorMessage = "Please enter a valid email";
+                    emailField.errorMessage = "Incorrect Email. Please enter a valid email";
                     setEmailField({...emailField})
                     isAllValid = false;
                   }
 
                   if(!isValid.password){
                     console.log("Password must be at least 8 long characters with numbers")
-                    passwordField.errorMessage = "Password must be at least 8 long characters with numbers";
+                    passwordField.errorMessage = "Incorrect Password. Makke sure you entered the password correctly.";
                     setPasswordField({...passwordField})
                     isAllValid = false;
                   }
@@ -234,6 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     alignSelf: 'center',
+    paddingTop: 20
     //justifyContent: 'center',
     // top: hp('40%'),
   },

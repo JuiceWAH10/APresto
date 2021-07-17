@@ -40,7 +40,7 @@ function clientAllShopRewards(props) {
                     <Text style={styles.itemDetailsText}>Sold: 23</Text>
                 </View>
             </View>
-            <View style={styles.itemDetailsWrapValues}>
+            {/* <View style={styles.itemDetailsWrapValues}>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon2 style={styles.itemDetailsIcon} name="heart" size={18} />
                     <Text style={styles.itemDetailsText}>Likes: 34</Text>
@@ -49,7 +49,7 @@ function clientAllShopRewards(props) {
                     <Icon3 style={styles.itemDetailsIcon} name="eye" size={18}/>
                     <Text style={styles.itemDetailsText}>Views: 244</Text>
                 </View>
-            </View>
+            </View> */}
             {/* End of Reward Details */}
 
             {/* Buttons */}
@@ -74,7 +74,7 @@ function clientAllShopRewards(props) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#fd4140",
+        backgroundColor: "#ee4b43",
         borderRadius: 30,
         alignItems: 'center',
         flexDirection: "row",
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 3,
         marginBottom: 3,
-        height: 225,
+        height: 195,
         width: wp('100%'),
         // borderWidth: 1,
         paddingTop: 10,
