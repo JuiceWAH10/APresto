@@ -22,9 +22,9 @@ function clientAllShopRewards(props) {
                         source={require('../../../../assets/DummyShop.jpg')}>
                 </Image>
                 <View style={styles.itemContainer} >
-                    <Text style={styles.itemName}>Reward Name</Text>
-                    <Text style={styles.itemPrice}>20 Pts</Text>
-                    <Text style={styles.itemInfo}>Reward Definition</Text>
+                    <Text style={styles.itemName}>{props.reward_Name}</Text>
+                    <Text style={styles.itemPrice}>{props.pointsReq} Pts</Text>
+                    <Text style={styles.itemInfo}>{props.definition}</Text>
                 </View> 
             </View>
             {/* End of Reward Image and Infos */}

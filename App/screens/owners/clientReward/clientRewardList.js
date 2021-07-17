@@ -8,6 +8,7 @@ import {
     Text,
     TouchableOpacity, 
     View, 
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -15,12 +16,18 @@ import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import ClientAllShopRewards from '././importClientReward/clientAllShopRewards';
 
 function clientRewardList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
     const navigation = useNavigation();
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const rewards = useSelector(state => state.rewards.allRewards);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -62,19 +69,18 @@ function clientRewardList(props) {
             </View>  
             {/* End of Header */}
 
-            <ScrollView style={styles.container}>
-
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-
+            <FlatList 
+                style={styles.container}
+                data={rewards}
+                keyExtractor={item => item.reward_ID}
+                renderItem={itemData =>
+                    <ClientAllShopRewards
+                        reward_Name = {itemData.item.reward_Name}
+                        pointsReq = {itemData.item.pointsReq}
+                        definition = {itemData.item.definition}
+                    />
+                }
+            />
                 {/* Banner */}
                 {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
@@ -85,8 +91,7 @@ function clientRewardList(props) {
                     </View>    
                 </ImageBackground> */}
                 {/* End of Banner */}
-                
-            </ScrollView>
+
         </SafeAreaView>
     );
 }

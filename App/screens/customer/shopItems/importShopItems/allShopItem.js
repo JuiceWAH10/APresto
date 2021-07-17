@@ -17,17 +17,19 @@ function allShopItem(props) {
                     source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
             <View style={styles.itemContainer}>
-                <Text style={styles.itemName}>Product Name</Text>
-                <Text style={styles.itemPrice}>Php 100.00</Text>
-                <Text style={styles.itemInfo}>Product Definition</Text>
+                <Text style={styles.itemName}>{props.product_Name}</Text>
+                <Text style={styles.itemPrice}>Php{props.price.toFixed(2)}</Text>
+                <Text style={styles.itemInfo}>{props.definition}</Text>
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon2 name="minus-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>
-                    <Text style={styles.quantity}>Qty</Text>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon name="add-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>    
+                    <TouchableOpacity onPress={props.addToCart}>
+                            <Text style={styles.quantity}>Add To Cart</Text>
+                        </TouchableOpacity>
+                        {/** (juswa) mahirap maimplement ganto add to cart button nalang hehe, sa cart nalang din gawin yung dagdag bawas qty
+                         <Icon2 name="minus-circle" size={30} color="#ee4b43" />
+                        <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                            <Icon name="add-circle" size={30} color="#ee4b43" />
+                        </TouchableOpacity>    
+                        */}
                 </View>
             </View>
         </View>

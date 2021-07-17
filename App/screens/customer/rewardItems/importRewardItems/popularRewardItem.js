@@ -17,16 +17,19 @@ function popularRewardItem(props) {
                 imageStyle={{ borderRadius: 30}}
                 source={require('../../../../assets/Liked_Shop.jpg')}>
                 <View style={styles.darken}>
-                    <Text style={styles.popularLabel}>Reward Name</Text>
-                    <Text style={styles.popularLabelSmall}>Price</Text>
+                    <Text style={styles.popularLabel}>{props.reward_Name}</Text>
+                    <Text style={styles.popularLabelSmall}>{props.pointsReq}</Text>
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                            <Icon2 name="minus-circle" size={30} color="#ee4b43" />
+                        <TouchableOpacity onPress={props.redeemToCart}>
+                            <Text style={styles.quantity}>Redeem</Text>
                         </TouchableOpacity>
-                        <Text style={styles.quantity}>Qty</Text>
+                        
+                        {/* 
+                        <Icon2 name="minus-circle" size={30} color="#ee4b43" />
                         <TouchableOpacity onPress={()=>console.log("Pressed")}>
                             <Icon name="add-circle" size={30} color="#ee4b43" />
-                        </TouchableOpacity>    
+                        </TouchableOpacity> 
+                        */}   
                     </View>
                 </View>    
             </ImageBackground>

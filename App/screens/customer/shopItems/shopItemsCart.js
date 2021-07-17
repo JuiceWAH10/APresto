@@ -6,16 +6,40 @@ import {
     StyleSheet, 
     Text, 
     TouchableOpacity, 
-    View 
+    View,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import AllShopItem from './././importShopItems/allShopItem';
+import { useSelector, useDispatch } from 'react-redux';
+
+import AllCartItem from './././importShopItems/allCartItem';
+import * as cartAction from '../../../functions/cartFunction';
 
 function shopItemsCart(props) {
     const navigation = useNavigation();
+
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const totalAmount = useSelector(state => state.cart.totalAmount);
+    const cartItems = useSelector(state => {
+        //(juswa) cart items are placed in array to be more manageable
+        const cartItemsArray = [];
+        for (const key in state.cart.items){
+            cartItemsArray.push({
+                product_ID: key,
+                productTitle: state.cart.items[key].productTitle,
+                productPrice: state.cart.items[key].productPrice,
+                quantity: state.cart.items[key].quantity,
+                total: state.cart.items[key].total
+            });
+        }
+        return cartItemsArray.sort((a,b) => a.product_ID > b.product_ID ? 1 : -1);
+    });
+
+    const dispatch = useDispatch();
+
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Top Navigation */}
@@ -38,23 +62,36 @@ function shopItemsCart(props) {
                 </ImageBackground>
                 {/* End of Banner */}
 
-                <ScrollView style ={styles.cartContainer}>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/>
-                    <AllShopItem/> 
-                </ScrollView>
+                <FlatList style ={styles.cartContainer}
+                    data={cartItems}
+                    keyExtractor={item => item.product_ID}
+                    renderItem={itemData => 
+                        <AllCartItem
+                            quantity = {itemData.item.quantity} 
+                            product_Name = {itemData.item.productTitle}
+                            price = {itemData.item.total.toFixed(2)}
+                            removeFromCart = {() => {
+                                dispatch(cartAction.removeFromCart(itemData.item.product_ID))
+                            }}
+                            addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
+                        />}
+                />
 
                 {/* Footer */}
                 <View style={styles.footer}>
                     <View style={styles.footerTextContainer}>
                         <Text style={styles.footerLabelSmall}>Total Amount</Text>
-                        <Text style={styles.footerLabel}>Php 200.00</Text>
+                        <Text style={styles.footerLabel}>Php{totalAmount.toFixed()}</Text>
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('shopItemsQR')} >
+
+                    <TouchableOpacity 
+                        style={styles.button} 
+                        onPress={() => 
+                            navigation.navigate('shopItemsQR', 
+                                {cartItems, totalAmount}
+                            )
+                        } 
+                    >
                         <Text style={styles.buttonLabel}>Generate QR Code</Text>
                     </TouchableOpacity>
                 </View>

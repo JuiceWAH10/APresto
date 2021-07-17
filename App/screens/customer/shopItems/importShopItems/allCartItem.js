@@ -10,26 +10,28 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-function allRewardItem(props) {
+function allCartItem(props) {
     return (
         <View style={styles.container}>
             <Image style={styles.itemImage}
-                source={require('../../../../assets/DummyShop.jpg')}>
+                    source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
+
             <View style={styles.itemContainer}>
-                <Text style={styles.itemName}>{props.reward_Name}</Text>
-                <Text style={styles.itemPrice}>{props.pointsReq}</Text>
-                <Text style={styles.itemInfo}>{props.definition}</Text>
+                <Text style={styles.itemInfo}>{props.quantity}</Text>
+                <Text style={styles.itemName}>{props.product_Name}</Text>
+                <Text style={styles.itemPrice}>Php{props.price}</Text>
+                
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={props.redeemToCart}>
-                        <Text style={styles.quantity}>Redeem</Text>
+                    <TouchableOpacity onPress={props.removeFromCart}>
+                        <Text style={styles.quantity}>remove from cart</Text>
                     </TouchableOpacity>
-                    {/* 
-                    <Icon2 name="minus-circle" size={35} color="#ee4b43" />
+                    {/* (juswa) di pa ma apply bawas dagdag ng quantity since nasa parent nito ang reducer
+                    <Icon name="add-circle" size={35} color="#356288" />
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
                         <Icon name="add-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity> 
-                    */}   
+                    </TouchableOpacity>   
+                    */} 
                 </View>
             </View>
         </View>
@@ -37,6 +39,8 @@ function allRewardItem(props) {
 }
 
 const styles = StyleSheet.create({
+    
+
     buttonsContainer:{
         alignSelf: "center",
         flexDirection: "row",
@@ -92,4 +96,4 @@ const styles = StyleSheet.create({
         marginRight: 4      
     },
 })
-export default allRewardItem;
+export default allCartItem;

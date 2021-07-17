@@ -6,16 +6,40 @@ import {
     StyleSheet, 
     Text, 
     TouchableOpacity, 
-    View 
+    View,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import AllRewardItem from './././importRewardItems/allRewardItem';
+import { useSelector, useDispatch } from 'react-redux';
+
+import AllCartItem from '../shopItems/importShopItems/allCartItem';
+
+import * as rewCartFunction from '../../../functions/rewardsCartFunction';
 
 function rewardItemsCart(props) {
     const navigation = useNavigation();
+
+    const totalPoints = useSelector(state => state.rewCart.totalPoints);
+    const rewCartItems = useSelector(state => {
+        //(juswa) cart items are placed in array to be more manageable
+        const rewCartItemsArray = [];
+        for (const key in state.rewCart.rewItems){
+            rewCartItemsArray.push({
+                reward_ID: key,
+                productTitle: state.rewCart.rewItems[key].productTitle,
+                productPrice: state.rewCart.rewItems[key].productPrice,
+                quantity: state.rewCart.rewItems[key].quantity,
+                total: state.rewCart.rewItems[key].total
+            });
+        }
+        return rewCartItemsArray.sort((a,b) => a.reward_ID > b.reward_ID ? 1 : -1);
+    });
+
+    const dispatch = useDispatch();
+
     return (
         <SafeAreaView style={styles.droidSafeArea}>  
             {/* Top Navigation */}
@@ -38,23 +62,36 @@ function rewardItemsCart(props) {
                 </ImageBackground>
                 {/* End of Banner */}
 
-                <ScrollView style ={styles.cartContainer}>
-                    <AllRewardItem/>
-                    <AllRewardItem/>
-                    <AllRewardItem/>
-                    <AllRewardItem/>
-                    <AllRewardItem/>
-                    <AllRewardItem/>
-                    <AllRewardItem/> 
-                </ScrollView>
+                <FlatList style ={styles.cartContainer}
+                    data={rewCartItems}
+                    keyExtractor={item => item.reward_ID}
+                    renderItem={itemData => 
+                        <AllCartItem
+                            quantity = {itemData.item.quantity} 
+                            product_Name = {itemData.item.productTitle}
+                            price = {itemData.item.total.toFixed(2)}
+                            removeFromCart = {() => {
+                                dispatch(rewCartFunction.cancelRedeem(itemData.item.reward_ID))
+                            }}
+                        />}
+                />
 
                 {/* Footer */}
                 <View style={styles.footer}>
                     <View style={styles.footerTextContainer}>
                         <Text style={styles.footerLabelSmall}>Total Points</Text>
-                        <Text style={styles.footerLabel}>50 Pts</Text>
+                        <Text style={styles.footerLabel}>{totalPoints.toFixed()}Pts</Text>
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('rewardItemsQR')} >
+                    <TouchableOpacity 
+                        style={styles.button} 
+                        onPress={() => 
+                            navigation.navigate(
+                                'rewardItemsQR', 
+                                {rewCartItems, totalPoints}
+                            )
+                           
+                        } 
+                    >
                         <Text style={styles.buttonLabel}>Generate QR Code</Text>
                     </TouchableOpacity>
                 </View>

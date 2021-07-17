@@ -9,6 +9,7 @@ import {
     Text, 
     TouchableOpacity, 
     View, 
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -16,11 +17,17 @@ import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import PopularRewardItem from './././importRewardItems/popularRewardItem';
 import AllRewardItem from './././importRewardItems/allRewardItem';
 
+import * as rewCartFunction from '../../../functions/rewardsCartFunction';
+
 function rewardItems(props) {
     const navigation = useNavigation();
+    const {shop_ID, owner_ID, shopName, address, specialty} = props.route.params;
+
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
@@ -35,6 +42,10 @@ function rewardItems(props) {
         outputRange: [1, 0.5, 0],
         extrapolate: 'clamp',
     });
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const rewards = useSelector(state => state.rewards.allRewards);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -74,7 +85,7 @@ function rewardItems(props) {
                     <ImageBackground style={styles.headerBgImage}
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
-                            <Text style={styles.headerLabel}>Shop Name</Text>
+                            <Text style={styles.headerLabel}>{shopName}</Text>
                             <Text style={styles.headerLabelBig}>100 Points</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
@@ -103,14 +114,20 @@ function rewardItems(props) {
                             <Text style={styles.popularItemsTitle}>Popular Rewards</Text>
                         </View>
                         {/* Horizontal Scrollview for Popular Rewards */}
-                        <ScrollView horizontal={true} style={styles.popularItems}>
-                            <PopularRewardItem/>
-                            <PopularRewardItem/>
-                            <PopularRewardItem/>
-                            <PopularRewardItem/>
-                            <PopularRewardItem/>
-                            <PopularRewardItem/>
-                        </ScrollView>
+                        <FlatList 
+                            horizontal={true} 
+                            style={styles.popularItems} 
+                            data={rewards}
+                            keyExtractor={item => item.reward_ID}
+                            renderItem={itemData =>
+                                <PopularRewardItem
+                                    reward_Name = {itemData.item.reward_Name}
+                                    pointsReq = {itemData.item.pointsReq}
+                                    definition = {itemData.item.definition}
+                                    redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
+                                />
+                            }
+                        />
                         {/* End of Horizonal Scrollview */}
                     </View>
                     {/* End of Popular Rewards */}
@@ -122,18 +139,17 @@ function rewardItems(props) {
                     <View style={styles.allItemsContainer}>
                         {/* List of all rewards !note that items in Popular Rewards is also included here* */}
                         <Text style={styles.allItemsTitle}>All Rewards</Text>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
-                            <AllRewardItem/>
+                            <FlatList
+                                data={rewards}
+                                keyExtractor={item => item.reward_ID}
+                                renderItem={itemData => 
+                                    <AllRewardItem 
+                                        reward_Name = {itemData.item.reward_Name}
+                                        pointsReq = {itemData.item.pointsReq}
+                                        definition = {itemData.item.definition}
+                                        redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
+                                    />}
+                            />
                         {/* End of List */}
                     </View>
                     {/* End of All Items */}

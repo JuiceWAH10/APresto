@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text, 
     TouchableOpacity, 
-    View, 
+    View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -14,20 +14,28 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 function indivShop(props) {
     const navigation = useNavigation();
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('shopItems')}>
+        <TouchableOpacity onPress={() => 
+            navigation.navigate('shopItems', {
+                shop_ID: props.shop_ID,
+                owner_ID: props.owner_ID,
+                shopName: props.shopName,
+                address: props.address,
+                specialty: props.specialty
+            })
+        }>
             <View style={styles.container}>
                 <Image style={styles.shopImage}
                     source={require('../../../assets/DummyShop.jpg')}>
                 </Image>
                 <View style={styles.shopLine1}>
-                    <Text style={styles.shopName}>Shop Name</Text>
+                    <Text style={styles.shopName}>{props.shopName}</Text>
                     <View style={styles.shopReview}>
                         <Icon name="star" size={20} color="#fd4140" />
                         <Text style={styles.shopReviewScore}>4.5 / 5</Text>
                     </View>
                 </View>
-                <Text style={styles.shopAddress}>Address</Text>
-                <Text style={styles.shopSpecialty}>Specialty</Text>
+                <Text style={styles.shopAddress}>{props.address}</Text>
+                <Text style={styles.shopSpecialty}>{props.specialty}</Text>
             </View>
         </TouchableOpacity>
     );
