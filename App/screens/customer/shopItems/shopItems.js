@@ -85,8 +85,8 @@ function shopItems(props) {
                     <ImageBackground style={styles.headerBgImage}
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
-                            <Text style={styles.headerLabel}>{JSON.stringify(shopName)}</Text>
-                            <Text style={styles.headerLabelSmall}>{JSON.stringify(address)}</Text>
+                            <Text style={styles.headerLabel}>{shopName}</Text>
+                            <Text style={styles.headerLabelSmall}>{address}</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                                     <Icon name="map" size={20} color="#fff" />
@@ -135,14 +135,21 @@ function shopItems(props) {
                             <Text style={styles.popularItemsTitle}>Popular Items</Text>
                         </View>
                         {/* Horizontal Scrollview for Popular Items */}
-                        <ScrollView horizontal={true} style={styles.popularItems} >
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                        </ScrollView>
+                        <FlatList 
+                            horizontal={true} 
+                            style={styles.popularItems} 
+                            data={products}
+                            keyExtractor={item => item.product_ID}
+                            renderItem={itemData =>
+                                <PopularShopItem
+                                    product_Name = {itemData.item.product_Name}
+                                    price = {itemData.item.price}
+                                    definition = {itemData.item.definition}
+                                    addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
+                                />
+                            }
+                        />
+
                         {/* End of Horizonal Scrollview */}
                     </View>
                     {/* End of Popular Items */}

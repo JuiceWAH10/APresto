@@ -17,21 +17,21 @@ function allCartItem(props) {
                     source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
 
-            {/* (juswa) pa edit ng may remove/delete from cart button. kaw na bahala saan ma display quantity */}
             <View style={styles.itemContainer}>
                 <Text style={styles.itemInfo}>{props.quantity}</Text>
                 <Text style={styles.itemName}>{props.product_Name}</Text>
                 <Text style={styles.itemPrice}>Php{props.price}</Text>
                 
                 <View style={styles.buttonsContainer}>
-                    {/*(juswa) pinalitan ko muna, yung quantity maybe pag nasa cart or pag viewing more details */}
                     <TouchableOpacity onPress={props.removeFromCart}>
-                        <Icon name="add-circle" size={35} color="#356288" />
+                        <Text style={styles.quantity}>remove from cart</Text>
                     </TouchableOpacity>
-                    <Text style={styles.quantity}>remove from cart haha</Text>
+                    {/* (juswa) di pa ma apply bawas dagdag ng quantity since nasa parent nito ang reducer
+                    <Icon name="add-circle" size={35} color="#356288" />
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
                         <Icon name="add-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>    
+                    </TouchableOpacity>   
+                    */} 
                 </View>
             </View>
         </View>

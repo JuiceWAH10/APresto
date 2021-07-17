@@ -26,7 +26,7 @@ function shopItemsQR(props) {
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to add point(s)</Text>
                         <QRCode 
-                            value = "wow"
+                            value = {JSON.stringify(orderDetails)}
                         />
                     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()} >
                         <Text style={styles.buttonLabel}>Return</Text>

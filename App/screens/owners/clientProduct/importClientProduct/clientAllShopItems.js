@@ -22,9 +22,9 @@ function clientAllShopItems(props) {
                         source={require('../../../../assets/DummyShop.jpg')}>
                 </Image>
                 <View style={styles.itemContainer} >
-                    <Text style={styles.itemName}>Product Name</Text>
-                    <Text style={styles.itemPrice}>Php 100.00</Text>
-                    <Text style={styles.itemInfo}>Product Definition</Text>
+                    <Text style={styles.itemName}>{props.product_Name}</Text>
+                    <Text style={styles.itemPrice}>Php{props.price}</Text>
+                    <Text style={styles.itemInfo}>{props.definition}</Text>
                 </View> 
             </View>
             {/* End of Product Image and Infos */}
@@ -33,7 +33,7 @@ function clientAllShopItems(props) {
             <View style={styles.itemDetailsWrapValues}>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon3 style={styles.itemDetailsIcon} name="layers" size={18} />
-                    <Text style={styles.itemDetailsText}>Stock: 100</Text>
+                    <Text style={styles.itemDetailsText}>Stock: {props.stock}</Text>
                 </View>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon3 style={styles.itemDetailsIcon} name="wallet" size={18} />

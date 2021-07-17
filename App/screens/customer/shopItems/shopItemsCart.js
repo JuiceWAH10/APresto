@@ -73,6 +73,7 @@ function shopItemsCart(props) {
                             removeFromCart = {() => {
                                 dispatch(cartAction.removeFromCart(itemData.item.product_ID))
                             }}
+                            addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
                         />}
                 />
 

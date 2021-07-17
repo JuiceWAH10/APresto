@@ -22,13 +22,14 @@ function allShopItem(props) {
                 <Text style={styles.itemInfo}>{props.definition}</Text>
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity onPress={props.addToCart}>
-                        <Icon2 name="minus-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>
-                    <Text style={styles.quantity}>Add To Cart yung minus haha</Text> 
-                    {/* */}
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon name="add-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>    
+                            <Text style={styles.quantity}>Add To Cart</Text>
+                        </TouchableOpacity>
+                        {/** (juswa) mahirap maimplement ganto add to cart button nalang hehe, sa cart nalang din gawin yung dagdag bawas qty
+                         <Icon2 name="minus-circle" size={30} color="#ee4b43" />
+                        <TouchableOpacity onPress={()=>console.log("Pressed")}>
+                            <Icon name="add-circle" size={30} color="#ee4b43" />
+                        </TouchableOpacity>    
+                        */}
                 </View>
             </View>
         </View>

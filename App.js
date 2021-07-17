@@ -14,6 +14,7 @@ import productsReducer from './App/functions/productsReducer';
 import rewardsReducer from './App/functions/rewardsReducer';
 import shopReducer from './App/functions/shopReducer';
 import cartReducer from './App/functions/cartReducer';
+import rewCartReducer from './App/functions/rewardsCartReducer';
 import { createStore, combineReducers } from 'redux';
 
 // combine all reducers into one object
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   shops: shopReducer,
   products: productsReducer,
   rewards: rewardsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  rewCart: rewCartReducer
 });
 
 // create a store for managing states using the reducers which will be used for data transfer through the app.

@@ -238,7 +238,6 @@ export const rewards = [
         '1',
         'Keitandkat Diffuser Oil (Bottled)',
         10,
-        150,
         'Lovely smell for lovely suki',
         'available'
     ),
@@ -248,7 +247,6 @@ export const rewards = [
         '1',
         'Perfume Collection',
         25,
-        150,
         'Lovely smell for lovely suki',
         'available'
     ),
@@ -258,8 +256,7 @@ export const rewards = [
         '1',
         'Perfume Pouch',
         25,
-        150,
-        'Lovely smell for lovely suki',
+        'For your convenience',
         'available'
     ),
     new Reward
@@ -268,7 +265,6 @@ export const rewards = [
         '1',
         'Perfume Organizer',
         25,
-        150,
         'For your convenience',
         'available'
     ),
@@ -278,7 +274,6 @@ export const rewards = [
         '1',
         'PHP100 Voucher',
         50,
-        150,
         'Kaching!',
         'available'
     ),
@@ -288,7 +283,6 @@ export const rewards = [
         '1',
         'PHP200 Voucher',
         75,
-        150,
         'Kaching!',
         'available'
     ),
@@ -298,7 +292,6 @@ export const rewards = [
         '1',
         'PHP300 Voucher',
         100,
-        150,
         'Kaching!',
         'available'
     ),
@@ -308,7 +301,6 @@ export const rewards = [
         '1',
         'PHP500 Voucher',
         250,
-        150,
         'Kaching!',
         'available'
     ),
@@ -318,7 +310,6 @@ export const rewards = [
         '1',
         'PHP1000 Voucher',
         500,
-        150,
         'Kaching!',
         'available'
     ),
@@ -327,7 +318,6 @@ export const rewards = [
         'a10',
         '1',
         '50% off Voucher',
-        150,
         150,
         'Kaching!',
         'available'
@@ -338,7 +328,6 @@ export const rewards = [
         '2',
         'Dinuguan',
         15,
-        150,
         'INC',
         'available'
     ),
@@ -348,7 +337,6 @@ export const rewards = [
         '2',
         'Fresh Buko Juice',
         10,
-        150,
         '*toktok* kokonat',
         'available'
     ),
@@ -358,7 +346,6 @@ export const rewards = [
         '3',
         'Adobo Cheesemelt',
         10,
-        150,
         'Ulam',
         'available'
     ),
@@ -368,7 +355,6 @@ export const rewards = [
         '3',
         'Chicken Pesto',
         10,
-        150,
         'Mmmm',
         'available'
     ),
@@ -378,7 +364,6 @@ export const rewards = [
         '3',
         'Tuna Cheesemelt',
         10,
-        150,
         'Mmmmm',
         'available'
     ),
@@ -388,7 +373,6 @@ export const rewards = [
         '3',
         'Ham and Cheese',
         10,
-        150,
         'DepEd',
         'available'
     )
