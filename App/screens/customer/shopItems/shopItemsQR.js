@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         backgroundColor: '#fff',
         borderRadius: 30,
-        height: hp('50%'),
+        height: 400,
         width: wp('90%'),
         alignItems: "center",
         paddingTop: hp('2%'),

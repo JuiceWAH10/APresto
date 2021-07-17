@@ -30,7 +30,7 @@ function clientHomepage(props) {
 
                     <View style={styles.profileDarken}>
                         {/* Profile Informations */}
-                        <Text style={styles.profileShopName}>Shop Name</Text>
+                        <Text style={styles.profileShopName}>Scrapyard Café & Restaurant</Text>
                         <Text style={styles.profileLabelSmall}>Followers 478</Text>
                         <View style={styles.profileButtonContainer}>
                             <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('clientEditProfile')} >

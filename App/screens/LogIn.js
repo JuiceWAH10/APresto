@@ -120,7 +120,7 @@ function LogIn(props) {
                       //Password input
                       style={styles.textPassword}
                       leftIcon={{ type: 'font-awesome', name: 'lock' }}
-                      //secureTextEntry={true}
+                      secureTextEntry={true}
                       placeholder="Password"
                       text={passwordField.text}
                       onChangeText={(text) => {setPasswordField({text});}}

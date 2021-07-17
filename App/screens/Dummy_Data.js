@@ -33,10 +33,10 @@ export const products = [
     (
         'a1',
 		'1',
-        'Bulgari Extreme',
+        'Big Joe',
         150,
 		200,
-        'Perfume',
+        'Burger',
         'available'
     ),
     new Product

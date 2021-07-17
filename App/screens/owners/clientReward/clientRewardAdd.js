@@ -18,6 +18,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
+import Toast from 'react-native-toast-message';
 
 LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
@@ -178,8 +179,17 @@ function clientRewardAdd(props) {
                 {/* End of Form */}        
             </ScrollView>
 
+            <Toast ref={Toast.setRef} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={this.successAdded} >
+                <TouchableOpacity style={styles.button} onPress={() => Toast.show({
+                        type: 'success',
+                        position: 'top',
+                        text1: 'Reward Have been Added',
+                        visibilityTime: 1000,
+                        autoHide: true,
+                        topOffset: 100,
+                        bottomOffset: 40,
+                        })}>
                     <Text style={styles.buttonLabel}>Add Reward</Text>
                 </TouchableOpacity>
             </View> 

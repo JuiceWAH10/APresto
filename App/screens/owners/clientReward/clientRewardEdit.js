@@ -18,6 +18,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
+import Toast from 'react-native-toast-message';
 
 function clientRewardEdit(props) {
     const [rewName, setTextRewName] = React.useState('');
@@ -176,8 +177,17 @@ function clientRewardEdit(props) {
                 {/* End of Form */}        
             </ScrollView>
 
+            <Toast ref={Toast.setRef} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={this.successAdded} >
+                <TouchableOpacity style={styles.button} onPress={() => Toast.show({
+                        type: 'success',
+                        position: 'top',
+                        text1: 'Reward Have been Updated',
+                        visibilityTime: 1000,
+                        autoHide: true,
+                        topOffset: 100,
+                        bottomOffset: 40,
+                        })}>
                     <Text style={styles.buttonLabel}>Publish Changes</Text>
                 </TouchableOpacity>
             </View> 
