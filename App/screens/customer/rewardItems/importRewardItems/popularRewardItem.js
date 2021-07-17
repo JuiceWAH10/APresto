@@ -20,7 +20,7 @@ function popularRewardItem(props) {
                     <Text style={styles.popularLabel}>{props.reward_Name}</Text>
                     <Text style={styles.popularLabelSmall}>{props.pointsReq}</Text>
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={props.redeemToCart}>
+                        <TouchableOpacity style={styles.button} onPress={props.redeemToCart}>
                             <Text style={styles.quantity}>Redeem</Text>
                         </TouchableOpacity>
                         
@@ -38,6 +38,16 @@ function popularRewardItem(props) {
 }
 
 const styles = StyleSheet.create({
+    button: {
+        borderColor: "#fff",
+        borderRadius: 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'space-evenly',
+        width: 100,
+        height: 35,
+    },
     buttonsContainer:{
         alignSelf: "center",
         color: "#ee4b43",
@@ -74,14 +84,13 @@ const styles = StyleSheet.create({
     },
     darken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
         borderRadius: 30,
     },
     quantity: {
         textAlign: "center",
-        marginTop: 5,
         color: "#fff",
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: "bold",
         marginLeft: 4,
         marginRight: 4      

@@ -27,7 +27,7 @@ function clientSukiList(props) {
             {/* Top Navigation and Search Bar */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
-                    <Icon2 style={styles.backButton} name="left" size={30} color="#ee4b43" />
+                    <Icon2 style={styles.backButton} name="left" size={30} color="#fff" />
                 </TouchableOpacity>   
                 <Searchbar
                         style={styles.searchBar}
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: 'white',
     },
     searchBar: {
         // alignSelf: "center",
@@ -129,6 +130,19 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: wp('5%'),
         // paddingTop: 5,
+
+        paddingTop: 8,
+        marginBottom: 5,
+
+        backgroundColor: '#ee4b43',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
 })
 export default clientSukiList;

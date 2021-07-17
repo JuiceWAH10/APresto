@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
     ImageBackground,
+    LogBox,
     Platform,
     SafeAreaView,
     ScrollView,
@@ -19,6 +20,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 
 import ClientAllShopItems from '././importClientProduct/clientAllShopItems';
+
+LogBox.ignoreAllLogs();// Ignore all Logs! Remove this when coding
 
 function clientProductList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -142,7 +145,8 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: "#fff"
     },
     headContainer: {
         alignSelf: "center",
@@ -179,6 +183,20 @@ const styles = StyleSheet.create({
         borderColor: "#fd4140",
         marginBottom: 10,
         marginTop: 5,   
+    },
+    top: {
+        paddingTop: 8,
+        marginBottom: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     topNav: {
         flexDirection: "row",
