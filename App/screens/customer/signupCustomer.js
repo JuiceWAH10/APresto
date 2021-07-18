@@ -4,10 +4,9 @@ import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
 import validator from "validator";
-import firebase, { auth }  from "firebase";
+import { auth } from "firebase";
 import { Input } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
-import { showMessage, hideMessage } from "react-native-flash-message";
 
 //validation function of email
 const validateFields = (email, password, firstName) => {
@@ -30,25 +29,9 @@ const createAccount = (email, password) => {
     auth()
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
-            console.log("Creating user...");
-            //save user account in firestore along with parameters 
-            firebase.firestore().collection("users").doc(user.uid).set({
-                email
-            });
-        })
-        .catch(() => {
-            showMessage({
-                message: "Account already exist",
-                description: "Please enter a new email address",
-                type: "warning",
-                position: "bottom",
-                floating: "true",
-                icon: { icon: "auto", position: "left" },
-                autoHide:"true", 
-                duration: 1000,
-            });
-            console.log("Invalid email");
-        })
+            console.log("Creating user...");   
+            //firestore().collection("users").doc(user.uid).set({});
+        });
 };
 
 
@@ -218,7 +201,7 @@ function signupCustomer(props) {
                     //IF ALL INPUTS ARE VALID THIS IS WILL CREATE ACCOUNT FUNCTION 
                     if(isAllValid){
                         createAccount(emailField.text, passwordField.text);
-                        //props.navigation.navigate('login');                   
+                        props.navigation.navigate('login');                   
                     }
 
                 }}>

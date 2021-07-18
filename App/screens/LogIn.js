@@ -43,10 +43,10 @@ const login = (email, password) => {
             autoHide:"true", 
             duration: 1000,
         });
-        console.log("No user");     
-      })
+        console.log("No user");
+        
+    })
 };
-
 
 function LogIn(props) {
     //const [userName] = React.useState('');

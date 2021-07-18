@@ -2,7 +2,6 @@ import React from 'react';
 import { 
     Alert,
     Image,
-    ImageBackground,
     LogBox,
     SafeAreaView,
     ScrollView,
@@ -34,7 +33,7 @@ function clientProductAdd(props) {
     var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
 
     const navigation = useNavigation();
-
+        
     // Code for Image Picker and Uploading to Firebase storage
     pickImage = async () => {
         //For choosing photo in the library and crop the photo
@@ -72,7 +71,7 @@ function clientProductAdd(props) {
         uploadImage = async (uri, imageName) => {
             const response = await fetch(uri);
             const blob = await response.blob();
-
+        
             var ref = firebase.storage().ref().child("images_Product/" + imageName);
             return ref.put(blob);
         }

@@ -12,7 +12,6 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { auth } from "firebase";
 
 
 function clientHomepage(props) {
@@ -38,7 +37,7 @@ function clientHomepage(props) {
                                 <Icon name="user" size={20} color="#fff" />
                                 <Text style={styles.profileButtonLabel}>Edit Profile</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.profileButton} onPress={() => {auth().signOut();}} >
+                            <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('rewardItems')} >
                                 <Icon name="logout" size={20} color="#fff" />
                                 <Text style={styles.profileButtonLabel}>Log Out</Text>
                             </TouchableOpacity>
