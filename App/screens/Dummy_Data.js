@@ -33,17 +33,17 @@ export const products = [
     (
         'a1',
 		'1',
-        'Bulgari Extreme Perfume',
+        'Big Joe',
         150,
 		200,
-        'Perfume',
+        'Burger',
         'available'
     ),
     new Product
 	(
         'a2',
 		'1',
-        'VS Vanilla Lace Perfume',
+        'VS Vanilla Lace',
         150,
 		200,
         'Perfume',
@@ -83,7 +83,7 @@ export const products = [
     (
         'a6',
 		'1',
-        'VS Pure Seduction Perfume',
+        'VS Perfume',
         210,
 		200,
         'Perfume',
@@ -133,7 +133,7 @@ export const products = [
 	(
         'b1',
 		'2',
-        'Kalderetang Itik (Minalot)',
+        'Kalderetang Itik',
         200,
 		200,
         'Ulam',
@@ -143,7 +143,7 @@ export const products = [
 	(
         'b2',
 		'2',
-        'Daing na Bangus (Minalot)',
+        'Daing na Bangus',
         150,
 		200,
         'Ulam',
@@ -153,7 +153,7 @@ export const products = [
 	(
         'b3',
 		'2',
-        'Pork Sisig (Minalot)',
+        'Pork Sisig',
         70,
 		200,
         'Ulam',
@@ -173,7 +173,7 @@ export const products = [
 	(
         'b5',
 		'2',
-        'Pork Steak (Minalot)',
+        'Pork Steak',
         65,
 	    200,
         'Ulam',
@@ -183,7 +183,7 @@ export const products = [
 	(
         'c1',
 		'3',
-        'Durian and Cream Frappé',
+        'Durian Frappé',
         70,
 		200,
         'Drinks',
@@ -236,7 +236,7 @@ export const rewards = [
     (
         'a1',
         '1',
-        'Keitandkat Diffuser Oil (Bottled)',
+        'Diffuser Oil',
         10,
         'Lovely smell for lovely suki',
         'available'

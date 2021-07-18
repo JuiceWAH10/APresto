@@ -18,12 +18,12 @@ function allCartItem(props) {
             </Image>
 
             <View style={styles.itemContainer}>
-                <Text style={styles.itemInfo}>{props.quantity}</Text>
+                <Text style={styles.itemInfo}>Qty: {props.quantity}</Text>
                 <Text style={styles.itemName}>{props.product_Name}</Text>
                 <Text style={styles.itemPrice}>Php{props.price}</Text>
                 
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={props.removeFromCart}>
+                    <TouchableOpacity style={styles.button} onPress={props.removeFromCart}>
                         <Text style={styles.quantity}>remove from cart</Text>
                     </TouchableOpacity>
                     {/* (juswa) di pa ma apply bawas dagdag ng quantity since nasa parent nito ang reducer
@@ -39,8 +39,16 @@ function allCartItem(props) {
 }
 
 const styles = StyleSheet.create({
-    
-
+    button: {
+        borderColor: "#ee4b43",
+        borderRadius: 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'space-evenly',
+        width: 100,
+        height: 35,
+    },
     buttonsContainer:{
         alignSelf: "center",
         flexDirection: "row",
@@ -53,7 +61,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 6,
+        marginBottom: 4,
+        marginTop: 4,
         height: 140,
         width: wp('90%'),
     },
@@ -72,12 +81,13 @@ const styles = StyleSheet.create({
     itemInfo: {
         alignSelf: "center",
         fontSize: 14,
-        marginRight: 10
+        marginRight: 10,
+        marginTop: 6,
     },
     itemName: {
         alignSelf: "center",
         marginBottom: 2,
-        marginTop: 6,
+        marginTop: 2,
         fontSize: 16,
         fontWeight: "bold"
     },
@@ -88,9 +98,8 @@ const styles = StyleSheet.create({
     },
     quantity: {
         textAlign: "center",
-        marginTop: 5,
-        color: "#000",
-        fontSize: 16,
+        color: "#ee4b43",
+        fontSize: 12,
         fontWeight: "bold",
         marginLeft: 4,
         marginRight: 4      
