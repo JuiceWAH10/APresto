@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
     ImageBackground,
+    LogBox,
     Platform,
     SafeAreaView,
     ScrollView,
@@ -8,6 +9,7 @@ import {
     Text,
     TouchableOpacity, 
     View, 
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -15,12 +17,20 @@ import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import ClientAllShopItems from '././importClientProduct/clientAllShopItems';
+
+LogBox.ignoreAllLogs();// Ignore all Logs! Remove this when coding
 
 function clientProductList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
     const navigation = useNavigation();
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const products = useSelector(state => state.products.allProducts);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -62,18 +72,19 @@ function clientProductList(props) {
             </View>
             {/* End of Header */}
 
-            <ScrollView style={styles.container}>
-
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
-                <ClientAllShopItems/>
+            <FlatList
+                style={styles.container}
+                data={products}
+                keyExtractor={item => item.product_ID}
+                renderItem={itemData => 
+                    <ClientAllShopItems 
+                        product_Name = {itemData.item.product_Name}
+                        price = {itemData.item.price}
+                        definition = {itemData.item.definition}
+                        stock = {itemData.item.stock}
+                    />
+                }
+            />
 
                 {/* Banner */}
                 {/* <ImageBackground style={styles.bannerBgImage}
@@ -85,8 +96,7 @@ function clientProductList(props) {
                     </View>    
                 </ImageBackground> */}
                 {/* End of Banner */}
-                
-            </ScrollView>
+
         </SafeAreaView>
     );
 }
@@ -135,7 +145,8 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: "#fff"
     },
     headContainer: {
         alignSelf: "center",
@@ -172,6 +183,20 @@ const styles = StyleSheet.create({
         borderColor: "#fd4140",
         marginBottom: 10,
         marginTop: 5,   
+    },
+    top: {
+        paddingTop: 8,
+        marginBottom: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     topNav: {
         flexDirection: "row",

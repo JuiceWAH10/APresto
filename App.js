@@ -1,108 +1,54 @@
 import React, {useState, useEffect} from 'react';
 import firebase from "firebase";
-import { Provider } from 'react-redux'
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+
 import { Image } from 'react-native';
 import FlashMessage from "react-native-flash-message";
 
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
-import QRCodeScanner from './App/screens/QRCodeScanner.js';
-import store from './App/screens/store.js';
-
-// Customer Screens
 import SignupCustomer from './App/screens/customer/signupCustomer';
-import Explore from './App/screens/customer/explore';
-import Shops from './App/screens/customer/shops';
-import Profile from './App/screens/customer/profile';
-import Rewards from './App/screens/customer/rewards';
-import ShopItems from './App/screens/customer/shopItems/shopItems';
-import RewardItems from './App/screens/customer/rewardItems/rewardItems';
-import ShopItemsCart from './App/screens/customer/shopItems/shopItemsCart';
-import RewardItemsCart from './App/screens/customer/rewardItems/rewardItemsCart';
-import ShopItemsQR from './App/screens/customer/shopItems/shopItemsQR';
-import RewardItemsQR from './App/screens/customer/rewardItems/rewardItemsQR';
-import CustomerEditProfile from './App/screens/customer/profile/customerEditProfile';
+import Screens from './App/navigation/screensNavigation'
+import { Provider } from 'react-redux'
 
-// Client Screens
-import ClientHomepage from './App/screens/owners/clientHomepage';
-import ClientProductAdd from './App/screens/owners/clientProduct/clientProductAdd';
-import ClientProductEdit from './App/screens/owners/clientProduct/clientProductEdit';
-import ClientProductList from './App/screens/owners/clientProduct/clientProductList';
-import ClientRewardAdd from './App/screens/owners/clientReward/clientRewardAdd';
-import ClientRewardEdit from './App/screens/owners/clientReward/clientRewardEdit';
-import ClientRewardList from './App/screens/owners/clientReward/clientRewardList';
-import ClientSukiList from './App/screens/owners/clientSuki/clientSukiList';
-import ClientEditProfile from './App/screens/owners/clientProfile/clientEditProfile';
+//for reducers
+import productsReducer from './App/functions/productsReducer';
+import rewardsReducer from './App/functions/rewardsReducer';
+import shopReducer from './App/functions/shopReducer';
+import cartReducer from './App/functions/cartReducer';
+import rewCartReducer from './App/functions/rewardsCartReducer';
+import { createStore, combineReducers } from 'redux';
 
-const Stack = createStackNavigator();
+// combine all reducers into one object
+const rootReducer = combineReducers({
+  shops: shopReducer,
+  products: productsReducer,
+  rewards: rewardsReducer,
+  cart: cartReducer,
+  rewCart: rewCartReducer
+});
+
+// create a store for managing states using the reducers which will be used for data transfer through the app.
+const store = createStore(rootReducer);
+
 //Auth Screens
 const AuthStack = createStackNavigator();
-const Tabs = createBottomTabNavigator();
 
-const customerBottomTabs = () =>{
-  return (
-    <Tabs.Navigator 
-      backBehavior={"none"}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if(route.name === 'EXPLORE'){
-            iconName = focused
-            ? require('./App/assets/searches-active.png')
-            : require('./App/assets/searches.png');
-          }
-          else if(route.name === 'SHOPS'){
-            iconName = focused
-            ? require('./App/assets/shop-active.png')
-            : require('./App/assets/shop.png');
-          }
-          else if(route.name === 'REWARDS'){
-            iconName = focused
-            ? require('./App/assets/gift-active.png')
-            : require('./App/assets/gift.png');
-          }
-          else if(route.name === 'PROFILE'){
-            iconName = focused
-            ? require('./App/assets/user-active.png')
-            : require('./App/assets/user.png');
-          }
-            
-          return (
-            <Image source={iconName} style={{width: 30, height: 30}} resizeMode="contain"/>
-          );
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: "#ee4b43",
-        inactiveTintColor: 'black'
-      }}
-    >
-      <Tabs.Screen name="EXPLORE" component={Explore} />        
-      <Tabs.Screen name="SHOPS" component={Shops} />    
-      <Tabs.Screen name="REWARDS" component={Rewards} />    
-      <Tabs.Screen name="PROFILE" component={Profile} />
-    </Tabs.Navigator>
-  )
-}
-
-//Will direct here if not login/ or will create account
+//Will direct here if not login/ or will create account then navigate to screens in screensNavigator.js
 const AuthScreens = () => {
   return(
     <AuthStack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="splash" component={SplashScreen} />
-      <Stack.Screen name="login" component={LogIn} />
-      <Stack.Screen name="signupCustomer" component={SignupCustomer} />
+      <AuthStack.Screen name="splash" component={SplashScreen} />
+      <AuthStack.Screen name="login" component={LogIn} />
+      <AuthStack.Screen name="signupCustomer" component={SignupCustomer} />
     </AuthStack.Navigator>
   );
 }
 
 //Will navigate here once accessed login
-const Screens = () => {
-  return(
+//const Screens = () => {
+  //return(
     <Stack.Navigator screenOptions={{headerShown: false}}>   
     <Stack.Screen name="clientHomepage" component={ClientHomepage} />
     <Stack.Screen name="customerShops" children={customerBottomTabs} />  
@@ -132,8 +78,8 @@ const Screens = () => {
     <Stack.Screen name="clientEditProfile" component={ClientEditProfile} />
     {/* End Added Vincent */}
   </Stack.Navigator>
-  );
-}
+  //);
+//}
 
 //THIS SECTION IS A MOUNT CODE
 //Authentication function component
@@ -161,19 +107,17 @@ function Authentication(){
 
 }
 
-export default class App extends React.Component {
-  render() {
+export default function App() {
     return (
       //call Authentication function component
       <Provider store={store}>
+
        <Authentication/>
        <FlashMessage position="top" animated={true} />
+       <Authentication />
       </Provider>
-      // <ClientAllShopItems/>
-      // <ClientAllSuki/>
     )
   };
-}
 
 //firebase configuration to connect to firebase
 const firebaseConfig = {
@@ -184,6 +128,8 @@ const firebaseConfig = {
   messagingSenderId: "491750670452",
   appId: "1:491750670452:web:3719bba8d7305392385121"
 };
+
+//to avoid creating multiple firebase apps and cause error
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }

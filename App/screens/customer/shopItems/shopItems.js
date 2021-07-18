@@ -8,19 +8,25 @@ import {
     StyleSheet,
     Text, 
     TouchableOpacity, 
-    View, 
+    View,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/AntDesign';
-import Icon3 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import PopularShopItem from './././importShopItems/popularShopItem';
 import AllShopItem from './././importShopItems/allShopItem';
 
+import * as cartAction from '../../../functions/cartFunction';
+
 function shopItems(props) {
     const navigation = useNavigation();
+    const {shop_ID, owner_ID, shopName, address, specialty} = props.route.params;
+
     const scrollPosition = useRef(new Animated.Value(0)).current;
     const minHeaderHeight = 0
     const maxHeaderHeight = 200
@@ -36,8 +42,12 @@ function shopItems(props) {
         extrapolate: 'clamp',
     });
 
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const products = useSelector(state => state.products.allProducts);
+
     return (
-        <SafeAreaView style={styles.droidSafeArea}>
+        <SafeAreaView style={styles.droidSafeArea} >
             {/* Top Navigation */}
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
@@ -74,17 +84,32 @@ function shopItems(props) {
                     <ImageBackground style={styles.headerBgImage}
                         source={require('../../../assets/DummyShop.jpg')}>
                         <View style={styles.darken}>
-                            <Text style={styles.headerLabel}>Shop Name</Text>
-                            <Text style={styles.headerLabelSmall}>Address</Text>
+                            <Text style={styles.headerLabel}>{shopName}</Text>
+                            <Text style={styles.headerLabelSmall}>{address}</Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
                                     <Icon name="map" size={20} color="#fff" />
                                     <Text style={styles.buttonLabel}>Navigate</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('rewardItems')} >
+                                
+                                <TouchableOpacity 
+                                    style={styles.button} 
+                                    onPress={() => 
+                                        navigation.navigate('rewardItems', 
+                                            {
+                                                shop_ID: JSON.stringify(shop_ID),
+                                                owner_ID: JSON.stringify(owner_ID),
+                                                shopName: JSON.stringify(shopName),
+                                                address: JSON.stringify(address),
+                                                specialty: JSON.stringify(specialty)
+                                            }
+                                        )
+                                    } 
+                                >
                                     <Icon name="gift" size={20} color="#fff" />
                                     <Text style={styles.buttonLabel}>Rewards</Text>
                                 </TouchableOpacity>
+
                             </View>
                         </View>    
                     </ImageBackground>
@@ -98,7 +123,9 @@ function shopItems(props) {
                     {useNativeDriver: false},
                 )}
                 contentInsetAdjustmentBehavior="automatic"
-                style={[styles.container]}>
+                style={[styles.container]}
+                nestedScrollEnabled={true}
+            >
                     
                     {/* Popular Items */}
                     <View style={styles.popularItemsContainer}>
@@ -107,14 +134,21 @@ function shopItems(props) {
                             <Text style={styles.popularItemsTitle}>Popular Items</Text>
                         </View>
                         {/* Horizontal Scrollview for Popular Items */}
-                        <ScrollView horizontal={true} style={styles.popularItems}>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                            <PopularShopItem/>
-                        </ScrollView>
+                        <FlatList 
+                            horizontal={true} 
+                            style={styles.popularItems} 
+                            data={products}
+                            keyExtractor={item => item.product_ID}
+                            renderItem={itemData =>
+                                <PopularShopItem
+                                    product_Name = {itemData.item.product_Name}
+                                    price = {itemData.item.price}
+                                    definition = {itemData.item.definition}
+                                    addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
+                                />
+                            }
+                        />
+
                         {/* End of Horizonal Scrollview */}
                     </View>
                     {/* End of Popular Items */}
@@ -126,18 +160,17 @@ function shopItems(props) {
                     <View style={styles.allItemsContainer}>
                         {/* List of all items !note that items in Popular Items is also included here* */}
                         <Text style={styles.allItemsTitle}>All Items</Text>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
-                            <AllShopItem/>
+                            <FlatList
+                                data={products}
+                                keyExtractor={item => item.product_ID}
+                                renderItem={itemData => 
+                                    <AllShopItem 
+                                        product_Name = {itemData.item.product_Name}
+                                        price = {itemData.item.price}
+                                        definition = {itemData.item.definition}
+                                        addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
+                                    />}
+                            />
                         {/* End of List */}
                     </View>
                     {/* End of All Items */}
@@ -246,7 +279,7 @@ const styles = StyleSheet.create({
     },
     darken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
     },
     droidSafeArea: {
         flex: 1,

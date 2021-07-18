@@ -17,17 +17,19 @@ function allRewardItem(props) {
                 source={require('../../../../assets/DummyShop.jpg')}>
             </Image>
             <View style={styles.itemContainer}>
-                <Text style={styles.itemName}>Reward Name</Text>
-                <Text style={styles.itemPrice}>100 Points</Text>
-                <Text style={styles.itemInfo}>Reward Definition</Text>
+                <Text style={styles.itemName}>{props.reward_Name}</Text>
+                <Text style={styles.itemPrice}>{props.pointsReq}</Text>
+                <Text style={styles.itemInfo}>{props.definition}</Text>
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity onPress={()=>console.log("Pressed")}>
-                        <Icon2 name="minus-circle" size={35} color="#ee4b43" />
+                    <TouchableOpacity style={styles.button} onPress={props.redeemToCart}>
+                        <Text style={styles.quantity}>Redeem</Text>
                     </TouchableOpacity>
-                    <Text style={styles.quantity}>Qty</Text>
+                    {/* 
+                    <Icon2 name="minus-circle" size={35} color="#ee4b43" />
                     <TouchableOpacity onPress={()=>console.log("Pressed")}>
                         <Icon name="add-circle" size={35} color="#ee4b43" />
-                    </TouchableOpacity>    
+                    </TouchableOpacity> 
+                    */}   
                 </View>
             </View>
         </View>
@@ -35,6 +37,16 @@ function allRewardItem(props) {
 }
 
 const styles = StyleSheet.create({
+    button: {
+        borderColor: "#ee4b43",
+        borderRadius: 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'space-evenly',
+        width: 100,
+        height: 35,
+    },
     buttonsContainer:{
         alignSelf: "center",
         flexDirection: "row",
@@ -47,7 +59,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 6,
+        marginBottom: 4,
+        marginTop: 4,
         height: 140,
         width: wp('90%'),
     },
@@ -82,9 +95,8 @@ const styles = StyleSheet.create({
     },
     quantity: {
         textAlign: "center",
-        marginTop: 5,
-        color: "#000",
-        fontSize: 16,
+        color: "#ee4b43",
+        fontSize: 12,
         fontWeight: "bold",
         marginLeft: 4,
         marginRight: 4      

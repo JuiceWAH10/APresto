@@ -22,9 +22,9 @@ function clientAllShopRewards(props) {
                         source={require('../../../../assets/DummyShop.jpg')}>
                 </Image>
                 <View style={styles.itemContainer} >
-                    <Text style={styles.itemName}>Reward Name</Text>
-                    <Text style={styles.itemPrice}>20 Pts</Text>
-                    <Text style={styles.itemInfo}>Reward Definition</Text>
+                    <Text style={styles.itemName}>{props.reward_Name}</Text>
+                    <Text style={styles.itemPrice}>{props.pointsReq} Pts</Text>
+                    <Text style={styles.itemInfo}>{props.definition}</Text>
                 </View> 
             </View>
             {/* End of Reward Image and Infos */}
@@ -40,7 +40,7 @@ function clientAllShopRewards(props) {
                     <Text style={styles.itemDetailsText}>Sold: 23</Text>
                 </View>
             </View>
-            <View style={styles.itemDetailsWrapValues}>
+            {/* <View style={styles.itemDetailsWrapValues}>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon2 style={styles.itemDetailsIcon} name="heart" size={18} />
                     <Text style={styles.itemDetailsText}>Likes: 34</Text>
@@ -49,7 +49,7 @@ function clientAllShopRewards(props) {
                     <Icon3 style={styles.itemDetailsIcon} name="eye" size={18}/>
                     <Text style={styles.itemDetailsText}>Views: 244</Text>
                 </View>
-            </View>
+            </View> */}
             {/* End of Reward Details */}
 
             {/* Buttons */}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 3,
         marginBottom: 3,
-        height: 225,
+        height: 195,
         width: wp('100%'),
         // borderWidth: 1,
         paddingTop: 10,

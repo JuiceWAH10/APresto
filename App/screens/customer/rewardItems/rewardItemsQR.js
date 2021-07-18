@@ -7,17 +7,28 @@ import {
     TouchableOpacity, 
     View 
 } from 'react-native';
+import QRCode from 'react-qr-code';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 function rewardItemsQR(props) {
     const navigation = useNavigation();
+    const {rewCartItems, totalPoints} = props.route.params;
+    let orderDetails = {
+        'items':{
+            'totalPoints':totalPoints,
+            'redeemedItems':rewCartItems
+        }
+    };
+
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             <ImageBackground style={styles.container} source={require('../../../assets/images/splashScreenDark.jpg')}>
                 <View style={styles.qrContainer}>
                     <Text style={styles.qrLabel}>Scan the QR code to to claim reward(s)</Text>
-                        {/* Enter QR Code here */}
+                        <QRCode 
+                            value = {JSON.stringify(orderDetails)}
+                        />
                     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()} >
                         <Text style={styles.buttonLabel}>Return</Text>
                     </TouchableOpacity>
@@ -55,7 +66,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         backgroundColor: '#fff',
         borderRadius: 30,
-        height: hp('50%'),
+        height: 400,
         width: wp('90%'),
         alignItems: "center",
         paddingTop: hp('2%'),

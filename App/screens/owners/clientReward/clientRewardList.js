@@ -8,6 +8,7 @@ import {
     Text,
     TouchableOpacity, 
     View, 
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -15,12 +16,18 @@ import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import ClientAllShopRewards from '././importClientReward/clientAllShopRewards';
 
 function clientRewardList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
     const navigation = useNavigation();
+
+    const dispatch = useDispatch();
+    //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
+    const rewards = useSelector(state => state.rewards.allRewards);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -62,19 +69,18 @@ function clientRewardList(props) {
             </View>  
             {/* End of Header */}
 
-            <ScrollView style={styles.container}>
-
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-                <ClientAllShopRewards/>
-
+            <FlatList 
+                style={styles.container}
+                data={rewards}
+                keyExtractor={item => item.reward_ID}
+                renderItem={itemData =>
+                    <ClientAllShopRewards
+                        reward_Name = {itemData.item.reward_Name}
+                        pointsReq = {itemData.item.pointsReq}
+                        definition = {itemData.item.definition}
+                    />
+                }
+            />
                 {/* Banner */}
                 {/* <ImageBackground style={styles.bannerBgImage}
                     imageStyle={{ borderRadius: 30}}
@@ -85,8 +91,7 @@ function clientRewardList(props) {
                     </View>    
                 </ImageBackground> */}
                 {/* End of Banner */}
-                
-            </ScrollView>
+
         </SafeAreaView>
     );
 }
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
     bannerLabel: {
         textAlign: "center",
         marginTop: 35,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 20,
         fontWeight: "bold",
         paddingLeft: wp('5%'),
@@ -115,7 +120,7 @@ const styles = StyleSheet.create({
     bannerLabelSmall: {
         textAlign: "center",
         marginTop: 2,
-        color: "#fff",
+        color: "#29312e",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -135,7 +140,8 @@ const styles = StyleSheet.create({
     droidSafeArea: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? 32 : 0,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: "#fff"
     },
     headContainer: {
         alignSelf: "center",
@@ -155,7 +161,7 @@ const styles = StyleSheet.create({
     headLabelSmall: {
         textAlign: "center",
         marginTop: 5,
-        color: "#29312e",
+        color: "#fff",
         fontSize: 12,
         paddingLeft: wp('5%'),
         paddingRight: wp('5%'),
@@ -172,6 +178,20 @@ const styles = StyleSheet.create({
         borderColor: "#fd4140",
         marginBottom: 10,
         marginTop: 5,   
+    },
+    top: {
+        paddingTop: 8,
+        marginBottom: 5,
+
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     topNav: {
         flexDirection: "row",
