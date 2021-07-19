@@ -3,6 +3,8 @@ import firebase from "firebase";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
+import FlashMessage from "react-native-flash-message";
+
 import SplashScreen from './App/screens/SplashScreen';
 import LogIn from './App/screens/LogIn';
 import SignupCustomer from './App/screens/customer/signupCustomer';
@@ -66,17 +68,17 @@ function Authentication(){
       {isAuthenticated ? <Screens/> : <AuthScreens/>}
     </NavigationContainer>
   );
-
 }
 
 export default function App() {
     return (
       //call Authentication function component
       <Provider store={store}>
-       <Authentication />
+        <Authentication />
+        <FlashMessage position="top" animated={true} />
       </Provider>
     )
-  };
+};
 
 //firebase configuration to connect to firebase
 const firebaseConfig = {

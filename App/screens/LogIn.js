@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import validator from "validator";
 import { auth } from "firebase";
 import { Input } from 'react-native-elements';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 
 //validation function of email
@@ -35,16 +35,15 @@ const login = (email, password) => {
       })
       .catch(() => {
         showMessage({
-            message: "Account does not exist",
-            type: "warning",
-            position: "bottom",
-            floating: "true",
-            icon: { icon: "info", position: "left" },
-            autoHide:"true", 
-            duration: 1000,
+          message: "Account does not exist",
+          type: "warning",
+          position: "bottom",
+          floating: "true",
+          icon: { icon: "info", position: "left" },
+          autoHide:"true", 
+          duration: 1000,
         });
-        console.log("No user");
-        
+        console.log("No user");  
     })
 };
 
