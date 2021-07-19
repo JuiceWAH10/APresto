@@ -5,7 +5,7 @@ import { products } from "../screens/Dummy_Data";
 
 const initialState = {
     allProducts: products
-    //,storeProducts: products.filter(prod => prod.shop_ID === )
+    //,storeProducts: products.filter(prod => prod.shop_ID === shop_ID)
 };
 
 export default (state = initialState, action) => {

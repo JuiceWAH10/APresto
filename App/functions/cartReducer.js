@@ -1,6 +1,6 @@
 //for handling cart items
 import {React} from 'react';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../functions/cartFunction';
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../functions/cartFunction';
 import CartItem from '../models/cartItem';
 //import cartItems
 
@@ -56,7 +56,10 @@ export default (state = initialState, action) => {
                 ...state,
                 items: cartItems,
                 totalAmount: state.totalAmount - selectedCartItem.productPrice
-            }
+            };
+
+        case CLEAR_CART:
+            return initialState;
 
     }
     return state;

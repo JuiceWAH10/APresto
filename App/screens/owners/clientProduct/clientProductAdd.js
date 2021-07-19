@@ -15,11 +15,30 @@ import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Input } from 'react-native-elements';
 
+import * as crud from '../../../functions/firebaseCRUD';
+
 function clientProductAdd(props) {
-    const [prodName, setTextProdName] = React.useState('');
-    const [prodDes, setTextProdDes] = React.useState('');
-    const [prodPrice, setTextProdPrice] = React.useState('');
-    const [prodQty, setTextProdQty] = React.useState('');
+    const [prodName, setTextProdName] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodDes, setTextProdDes] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodPrice, setTextProdPrice] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodQty, setTextProdQty] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+
+    function addProduct(prodName, prodDes, prodPrice, prodQty){
+        crud.createRecord(prodName, prodDes, prodPrice, prodQty);
+        navigation.goBack();
+    }
 
     const navigation = useNavigation();
 
@@ -61,8 +80,9 @@ function clientProductAdd(props) {
                             style={styles.input}
                             leftIcon={{ type: 'font-awesome', name: 'archive' }}
                             placeholder="Product Name"
-                            onChangeText={text => setTextProdName(text)}
+                            onChangeText={text => setTextProdName({text})}
                             value={prodName}
+                            errorMessage={prodName.errorMessage}
                         />
                     </View>
                 </View>
@@ -75,9 +95,10 @@ function clientProductAdd(props) {
                             leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             multiline={true}
                             placeholder="Product Description"
-                            onChangeText={text => setTextProdDes(text)}
+                            onChangeText={text => setTextProdDes({text})}
                             scrollEnabled={true}
                             value={prodDes}
+                            errorMessage={prodDes.errorMessage}
                         />
                     </View>
                 </View>
@@ -90,9 +111,10 @@ function clientProductAdd(props) {
                                     style={styles.inputDual}
                                     leftIcon={{ type: 'font-awesome-5', name: 'coins' }}
                                     placeholder="Product Price"
-                                    onChangeText={text => setTextProdPrice(text)}
+                                    onChangeText={text => setTextProdPrice({text})}
                                     keyboardType="numeric"
                                     value={prodPrice}
+                                    errorMessage={prodPrice.errorMessage}
                                 />
                         </View>
                         <View>
@@ -101,9 +123,10 @@ function clientProductAdd(props) {
                                 style={styles.inputDual}
                                 leftIcon={{ type: 'font-awesome-5', name: 'box' }}
                                 placeholder="Product Quantity"
-                                onChangeText={text => setTextProdQty(text)}
+                                onChangeText={text => setTextProdQty({text})}
                                 keyboardType="numeric"
                                 value={prodQty}
+                                errorMessage={prodQty.errorMessage}
                             />
                         </View>
                     </View>
@@ -113,7 +136,7 @@ function clientProductAdd(props) {
             </ScrollView>
             
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>console.log("Pressed")} >
+                <TouchableOpacity style={styles.button} onPress={addProduct} >
                     <Text style={styles.buttonLabel}>Add Product</Text>
                 </TouchableOpacity>
             </View>      

@@ -1,6 +1,6 @@
 //for handling cart items
 import {React} from 'react';
-import { REDEEM_TO_CART, CANCEL_REDEEM } from '../functions/rewardsCartFunction';
+import { REDEEM_TO_CART, CANCEL_REDEEM, CLEAR_CART } from '../functions/rewardsCartFunction';
 import CartItem from '../models/cartItem';
 //import cartItems
 
@@ -56,7 +56,10 @@ export default (state = initialState, action) => {
                 ...state,
                 rewItems: cartItems,
                 totalPoints: state.totalPoints - selectedCartItem.productPrice
-            }
+            };
+        
+        case CLEAR_CART:
+            return initialState;
 
     }
     return state;

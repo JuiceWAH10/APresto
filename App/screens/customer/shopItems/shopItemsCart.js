@@ -39,7 +39,7 @@ function shopItemsCart(props) {
     });
 
     const dispatch = useDispatch();
-
+    
     return (
         <SafeAreaView style={styles.droidSafeArea}>
             {/* Top Navigation */}
@@ -47,7 +47,14 @@ function shopItemsCart(props) {
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
+
+                <View style={styles.topNavRight}>
+                    <TouchableOpacity onPress={() => {dispatch(cartAction.clearCart())}}>
+                        <Text styles={styles.titlePopular}>Clear Cart</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
+            
             {/* End of Top Navigation */}
             
             <View style={[styles.formContainer, {flex:15}]}>
@@ -85,10 +92,13 @@ function shopItemsCart(props) {
                     </View>
 
                     <TouchableOpacity 
-                        style={styles.button} 
+                        style={styles.button}
+                        disabled={cartItems.length === 0}
                         onPress={() => 
-                            navigation.navigate('shopItemsQR', 
-                                {cartItems, totalAmount}
+                            navigation.navigate('shopItemsQR', {
+                                cartItems, 
+                                totalAmount
+                            }
                             )
                         } 
                     >

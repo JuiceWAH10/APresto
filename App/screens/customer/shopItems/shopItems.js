@@ -44,7 +44,12 @@ function shopItems(props) {
 
     const dispatch = useDispatch();
     //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
-    const products = useSelector(state => state.products.allProducts);
+    const getProducts = useSelector(state => state.products.allProducts);
+    const products = getProducts.filter((prod) => {
+        if(prod.shop_ID === shop_ID){
+            return prod;
+        }
+    })
 
     return (
         <SafeAreaView style={styles.droidSafeArea} >
@@ -97,11 +102,11 @@ function shopItems(props) {
                                     onPress={() => 
                                         navigation.navigate('rewardItems', 
                                             {
-                                                shop_ID: JSON.stringify(shop_ID),
-                                                owner_ID: JSON.stringify(owner_ID),
-                                                shopName: JSON.stringify(shopName),
-                                                address: JSON.stringify(address),
-                                                specialty: JSON.stringify(specialty)
+                                                shop_ID: shop_ID,
+                                                owner_ID: owner_ID,
+                                                shopName: shopName,
+                                                address: address,
+                                                specialty: specialty
                                             }
                                         )
                                     } 
