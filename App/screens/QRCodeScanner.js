@@ -54,7 +54,7 @@ export default function QRCodeScanner(props){
                     </TouchableOpacity>
                 </BarCodeScanner>
                 {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-            </ImageBackground>       
+            </ImageBackground>    
         </SafeAreaView>
         
     );

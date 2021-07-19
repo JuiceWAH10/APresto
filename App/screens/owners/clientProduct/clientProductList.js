@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
     ImageBackground,
+    LogBox,
     Platform,
     SafeAreaView,
     ScrollView,
@@ -19,6 +20,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 
 import ClientAllShopItems from '././importClientProduct/clientAllShopItems';
+
+LogBox.ignoreAllLogs();// Ignore all Logs! Remove this when coding
 
 function clientProductList(props) {
     const [searchQuery, setSearchQuery] = React.useState('');

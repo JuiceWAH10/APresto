@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import validator from "validator";
 import { auth } from "firebase";
 import { Input } from 'react-native-elements';
+import { showMessage } from "react-native-flash-message";
 
 
 //validation function of email
@@ -31,7 +32,19 @@ const login = (email, password) => {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
           console.log("Logged in");
-      });
+      })
+      .catch(() => {
+        showMessage({
+          message: "Account does not exist",
+          type: "warning",
+          position: "bottom",
+          floating: "true",
+          icon: { icon: "info", position: "left" },
+          autoHide:"true", 
+          duration: 1000,
+        });
+        console.log("No user");  
+    })
 };
 
 function LogIn(props) {
@@ -106,7 +119,7 @@ function LogIn(props) {
                       //Password input
                       style={styles.textPassword}
                       leftIcon={{ type: 'font-awesome', name: 'lock' }}
-                      //secureTextEntry={true}
+                      secureTextEntry={true}
                       placeholder="Password"
                       text={passwordField.text}
                       onChangeText={(text) => {setPasswordField({text});}}

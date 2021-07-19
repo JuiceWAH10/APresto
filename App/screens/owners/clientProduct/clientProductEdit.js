@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
+    Alert,
     Image,
-    ImageBackground,
+    LogBox,
     SafeAreaView,
     ScrollView,
     StyleSheet,
@@ -11,9 +12,15 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Input } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import * as firebase from "firebase";
+import uuid from 'react-native-uuid';
+import { showMessage } from "react-native-flash-message";
+import Toast from 'react-native-toast-message';
+
+LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
 function clientProductEdit(props) {
     const [prodName, setTextProdName] = React.useState('');
@@ -21,7 +28,67 @@ function clientProductEdit(props) {
     const [prodPrice, setTextProdPrice] = React.useState('');
     const [prodQty, setTextProdQty] = React.useState('');
 
+    const [image, setImage] = React.useState(null);
+    
+    var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
+    
     const navigation = useNavigation();
+
+    // Code for Image Picker and Uploading to Firebase storage
+    pickImage = async () => {
+        //For choosing photo in the library and crop the photo
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [3, 4],
+            quality: 1,
+        });
+        
+        console.log(result); // To Display the information of image on the console
+        
+        if (!result.cancelled) {
+            showMessage({
+                message: "Uploading Image",
+                backgroundColor: "#ee4b43",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 1000,
+            });
+            this.uploadImage(result.uri, imageUUID)
+                .then(() => {
+                    setImage(result.uri);
+                  })
+                .catch((error) => {
+                    Alert.alert(error);
+                  });
+            }
+        };
+
+        //Function to upload to Firebase storage
+        uploadImage = async (uri, imageName) => {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+        
+            var ref = firebase.storage().ref().child("images_Product/" + imageName);
+            return ref.put(blob);
+        }
+
+        //Display flash message 
+        successAdded = () => {
+            showMessage({
+                message: "Product Updated Successfully",
+                type: "success",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 2500,
+            })
+        }
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -110,6 +177,21 @@ function clientProductEdit(props) {
                 </View>    
                 
                 {/* End of Form */}
+
+                {/*<Toast ref={Toast.setRef} />
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => Toast.show({
+                        type: 'success',
+                        position: 'top',
+                        text1: 'Product Have been Updated',
+                        visibilityTime: 1000,
+                        autoHide: true,
+                        topOffset: 100,
+                        bottomOffset: 40,
+                        })} >
+                    <Text style={styles.buttonLabel}>Publish Changes</Text>
+                </TouchableOpacity>
+             */}
             </ScrollView>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button} onPress={()=>console.log("Pressed")} >

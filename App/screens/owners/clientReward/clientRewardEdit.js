@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
+    Alert,
     Image,
-    ImageBackground,
+    LogBox,
     SafeAreaView,
     ScrollView,
     StyleSheet,
@@ -11,9 +12,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Input } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import * as firebase from "firebase";
+import uuid from 'react-native-uuid';
+import { showMessage } from "react-native-flash-message";
+import Toast from 'react-native-toast-message';
 
 function clientRewardEdit(props) {
     const [rewName, setTextRewName] = React.useState('');
@@ -21,7 +26,67 @@ function clientRewardEdit(props) {
     const [rewPrice, setTextRewPrice] = React.useState('');
     const [rewQty, setTextRewQty] = React.useState('');
 
+    const [image, setImage] = React.useState(null);
+    
+    var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
+    
     const navigation = useNavigation();
+
+    // Code for Image Picker and Uploading to Firebase storage
+    pickImage = async () => {
+        //For choosing photo in the library and crop the photo
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [3, 4],
+            quality: 1,
+        });
+        
+        console.log(result); // To Display the information of image on the console
+        
+        if (!result.cancelled) {
+            showMessage({
+                message: "Uploading Image",
+                backgroundColor: "#ee4b43",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 1000,
+            });
+            this.uploadImage(result.uri, imageUUID)
+                .then(() => {
+                    setImage(result.uri);
+                  })
+                .catch((error) => {
+                    Alert.alert(error);
+                  });
+            }
+        };
+
+        //Function to upload to Firebase storage
+        uploadImage = async (uri, imageName) => {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+        
+            var ref = firebase.storage().ref().child("images_Reward/" + imageName);
+            return ref.put(blob);
+        }
+
+        //Display flash message 
+        successAdded = () => {
+            showMessage({
+                message: "Reward Updated Successfully",
+                type: "success",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 2500,
+            })
+        }
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -30,22 +95,22 @@ function clientRewardEdit(props) {
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Edit Reward</Text>      
-            </View>
+                <Text style={styles.title}>Add Reward</Text>   
+            </View>  
             {/* End of Top Navigation */}
 
             <ScrollView style={styles.container}>
 
                 <Text style={styles.textInfo}>Do you like your products to be known by customers? 
-                Upload an image of your product for them to see it.</Text>
+                    Upload an image of your product for them to see it.</Text>
 
                 <View style={styles.shadowContainer}>
                     <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    
+                    {image && <Image source={{ uri: image }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
-                    <TouchableOpacity style={styles.imageButton} onPress={()=>console.log("Pressed")} >
+                    <TouchableOpacity style={styles.imageButton} onPress={this.pickImage} >
                         <Text style={styles.imageButtonLabel}>Upload Image</Text>
                     </TouchableOpacity>
                 </View>
@@ -66,8 +131,8 @@ function clientRewardEdit(props) {
                         />
                     </View>
                 </View>
-
-                <View style={styles.shadowContainer}>    
+                
+                <View style={styles.shadowContainer}>
                     <Text style={styles.formTitles}>Enter Reward Description</Text>
                     <View style={styles.textView}>
                         <Input
@@ -108,13 +173,24 @@ function clientRewardEdit(props) {
                         </View>
                     </View>
                 </View>    
-                {/* End of Form */}     
+
+                {/* End of Form */}        
             </ScrollView>
+
+            <Toast ref={Toast.setRef} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>console.log("Pressed")} >
+                <TouchableOpacity style={styles.button} onPress={() => Toast.show({
+                        type: 'success',
+                        position: 'top',
+                        text1: 'Reward Have been Updated',
+                        visibilityTime: 1000,
+                        autoHide: true,
+                        topOffset: 100,
+                        bottomOffset: 40,
+                        })}>
                     <Text style={styles.buttonLabel}>Publish Changes</Text>
                 </TouchableOpacity>
-            </View>
+            </View> 
         </SafeAreaView>
     );
 }

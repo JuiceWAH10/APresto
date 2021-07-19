@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     },
     darken:{
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.2)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
     },
     droidSafeArea: {
         flex: 1,
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     },
     headerLabel: {
         textAlign: "center",
-        marginTop: 45,
+        marginTop: 30,
         color: "#fff",
         fontSize: 24,
         fontWeight: "bold",
