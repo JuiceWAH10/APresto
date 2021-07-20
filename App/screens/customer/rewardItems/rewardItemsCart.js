@@ -69,7 +69,7 @@ function rewardItemsCart(props) {
                         <AllCartItem
                             quantity = {itemData.item.quantity} 
                             product_Name = {itemData.item.productTitle}
-                            price = {itemData.item.total.toFixed(2)}
+                            price = {itemData.item.productPrice.toFixed(2)}
                             removeFromCart = {() => {
                                 dispatch(rewCartFunction.cancelRedeem(itemData.item.reward_ID))
                             }}

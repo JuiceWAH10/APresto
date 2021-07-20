@@ -201,9 +201,11 @@ function clientProductAdd(props) {
 
                 {/* End of Form */}
             </ScrollView>
-            {/*<Toast ref={Toast.setRef} />
+            <Toast ref={Toast.setRef} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={ () => Toast.show({
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={ () => Toast.show({
                         type: 'success',
                         position: 'top',
                         text1: 'Product Have been Added',
@@ -211,10 +213,7 @@ function clientProductAdd(props) {
                         autoHide: true,
                         topOffset: 100,
                         bottomOffset: 40,
-                        })} >
-             */}
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={addProduct} >
+                    })} >
                     <Text style={styles.buttonLabel}>Add Product</Text>
                 </TouchableOpacity>
             </View>      
