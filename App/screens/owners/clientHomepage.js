@@ -9,7 +9,6 @@ import {
     TouchableOpacity, 
     View, 
 } from 'react-native';
-import { auth } from 'firebase';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
