@@ -129,6 +129,7 @@ function rewardItems(props) {
                                     reward_Name = {itemData.item.reward_Name}
                                     pointsReq = {itemData.item.pointsReq}
                                     definition = {itemData.item.definition}
+                                    imgLink = {itemData.item.imgLink}
                                     redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
                                 />
                             }
@@ -152,6 +153,7 @@ function rewardItems(props) {
                                         reward_Name = {itemData.item.reward_Name}
                                         pointsReq = {itemData.item.pointsReq}
                                         definition = {itemData.item.definition}
+                                        imgLink = {itemData.item.imgLink}
                                         redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
                                     />}
                             />

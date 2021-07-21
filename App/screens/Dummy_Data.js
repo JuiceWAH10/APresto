@@ -37,7 +37,8 @@ export const products = [
         150,
 		200,
         'Burger',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -47,7 +48,8 @@ export const products = [
         150,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -57,7 +59,8 @@ export const products = [
         155,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -67,7 +70,8 @@ export const products = [
         175,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -77,7 +81,8 @@ export const products = [
         210,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
     (
@@ -87,7 +92,8 @@ export const products = [
         210,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
     (
@@ -97,7 +103,8 @@ export const products = [
         210,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
     (
@@ -107,7 +114,8 @@ export const products = [
         210,
 	    200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
     (
@@ -117,7 +125,8 @@ export const products = [
         210,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
     (
@@ -127,7 +136,8 @@ export const products = [
         210,
 		200,
         'Perfume',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -137,7 +147,8 @@ export const products = [
         200,
 		200,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -147,7 +158,8 @@ export const products = [
         150,
 		200,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -157,7 +169,8 @@ export const products = [
         70,
 		200,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -167,7 +180,8 @@ export const products = [
         55,
 		200,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -177,7 +191,8 @@ export const products = [
         65,
 	    200,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -187,7 +202,8 @@ export const products = [
         70,
 		200,
         'Drinks',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -197,7 +213,8 @@ export const products = [
         60,
 		200,
         'Drinks',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -207,7 +224,8 @@ export const products = [
         60,
 		200,
         'Drinks',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -217,7 +235,8 @@ export const products = [
         60,
 		200,
         'Drinks',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Product
 	(
@@ -227,7 +246,8 @@ export const products = [
         50,
 		200,
         'Drinks',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     )
 ]
 
@@ -239,7 +259,8 @@ export const rewards = [
         'Diffuser Oil',
         10,
         'Lovely smell for lovely suki',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -248,7 +269,8 @@ export const rewards = [
         'Perfume Collection',
         25,
         'Lovely smell for lovely suki',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -257,7 +279,8 @@ export const rewards = [
         'Perfume Pouch',
         25,
         'For your convenience',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -266,7 +289,8 @@ export const rewards = [
         'Perfume Organizer',
         25,
         'For your convenience',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -275,7 +299,8 @@ export const rewards = [
         'PHP100 Voucher',
         50,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -284,7 +309,8 @@ export const rewards = [
         'PHP200 Voucher',
         75,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -293,7 +319,8 @@ export const rewards = [
         'PHP300 Voucher',
         100,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -302,7 +329,8 @@ export const rewards = [
         'PHP500 Voucher',
         250,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -311,7 +339,8 @@ export const rewards = [
         'PHP1000 Voucher',
         500,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -320,7 +349,8 @@ export const rewards = [
         '50% off Voucher',
         150,
         'Kaching!',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -329,7 +359,8 @@ export const rewards = [
         'Dinuguan',
         15,
         'INC',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -338,7 +369,8 @@ export const rewards = [
         'Fresh Buko Juice',
         10,
         '*toktok* kokonat',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -347,7 +379,8 @@ export const rewards = [
         'Adobo Cheesemelt',
         10,
         'Ulam',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -356,7 +389,8 @@ export const rewards = [
         'Chicken Pesto',
         10,
         'Mmmm',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -365,7 +399,8 @@ export const rewards = [
         'Tuna Cheesemelt',
         10,
         'Mmmmm',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     ),
     new Reward
     (
@@ -374,6 +409,7 @@ export const rewards = [
         'Ham and Cheese',
         10,
         'DepEd',
-        'available'
+        'available',
+        '../../../../assets/DummyShop.jpg'
     )
 ]

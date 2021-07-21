@@ -149,6 +149,7 @@ function shopItems(props) {
                                     product_Name = {itemData.item.product_Name}
                                     price = {itemData.item.price}
                                     definition = {itemData.item.definition}
+                                    imgLink = {itemData.item.imgLink}
                                     addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
                                 />
                             }
@@ -173,6 +174,7 @@ function shopItems(props) {
                                         product_Name = {itemData.item.product_Name}
                                         price = {itemData.item.price}
                                         definition = {itemData.item.definition}
+                                        imgLink = {itemData.item.imgLink}
                                         addToCart = {() => {dispatch(cartAction.addToCart(itemData.item))}}
                                     />}
                             />
