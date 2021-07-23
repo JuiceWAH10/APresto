@@ -49,8 +49,8 @@ function shopItemsCart(props) {
                 </TouchableOpacity>
 
                 <View style={styles.topNavRight}>
-                    <TouchableOpacity onPress={() => {dispatch(cartAction.clearCart())}}>
-                        <Text styles={styles.titlePopular}>Clear Cart</Text>
+                    <TouchableOpacity style={styles.topNavRightButton} onPress={() => {dispatch(cartAction.clearCart())}}>
+                        <Text style={styles.topNavRightText}>Clear Cart</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     topNav: {
         flexDirection: "row",
         justifyContent: "space-between",
-        height: 20,
+        height: 30,
         width: wp('100%'),
         paddingLeft: 10,
         paddingRight: 10,
@@ -219,11 +219,26 @@ const styles = StyleSheet.create({
     },
     topNavRight: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        height: 45,
-        width: 60,
+        // justifyContent: "space-between",
+        height: 20,
+        width: 100,
         marginRight: 15,
-        paddingTop: 5,
-    },    
+        // paddingTop: 5,
+    },   
+    topNavRightButton: {
+        backgroundColor: '#ee4b43',
+        borderRadius: 30,
+        alignItems: 'center',
+        alignSelf: "center",
+        justifyContent: 'center',
+        marginTop: 10,
+        width: 100,
+        height: 30,
+    }, 
+    topNavRightText: {
+        color: "#fff",
+        textAlign: "center",
+        fontSize: 14,
+    },
 })
 export default shopItemsCart;
