@@ -27,7 +27,7 @@ import Products from '../models/products';
         })
 */
 
-export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgLink){
+export function createProduct(prodName, prodDes, prodPrice, prodQty, status, imgLink){
 
     const db = firebase.firestore();
     const ref = db.collection('Products').doc();
@@ -50,7 +50,37 @@ export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgL
     })
     .then((data)=>{
         //success callback
+        console.log('data ' , data)
+        
+    }).catch((error)=>{
+        //error callback
+        console.log('error ' , error)
+    });
+}
 
+export function createReward(rewName, rewDes, rewPoints, rewQty, status, imgLink){
+
+    const db = firebase.firestore();
+    const ref = db.collection('Products').doc();
+    const id = ref.id;
+
+    <Toast ref={Toast.setRef} />
+    
+    firebase.firestore()
+    .collection('Rewards')
+    .doc(id)
+    .set({
+        reward_ID: id,
+        shop_ID: "1",
+        reward_Name: rewName,
+        description: rewDes,
+        pointsReq: parseFloat(rewPoints),
+        quantity: parseInt(rewQty),
+        status: status,
+        imgLink: imgLink
+    })
+    .then((data)=>{
+        //success callback
         console.log('data ' , data)
         
     }).catch((error)=>{
@@ -117,7 +147,7 @@ export function readAllProducts(){
 //needs adjustment
 
 
-//for single data :/ needs adjustment
+//too slow needs adjustment
 export function updateProduct(prod_ID, prodName, prodDes, prodPrice, prodQty, status, imgLink){
     firebase.firestore()
     .collection('Products')
@@ -132,9 +162,34 @@ export function updateProduct(prod_ID, prodName, prodDes, prodPrice, prodQty, st
     });
 }
 
-//needs adjustment, specify using ID
+export function updateReward(rewID, rewName, rewDes, rewPoints, rewQty, status, imgLink){
+    firebase.firestore()
+    .collection('Rewards')
+    .doc(rewID)
+    .update({
+        reward_Name: rewName,
+        description: rewDes,
+        pointsReq: parseFloat(rewPoints),
+        quantity: parseInt(rewQty),
+        status: status,
+        imgLink: imgLink
+    });
+}
+
 export function deleteProduct(product_ID, imgLink){
     firebase.firestore().collection('Products').doc(product_ID).delete().then(() => {
+        console.log("Document successfully deleted!");
+        var imageRef = firebase.storage().refFromURL(imgLink);
+            imageRef.delete().then(() => {
+                console.log("Deleted")
+            }).catch(err => console.log(err))
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+}
+
+export function deleteReward(reward_ID, imgLink){
+    firebase.firestore().collection('Rewards').doc(reward_ID).delete().then(() => {
         console.log("Document successfully deleted!");
         var imageRef = firebase.storage().refFromURL(imgLink);
             imageRef.delete().then(() => {

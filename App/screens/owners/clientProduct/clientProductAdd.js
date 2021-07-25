@@ -19,7 +19,7 @@ import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
 
-//LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
+LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
 import * as crud from '../../../functions/firebaseCRUD';
 
@@ -121,7 +121,7 @@ function clientProductAdd(props) {
         const result = await uploadImage(URI, imageUUID)
 
         console.log('from add function: ', image.gURL);
-        crud.createRecord(prodName, prodDes, prodPrice, prodQty, status, image.gURL);
+        crud.createProduct(prodName, prodDes, prodPrice, prodQty, status, image.gURL);
         navigation.goBack();
     };
 

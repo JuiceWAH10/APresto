@@ -11,6 +11,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import * as crud from '../../../../functions/firebaseCRUD';
 
 function clientAllShopRewards(props) {
     const navigation = useNavigation();
@@ -19,12 +20,12 @@ function clientAllShopRewards(props) {
             {/* Reward Image and Infos */}
             <View style={styles.containerInfos}>
                 <Image style={styles.itemImage}
-                        source={require('../../../../assets/DummyShop.jpg')}>
+                        source={{uri: props.imgLink}}>
                 </Image>
                 <View style={styles.itemContainer} >
                     <Text style={styles.itemName}>{props.reward_Name}</Text>
                     <Text style={styles.itemPrice}>{props.pointsReq} Pts</Text>
-                    <Text style={styles.itemInfo}>{props.definition}</Text>
+                    <Text style={styles.itemInfo}>{props.description}</Text>
                 </View> 
             </View>
             {/* End of Reward Image and Infos */}
@@ -33,7 +34,7 @@ function clientAllShopRewards(props) {
             <View style={styles.itemDetailsWrapValues}>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon3 style={styles.itemDetailsIcon} name="layers" size={18} />
-                    <Text style={styles.itemDetailsText}>Stock: 100</Text>
+                    <Text style={styles.itemDetailsText}>Stock: {props.quantity}</Text>
                 </View>
                 <View style={styles.itemDetailsWrapValuesSmall}>
                     <Icon3 style={styles.itemDetailsIcon} name="wallet" size={18} />
@@ -54,7 +55,23 @@ function clientAllShopRewards(props) {
 
             {/* Buttons */}
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('clientRewardEdit')} >
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => 
+                    navigation.navigate(
+                        'clientRewardEdit',{
+                            reward_ID: props.reward_ID,
+                            shop_ID: props.shop_ID,
+                            reward_Name: props.reward_Name,
+                            description: props.description,
+                            pointsReq: props.pointsReq.toString(),
+                            quantity: props.quantity.toString(),
+                            status: props.status,
+                            img: props.imgLink
+                            }
+                        )
+                    } 
+                >
                     <Icon2 name="pencil" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Edit Info</Text>
                 </TouchableOpacity>
@@ -62,7 +79,7 @@ function clientAllShopRewards(props) {
                     <Icon3 name="archive" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delist</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
+                <TouchableOpacity style={styles.button} onPress={() =>  crud.deleteReward(props.reward_ID, props.imgLink)} >
                     <Icon2 name="trash" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delete</Text>
                 </TouchableOpacity>

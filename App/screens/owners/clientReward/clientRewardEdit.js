@@ -19,74 +19,119 @@ import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
 import Toast from 'react-native-toast-message';
+import * as crud from '../../../functions/firebaseCRUD';
 
 function clientRewardEdit(props) {
-    const [rewName, setTextRewName] = React.useState('');
-    const [rewDes, setTextRewDes] = React.useState('');
-    const [rewPrice, setTextRewPrice] = React.useState('');
-    const [rewQty, setTextRewQty] = React.useState('');
+    const {reward_ID, shop_ID, reward_Name, pointsReq, description, quantity, status, img} = props.route.params;
 
-    const [image, setImage] = React.useState(null);
-    
+    const [rewName, setTextRewName] = React.useState({
+        text: reward_Name,
+        errorMessage: ""
+    });
+    const [rewDes, setTextRewDes] = React.useState({
+        text: description,
+        errorMessage: ""
+    });
+    const [rewPrice, setTextRewPrice] = React.useState({
+        text: pointsReq,
+        errorMessage: ""
+    });
+    const [rewQty, setTextRewQty] = React.useState({
+        text: quantity,
+        errorMessage: ""
+    });
+
     var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
     
     const navigation = useNavigation();
 
+    const image = {
+        url: img,
+        get gURL(){
+            return this.url;
+        },
+        set sURL(u){
+            this.url = u;
+        }
+    }
+
+    const [URI, setURI] = React.useState({link:image.gURL});
+    const [changedIMG, setChangedIMG] = React.useState({bool: false});
+    
     // Code for Image Picker and Uploading to Firebase storage
-    pickImage = async () => {
+    const pickImage = async () => {
         //For choosing photo in the library and crop the photo
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [3, 4],
-            quality: 1,
-        });
-        
-        console.log(result); // To Display the information of image on the console
-        
-        if (!result.cancelled) {
-            showMessage({
-                message: "Uploading Image",
-                backgroundColor: "#ee4b43",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 1000,
+        let result = await 
+            ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [3, 4],
+                quality: 1,
             });
-            this.uploadImage(result.uri, imageUUID)
-                .then(() => {
-                    setImage(result.uri);
-                  })
-                .catch((error) => {
-                    Alert.alert(error);
-                  });
-            }
-        };
+        if (!result.cancelled) {
+            setURI({link: result.uri});
+            setChangedIMG({bool: true});
+        }
+        console.log(result, changedIMG.bool); // To Display the information of image on the console
 
-        //Function to upload to Firebase storage
-        uploadImage = async (uri, imageName) => {
-            const response = await fetch(uri);
-            const blob = await response.blob();
-        
+    };
+
+    //Function to upload to Firebase storage
+    const uploadImage = async(uri, imageName) => {
+        const response = await fetch(uri);
+        const blob = await response.blob(); 
+        console.log('oof nakapasok pa din here');
+        return new Promise(function(resolve) {
             var ref = firebase.storage().ref().child("images_Reward/" + imageName);
-            return ref.put(blob);
-        }
+            ref.put(blob).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL)=>{
+                    console.log('File available at', downloadURL);
+                    image.sURL = downloadURL;
+                    console.log('from upload image: ' + image.gURL)
+                    resolve('wew');
+                });
+            });
+            var imageRef = firebase.storage().refFromURL(img);
+            imageRef.delete().then(() => {
+                console.log("Deleted")
+            }).catch(err => console.log(err))
+        })
+    };
 
-        //Display flash message 
-        successAdded = () => {
-            showMessage({
-                message: "Reward Updated Successfully",
-                type: "success",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 2500,
-            })
+    //Display flash message 
+    const successAdded = () => {
+        showMessage({
+            message: "Product Added Successfully",
+            type: "success",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 2500,
+        })
+    };
+
+    const updateReward = async (rewName, rewDes, rewPoints, rewQty, status) => {
+        showMessage({
+            message: "Uploading Image",
+            backgroundColor: "#ee4b43",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 1000,
+        });
+        console.log(changedIMG.bool)
+        if(changedIMG.bool){
+            const result = await uploadImage(URI.link, imageUUID)
         }
+        
+        console.log('from add function: ', image.gURL);
+        crud.updateReward(reward_ID, rewName, rewDes, rewPoints, rewQty, status, image.gURL);
+        navigation.goBack();
+    };
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -107,10 +152,10 @@ function clientRewardEdit(props) {
                 <View style={styles.shadowContainer}>
                     <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    {image && <Image source={{ uri: image }} style={styles.imageUpload} />} 
+                    {URI && <Image source={{ uri: URI.link }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
-                    <TouchableOpacity style={styles.imageButton} onPress={this.pickImage} >
+                    <TouchableOpacity style={styles.imageButton} onPress={pickImage} >
                         <Text style={styles.imageButtonLabel}>Upload Image</Text>
                     </TouchableOpacity>
                 </View>
@@ -126,8 +171,9 @@ function clientRewardEdit(props) {
                             style={styles.input}
                             leftIcon={{ type: 'font-awesome', name: 'archive' }}
                             placeholder="Reward Name"
-                            onChangeText={text => setTextRewName(text)}
-                            value={rewName}
+                            onChangeText={text => setTextRewName(state => ({...state,text}))}
+                            value={rewName.text}
+                            errorMessage={rewName.errorMessage}
                         />
                     </View>
                 </View>
@@ -140,9 +186,10 @@ function clientRewardEdit(props) {
                             leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             multiline={true}
                             placeholder="Reward Description"
-                            onChangeText={text => setTextRewDes(text)}
+                            onChangeText={text => setTextRewDes(state => ({...state,text}))}
                             scrollEnabled={true}
-                            value={rewDes}
+                            value={rewDes.text}
+                            errorMessage={rewDes.errorMessage}
                         />
                     </View>
                 </View>    
@@ -155,9 +202,10 @@ function clientRewardEdit(props) {
                                     style={styles.inputDual}
                                     leftIcon={{ type: 'font-awesome-5', name: 'coins' }}
                                     placeholder="Reward Price"
-                                    onChangeText={text => setTextRewPrice(text)}
+                                    onChangeText={text => setTextRewPrice(state => ({...state,text}))}
                                     keyboardType="numeric"
-                                    value={rewPrice}
+                                    value={rewPrice.text}
+                                    errorMessage={rewPrice.errorMessage}
                                 />
                         </View>
                         <View>
@@ -166,9 +214,10 @@ function clientRewardEdit(props) {
                                 style={styles.inputDual}
                                 leftIcon={{ type: 'font-awesome-5', name: 'box' }}
                                 placeholder="Reward Quantity"
-                                onChangeText={text => setTextRewQty(text)}
+                                onChangeText={text => setTextRewQty(state => ({...state,text}))}
                                 keyboardType="numeric"
-                                value={rewQty}
+                                value={rewQty.text}
+                                errorMessage={rewQty.text}
                             />
                         </View>
                     </View>
@@ -177,9 +226,17 @@ function clientRewardEdit(props) {
                 {/* End of Form */}        
             </ScrollView>
 
-            <Toast ref={Toast.setRef} />
+            
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => Toast.show({
+                <TouchableOpacity style={styles.button} onPress={() => updateReward(rewName.text, rewDes.text, rewPrice.text, rewQty.text, 'available')}>
+                    <Text style={styles.buttonLabel}>Publish Changes</Text>
+                </TouchableOpacity>
+            </View> 
+        </SafeAreaView>
+    );
+}
+
+{/*<Toast ref={Toast.setRef} />Toast.show({
                         type: 'success',
                         position: 'top',
                         text1: 'Reward Have been Updated',
@@ -187,13 +244,8 @@ function clientRewardEdit(props) {
                         autoHide: true,
                         topOffset: 100,
                         bottomOffset: 40,
-                        })}>
-                    <Text style={styles.buttonLabel}>Publish Changes</Text>
-                </TouchableOpacity>
-            </View> 
-        </SafeAreaView>
-    );
-}
+                        })
+                    */}
 
 const styles = StyleSheet.create({
     bannerBgImage: {

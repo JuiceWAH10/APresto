@@ -1,5 +1,5 @@
 class Rewards{
-    constructor(reward_ID, shop_ID, reward_Name, pointsReq, definition, status, imgLink){
+    constructor(reward_ID, shop_ID, reward_Name, pointsReq, definition, quantity, status, imgLink){
         this.reward_ID = reward_ID;
         this.shop_ID = shop_ID;
         this.reward_Name = reward_Name;
