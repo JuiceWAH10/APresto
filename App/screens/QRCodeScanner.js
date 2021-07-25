@@ -11,7 +11,6 @@ import {
     TouchableOpacity 
 } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import BarcodeMask from 'react-native-barcode-mask';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default function QRCodeScanner(props){

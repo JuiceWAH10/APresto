@@ -11,6 +11,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import * as crud from '../../../../functions/firebaseCRUD';
 
 function clientAllShopItems(props) {
     const navigation = useNavigation();
@@ -19,7 +20,7 @@ function clientAllShopItems(props) {
             {/* Product Image and Infos */}
             <View style={styles.containerInfos}>
                 <Image style={styles.itemImage}
-                        source={require('../../../../assets/DummyShop.jpg')}>
+                        source={{uri: props.imgLink}}>
                 </Image>
                 <View style={styles.itemContainer} >
                     <Text style={styles.itemName}>{props.product_Name}</Text>
@@ -54,7 +55,22 @@ function clientAllShopItems(props) {
 
             {/* Buttons */}
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('clientProductEdit')} >
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => 
+                    navigation.navigate(
+                        'clientProductEdit',{
+                        product_ID: props.product_ID,
+                        shop_ID: props.shop_ID,
+                        product_Name: props.product_Name,
+                        description: props.definition,
+                        price: props.price.toString(),
+                        stock: props.stock.toString(),
+                        status: props.status,
+                        img: props.imgLink
+                        }
+                    )} 
+                >
                     <Icon2 name="pencil" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Edit Info</Text>
                 </TouchableOpacity>
@@ -62,7 +78,7 @@ function clientAllShopItems(props) {
                     <Icon3 name="archive" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delist</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
+                <TouchableOpacity style={styles.button} onPress={() => crud.deleteProduct(props.product_ID, props.imgLink)} >
                     <Icon2 name="trash" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delete</Text>
                 </TouchableOpacity>
@@ -74,7 +90,7 @@ function clientAllShopItems(props) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#fd4140",
+        backgroundColor: "#ee4b43",
         borderRadius: 30,
         alignItems: 'center',
         flexDirection: "row",

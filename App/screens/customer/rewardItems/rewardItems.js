@@ -45,7 +45,12 @@ function rewardItems(props) {
 
     const dispatch = useDispatch();
     //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
-    const rewards = useSelector(state => state.rewards.allRewards);
+    const getRewards = useSelector(state => state.rewards.allRewards);
+    const rewards = getRewards.filter((rew) => {
+        if(rew.shop_ID === shop_ID){
+            return rew
+        }      
+    })
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -124,6 +129,7 @@ function rewardItems(props) {
                                     reward_Name = {itemData.item.reward_Name}
                                     pointsReq = {itemData.item.pointsReq}
                                     definition = {itemData.item.definition}
+                                    imgLink = {itemData.item.imgLink}
                                     redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
                                 />
                             }
@@ -147,6 +153,7 @@ function rewardItems(props) {
                                         reward_Name = {itemData.item.reward_Name}
                                         pointsReq = {itemData.item.pointsReq}
                                         definition = {itemData.item.definition}
+                                        imgLink = {itemData.item.imgLink}
                                         redeemToCart = {() => {dispatch(rewCartFunction.redeemToCart(itemData.item))}}
                                     />}
                             />

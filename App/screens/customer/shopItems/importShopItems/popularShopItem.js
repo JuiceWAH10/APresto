@@ -94,6 +94,5 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         marginRight: 4      
     },
-
 })
 export default popularShopItem;

@@ -48,6 +48,13 @@ function rewardItemsCart(props) {
                     <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
             </View>
+
+            <View style={styles.topNavRight}>
+                <TouchableOpacity style={styles.topNavRightButton} onPress={() => {dispatch(rewCartFunction.clearCart())}}>
+                    <Text style={styles.topNavRightText}>Clear Cart</Text>
+                </TouchableOpacity>
+            </View>
+
             {/* End of Navigation */}
 
             <View style={[styles.formContainer, {flex:15}]}>
@@ -69,7 +76,7 @@ function rewardItemsCart(props) {
                         <AllCartItem
                             quantity = {itemData.item.quantity} 
                             product_Name = {itemData.item.productTitle}
-                            price = {itemData.item.total.toFixed(2)}
+                            price = {itemData.item.productPrice.toFixed(2)}
                             removeFromCart = {() => {
                                 dispatch(rewCartFunction.cancelRedeem(itemData.item.reward_ID))
                             }}

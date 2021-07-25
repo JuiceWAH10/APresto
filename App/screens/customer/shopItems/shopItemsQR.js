@@ -11,9 +11,20 @@ import QRCode from "react-qr-code";
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import {clearCart} from '../../../functions/cartFunction';
+
+import {useDispatch} from 'react-redux';
+
 function shopItemsQR(props) {
     const navigation = useNavigation();
-    const {cartItems, totalAmount} = props.route.params;
+    const {cartItems, totalAmount } = props.route.params;
+    const dispatch = useDispatch();
+    
+    function returnAndClear(){
+        dispatch(clearCart());
+        navigation.goBack();
+    }
+
     let orderDetails = {
         'items':{
             'totalAmount':totalAmount,
@@ -28,7 +39,7 @@ function shopItemsQR(props) {
                         <QRCode 
                             value = {JSON.stringify(orderDetails)}
                         />
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()} >
+                    <TouchableOpacity style={styles.button} onPress={returnAndClear} >
                         <Text style={styles.buttonLabel}>Return</Text>
                     </TouchableOpacity>
                 </View>

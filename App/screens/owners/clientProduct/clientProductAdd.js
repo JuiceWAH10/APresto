@@ -18,77 +18,112 @@ import * as ImagePicker from 'expo-image-picker';
 import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
-import Toast from 'react-native-toast-message';
 
 LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
-function clientProductAdd(props) {
-    const [prodName, setTextProdName] = React.useState('');
-    const [prodDes, setTextProdDes] = React.useState('');
-    const [prodPrice, setTextProdPrice] = React.useState('');
-    const [prodQty, setTextProdQty] = React.useState('');
+import * as crud from '../../../functions/firebaseCRUD';
 
-    const [image, setImage] = React.useState(null);
+function clientProductAdd(props) {
+
+    const [prodName, setTextProdName] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodDes, setTextProdDes] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodPrice, setTextProdPrice] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+    const [prodQty, setTextProdQty] = React.useState({
+        text: "",
+        errorMessage: ""
+    });
+
+    const [URI, setURI] = React.useState(null);
+
+    const image = {
+        url: "wew",
+        get gURL(){
+            return this.url;
+        },
+        set sURL(u){
+            this.url = u;
+        }
+    }
     
     var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
 
     const navigation = useNavigation();
         
     // Code for Image Picker and Uploading to Firebase storage
-    pickImage = async () => {
+    const pickImage = async () => {
         //For choosing photo in the library and crop the photo
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [3, 4],
-            quality: 1,
-        });
-        
-        console.log(result); // To Display the information of image on the console
-        
-        if (!result.cancelled) {
-            showMessage({
-                message: "Uploading Image",
-                backgroundColor: "#ee4b43",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 1000,
+        let result = await 
+            ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [3, 4],
+                quality: 1,
             });
-            this.uploadImage(result.uri, imageUUID)
-                .then(() => {
-                    setImage(result.uri);
-                  })
-                .catch((error) => {
-                    Alert.alert(error);
-                  });
-            }
-        };
+        if (!result.cancelled) {
+            setURI(result.uri);
+        }
+        console.log(result); // To Display the information of image on the console
 
-        //Function to upload to Firebase storage
-        uploadImage = async (uri, imageName) => {
-            const response = await fetch(uri);
-            const blob = await response.blob();
+    };
+
+    //Function to upload to Firebase storage
+    const uploadImage = async(uri, imageName) => {
+        const response = await fetch(uri);
+        const blob = await response.blob(); 
         
+        return new Promise(function(resolve) {
             var ref = firebase.storage().ref().child("images_Product/" + imageName);
-            return ref.put(blob);
-        }
+            ref.put(blob).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL)=>{
+                    console.log('File available at', downloadURL);
+                    image.sURL = downloadURL;
+                    console.log('from upload image: ' + image.gURL)
+                    resolve('wew');
+                });
+            });
+        })
+    };
 
-        //Display flash message 
-        successAdded = () => {
-            showMessage({
-                message: "Product Added Successfully",
-                type: "success",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 2500,
-            })
-        }
+    //Display flash message 
+    const successAdded = () => {
+        showMessage({
+            message: "Product Added Successfully",
+            type: "success",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 2500,
+        })
+    };
+
+    const addProduct = async (prodName, prodDes, prodPrice, prodQty, status) => {
+        showMessage({
+            message: "Uploading Image",
+            backgroundColor: "#ee4b43",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 1000,
+        });
+        const result = await uploadImage(URI, imageUUID)
+
+        console.log('from add function: ', image.gURL);
+        crud.createProduct(prodName, prodDes, prodPrice, prodQty, status, image.gURL);
+        navigation.goBack();
+    };
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -109,10 +144,10 @@ function clientProductAdd(props) {
                 <View style={styles.shadowContainer}>
                     <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    {image && <Image source={{ uri: image }} style={styles.imageUpload} />} 
+                    {URI && <Image source={{ uri: URI }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
-                    <TouchableOpacity style={styles.imageButton} onPress={this.pickImage} >
+                    <TouchableOpacity style={styles.imageButton} onPress={pickImage} >
                         <Text style={styles.imageButtonLabel}>Upload Image</Text>
                     </TouchableOpacity>
                 </View>
@@ -128,8 +163,9 @@ function clientProductAdd(props) {
                             style={styles.input}
                             leftIcon={{ type: 'font-awesome', name: 'archive' }}
                             placeholder="Product Name"
-                            onChangeText={text => setTextProdName(text)}
-                            value={prodName}
+                            onChangeText={(text) => setTextProdName({text})}
+                            value={prodName.text}
+                            errorMessage={prodName.errorMessage}
                         />
                     </View>
                 </View>
@@ -142,9 +178,10 @@ function clientProductAdd(props) {
                             leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             multiline={true}
                             placeholder="Product Description"
-                            onChangeText={text => setTextProdDes(text)}
+                            onChangeText={(text) => setTextProdDes({text})}
                             scrollEnabled={true}
-                            value={prodDes}
+                            value={prodDes.text}
+                            errorMessage={prodDes.errorMessage}
                         />
                     </View>
                 </View>
@@ -157,9 +194,10 @@ function clientProductAdd(props) {
                                     style={styles.inputDual}
                                     leftIcon={{ type: 'font-awesome-5', name: 'coins' }}
                                     placeholder="Product Price"
-                                    onChangeText={text => setTextProdPrice(text)}
+                                    onChangeText={(text) => setTextProdPrice({text})}
                                     keyboardType="numeric"
-                                    value={prodPrice}
+                                    value={prodPrice.text}
+                                    errorMessage={prodPrice.errorMessage}
                                 />
                         </View>
                         <View>
@@ -168,9 +206,10 @@ function clientProductAdd(props) {
                                 style={styles.inputDual}
                                 leftIcon={{ type: 'font-awesome-5', name: 'box' }}
                                 placeholder="Product Quantity"
-                                onChangeText={text => setTextProdQty(text)}
+                                onChangeText={(text) => setTextProdQty({text})}
                                 keyboardType="numeric"
-                                value={prodQty}
+                                value={prodQty.text}
+                                errorMessage={prodQty.errorMessage}
                             />
                         </View>
                     </View>
@@ -178,24 +217,22 @@ function clientProductAdd(props) {
 
                 {/* End of Form */}
             </ScrollView>
-            <Toast ref={Toast.setRef} />
+
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={ () => Toast.show({
-                        type: 'success',
-                        position: 'top',
-                        text1: 'Product Have been Added',
-                        visibilityTime: 1000,
-                        autoHide: true,
-                        topOffset: 100,
-                        bottomOffset: 40,
-                        })} >
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => addProduct(prodName.text, prodDes.text, prodPrice.text, prodQty.text, 'available')}
+                >
                     <Text style={styles.buttonLabel}>Add Product</Text>
                 </TouchableOpacity>
             </View>      
         </SafeAreaView>
+        
+        
     );
+    
+    //
 }
-
 const styles = StyleSheet.create({
     bannerBgImage: {
         alignSelf: "center",

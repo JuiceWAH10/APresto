@@ -15,6 +15,7 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import * as firebase from 'firebase';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -27,7 +28,22 @@ function clientRewardList(props) {
 
     const dispatch = useDispatch();
     //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
-    const rewards = useSelector(state => state.rewards.allRewards);
+    //const rewards = useSelector(state => state.rewards.allRewards);
+
+    const [rewards, setRewards] = React.useState([]);
+
+        React.useEffect(()=>{
+            const subscriber = firebase.firestore()
+            .collection('Rewards')
+            .onSnapshot(querySnapshot => {
+                const rew = [];
+                querySnapshot.forEach(function (reward){         
+                    rew.push(reward.data());
+                });
+                setRewards(rew);
+            });
+            return () => subscriber();
+        }, []);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -75,9 +91,14 @@ function clientRewardList(props) {
                 keyExtractor={item => item.reward_ID}
                 renderItem={itemData =>
                     <ClientAllShopRewards
+                        reward_ID = {itemData.item.reward_ID}
+                        shop_ID = {itemData.item.shop_ID}
                         reward_Name = {itemData.item.reward_Name}
                         pointsReq = {itemData.item.pointsReq}
-                        definition = {itemData.item.definition}
+                        description = {itemData.item.description}
+                        quantity = {itemData.item.quantity}
+                        status = {itemData.item.status}
+                        imgLink = {itemData.item.imgLink}
                     />
                 }
             />

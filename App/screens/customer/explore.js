@@ -72,11 +72,11 @@ function explore(props) {
                         <Text style={styles.mostReviewsTitle}>Most Reviewed Shops</Text>
                     </View>
                     {/* Insert Code here for importing Most Reviewed shops with info */}
-                    <IndivShop shopName="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal"/>
-                    <IndivShop shopName="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal"/>
-                    <IndivShop shopName="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal"/>
-                    <IndivShop shopName="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
-                    <IndivShop shopName="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
+                    <IndivShop shop_ID = {1} shopName="Keitandkat Perfume" address="504 Gondola, Muzon, Taytay, Rizal" specialty="Perfumes"/>
+                    <IndivShop shop_ID = {2} shopName="Scrapyard Cafe & Restaurant" address="45 Manila E Rd, Angono, 1930 Rizal" specialty="Pinoy Restaurant"/>
+                    <IndivShop shop_ID = {3} shopName="Blugre Coffee Manila East" address="Don Hilario Cruz, Taytay, Rizal" specialty="Cafe"/>
+                    <IndivShop shop_ID = {4} shopName="Korean BBQ & Buffet" address="Peace Be With You Bldg Velasquez Street Brgy, Taytay, Rizal"/>
+                    <IndivShop shop_ID = {5} shopName="Jamp Sari-Sari Store" address="Jacob St, Taytay, Rizal"/>
                 {/* </View> */}
                 {/* End of most Reviewed */}
 

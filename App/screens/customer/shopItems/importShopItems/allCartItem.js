@@ -20,7 +20,7 @@ function allCartItem(props) {
             <View style={styles.itemContainer}>
                 <Text style={styles.itemInfo}>Qty: {props.quantity}</Text>
                 <Text style={styles.itemName}>{props.product_Name}</Text>
-                <Text style={styles.itemPrice}>Php{props.price}</Text>
+                <Text style={styles.itemPrice}>{props.price}</Text>
                 
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity style={styles.button} onPress={props.removeFromCart}>
