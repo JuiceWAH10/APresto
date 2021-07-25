@@ -62,6 +62,22 @@ export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgL
 
 
 {/*
+    this const could be used to read data into reducers
+    const getLocation = () => {
+    return firebase.firestore()
+            .collection("users")
+            .doc(currentUser.uid)
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    data = doc.data();
+                    return data.businessDetails.businessLocation;
+                } else {
+                    return "";
+                }
+            });
+};
+
     //needs adjustment, must integrate to reducer
 export function readAllProducts(){
     return firebase.firestore()
@@ -117,6 +133,14 @@ export function updateProduct(prod_ID, prodName, prodDes, prodPrice, prodQty, st
 }
 
 //needs adjustment, specify using ID
-export function deleteRecord(){
-    firebase.firestore().ref('Users/').remove();
+export function deleteProduct(product_ID, imgLink){
+    firebase.firestore().collection('Products').doc(product_ID).delete().then(() => {
+        console.log("Document successfully deleted!");
+        var imageRef = firebase.storage().refFromURL(imgLink);
+            imageRef.delete().then(() => {
+                console.log("Deleted")
+            }).catch(err => console.log(err))
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
 }

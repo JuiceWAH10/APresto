@@ -20,6 +20,7 @@ import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
 import Toast from 'react-native-toast-message';
 import { isIOS } from 'react-native-elements/dist/helpers';
+import * as crud from '../../../functions/firebaseCRUD';
 
 LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
@@ -47,9 +48,6 @@ function clientProductEdit(props) {
         errorMessage: ""
     });
 
-    const [URI, setURI] = React.useState(image.gURL);
-    const [changedIMG, setChangedIMG] = React.useState(false);
-
     const image = {
         url: img,
         get gURL(){
@@ -59,9 +57,10 @@ function clientProductEdit(props) {
             this.url = u;
         }
     }
-    
 
-        
+    const [URI, setURI] = React.useState({link:image.gURL});
+    const [changedIMG, setChangedIMG] = React.useState({bool: false});
+    
     // Code for Image Picker and Uploading to Firebase storage
     const pickImage = async () => {
         //For choosing photo in the library and crop the photo
@@ -73,10 +72,10 @@ function clientProductEdit(props) {
                 quality: 1,
             });
         if (!result.cancelled) {
-            setURI(result.uri);
-            setChangedIMG(true);
+            setURI({link: result.uri});
+            setChangedIMG({bool: true});
         }
-        console.log(result); // To Display the information of image on the console
+        console.log(result, changedIMG.bool); // To Display the information of image on the console
 
     };
 
@@ -95,6 +94,10 @@ function clientProductEdit(props) {
                     resolve('wew');
                 });
             });
+            var imageRef = firebase.storage().refFromURL(img);
+            imageRef.delete().then(() => {
+                console.log("Deleted")
+            }).catch(err => console.log(err))
         })
     };
 
@@ -123,12 +126,12 @@ function clientProductEdit(props) {
             autoHide:"true", 
             duration: 1000,
         });
-        if(changedIMG){
-            const result = await uploadImage(URI, imageUUID)
+        console.log(changedIMG.bool)
+        if(changedIMG.bool){
+            const result = await uploadImage(URI.link, imageUUID)
         }
         
-
-        console.log('from add function: ', image.gURL + result);
+        console.log('from add function: ', image.gURL);
         crud.updateProduct(product_ID, prodName, prodDes, prodPrice, prodQty, prodStatus, image.gURL);
         navigation.goBack();
     };
@@ -152,7 +155,7 @@ function clientProductEdit(props) {
                 <View style={styles.shadowContainer}>
                 <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    {URI && <Image source={{ uri: URI }} style={styles.imageUpload} />} 
+                    {URI && <Image source={{ uri: URI.link }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
                     <TouchableOpacity style={styles.imageButton} onPress={pickImage} >
@@ -171,7 +174,7 @@ function clientProductEdit(props) {
                             style={styles.input}
                             leftIcon={{ type: 'font-awesome', name: 'archive' }}
                             placeholder="Product Name"
-                            onChangeText={text => setTextProdName(text)}
+                            onChangeText={text => setTextProdName(state => ({...state,text}))}
                             value={prodName.text}
                             errorMessage={prodName.errorMessage}
                         />
@@ -186,7 +189,7 @@ function clientProductEdit(props) {
                             leftIcon={{ type: 'font-awesome', name: 'list-alt' }}
                             multiline={true}
                             placeholder="Product Description"
-                            onChangeText={text => setTextProdDes(text)}
+                            onChangeText={text => setTextProdDes(state => ({...state,text}))}
                             scrollEnabled={true}
                             value={prodDes.text}
                             errorMessage={prodDes.errorMessage}
@@ -202,7 +205,7 @@ function clientProductEdit(props) {
                                     style={styles.inputDual}
                                     leftIcon={{ type: 'font-awesome-5', name: 'coins' }}
                                     placeholder="Product Price"
-                                    onChangeText={text => setTextProdPrice(text)}
+                                    onChangeText={text => setTextProdPrice(state => ({...state,text}))}
                                     keyboardType="numeric"
                                     value={prodPrice.text}
                                     errorMessage={prodPrice.errorMessage}
@@ -214,7 +217,7 @@ function clientProductEdit(props) {
                                 style={styles.inputDual}
                                 leftIcon={{ type: 'font-awesome-5', name: 'box' }}
                                 placeholder="Product Quantity"
-                                onChangeText={text => setTextProdQty(text)}
+                                onChangeText={text => setTextProdQty(state => ({...state,text}))}
                                 keyboardType="numeric"
                                 value={prodQty.text}
                                 errorMessage={prodQty.errorMessage}

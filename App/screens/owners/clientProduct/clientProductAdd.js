@@ -120,7 +120,7 @@ function clientProductAdd(props) {
         });
         const result = await uploadImage(URI, imageUUID)
 
-        console.log('from add function: ', image.gURL + result);
+        console.log('from add function: ', image.gURL);
         crud.createRecord(prodName, prodDes, prodPrice, prodQty, status, image.gURL);
         navigation.goBack();
     };

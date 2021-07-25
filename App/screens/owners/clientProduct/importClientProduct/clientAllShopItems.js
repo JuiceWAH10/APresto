@@ -11,6 +11,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+import * as crud from '../../../../functions/firebaseCRUD';
 
 function clientAllShopItems(props) {
     const navigation = useNavigation();
@@ -66,7 +67,7 @@ function clientAllShopItems(props) {
                         price: props.price.toString(),
                         stock: props.stock.toString(),
                         status: props.status,
-                        imgLink: props.imgLink
+                        img: props.imgLink
                         }
                     )} 
                 >
@@ -77,7 +78,7 @@ function clientAllShopItems(props) {
                     <Icon3 name="archive" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delist</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => "pressed"} >
+                <TouchableOpacity style={styles.button} onPress={() => crud.deleteProduct(props.product_ID, props.imgLink)} >
                     <Icon2 name="trash" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Delete</Text>
                 </TouchableOpacity>
