@@ -15,6 +15,16 @@ import Products from '../models/products';
         status: status,
         imgLink: imgLink
     }
+
+            Toast.show({
+            type: 'success',
+            position: 'top',
+            text1: 'Product Have been Added',
+            visibilityTime: 3000,
+            autoHide: true,
+            topOffset: 100,
+            bottomOffset: 40,
+        })
 */
 
 export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgLink){
@@ -22,7 +32,6 @@ export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgL
     const db = firebase.firestore();
     const ref = db.collection('Products').doc();
     const id = ref.id;
-    const product = new Products(id, 1, prodName, prodDes, prodPrice, prodQty, status, imgLink);
 
     <Toast ref={Toast.setRef} />
     
@@ -34,21 +43,14 @@ export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgL
         shop_ID: "1",
         product_Name: prodName,
         description: prodDes,
-        quantity: prodQty,
+        price: parseFloat(prodPrice),
+        quantity: parseInt(prodQty),
         status: status,
         imgLink: imgLink
     })
     .then((data)=>{
         //success callback
-        Toast.show({
-            type: 'success',
-            position: 'top',
-            text1: 'Product Have been Added',
-            visibilityTime: 3000,
-            autoHide: true,
-            topOffset: 100,
-            bottomOffset: 40,
-        })
+
         console.log('data ' , data)
         
     }).catch((error)=>{
@@ -57,26 +59,60 @@ export function createRecord(prodName, prodDes, prodPrice, prodQty, status, imgL
     });
 }
 
-//needs adjustment, must integrate to reducer
+
+
+{/*
+    //needs adjustment, must integrate to reducer
 export function readAllProducts(){
-    var recentPostsRef = firebase.firestore().ref('/store');
-    recentPostsRef.once('value').then(snapshot => {
-    // snapshot.val() is the dictionary with all your keys/values from the '/store' path
-    this.setState({ stores: snapshot.val() })
-})
+    return firebase.firestore()
+    .collection('Products')
+    .onSnapshot(querySnapshot => {
+        const products = [];
+        querySnapshot.forEach(function (product){         
+            products.push(product.data());
+            console.log(product.data());
+        });
+        return products;
+    })
 }
+    
+    let prods = new Products
+                        (
+                            product.product_ID, 
+                            product.shop_ID, 
+                            product.product_Name, 
+                            product.price, 
+                            product.quantity, 
+                            product.description, 
+                            product.status, 
+                            product.imgLink
+                        );
+                    
+    export function readRecord() {
+    const allProducts = firebase.firestore().collection('Products');
+    allProducts.on('value').then(snapshot => {
+        // snapshot.val() is the dictionary with all your keys/values from the collection
+        console.log(snapshot.val())
+    })
+}
+
+*/}
 
 //needs adjustment
-export function readRecord() {
-    firebase.firestore().ref('Products').on('value', function (snapshot) {
-        console.log(snapshot.val())
-    });
-}
+
 
 //for single data :/ needs adjustment
-export function updateRecord(email){
-    firebase.firestore().ref('Users/').update({
-        email,
+export function updateProduct(prod_ID, prodName, prodDes, prodPrice, prodQty, status, imgLink){
+    firebase.firestore()
+    .collection('Products')
+    .doc(prod_ID)
+    .update({
+        product_Name: prodName,
+        description: prodDes,
+        price: parseFloat(prodPrice),
+        quantity: parseInt(prodQty),
+        status: status,
+        imgLink: imgLink
     });
 }
 

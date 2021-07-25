@@ -19,7 +19,7 @@ function clientAllShopItems(props) {
             {/* Product Image and Infos */}
             <View style={styles.containerInfos}>
                 <Image style={styles.itemImage}
-                        source={require('../../../../assets/DummyShop.jpg')}>
+                        source={{uri: props.imgLink}}>
                 </Image>
                 <View style={styles.itemContainer} >
                     <Text style={styles.itemName}>{props.product_Name}</Text>
@@ -54,7 +54,22 @@ function clientAllShopItems(props) {
 
             {/* Buttons */}
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('clientProductEdit')} >
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => 
+                    navigation.navigate(
+                        'clientProductEdit',{
+                        product_ID: props.product_ID,
+                        shop_ID: props.shop_ID,
+                        product_Name: props.product_Name,
+                        description: props.definition,
+                        price: props.price.toString(),
+                        stock: props.stock.toString(),
+                        status: props.status,
+                        imgLink: props.imgLink
+                        }
+                    )} 
+                >
                     <Icon2 name="pencil" size={20} color="#fff" />
                     <Text style={styles.buttonLabel}>Edit Info</Text>
                 </TouchableOpacity>

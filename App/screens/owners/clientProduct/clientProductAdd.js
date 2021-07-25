@@ -41,7 +41,18 @@ function clientProductAdd(props) {
         text: "",
         errorMessage: ""
     });
-    const [image, setImage] = React.useState(null);
+
+    const [URI, setURI] = React.useState(null);
+
+    const image = {
+        url: "wew",
+        get gURL(){
+            return this.url;
+        },
+        set sURL(u){
+            this.url = u;
+        }
+    }
     
     var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
 
@@ -58,20 +69,28 @@ function clientProductAdd(props) {
                 quality: 1,
             });
         if (!result.cancelled) {
-            setImage(result.uri);
+            setURI(result.uri);
         }
         console.log(result); // To Display the information of image on the console
+
     };
 
     //Function to upload to Firebase storage
-    const uploadImage = async (uri, imageName) => {
+    const uploadImage = async(uri, imageName) => {
         const response = await fetch(uri);
-        const blob = await response.blob();
-    
-        var ref = firebase.storage().ref().child("images_Product/" + imageName);
-
-
-        return ref.put(blob);
+        const blob = await response.blob(); 
+        
+        return new Promise(function(resolve) {
+            var ref = firebase.storage().ref().child("images_Product/" + imageName);
+            ref.put(blob).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL)=>{
+                    console.log('File available at', downloadURL);
+                    image.sURL = downloadURL;
+                    console.log('from upload image: ' + image.gURL)
+                    resolve('wew');
+                });
+            });
+        })
     };
 
     //Display flash message 
@@ -88,7 +107,7 @@ function clientProductAdd(props) {
         })
     };
 
-    const addProduct = (prodName, prodDes, prodPrice, prodQty, status, imgLink) => {
+    const addProduct = async (prodName, prodDes, prodPrice, prodQty, status) => {
         showMessage({
             message: "Uploading Image",
             backgroundColor: "#ee4b43",
@@ -99,12 +118,10 @@ function clientProductAdd(props) {
             autoHide:"true", 
             duration: 1000,
         });
-        uploadImage(imgLink, imageUUID)
-        .catch((error) => {
-            Alert.alert(error);
-        });
+        const result = await uploadImage(URI, imageUUID)
 
-        crud.createRecord(prodName, prodDes, prodPrice, prodQty, status, imgLink);
+        console.log('from add function: ', image.gURL + result);
+        crud.createRecord(prodName, prodDes, prodPrice, prodQty, status, image.gURL);
         navigation.goBack();
     };
 
@@ -127,7 +144,7 @@ function clientProductAdd(props) {
                 <View style={styles.shadowContainer}>
                     <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    {image && <Image source={{ uri: image }} style={styles.imageUpload} />} 
+                    {URI && <Image source={{ uri: URI }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
                     <TouchableOpacity style={styles.imageButton} onPress={pickImage} >
@@ -204,7 +221,7 @@ function clientProductAdd(props) {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity 
                     style={styles.button} 
-                    onPress={() => addProduct(prodName.text, prodDes.text, prodPrice.text, prodQty.text, 'available', image)}
+                    onPress={() => addProduct(prodName.text, prodDes.text, prodPrice.text, prodQty.text, 'available')}
                 >
                     <Text style={styles.buttonLabel}>Add Product</Text>
                 </TouchableOpacity>

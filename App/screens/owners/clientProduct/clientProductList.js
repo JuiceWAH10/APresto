@@ -16,6 +16,7 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import * as firebase from 'firebase'
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,7 +31,23 @@ function clientProductList(props) {
 
     const dispatch = useDispatch();
     //(juswa) fetch data from redux store in App.js using useSelector. the data is from the state managed by reducers
-    const products = useSelector(state => state.products.allProducts);
+    //const products = useSelector(state => state.products.allProducts);
+
+    //fetch data from firestore
+    const [products, setProducts] = React.useState([]);
+
+        React.useEffect(()=>{
+            const subscriber = firebase.firestore()
+            .collection('Products')
+            .onSnapshot(querySnapshot => {
+                const prod = [];
+                querySnapshot.forEach(function (product){         
+                    prod.push(product.data());
+                });
+                setProducts(prod);
+            });
+            return () => subscriber();
+        }, []);
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -77,11 +94,15 @@ function clientProductList(props) {
                 data={products}
                 keyExtractor={item => item.product_ID}
                 renderItem={itemData => 
-                    <ClientAllShopItems 
+                    <ClientAllShopItems
+                        product_ID = {itemData.item.product_ID}
+                        shop_ID = {itemData.item.shop_ID}
                         product_Name = {itemData.item.product_Name}
                         price = {itemData.item.price}
-                        definition = {itemData.item.definition}
-                        stock = {itemData.item.stock}
+                        definition = {itemData.item.description}
+                        stock = {itemData.item.quantity}
+                        status = {itemData.item.status}
+                        imgLink = {itemData.item.imgLink}
                     />
                 }
             />

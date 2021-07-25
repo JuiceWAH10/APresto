@@ -30,14 +30,15 @@ const Stack = createStackNavigator();
 export default Screens = () => {
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="customerShops" component={ClientHomepage} />  
       
-      <Stack.Screen name="customerShops" children={customerBottomTabs} />  
       <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} />  
       {/* Added Vincent 
       <Stack.Screen name="explore" component={Explore} />
       <Stack.Screen name="rewards" component={Rewards} />
       <Stack.Screen name="shops" component={Shops} />
       <Stack.Screen name="profile" component={Profile} />
+      <Stack.Screen name="clientHomepage" children={customerBottomTabs} />  
       */}
       <Stack.Screen name="shopItems" component={ShopItems} />
       <Stack.Screen name="shopItemsCart" component={ShopItemsCart} />  
@@ -47,7 +48,7 @@ export default Screens = () => {
       <Stack.Screen name="rewardItemsQR" component={RewardItemsQR} />
       <Stack.Screen name="customerEditProfile" component={CustomerEditProfile} />
 
-      <Stack.Screen name="clientHomepage" component={ClientHomepage} />  
+      
       <Stack.Screen name="clientProductAdd" component={ClientProductAdd} />
       <Stack.Screen name="clientProductEdit" component={ClientProductEdit} />
       <Stack.Screen name="clientProductList" component={ClientProductList} />

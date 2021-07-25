@@ -19,76 +19,119 @@ import * as firebase from "firebase";
 import uuid from 'react-native-uuid';
 import { showMessage } from "react-native-flash-message";
 import Toast from 'react-native-toast-message';
+import { isIOS } from 'react-native-elements/dist/helpers';
 
 LogBox.ignoreLogs(['Setting a timer']);// To ignore the warning on uploading
 
 function clientProductEdit(props) {
-    const [prodName, setTextProdName] = React.useState('');
-    const [prodDes, setTextProdDes] = React.useState('');
-    const [prodPrice, setTextProdPrice] = React.useState('');
-    const [prodQty, setTextProdQty] = React.useState('');
-
-    const [image, setImage] = React.useState(null);
+    const {product_ID, shop_ID, product_Name, price, description, stock, status, img} = props.route.params;
     
     var imageUUID = uuid.v4(); // generates UUID (Universally Unique Identifier)
-    
+
     const navigation = useNavigation();
 
+    const [prodName, setTextProdName] = React.useState({
+        text: product_Name,
+        errorMessage: ""
+    });
+    const [prodDes, setTextProdDes] = React.useState({
+        text: description,
+        errorMessage: ""
+    });
+    const [prodPrice, setTextProdPrice] = React.useState({
+        text: price,
+        errorMessage: ""
+    });
+    const [prodQty, setTextProdQty] = React.useState({
+        text: stock,
+        errorMessage: ""
+    });
+
+    const [URI, setURI] = React.useState(image.gURL);
+    const [changedIMG, setChangedIMG] = React.useState(false);
+
+    const image = {
+        url: img,
+        get gURL(){
+            return this.url;
+        },
+        set sURL(u){
+            this.url = u;
+        }
+    }
+    
+
+        
     // Code for Image Picker and Uploading to Firebase storage
-    pickImage = async () => {
+    const pickImage = async () => {
         //For choosing photo in the library and crop the photo
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [3, 4],
-            quality: 1,
-        });
-        
-        console.log(result); // To Display the information of image on the console
-        
-        if (!result.cancelled) {
-            showMessage({
-                message: "Uploading Image",
-                backgroundColor: "#ee4b43",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 1000,
+        let result = await 
+            ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [3, 4],
+                quality: 1,
             });
-            this.uploadImage(result.uri, imageUUID)
-                .then(() => {
-                    setImage(result.uri);
-                  })
-                .catch((error) => {
-                    Alert.alert(error);
-                  });
-            }
-        };
+        if (!result.cancelled) {
+            setURI(result.uri);
+            setChangedIMG(true);
+        }
+        console.log(result); // To Display the information of image on the console
 
-        //Function to upload to Firebase storage
-        uploadImage = async (uri, imageName) => {
-            const response = await fetch(uri);
-            const blob = await response.blob();
-        
+    };
+
+    //Function to upload to Firebase storage
+    const uploadImage = async(uri, imageName) => {
+        const response = await fetch(uri);
+        const blob = await response.blob(); 
+        console.log('oof nakapasok pa din here');
+        return new Promise(function(resolve) {
             var ref = firebase.storage().ref().child("images_Product/" + imageName);
-            return ref.put(blob);
-        }
+            ref.put(blob).then((snapshot) => {
+                snapshot.ref.getDownloadURL().then((downloadURL)=>{
+                    console.log('File available at', downloadURL);
+                    image.sURL = downloadURL;
+                    console.log('from upload image: ' + image.gURL)
+                    resolve('wew');
+                });
+            });
+        })
+    };
 
-        //Display flash message 
-        successAdded = () => {
-            showMessage({
-                message: "Product Updated Successfully",
-                type: "success",
-                color: "#fff",
-                position: "top",
-                floating: "true",
-                icon: { icon: "info", position: "left" },
-                autoHide:"true", 
-                duration: 2500,
-            })
+    //Display flash message 
+    const successAdded = () => {
+        showMessage({
+            message: "Product Added Successfully",
+            type: "success",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 2500,
+        })
+    };
+
+    const updateProduct = async (prodName, prodDes, prodPrice, prodQty, prodStatus) => {
+        showMessage({
+            message: "Uploading Image",
+            backgroundColor: "#ee4b43",
+            color: "#fff",
+            position: "top",
+            floating: "true",
+            icon: { icon: "info", position: "left" },
+            autoHide:"true", 
+            duration: 1000,
+        });
+        if(changedIMG){
+            const result = await uploadImage(URI, imageUUID)
         }
+        
+
+        console.log('from add function: ', image.gURL + result);
+        crud.updateProduct(product_ID, prodName, prodDes, prodPrice, prodQty, prodStatus, image.gURL);
+        navigation.goBack();
+    };
 
     return (
         <SafeAreaView style={styles.droidSafeArea}>
@@ -107,12 +150,12 @@ function clientProductEdit(props) {
                 Upload an image of your product for them to see it.</Text>
 
                 <View style={styles.shadowContainer}>
-                    <Text style={styles.formTitles}>Upload Image</Text>
+                <Text style={styles.formTitles}>Upload Image</Text>
                     {/* Display the selected Image*/}
-                    
+                    {URI && <Image source={{ uri: URI }} style={styles.imageUpload} />} 
 
                     {/* Button for Image Picker */}
-                    <TouchableOpacity style={styles.imageButton} onPress={()=>console.log("Pressed")} >
+                    <TouchableOpacity style={styles.imageButton} onPress={pickImage} >
                         <Text style={styles.imageButtonLabel}>Upload Image</Text>
                     </TouchableOpacity>
                 </View>
@@ -129,7 +172,8 @@ function clientProductEdit(props) {
                             leftIcon={{ type: 'font-awesome', name: 'archive' }}
                             placeholder="Product Name"
                             onChangeText={text => setTextProdName(text)}
-                            value={prodName}
+                            value={prodName.text}
+                            errorMessage={prodName.errorMessage}
                         />
                     </View>
                 </View>
@@ -144,7 +188,8 @@ function clientProductEdit(props) {
                             placeholder="Product Description"
                             onChangeText={text => setTextProdDes(text)}
                             scrollEnabled={true}
-                            value={prodDes}
+                            value={prodDes.text}
+                            errorMessage={prodDes.errorMessage}
                         />
                     </View>
                 </View>    
@@ -159,7 +204,8 @@ function clientProductEdit(props) {
                                     placeholder="Product Price"
                                     onChangeText={text => setTextProdPrice(text)}
                                     keyboardType="numeric"
-                                    value={prodPrice}
+                                    value={prodPrice.text}
+                                    errorMessage={prodPrice.errorMessage}
                                 />
                         </View>
                         <View>
@@ -170,7 +216,8 @@ function clientProductEdit(props) {
                                 placeholder="Product Quantity"
                                 onChangeText={text => setTextProdQty(text)}
                                 keyboardType="numeric"
-                                value={prodQty}
+                                value={prodQty.text}
+                                errorMessage={prodQty.errorMessage}
                             />
                         </View>
                     </View>
@@ -194,7 +241,7 @@ function clientProductEdit(props) {
              */}
             </ScrollView>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>console.log("Pressed")} >
+                <TouchableOpacity style={styles.button} onPress={()=> updateProduct(prodName.text, prodDes.text, prodPrice.text, prodQty.text, 'available')} >
                     <Text style={styles.buttonLabel}>Publish Changes</Text>
                 </TouchableOpacity>
             </View>

@@ -48,6 +48,13 @@ function rewardItemsCart(props) {
                     <Icon name="left" size={30} color="#ee4b43" />
                 </TouchableOpacity>
             </View>
+
+            <View style={styles.topNavRight}>
+                <TouchableOpacity style={styles.topNavRightButton} onPress={() => {dispatch(rewCartFunction.clearCart())}}>
+                    <Text style={styles.topNavRightText}>Clear Cart</Text>
+                </TouchableOpacity>
+            </View>
+
             {/* End of Navigation */}
 
             <View style={[styles.formContainer, {flex:15}]}>

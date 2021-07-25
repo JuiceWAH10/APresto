@@ -68,8 +68,6 @@ function shops(props) {
                         shopName = {itemData.item.shopName}
                         address = {itemData.item.address}
                         specialty = {itemData.item.specialty}
-                        viewShop = {() => {dispatch(cartAction.addToCart(products.products))}}
-                        viewDetails = {() => {}}
                     />}
             />
             

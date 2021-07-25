@@ -8,11 +8,14 @@ import {
     Text, 
     TouchableOpacity, 
     View, 
+    LogBox
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { auth } from "firebase";
+LogBox.ignoreAllLogs();// Ignore all Logs! Remove this when coding
+import * as crud from '../../functions/firebaseCRUD';
 
 
 function clientHomepage(props) {
@@ -116,7 +119,7 @@ function clientHomepage(props) {
                         <Text style={styles.dualTitle}> APresto Products</Text>
                     </View>
                     <View style={styles.dual}>
-                        <TouchableOpacity onPress={()=>navigation.navigate('clientProductList')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('clientProductList')}>
                             <View style={styles.dualContent}>
                                 <ImageBackground style={styles.dualBgImage}
                                     imageStyle={{ borderRadius: 30}}
