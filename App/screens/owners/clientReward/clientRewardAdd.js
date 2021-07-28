@@ -108,9 +108,23 @@ function clientRewardAdd(props) {
     };
 
     const addReward = async (rewName, rewDes, rewPrice, rewQty, status) => {
+        if (rewName == '' || rewDes == '' || rewPrice == '' || rewQty == '' ) {
+            showMessage({
+                message: "All Fields must be filled",
+                type: "danger",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 2000,
+            });
+            return;
+        }
+
         showMessage({
-            message: "Uploading Image",
-            backgroundColor: "#ee4b43",
+            message: "Item Added Successfully",
+            type: "success",
             color: "#fff",
             position: "top",
             floating: "true",

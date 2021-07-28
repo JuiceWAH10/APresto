@@ -104,21 +104,35 @@ function clientProductEdit(props) {
     //Display flash message 
     const successAdded = () => {
         showMessage({
-            message: "Product Added Successfully",
+            message: "Item Updated Successfully",
             type: "success",
             color: "#fff",
             position: "top",
             floating: "true",
             icon: { icon: "info", position: "left" },
             autoHide:"true", 
-            duration: 2500,
+            duration: 1000,
         })
     };
 
     const updateProduct = async (prodName, prodDes, prodPrice, prodQty, prodStatus) => {
+        if (prodName == '' || prodDes == '' || prodPrice == '' || prodQty == '' ) {
+            showMessage({
+                message: "All Fields must be filled",
+                type: "danger",
+                color: "#fff",
+                position: "top",
+                floating: "true",
+                icon: { icon: "info", position: "left" },
+                autoHide:"true", 
+                duration: 2000,
+            });
+            return;
+        }
+
         showMessage({
-            message: "Uploading Image",
-            backgroundColor: "#ee4b43",
+            message: "Item Updated Successfully",
+            type: "success",
             color: "#fff",
             position: "top",
             floating: "true",
